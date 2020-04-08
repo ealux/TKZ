@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components
+@namespace TKZ.Pages.Log
+
+<button type="button" class="logbtn dropdown-toggle"
+        data-toggle="dropdown" data-placement="bottom">
+    <img class="img-bell" id="news_img" src=@LogBase.ImageChecker()>
+</button>
+
+<div class="dropdown-menu news_div">
+    @if (LogBase.Messages.Count > 0)
+    {
+        <!-- dropdown-items -->
+        <ul style="">
+            <li class="container-fluid align-content-end" style="text-align:left">
+                <div class="dropdown-header w-auto p-0 float-right">
+                    @*<b>Оповещения</b>*@
+                    <button class="container-fluid btn btn-sm w-auto justify-content-center" @onclick="RemoveMessageQueue">Очистить</button>
+                    @*<div class="dropdown-divider"></div>*@
+                </div>
+            </li>
+            @foreach (var mes in LogBase.Messages)
+            {
+                <li class="container-fluid" style="text-align:justify">
+                    <Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public LogBase lg { get; set; }
+
+    public void Clicker()
+    {
+        LogBase.AddMessage(new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"));
+    }
+    private void RemoveMessageQueue()
+    {
+        LogBase.RemoveMessage();
+    }
+}

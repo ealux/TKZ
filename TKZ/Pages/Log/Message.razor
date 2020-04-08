@@ -1,0 +1,67 @@
+﻿@namespace TKZ.Pages.Log
+@inject IJSRuntime JS
+@using Microsoft.AspNetCore.Components
+
+<div class="alert alert-@type alert-dismissible fade show dropdown-item message-div" 
+     role="alert" 
+     style="overflow:hidden;">
+    <div class="overflow-auto message" style="width:100%;">
+        <b>@Header </b>@Text
+    </div>
+    @*<div >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                style="margin:0; padding:0; height:100%;box-shadow:none; float:right;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>*@
+</div>
+
+@code {
+    [Parameter]
+    public MessageType Type
+    {
+        get { return type_internal; }
+        set
+        {
+            type_internal = value;
+            switch (value)
+            {
+                case MessageType.Success:
+                    type = "success";
+                    break;
+                case MessageType.Warning:
+                    type = "warning";
+                    break;
+                case MessageType.Danger:
+                    type = "danger";
+                    break;
+            }
+        }
+    }
+
+    string type;
+
+    MessageType type_internal;
+
+    [Parameter]
+    public string Header { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    public Message(MessageType type, string header, string text)
+    {
+        this.Type = type;
+        this.Header = header;
+        this.Text = text;
+    }
+
+    public Message() { }
+
+    public enum MessageType
+    {
+        Success,
+        Warning,
+        Danger
+    }
+}
