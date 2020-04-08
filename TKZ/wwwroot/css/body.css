@@ -1,0 +1,79 @@
+.outlined-edit:hover {
+    background-color: lightblue; /*#E7F1FF;*/
+}
+
+.outlined-delete:hover {
+    background-color: red;
+}
+
+.table-general {
+    max-width: 100%;
+    width: auto;
+    padding: 0;
+    margin: 0;  
+}
+
+.table-general-column {
+    max-width: 100%;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    margin-right: 15px;   
+}
+
+.table-general-card {
+    background-color: rgba(231, 241, 255, 0.125);
+}
+
+.table-header {
+    background-image: linear-gradient(to right, #E7F1FF, rgb(255, 255, 255));
+    height: 60px;
+    padding: 0;
+}
+
+.table-header-head {
+    margin: 5px;
+}
+
+.table-header-body{
+    margin: 0;
+    padding: 0;
+}
+
+.table-header-body > .form-row {
+    margin: 0;
+    padding: 0;
+    /*padding-left: 5px;*/
+}
+
+.table-header-body-item {
+    margin: 0;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: inline-block;
+}
+
+.table-body{
+    padding:0;
+}
+
+
+
+/*Table images*/
+
+.img-table-new, .img-table-delete, .img-table-cancel, .img-table-filter{
+    height: 15px;
+    width: 15px;
+}
+
+.img-table-edit {
+    height: 17.5px;
+    width: 18.5px;
+}
+
+.img-table-save {
+    height: 17.5px;
+    width: 17.5px;
+}
