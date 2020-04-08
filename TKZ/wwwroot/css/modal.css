@@ -1,0 +1,27 @@
+.modal-content{
+  width:450px;
+  height:175px;
+}
+
+.modal-header{
+  padding:25px;
+  width:auto;
+  height:auto;
+}
+
+.modal-footer{
+  padding:5px;
+  width:auto;
+  height:auto;
+}
+
+.modal div button:hover{
+  color: #000;
+  outline:none;
+  box-shadow: 2.5px 2.5px #666;
+  outline:none;
+}
+
+.modal div button:focus{
+  outline:none;
+}

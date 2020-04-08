@@ -1,0 +1,61 @@
+﻿@page "/"
+@using System.Collections.ObjectModel;
+@using Blazorise.DataGrid
+@using Blazorise
+
+<h1 class="w3-animate-opacity">Добро пожаловать на сайт!</h1>
+
+<p class="w3-animate-opacity">Welcome to your app.</p>
+
+<DataGrid TItem="User"
+          Data="@employeeList"
+          @*ReadData="@OnReadData"*@
+          TotalItems="@totalEmployees">
+    <DataGridCommandColumn TItem="User" />
+    <DataGridColumn TItem="User" Field="@nameof(User.Id)" Caption="#" Sortable="true" />
+    <DataGridColumn TItem="User" Field="@nameof(User.Name)" Caption="First Name" Editable="true" Sortable="true" />
+    <DataGridColumn TItem="User" Field="@nameof(User.SecondName)" Caption="Last Name" Editable="true" Sortable="true" />
+    <DataGridNumericColumn TItem="User" Field="@nameof(User.Value)" Caption="Childrens" Editable="true" Sortable="true" />
+    <DataGridColumn TItem="User" Field="@nameof(User.Salary)" Caption="Salary" Editable="true">
+        <DisplayTemplate>
+            @($"{( context as User )?.Salary} €")
+        </DisplayTemplate>
+        <EditTemplate>
+            <NumericEdit TValue="decimal" Value="@((decimal)(((CellEditContext)context).CellValue))" ValueChanged="@(v=>((CellEditContext)context).CellValue=v)" />
+        </EditTemplate>
+    </DataGridColumn>
+</DataGrid>
+
+@code
+{
+    static List<User> employeeList { get;set; } = new List<User>
+    {
+        new User()
+        {
+            Id = 0,
+            Name = "Egor",
+            SecondName = "Lyukhanov",
+            Value = 150,
+            Salary = 125.223
+        },
+        new User()
+        {
+            Id = 0,
+            Name = "Egor",
+            SecondName = "Lyukhanov",
+            Value = 150,
+            Salary = 125.223
+        },
+        new User()
+        {
+            Id = 0,
+            Name = "Egor",
+            SecondName = "Lyukhanov",
+            Value = 150,
+            Salary = 125.223
+        }
+    };
+
+    int totalEmployees = employeeList.Count;
+
+}

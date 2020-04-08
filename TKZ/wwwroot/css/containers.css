@@ -1,0 +1,108 @@
+*{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.main{
+  min-width:270px; 
+  width:100%; 
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
+.sidebar-container{
+  min-width:135px; 
+  max-width:135px; 
+  height: 100%;
+  float:left;
+}
+.body_header{
+  width:calc(100% - 135px);
+  max-width:calc(100% - 135px);
+  height: 100%;
+  margin:0;
+  padding:5px;
+  overflow:auto;  
+}
+
+.header{
+  width: 100%;
+  max-width:100%;
+  text-align:left;
+  margin:0;
+  padding:0px;
+}
+
+.body{
+  max-width:100%;
+  max-height:calc(100%-75px);
+  position:relative;
+  overflow:auto;
+  /*background-color: rgba(0,150,255,0.4);*/
+  padding:5px;
+}
+
+.footer {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.dropdown-menu {
+    background-image: linear-gradient(to right, rgba(231, 241, 255, 0.5), rgb(255, 255, 255));
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: calc(0.75em + 2.5px);
+    height: auto;
+    min-width: 45%;
+    max-height: 85%;
+    max-width: 45%;
+    overflow-x: hidden !important;
+}
+
+.message-div{
+    width:100%;
+    padding-right:20px;
+}
+
+.message-div::selection, .message-div:active, .message::selection , .message:active {
+    background: none;
+    color: black;
+}
+
+
+/*Scrollbar width */
+::-webkit-scrollbar {
+    width: 12.5px;
+}
+
+/*Scrollbar Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2.5px grey;
+    border-radius: 5px;
+}
+
+/*Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+    background:#E7F1FF;
+    border-radius: 5px;
+}
+
+/*Message Scrollbar width */
+.message::-webkit-scrollbar {
+    height: 7.5px;
+}
+
+/*Message Scrollbar Track */
+.message::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2.5px grey;
+    border-radius: 5px;
+}
+
+/*Message Scrollbar Handle */
+.message::-webkit-scrollbar-thumb {
+    background: lightblue;
+    border-radius: 5px;
+}

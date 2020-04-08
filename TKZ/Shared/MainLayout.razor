@@ -1,0 +1,22 @@
+﻿@inherits LayoutComponentBase
+@inject LogBase LogBase
+
+<div class="container-fluid main d-block overflow-auto">
+
+    <TKZ.Shared.Navigation />
+
+    <div class="container-fluid body_header d-inline-block">
+        <Header />
+        <div class="container body">
+            @Body
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid footer">
+    <h6>© 2020, ООО “Энерго Ресерч”</h6>
+</footer>
+
+@code{
+
+}
