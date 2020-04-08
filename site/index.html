@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--JS--> 
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  <!--Bootstrap Css-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!--my style-->
+  <link rel="stylesheet" type="text/css" href="css/my_main.css">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color: var(--light_color);">
+
+<!-- header -->
+<nav class="navbar navbar-expand-lg navbar-light  st container header"  >
+<a class="navbar-brand" href="#">
+    <img src="img/thunder.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    LIME
+ </a>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav  ">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Тест IEEE14 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link"  href="#">Контакты</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+  
+  
+
+
+
+<div class="container main_container"> <!--белый блок-->
+<div class="row"  >
+  <div class="my_sidebar">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" >
+      	<img style="height: 40px; " src="img/node.svg">
+      	<p>Узлы</p>
+      </a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+      	<img style="height: 40px; " src="img/branch.svg">
+      	<p>Ветви</p>
+   	</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">      	
+      	<img  style="height: 40px;" src="img/thunder.svg">
+      	<p>Расчет</p>
+      </a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+      	<img style="height: 40px; " src="img/reading.svg">
+      	<p>Советы</p>
+   	</a>
+    </div>
+ 
+  </div>
+
+
+
+  <div  style="margin-left: var(--st_margin);  flex: 1">
+  <div class="button_bar"  > <!--панель с кнопками-->
+    <div class="btn-group" role="group" aria-label="First group">
+      <button type="button" class="my_button"  data-toggle="tooltip" data-placement="bottom" title="Загрузить" style="margin-left: 0"><img  src="img/upload.svg"></button>
+      <button type="button" class="my_button" data-toggle="tooltip" data-placement="bottom" title="Сохранить"><img  src="img/download.svg"></button>
+      <button type="button" class="my_button" data-toggle="tooltip" data-placement="bottom" title="Рассчитать все"><img  src="img/two_thunder2.svg"></button>
+    </div>
+    
+    <button type="button" class="my_button " style="float: right;" ><img style="width: 100%; height: 100%" src="img/bell.svg"></button>
+    
+  </div>
+
+
+
+    <div class="tab-content " id="v-pills-tabContent" >
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Узлы</div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Ветви</div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Здесь должен быть расчет</div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Здесь будут какие-то советы</div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- footer -->
+<footer class="footer" >
+  	<a href="#">Отказ от ответственности</a>
+</footer>
+</body>
+</html>
