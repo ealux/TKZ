@@ -14,4 +14,9 @@
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.8.8.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>

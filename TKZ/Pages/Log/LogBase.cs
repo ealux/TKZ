@@ -6,15 +6,12 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
+using TKZ.Shared;
 
 namespace TKZ.Pages.Log
 {
     public class LogBase
     {
-        //public static int id_counter { get; set; }
-
-        public static string bell_src { get; set; }
-
         public static ObservableCollection<Message> Messages { get; set; }      
 
         public LogBase()
@@ -23,18 +20,33 @@ namespace TKZ.Pages.Log
             {
                 new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
                 new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"),
                 new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!")
             };
         }
 
-        public static void AddMessage(Message mes)
+        public static async Task AddMessage(Message mes)
         {
-            Messages.Add(mes);
+            await Task.Run(()=>Messages.Add(mes));
         }
 
-        public static void RemoveMessage()
+        public static async Task RemoveMessage()
         {
-            Messages.Clear();//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
+            await Task.Run(()=>Messages.Clear());//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
         }
 
         /// <summary>
@@ -43,7 +55,7 @@ namespace TKZ.Pages.Log
         /// <returns><b>string</b>: Log image source</returns>
         public static string ImageChecker()
         {
-            string src = Task.Run(()=>Messages.Count == 0 ? "img/bell.png" : "img/bell_content.png").GetAwaiter().GetResult();
+            string src = Task.Run(() => Messages.Count == 0 ? "img/bell.svg" : "img/bell_content.svg").GetAwaiter().GetResult();
             return src;
         }        
     }

@@ -1,25 +1,9 @@
 ﻿@inject LogBase LogBase
 
-<div class="container header">
-    <!-- HEADER -->
-    <ul>
-        <li data-toggle="tooltip" data-placement="bottom" title="Экспорт/Импорт">
-            <Header_Modal />
-        </li>
-        <li data-toggle="tooltip" data-placement="bottom" title="Сохранить">
-            <button>
-                <img class="img-save" src="img/save.png" />
-            </button>
-        </li>
-        <li data-toggle="tooltip" data-placement="bottom" title="Полный расчёт ТКЗ">
-            <button>
-                <img class="img-full" src="img/full.png" />
-            </button>
-        </li>
-        <li class="logger">
-            <Log lg="LogBase" />
-        </li>
-    </ul>
+<div class="btn-group" role="group" aria-label="First group">
+    <HeaderLaod />
+    <HeaderSave />
+    <HeaderCalc />
 </div>
 
 @code {

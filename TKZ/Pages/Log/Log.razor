@@ -2,30 +2,27 @@
 @using Microsoft.AspNetCore.Components
 @namespace TKZ.Pages.Log
 
-<button type="button" class="logbtn dropdown-toggle"
-        data-toggle="dropdown" data-placement="bottom">
-    <img class="img-bell" id="news_img" src=@LogBase.ImageChecker()>
-</button>
-
-<div class="dropdown-menu news_div">
+<div class="log">
+    <input id="log-one" type="checkbox">
+    <label for="log-one">
+        <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LogBase.ImageChecker()">
+    </label>
     @if (LogBase.Messages.Count > 0)
     {
-        <!-- dropdown-items -->
-        <ul style="">
-            <li class="container-fluid align-content-end" style="text-align:left">
-                <div class="dropdown-header w-auto p-0 float-right">
-                    @*<b>Оповещения</b>*@
-                    <button class="container-fluid btn btn-sm w-auto justify-content-center" @onclick="RemoveMessageQueue">Очистить</button>
-                    @*<div class="dropdown-divider"></div>*@
-                </div>
-            </li>
+        <div class="log-content">
+
+            <div class="p-1" style="text-align:center;">
+                <button class="container-fluid btn btn-sm w-auto justify-content-center"
+                        @onclick="RemoveMessageQueue">
+                    Очистить
+                </button>
+            </div>
             @foreach (var mes in LogBase.Messages)
             {
-                <li class="container-fluid" style="text-align:justify">
-                    <Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
-                </li>
+                <Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
             }
-        </ul>
+                
+        </div>
     }
 </div>
 
@@ -34,12 +31,10 @@
     [Parameter]
     public LogBase lg { get; set; }
 
-    public void Clicker()
+    private async Task RemoveMessageQueue()
     {
-        LogBase.AddMessage(new Message(Message.MessageType.Warning, "Внимание!", "У нас кончилась водка!"));
-    }
-    private void RemoveMessageQueue()
-    {
-        LogBase.RemoveMessage();
+        await LogBase.RemoveMessage();
+        //ShouldRender();
+        //StateHasChanged();
     }
 }
