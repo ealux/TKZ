@@ -2,7 +2,7 @@
 @inject LogBase LogBase
 <!-- header -->
 <nav class="navbar navbar-expand-lg navbar-light  st container header">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/" @onclick="Add">
         <img src="img/thunder.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         LIME
     </a>
@@ -43,7 +43,7 @@
 
         <!--журнал-->
         <div class="log_bar">
-            <Log lg="LogBase"/>
+            <Log />
         </div>
     </div>
 </div>
@@ -54,5 +54,12 @@
 </footer>
 
 @code{
-
+    void LogChange()
+    {
+        //StateHasChanged();
+    }
+    async Task Add()
+    {
+        await LogBase.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
+    }
 }

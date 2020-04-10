@@ -1,10 +1,12 @@
-﻿<div data-toggle="modal" data-target="#exp_imp">
+﻿@inject LogBase LogBase
+
+<div data-toggle="modal" data-target="#exp_imp">
     <button type="button"
             class="my_button"
             data-toggle="tooltip"
             data-placement="bottom"
-            title="Рассчитать все"
-            @onclick="Add">
+            title="Рассчитать все">
+            @*@onclick="Add"*@
         <img src="img/two_thunder2.svg">
     </button>
 </div>
@@ -35,9 +37,9 @@
 
 
 @code {
-    async Task Add()
-    {
-        await LogBase.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
-        StateHasChanged();
-    }
+    //CallBack to implement normal Log addition
+    //async Task Add()
+    //{
+    //    await LogBase.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
+    //}
 }
