@@ -23,7 +23,8 @@ body {
     padding-left: 2vh;
     padding-right: 2vh;
     min-height: 85vh;
-    margin-left: 0;
+    left: 10%;
+    right: 10%;
     min-width: 80%;
 }
 
@@ -52,14 +53,16 @@ body {
     vertical-align: middle;
     font-family: Roboto, sans-serif;
     line-height: 1;
-    margin-left: 0;
-    width: 80%;
+    left: 10%;
+    right: 10%;
+    min-width: 80%;
 }
 
 .header {
     padding-right: 0;
     padding-left: 0;
-    margin-left: 0;
+    /*left: 10%;
+    right: 10%;*/
     min-width: 80%;
 }
 

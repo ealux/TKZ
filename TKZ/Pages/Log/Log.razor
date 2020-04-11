@@ -1,7 +1,7 @@
 ﻿@namespace TKZ.Pages.Log
 @inject LogBase LogBase
 
-<div class="log">
+<div class="log" @onchange="LogChangeEvent">
     <input id="log-one" type="checkbox">
     <label for="log-one" >
         <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LogBase.ImageChecker()">
@@ -26,6 +26,9 @@
 
 
 @code {
+    [Parameter]
+    public EventCallback LogChangeEvent { get; set; }
+
     private async Task RemoveMessageQueue()
     {
         await LogBase.RemoveMessage();

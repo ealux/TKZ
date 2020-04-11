@@ -18,6 +18,7 @@
     </div>
 </nav>
 
+
 <div class="container main_container">
     <!--белый блок-->
     <div class="row">
@@ -43,7 +44,7 @@
 
         <!--журнал-->
         <div class="log_bar">
-            <Log />
+            <Log LogChangeEvent="LogChange"/>
         </div>
     </div>
 </div>
@@ -56,10 +57,11 @@
 @code{
     void LogChange()
     {
-        //StateHasChanged();
+        StateHasChanged();
     }
     async Task Add()
     {
         await LogBase.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
+        StateHasChanged();
     }
 }
