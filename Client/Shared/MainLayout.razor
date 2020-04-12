@@ -1,0 +1,66 @@
+﻿@inherits LayoutComponentBase
+@using TKZ.Client.Pages.Log
+@using TKZ.Client.Pages.Header
+@inject LogBase LB
+<!-- header -->
+
+<nav class="navbar navbar-expand-lg navbar-light  st container header">
+    <a class="navbar-brand" href="/" @onclick="Add">
+        <img src="img/thunder.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        LIME
+    </a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav  ">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Тест IEEE14 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Контакты</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container main_container">
+    <div class="row">
+        <div class="my_sidebar">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <Navs />
+            </div>
+        </div>
+
+        <div class="overflow-auto" style="margin-left: var(--st_margin);  flex: 1">
+            <div class="button_bar">
+                <TKZ.Client.Pages.Header.Header />
+            </div>
+
+            <div class="container-fluid tab-control">
+                <div class="content-tab container-fluid">
+                    @Body
+                </div>
+            </div>
+        </div>
+
+        <div class="log_bar">
+            <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" />
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <a href="#">Отказ от ответственности</a>
+</footer>
+
+@code{
+    void LogChange()
+    {
+        StateHasChanged();
+    }
+    async Task Add()
+    {
+        await LB.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
+        StateHasChanged();
+    }
+}

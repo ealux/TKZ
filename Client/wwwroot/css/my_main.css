@@ -1,0 +1,252 @@
+:root {
+    --light_color: #E7F1FF;
+    --middle_color: #8FBEFF;
+    --red_color: #F17979;
+    --yellow_color: #EEF20D;
+    --green_color: #98F179;
+    --small_shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    --very_small_shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    --st_margin: 16px;
+    --br_radius: 8px;
+}
+
+body {
+    background-color: var(--light_color);
+}
+
+.main_container {
+    background-color: rgb(255,255,255);
+    border-radius: var(--br_radius);
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    min-height: 85vh;
+    left: 10%;
+    right: 10%;
+    min-width: 80%;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0.25rem;
+    position: relative;
+    left: -4px;
+    color: black;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: rgb(0,0,0);
+    background-color: rgb(255,255,255);
+    border-left: 4px solid #191970;
+    width: 84px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    vertical-align: middle;
+    height: 20%;
+}
+
+.footer {
+    margin-top: 16px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Roboto, sans-serif;
+    line-height: 1;
+    left: 10%;
+    right: 10%;
+    min-width: 80%;
+}
+
+.header {
+    padding-right: 0;
+    padding-left: 0;
+    /*left: 10%;
+    right: 10%;*/
+    min-width: 80%;
+}
+
+.my_button {
+    width: 48px;
+    height: 48px;
+    border-width: 0;
+    background: var(--light_color);
+    box-shadow: var(--very_small_shadow);
+    border-radius: var(--br_radius);
+    margin-left: var(--st_margin);
+    padding: 8px;
+}
+
+    .my_button:hover, .my_button:focus {
+        background: var(--middle_color) !important;
+    }
+
+.my_sidebar {
+    background: var(--light_color);
+    border-radius: var(--br_radius);
+    box-shadow: var(--small_shadow);
+    width: 80px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: var(--st_margin);
+    padding-bottom: var(--st_margin);
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    height: 81vh;
+}
+
+.button_bar {
+    margin-bottom: var(--st_margin);
+    /*position:fixed;*/
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.tab-control {
+    padding: 0;
+}
+
+.content-tab {
+    height: 72.5vh;
+    overflow: auto;
+    padding: 0;
+}
+/* журнал */
+
+.log_bar {
+    margin-left: var(--st_margin);
+    overflow: hidden;
+    height: 81vh;
+    padding-right: 8px
+}
+
+.log {
+    height: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    float: right;
+    background-color: var(--light_color);
+    box-shadow: var(--small_shadow);
+    border-radius: var(--br_radius);
+    margin-left: 0;
+    color: black;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.log input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+
+.log label {
+    position: relative;
+    display: block;
+    width: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+.log-content {
+    display: none;
+    background: var(--light_color);
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: var(--small_shadow);
+    max-width: 300px;
+    height: 74vh;
+    /*-webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;*/
+}
+
+/* :checked */
+
+.log input:checked ~ .log-content {
+    overflow: auto;
+    display: block;
+    /*-webkit-transition: max-height 1.5s;
+  -o-transition: max-height 1.5s;
+  transition: max-height 1.5s*/
+}
+
+/* Icon
+.log label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+.log input[type=checkbox] + label::after {
+  content: "+";
+}
+.log input[type=radio] + label::after {
+  content: "\25BC";
+}
+.log input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
+.log input[type=radio]:checked + label::after {
+  transform: rotateX(180deg);
+}
+*/
+
+/*log messages styles*/
+.message_stop {
+    border-radius: var(--br_radius);
+    margin: var(--st_margin);
+    padding: 8px;
+    background-color: var(--red_color);
+}
+
+.message_att {
+    border-radius: var(--br_radius);
+    margin: var(--st_margin);
+    padding: 8px;
+    background-color: var(--yellow_color);
+}
+
+.message_ok {
+    border-radius: var(--br_radius);
+    margin: var(--st_margin);
+    padding: 8px;
+    background-color: var(--green_color);
+}
+
+/*Message Scrollbar width */
+.content-tab::-webkit-scrollbar, .log-content::-webkit-scrollbar {
+    height: 7.5px;
+    width: 7.5px;
+}
+
+/*Message Scrollbar Track */
+.content-tab::-webkit-scrollbar-track, .log-content::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2.5px grey;
+    border-radius: 5px;
+}
+
+/*Message Scrollbar Handle */
+.content-tab::-webkit-scrollbar-thumb, .log-content::-webkit-scrollbar-thumb {
+    background: lightblue;
+    border-radius: 5px;
+}

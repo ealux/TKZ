@@ -1,0 +1,16 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title"
+aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Two_Thunder</title>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_4">
+   <path stroke="#202020" id="svg_2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-miterlimit="10" stroke-width="2" d="m24.112887,5.737533l-20.16701,28l10.218192,0l-3.015688,24l20.16557,-29.999l-10.082065,0l2.881001,-22.001z"/>
+   <path stroke="#202020" id="svg_3" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-miterlimit="10" stroke-width="2" d="m52.853059,5.737532l-20.167011,28l10.218192,0l-3.015688,24l20.16557,-29.999l-10.082065,0l2.881002,-22.001z"/>
+  </g>
+ </g>
+</svg>

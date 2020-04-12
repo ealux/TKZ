@@ -1,12 +1,12 @@
 ﻿@namespace TKZ.Client.Pages.Log
-@inject LogBase LogBase
+@inject LogBase LB
 
 <div class="log" @onchange="LogChangeEvent">
     <input id="log-one" type="checkbox">
     <label for="log-one" >
-        <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LogBase.ImageChecker()">
+        <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LB.ImageChecker()">
     </label>
-    @if (LogBase.Messages.Count > 0)
+    @if (LB.Messages.Count > 0)
     {
         <div class="log-content">
 
@@ -16,9 +16,9 @@
                     Очистить
                 </button>
             </div>
-            @foreach (var mes in LogBase.Messages)
+            @foreach (var mes in LB.Messages)
             {
-                <Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
+                <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
             }   
         </div>
     }
@@ -31,7 +31,7 @@
 
     private async Task RemoveMessageQueue()
     {
-        await LogBase.RemoveMessage();
+        await LB.RemoveMessage();
         StateHasChanged();
     }
 }
