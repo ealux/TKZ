@@ -1,0 +1,28 @@
+﻿@inherits LayoutComponentBase
+@using TKZ.Client.Pages.Log
+@using TKZ.Client.Pages.Header
+@inject LogBase LB
+<!-- header -->
+    <TKZ.Client.Pages.Header.MainHeader />
+
+
+<div class="container main_container">
+
+                    @Body
+                
+</div>
+<!--Footer-->
+
+<TKZ.Client.Pages.Footer.Footer />
+
+@code{
+    void LogChange()
+    {
+        StateHasChanged();
+    }
+    async Task Add()
+    {
+        await LB.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
+        StateHasChanged();
+    }
+}
