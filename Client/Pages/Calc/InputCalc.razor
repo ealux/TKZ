@@ -2,12 +2,11 @@
 @inherits InputBase<string>
 
 <input type="text"
-       class="form-control"
-       style="width:100%;"
+       class="form-control my-0"
        id="inputCalc"
-       placeholder="1, 2-7, *"
-       required>
-@*<input type="color" @attributes=AdditionalAttributes class=@CssClass @bind=CurrentValueAsString />*@
+       placeholder="1, 2-7"
+       required
+       @bind="CurrentValueAsString"/>
 
 @code {
     [Parameter]
@@ -15,37 +14,58 @@
 
 
     //Regex template for input parsing
-    static Regex regex = new Regex(@"(?<gr>\d+-\d+)|(?<sep>\d+)", RegexOptions.Compiled);
+    Regex regex = new Regex(@"(?<gr>\d+-\d+)+|(?<sep>\d+)", RegexOptions.Compiled);
 
     //Output parsing result
     List<int> outputNodes;
-
 
     protected override string FormatValueAsString(string value)
     {
         return base.FormatValueAsString(value);
     }
 
+    //Parse input
     protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
     {
-        //Template release
-        Match match = regex.Match(value);
-
-        if (!match.Success)
+        //Template release condition
+        if (regex.Matches(value).Count == 0)
         {
             validationErrorMessage = "Неверный ввод узлов. Шаблон: 1, 2-7";
             result = string.Empty;
             return false;
         }
 
+        //On success...
         outputNodes = new List<int>();
 
+        foreach (Match match in regex.Matches(value))
+        {
+            //Grouped inputs (2-7, 13-10)
+            if (match.Groups["gr"].Captures.Count > 0)
+            {
+                foreach (var item in match.Groups["gr"].Captures)
+                {
+                    int start = Convert.ToInt32(item.ToString().Split('-')[0]);
+                    int end = Convert.ToInt32(item.ToString().Split('-')[1]);
 
+                    if (start > end){ int tmp = start; start = end; end = tmp; }
 
+                    for (int i = start; i <= end; i++) outputNodes.Add(i);
+                }
+            }
 
+            //Single inputs (1,2,3)
+            if (match.Groups["sep"].Captures.Count > 0)
+            {
+                foreach (var item in match.Groups["sep"].Captures) outputNodes.Add(Convert.ToInt32(item.ToString()));
+            }
 
+        }
+
+        //Successful results 
+        validationErrorMessage = null;
+        result = string.Join(",", outputNodes.Distinct());
+        Console.WriteLine(result);
+        return true;
     }
-
-
-
 }
