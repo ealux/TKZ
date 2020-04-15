@@ -1,0 +1,27 @@
+﻿@page "/calc"
+
+<h3>Calculation</h3>
+
+<form>
+    <div class="form-inline">
+        <div class="form-group col-auto">
+            <p class="col-auto ">Номера узлов: </p>
+        </div>
+        <div class="form-group col-3">
+            <input type="text"
+                   class="form-control"
+                   style="width:100%;"
+                   id="inputCalc"
+                   placeholder="1, 2-7"
+                   required>
+        </div>
+        <button type="submit" 
+                value="Submit"
+                class="my_button form-control long mx-0"
+                style="border:none;">Рассчитать</button>
+    </div>
+</form>
+
+@code {
+    private string request;
+}

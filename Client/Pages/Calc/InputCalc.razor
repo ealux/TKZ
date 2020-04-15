@@ -1,0 +1,51 @@
+﻿@using System.Text.RegularExpressions
+@inherits InputBase<string>
+
+<input type="text"
+       class="form-control"
+       style="width:100%;"
+       id="inputCalc"
+       placeholder="1, 2-7, *"
+       required>
+@*<input type="color" @attributes=AdditionalAttributes class=@CssClass @bind=CurrentValueAsString />*@
+
+@code {
+    [Parameter]
+    public string ParsingErrorMessage { get; set; }
+
+
+    //Regex template for input parsing
+    static Regex regex = new Regex(@"(?<gr>\d+-\d+)|(?<sep>\d+)", RegexOptions.Compiled);
+
+    //Output parsing result
+    List<int> outputNodes;
+
+
+    protected override string FormatValueAsString(string value)
+    {
+        return base.FormatValueAsString(value);
+    }
+
+    protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
+    {
+        //Template release
+        Match match = regex.Match(value);
+
+        if (!match.Success)
+        {
+            validationErrorMessage = "Неверный ввод узлов. Шаблон: 1, 2-7";
+            result = string.Empty;
+            return false;
+        }
+
+        outputNodes = new List<int>();
+
+
+
+
+
+    }
+
+
+
+}
