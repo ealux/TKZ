@@ -4,20 +4,24 @@
 
 <form>
     <div class="form-inline my-0">
+
         <div class="form-group col-auto">
             <p class="col-auto my-0">Номера узлов: </p>
         </div>
-        <div class="form-group col-3 my-0">
+
+        <div class="col-3 justify-content-center w-auto">
             <EditForm Model="request">
-                <TKZ.Client.Pages.Calc.InputCalc @bind-Value="request.Request" />
+                <TKZ.Client.Pages.Calc.InputCalc @bind-Value="request.Request" OnClearEvent="@(()=>request.Request=String.Empty)" />
             </EditForm>
         </div>
+        
         <button type="submit"
                 value="Submit"
                 class="my_button form-control long mx-0 my-0"
                 style="border:none;">
             Рассчитать
         </button>
+
     </div>
     <div class="form-inline">
         <small id="passwordHelpBlock" class="form-text text-muted">
@@ -28,5 +32,4 @@
 
 @code {
     CalculationRequest request = new CalculationRequest();
-
 }

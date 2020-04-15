@@ -1,0 +1,79 @@
+﻿@page "/Contacts"
+@layout SecondaryLayout
+@using TKZ.Shared
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient Http
+
+
+<div class="contact">
+    <h1>Связаться с нами</h1>
+    <EditForm Model="@contact" OnValidSubmit="()=>HandleValidSubmit(contact)">
+        <DataAnnotationsValidator />
+        <div class="text-danger">
+            <ValidationSummary />
+        </div>
+        <div>
+            <p><label for="CustomerName">Ваше имя:</label></p>
+            <InputText class="form-control"
+                       id="CustomerName"
+                       placeholder="Ваше имя"
+                       @bind-Value="contact.Name" />
+        </div>
+        <div>
+            <p><label for="CustomerEmail">Ваш E-mail:</label></p>
+            <InputText class="form-control"
+                       type="text"
+                       id="CustomerEmail"
+                       placeholder="E-mail"
+                       @bind-Value="contact.Email" />
+        </div>
+        <div>
+            <p><label for="CustomerMessage">Сообщение:</label></p>
+            <InputTextArea class="form-control big"
+                           type="text"
+                           id="CustomerMessage"
+                           placeholder="Сообщение"
+                           @bind-Value="contact.Message" />
+        </div>
+        <button type="submit" value="Submit" class="my_button long" style="float: right;">Отправить</button>
+    </EditForm>
+</div>
+
+
+@code {
+    Contact contact = new Contact();
+
+    class Contact
+    {
+        public DateTime datetime { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя")]
+        public string Name { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите адрес e-mail")]
+        [EmailAddress(ErrorMessage = "Некорректный адрес e-mail")]
+        public string Email { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Оставьте сообщение")]
+        public string Message { get; set; }
+
+    }
+
+    //TODO: Implement method
+    private async Task SendFeedback(Contact contact)
+    {
+        contact.datetime = DateTime.Now;
+        Console.WriteLine("Hi!");
+        await Http.PostJsonAsync("Feedback", contact);
+    }
+
+    /// <summary>
+    /// Handle valid form and send the message
+    /// </summary>
+    /// <returns></returns>
+    private async Task HandleValidSubmit(Contact contact)
+    {
+        await SendFeedback(contact);
+        contact = new Contact();
+    }
+}

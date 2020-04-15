@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TKZ.Client.Pages.Calc
 {
@@ -10,36 +8,33 @@ namespace TKZ.Client.Pages.Calc
     /// </summary>
     public class CalculationRequest
     {
-
         //TODO: После реализации модели коллекции узлов - дописать класс
 
         /// <summary>
         /// Collection of oninput generated integers (nodes)
         /// </summary>
-        public string Request { get; set; }
+        //[Required(AllowEmptyStrings = true,ErrorMessage = "Неверный ввод узлов. Шаблон: 1, 2-7")]
+        public string Request { get; set; } = String.Empty;
 
         /// <summary>
         /// Convert non-empty request into List of Integers
         /// </summary>
         /// <returns>List of Integers related to the Request property</returns>
-        private List<int> GetList()
+        public List<int> GetList()
         {
             if (!String.IsNullOrEmpty(this.Request))
             {
                 List<int> outputIntegers = new List<int>();
 
-                foreach (string item in this.Request.Split(","))
-                {
-                    outputIntegers.Add(Convert.ToInt32(item));
-                }
+                foreach (string item in this.Request.Split(",")) outputIntegers.Add(Convert.ToInt32(item));
 
                 return outputIntegers;
             }
-            else return null;
+            else return new List<int>();
         }
 
         /// <summary>
-        /// 
+        ///Return List of Integers related to the current Node collection
         /// </summary>
         /// <returns></returns>
         public List<int> GetActiveNodes()   //TODO
