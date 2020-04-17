@@ -4,13 +4,13 @@
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
 
-
 <div class="contact">
     <h1>Связаться с нами</h1>
-    <EditForm Model="@contact" OnValidSubmit="()=>HandleValidSubmit(contact)">
+    <EditForm Model="@contact" OnValidSubmit="SendFeedback">
         <DataAnnotationsValidator />
         <div class="text-danger">
             <ValidationSummary />
+            <text class="text-success">@notification</text>
         </div>
         <div>
             <p><label for="CustomerName">Ваше имя:</label></p>
@@ -39,9 +39,10 @@
     </EditForm>
 </div>
 
-
 @code {
     Contact contact = new Contact();
+
+    string notification { get; set; }
 
     class Contact
     {
@@ -56,24 +57,13 @@
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Оставьте сообщение")]
         public string Message { get; set; }
-
     }
 
-    //TODO: Implement method
-    private async Task SendFeedback(Contact contact)
+    private async Task SendFeedback()
     {
-        contact.datetime = DateTime.Now;
-        Console.WriteLine("Hi!");
-        await Http.PostJsonAsync("Feedback", contact);
-    }
-
-    /// <summary>
-    /// Handle valid form and send the message
-    /// </summary>
-    /// <returns></returns>
-    private async Task HandleValidSubmit(Contact contact)
-    {
-        await SendFeedback(contact);
-        contact = new Contact();
+        this.contact.datetime = DateTime.Now;
+        await Http.PostJsonAsync("Feedback", this.contact);
+        notification = "Отзыв успешно отправлен! Спасибо!";
+        this.contact = new Contact();
     }
 }

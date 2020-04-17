@@ -1,10 +1,9 @@
 ﻿@inherits LayoutComponentBase
 @using TKZ.Client.Pages.Log
-@using TKZ.Client.Pages.Header
 @inject LogBase LB
 <!-- header -->
 
-<TKZ.Client.Pages.Header.MainHeader />
+<TKZ.Client.Shared.Header.MainHeader />
 
 <div class="container main_container">
     <div class="row">
@@ -16,7 +15,7 @@
 
         <div class="overflow-auto" style="margin-left: var(--st_margin);  flex: 1">
             <div class="button_bar">
-                <TKZ.Client.Pages.Header.Header />
+                <TKZ.Client.Shared.Header.Header />
             </div>
 
             <div class="container-fluid tab-control">
@@ -34,7 +33,7 @@
 
 <!--Footer-->
 
-<TKZ.Client.Pages.Footer.Footer />
+<TKZ.Client.Shared.Footer.Footer />
 
 @code{
     void LogChange()

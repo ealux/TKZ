@@ -1,18 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using TKZ.Client.Shared;
 
 namespace TKZ.Client.Pages.Log
 {
     public class LogBase
     {
-        public ObservableCollection<Message> Messages { get; set; }      
+        public ObservableCollection<Message> Messages { get; set; }
 
         public LogBase()
         {
@@ -24,12 +17,12 @@ namespace TKZ.Client.Pages.Log
 
         public async Task AddMessage(Message mes)
         {
-            await Task.Run(()=>Messages.Add(mes));
+            await Task.Run(() => Messages.Add(mes));
         }
 
         public async Task RemoveMessage()
         {
-            await Task.Run(()=>Messages.Clear());//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
+            await Task.Run(() => Messages.Clear());//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
         }
 
         /// <summary>
@@ -40,6 +33,6 @@ namespace TKZ.Client.Pages.Log
         {
             string src = Messages.Count == 0 ? "img/bell.svg" : "img/bell_content.svg";
             return src;
-        }        
+        }
     }
 }

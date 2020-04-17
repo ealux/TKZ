@@ -3,7 +3,7 @@
 
 <div class="log" @onchange="LogChangeEvent">
     <input id="log-one" type="checkbox">
-    <label for="log-one" >
+    <label for="log-one">
         <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LB.ImageChecker()">
     </label>
     @if (LB.Messages.Count > 0)
@@ -19,11 +19,10 @@
             @foreach (var mes in LB.Messages)
             {
                 <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
-            }   
+            }
         </div>
     }
 </div>
-
 
 @code {
     [Parameter]

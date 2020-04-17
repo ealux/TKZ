@@ -1,16 +1,15 @@
 ﻿@inherits LayoutComponentBase
 @using TKZ.Client.Pages.Log
-@using TKZ.Client.Pages.Header
 @inject LogBase LB
 <!-- header -->
-<TKZ.Client.Pages.Header.MainHeader />
+<TKZ.Client.Shared.Header.MainHeader />
 
 <div class="container main_container">
     @Body
 </div>
 <!--Footer-->
 
-<TKZ.Client.Pages.Footer.Footer />
+<TKZ.Client.Shared.Footer.Footer />
 
 @code{
     void LogChange()

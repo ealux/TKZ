@@ -13,7 +13,6 @@ namespace TKZ.Client.Pages.Calc
         /// <summary>
         /// Collection of oninput generated integers (nodes)
         /// </summary>
-        //[Required(AllowEmptyStrings = true,ErrorMessage = "Неверный ввод узлов. Шаблон: 1, 2-7")]
         public string Request { get; set; } = String.Empty;
 
         /// <summary>
