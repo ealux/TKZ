@@ -1,22 +1,25 @@
-﻿<NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
+﻿@using System.Globalization
+@inject IStringLocalizer<Navs> L
+
+<NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
     <img style="height: 30px;" src="img/home.svg">
-    <p style="font-size:0.8em;">Главная</p>
+    <p style="font-size:0.8em;">@L["HomeBut"]</p>
 </NavLink>
 <NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
     <img style="height: 40px; " src="img/node.svg">
-    <p style="font-size:0.8em;">Узлы</p>
+    <p style="font-size:0.8em;">@L["NodeBut"]</p>
 </NavLink>
 <NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
     <img style="height: 40px; " src="img/branch.svg">
-    <p style="font-size:0.8em;">Ветви</p>
+    <p style="font-size:0.8em;">@L["BranchBut"]</p>
 </NavLink>
 <NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
     <img style="height: 40px;" src="img/thunder.svg">
-    <p style="font-size:0.8em;">Расчёт</p>
+    <p style="font-size:0.8em;">@L["CalcBut"]</p>
 </NavLink>
 <NavLink class="nav-link" href="/adv" Match="NavLinkMatch.All" ActiveClass="active">
     <img style="height: 40px;" src="img/reading.svg">
-    <p style="font-size:0.8em;">Советы</p>
+    <p style="font-size:0.8em;">@L["AdvBut"]</p>
 </NavLink>
 
 @code {
