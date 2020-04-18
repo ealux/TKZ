@@ -1,13 +1,19 @@
 ﻿@using System.Text.RegularExpressions
 @inherits InputBase<string>
 
-<input class="form-control my-0 mx-0 w-auto"
-       id="inputCalc"
-       placeholder="1, 2-7"
-       required
-       @bind="CurrentValueAsString" />
-<button type="button" class="my_button form-control my-0 mx-0 w-auto"
-        @onclick="OnClearEvent">&times;</button>
+<div class="flex-column">
+    <input class="form-control m-0"
+            id="inputCalc"
+            placeholder="1, 2-7"
+            required
+            @bind="CurrentValueAsString" />
+    <button type="button" class="form-control my_button mx-0 my-1"
+            style="border:none;"
+            @onclick="OnClearEvent">
+        &times;
+    </button>
+</div>
+
 
 @code {
     [Parameter]
@@ -67,7 +73,7 @@
 
         //Successful results
         validationErrorMessage = null;
-        result = string.Join(",", outputNodes.Distinct());
+        result = string.Join(",", outputNodes.Distinct().OrderBy(n => n));
         Console.WriteLine(result);
         return true;
     }
