@@ -1,27 +1,40 @@
 ﻿@using System.Globalization
 @inject IStringLocalizer<Navs> L
+    <div class="my_sidebar">
+        <!--sidebar-->
+        <NavLink class="navbar-brand active "href="/" Match="NavLinkMatch.All" ActiveClass="active" style="font-family: Amithen; color: var(--S-middle); font-size: 3.5rem; ">
+            Lime
+        </NavLink>
+        <div class="nav flex-column nav-pills">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/home.svg">@L["HomeBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/node.svg">@L["NodeBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/branch.svg">@L["BranchBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/mutual_induction" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/mutual_induction.svg">@L["MutBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/thunder.svg">@L["CalcBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/adv" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/reading.svg">@L["AdvBut"]
+            </NavLink>
+            <NavLink class="nav-link" href="/contacts" Match="NavLinkMatch.All" ActiveClass="active">
+                <img class="menu-icon" src="img/contact.svg">@L["ContactBut"]
+            </NavLink>
+            <div style="margin: 8px; background: grey; line-height: 200px;height: 200px">Рекламный блок</div>
+        </div>
+    </div>
 
-<NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
-    <img style="height: 30px;" src="img/home.svg">
-    <p style="font-size:0.8em;">@L["HomeBut"]</p>
-</NavLink>
-<NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
-    <img style="height: 40px; " src="img/node.svg">
-    <p style="font-size:0.8em;">@L["NodeBut"]</p>
-</NavLink>
-<NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
-    <img style="height: 40px; " src="img/branch.svg">
-    <p style="font-size:0.8em;">@L["BranchBut"]</p>
-</NavLink>
-<NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
-    <img style="height: 40px;" src="img/thunder.svg">
-    <p style="font-size:0.8em;">@L["CalcBut"]</p>
-</NavLink>
-<NavLink class="nav-link" href="/adv" Match="NavLinkMatch.All" ActiveClass="active">
-    <img style="height: 40px;" src="img/reading.svg">
-    <p style="font-size:0.8em;">@L["AdvBut"]</p>
-</NavLink>
 
-@code {
 
-}
+
+
+        @code {
+
+        }

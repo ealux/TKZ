@@ -126,8 +126,14 @@
   <data name="CalcBut" xml:space="preserve">
     <value>Расчёт</value>
   </data>
+  <data name="ContactBut" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
   <data name="HomeBut" xml:space="preserve">
     <value>Главная</value>
+  </data>
+  <data name="MutBut" xml:space="preserve">
+    <value>Магнитосвязи</value>
   </data>
   <data name="NodeBut" xml:space="preserve">
     <value>Узлы</value>

@@ -8,6 +8,12 @@
     --very_small_shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
     --st_margin: 16px;
     --br_radius: 8px;
+    --P-dark: #5c8ecc;
+    --P-middle:#8fbeff;
+    --P-light: #c3f0ff;
+    --S-dark: #40b921;
+    --S-middle:#79ec56;
+    --S-light:#afff88;
 }
 
 body {
@@ -15,36 +21,31 @@ body {
 }
 
 .main_container {
-    background-color: rgb(255,255,255);
-    border-radius: var(--br_radius);
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    padding-left: 2vh;
-    padding-right: 2vh;
-    height: 85vh;
+    background-color: white;
+    box-shadow: var(--small_shadow);
+    height: 100vh;
     margin: auto;
-    min-width: 80%;
+    min-width: 100vw;
+    padding: 0;
 }
 
 .nav-pills .nav-link {
-    border-radius: 0.25rem;
+    /*border-radius: 0.25rem;*/
     position: relative;
-    left: -4px;
     color: black;
+    text-align: left;
+    color: white;
+
+
 }
 
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
         color: rgb(0,0,0);
-        background-color: rgb(255,255,255);
-        border-left: 4px solid #191970;
-        width: 84px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        vertical-align: middle;
-        height: 20%;
+        background-color: white;
+        border-radius: 0;
     }
+  
 
 .footer {
     padding: 8px;
@@ -67,43 +68,62 @@ body {
 }
 
 .my_button {
-    width: 48px;
-    height: 48px;
-    border-width: 0;
-    background: var(--light_color);
-    box-shadow: var(--very_small_shadow);
-    border-radius: var(--br_radius);
-    margin-left: var(--st_margin);
-    padding: 8px;
-    outline: 0;
+  padding: 8px;
+  margin: var(--st_margin);
+  outline: 4px;
+  border-radius: var(--br_radius);
+  border: 0px;
 }
+  .my_button.primary {
+    background-color: var(--middle_color);
+  }
 
-    .my_button:hover, .my_button:focus {
+
+    .my_button.primary:hover, .my_button.primary:focus {
+      background-color: var(--light_color);
+      box-shadow: var(--very_small_shadow);
+    }
+
+  .my_button.secondary {
+    background-color: white;
+    border: 2px solid var(--middle_color);
+  }
+
+    .my_button.secondary:hover, .my_button.secondary:focus {
         background: var(--middle_color);
-        outline: 0;
-    }
 
-    .my_button.long {
-        width: auto;
-        height: auto;
     }
+.icon {
+  background-color: transparent;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+  border: none;
+  margin: var(--st_margin);
+  padding: 0.5rem;
+  outline: 0;
+}
+.icon:hover {
+  background: white;
+  border: 2px solid var(--S-middle);
+}
+.menu-icon {
+  height: 2.5rem;
+  margin-right: 4px;
+}
 
 .my_sidebar {
-    background: var(--light_color);
-    border-radius: var(--br_radius);
-    box-shadow: var(--small_shadow);
-    width: 80px;
-    padding-right: 0;
-    padding-left: 0;
+    background: var(--P-dark);
+    max-width: 20vw;
+    padding-right: 8px;
+    padding-left: 8px;
+    text-align: center;
     padding-top: var(--st_margin);
     padding-bottom: var(--st_margin);
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 48px;
-    padding-bottom: 48px;
-    height: 81vh;
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+    z-index: 10;
 }
-
+  
 .button_bar {
     margin-bottom: var(--st_margin);
     /*position:fixed;*/
@@ -123,8 +143,6 @@ body {
     overflow: auto;
     padding: 0;
 }
-/* журнал */
-
 .log_bar {
     margin-left: var(--st_margin);
     overflow: hidden;
@@ -133,38 +151,40 @@ body {
 }
 
 .log {
-    height: auto;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    float: right;
+    width: 200px;
+    max-width: 20vw;
     background-color: var(--light_color);
     box-shadow: var(--small_shadow);
     border-radius: var(--br_radius);
     margin-left: 0;
     color: black;
-    overflow: hidden;
+    overflow: auto;
+    margin: var(--st_margin);
+    padding: var(--st_margin);
+}
+.hidden {
+  display: none;
+}
+
+.log input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    padding-top: 0;
+    padding-bottom: 0;
     vertical-align: middle;
 }
 
-    .log input {
-        position: absolute;
-        opacity: 0;
-        z-index: -1;
-        padding-top: 0;
-        padding-bottom: 0;
-        vertical-align: middle;
-    }
-
-    .log label {
-        position: relative;
-        display: block;
-        width: 48px;
-        padding-top: 0;
-        padding-bottom: 0;
-        padding-left: 4px;
-        padding-right: 4px;
-        cursor: pointer;
-    }
+.log label {
+    position: relative;
+    display: block;
+    width: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    cursor: pointer;
+}
 
 .log-content {
     display: none;
@@ -219,26 +239,25 @@ body {
 */
 
 /*log messages styles*/
-.message_stop {
-    border-radius: var(--br_radius);
-    margin: var(--st_margin);
-    padding: 8px;
-    background-color: var(--red_color);
+.message{
+  border-radius: var(--br_radius);
+  padding: var(--st_margin);
+    
+ }
+.message.stop {
+ background-color: var(--red_color);
 }
 
-.message_att {
-    border-radius: var(--br_radius);
-    margin: var(--st_margin);
-    padding: 8px;
-    background-color: var(--yellow_color);
+.message.att {
+  
+  background-color: var(--yellow_color);
+
+}
+.message.ok {
+  
+  background-color: var(--green_color);
 }
 
-.message_ok {
-    border-radius: var(--br_radius);
-    margin: var(--st_margin);
-    padding: 8px;
-    background-color: var(--green_color);
-}
 
 /*Scrollbar width */
 .content-tab::-webkit-scrollbar, .log-content::-webkit-scrollbar, textarea::-webkit-scrollbar {
@@ -327,3 +346,99 @@ h1 {
     content: " *";
     color: red;
 }
+
+.result_table_area {
+  margin-left: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 0px;
+  overflow: auto;
+  flex: 1;
+  
+  
+}
+
+.chips_area {
+    width: 182px;
+    overflow: auto;
+    margin-right: var(--st_margin); 
+    padding: 2px;
+
+}
+
+.chips_container {
+  height: 40px;
+
+}
+.chips {
+  background-color: var(--light_color);
+  border-radius: var(--br_radius);
+  margin-bottom: 0;
+  box-shadow: var(--very_small_shadow);
+  display: block;
+  padding-left: 8px;
+  min-height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  }
+
+
+
+
+.chips_button {
+  margin: 0;
+  padding: 0;
+  float: right;
+  height: 32px;
+  width: 32px;
+  background-color: transparent;
+  border-color: transparent;
+  vertical-align: middle;
+  position: relative;
+  top:-2px;
+
+}
+.chips_input {
+  position: relative;
+  z-index: 10;
+  left: 16px;
+  font-size: 16px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  height: 24px;
+  margin: 0;
+  opacity: 0;
+  display: none;
+}
+
+
+ input[type="radio"]:checked + label {
+  background-color: var(--middle_color);
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.5), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  color: white;
+  font-weight: bold;
+  border: 1px solid var(--middle_color);
+
+}
+
+.main-area {
+  flex: 1;
+  padding: var(--st_margin);
+}
+.icon-delete {
+  background: transparent;
+  border: 0px;
+  opacity: 0px;
+}
+
+@font-face {
+font-family: "Amithen";  
+src: url("../fonts/Amithen.ttf") format("truetype"); 
+font-style: normal; 
+font-weight: normal;
+ }

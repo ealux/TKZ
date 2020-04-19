@@ -126,8 +126,14 @@
   <data name="CalcBut" xml:space="preserve">
     <value>Calc</value>
   </data>
+  <data name="ContactBut" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
   <data name="HomeBut" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="MutBut" xml:space="preserve">
+    <value>Mutual Induction</value>
   </data>
   <data name="NodeBut" xml:space="preserve">
     <value>Nodes</value>

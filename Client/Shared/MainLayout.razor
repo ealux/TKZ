@@ -1,40 +1,33 @@
 ﻿@inherits LayoutComponentBase
 @using TKZ.Client.Pages.Log
 @inject LogBase LB
-<!-- header -->
+<div class="container main_container d-flex flex-row">
+    <Navs />
 
-<TKZ.Client.Shared.Header.MainHeader />
 
-<div class="container main_container">
-    <div class="row">
-        <div class="my_sidebar">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <Navs />
-            </div>
-        </div>
+    <div class="d-flex  flex-column " style="flex: 1;">
+        <TKZ.Client.Shared.Header.Header />
+        <div class="d-flex flex-column"
+             style="flex: 1;
+             overflow: auto;">
 
-        <div class="overflow-auto" style="margin-left: var(--st_margin);  flex: 1">
-            <div class="button_bar">
-                <TKZ.Client.Shared.Header.Header />
-            </div>
-
-            <div class="container-fluid tab-control">
-                <div class="content-tab container-fluid">
+            <div class="d-flex flex-row" style="flex: 1">
+                <!--main area-->
+                <div class="main-area">
                     @Body
                 </div>
+                <!--log-->
+                 <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" />
             </div>
         </div>
-
-        <div class="log_bar">
-            <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" />
-        </div>
+        <TKZ.Client.Shared.Footer.Footer />
     </div>
+
+
+
+
+
 </div>
-
-<!--Footer-->
-
-<TKZ.Client.Shared.Footer.Footer />
-
 @code{
     void LogChange()
     {

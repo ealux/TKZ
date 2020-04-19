@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-10 -10 146.3 99.8" style="enable-background:new 0 0 126.3 89.8;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#274685;stroke-width:4.09;stroke-miterlimit:10;}
+	.st1{fill:#FFD645;stroke:#5D9831;stroke-width:4.09;stroke-miterlimit:10;}
+	.st2{fill:#274685;stroke:#274685;stroke-width:4.09;stroke-miterlimit:10;}
+  .st3{fill:none;stroke:#274685;stroke-width:0.009;stroke-miterlimit:10;}
+}
+}
+</style>
+<title>Load</title>
+<path class="st0" 
+      d="M2,42c0-8.4,27.4-15.2,61.1-15.2s61.2,6.9,61.2,15.2"/>
+<path class="st1" 
+      d="M63.9,87.4
+         c0,0,75-41.1,0-85
+         C-10.1,46.3,
+         63.9,87.4,
+         63.9,87.4z"
+		 />
+<path class="st0" 
+      d="M124.3,42c0,8.4-27.4,15.3-61.1,15.3S2,50.4,2,42"
+      />
+  
+<path class="st3" 
+      id="motionPath"
+      d="M93.3,29.0,         
+         s29.5, 4,
+          31, 13,
+         c0,8.4
+         -27.4,15.3
+         -61.1,15.3
+         S2,50.4,2,42,
+         s19 -10.8,
+          32 -13.5,         
+         "
+/>
+<circle
+	id = "circle"
+	class="st2"
+	cx="0"
+	cy="0"
+	r="3.5"
+/>
+<animateMotion 
+    id="first"
+    xlink:href="#circle"
+    dur="2s"
+    begin="0s"
+    fill="freeze"
+    repeatCount="indefinite"
+    path= "M93.3,29.0,         
+         s29.5, 4,
+          31, 13,
+         c0,8.4
+         -27.4,15.3
+         -61.1,15.3
+         S2,50.4,2,42,
+         s19 -10.8,
+          32 -13.5,         
+         "
+/>
+</svg>

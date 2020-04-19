@@ -1,0 +1,13 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title"
+aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Close</title>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path transform="rotate(44.53133773803711 30.99900054931642,31.000999450683587) " id="svg_1" stroke-linecap="round" stroke-linejoin="round" d="m41.999,20.002l-22,22m22,0l-21.999,-22.002" stroke-width="2" stroke-miterlimit="10" stroke="#5d9831" fill="none"/>
+ </g>
+</svg>
