@@ -4,7 +4,7 @@
 @*<div class="pre_log d-inline-block flex-column">
     R
 </div>*@
-<div class="log w3-animate-right w3-animate-fading @(Collapse ? "collapse":"")" @onchange="LogChangeEvent">
+<div class="log w3-animate-right w3-animate-fading @(LB.Collapse ? "collapse":"")" @onchange="LogChangeEvent">
         <div class="log-content" @onchange="LogChangeEvent">
             <div class="p-1" style="text-align:center;">
                 <button class="container-fluid btn btn-sm w-auto justify-content-center"
@@ -23,12 +23,15 @@
     [Parameter]
     public EventCallback LogChangeEvent { get; set; }
 
-    [Parameter]
-    public bool Collapse { get; set; }
-
     private async Task RemoveMessageQueue()
     {
         await LB.RemoveMessage();
+        LB.Collapse = !LB.Collapse;
         StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        LB.OnChange += StateHasChanged;
     }
 }

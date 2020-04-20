@@ -215,21 +215,26 @@
     }
 
 /*Scrollbar width */
-.main-area::-webkit-scrollbar, .log-content::-webkit-scrollbar, textarea::-webkit-scrollbar {
+.main-area::-webkit-scrollbar, .log::-webkit-scrollbar, textarea::-webkit-scrollbar {
     height: 8px;
     width: 8px;
 }
 
 /*Scrollbar Track */
-.main-area::-webkit-scrollbar-track, .log-content::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
+.main-area::-webkit-scrollbar-track, .log::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2.5px grey;
     background-color: var(--light_color);
     border-radius: 8px;
 }
 
 /*Scrollbar Handle */
-.main-area::-webkit-scrollbar-thumb, .log-content::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb {
+.main-area::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb {
     background: var(--middle_color);
+    border-radius: 8px;
+}
+
+.log::-webkit-scrollbar-thumb {
+    background: var(--S-middle);
     border-radius: 8px;
 }
 

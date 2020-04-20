@@ -4,7 +4,7 @@
 
 <div class="container main_container d-block mh-100" style="flex: 1;">
 
-    <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser" @ref="HeaderRef"/>
+    <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser"/>
 
 
     <div class="d-flex" style="flex: 1;height:90vh;">
@@ -18,24 +18,20 @@
             <TKZ.Client.Shared.Footer.Footer />
         </div>
         <div class="d-flex flex-column h-100 mh-100">
-            <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" Collapse="LogCollapse" />
+            <TKZ.Client.Pages.Log.Log LogChangeEvent="() => { StateHasChanged(); }" />
         </div>
     </div>
 </div>
 @code{
-
-    Header.Header HeaderRef = new Header.Header();
-
-    private bool LogCollapse;
-
     void LogCollapser()
     {
-        LogCollapse = !LogCollapse;
+        LB.Collapse = !LB.Collapse;
         StateHasChanged();
     }
 
-    void LogChange()
+    async Task Add()
     {
+        await LB.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!", "contacts"));
         StateHasChanged();
     }
 }

@@ -41,4 +41,9 @@
     {
         await LB.AddMessage(new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
     }
+
+    protected override void OnInitialized()
+    {
+        LB.OnChange += StateHasChanged;
+    }
 }

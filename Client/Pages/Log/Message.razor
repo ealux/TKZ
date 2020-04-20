@@ -51,8 +51,10 @@
         this.Link = link;
     }
 
+    //Default ctor
     public Message() { }
 
+    //Message by-link redirection method
     private void Redirect()
     {
         if (!String.IsNullOrEmpty(Link))
@@ -61,6 +63,7 @@
         }
     }
 
+    //Message type
     public enum MessageType
     {
         Success,
