@@ -1,4 +1,5 @@
 ﻿@inject LogBase LB
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
 <div class="header d-flex">
     <NavLink class="navbar-brand active mx-5"
@@ -28,14 +29,18 @@
 
     <div class="ml-auto">
         <button type="button" class="icon" title="Тест IEEE14"><img src="img/IEEE_14.svg " width="25px" height="25px" alt="Test IEEE14"></button>
-        <button type="button" class="icon" title="lang"><img src="img/russia.svg" width="25px" height="25px" alt="russia"></button>
+        <button type="button" 
+                class="icon" 
+                title="lang"
+                @onclick="ChangeLanguage">
+            <img src="@(IsRus ? SourceRus : SourceUS )" width="25px" height="25px" alt="russia">
+        </button>
     </div>
 </div>
 
 @code {
     [Parameter]
     public EventCallback LogOpenEvent { get; set; }
-
 
     async Task Add()
     {
@@ -45,5 +50,17 @@
     protected override void OnInitialized()
     {
         LB.OnChange += StateHasChanged;
+    }
+
+    public const string SourceRus = "img/russia.svg";
+    public const string SourceUS = "img/US.svg";
+
+    public bool IsRus { get; set; } = true;
+
+    public async Task ChangeLanguage()
+    {
+        IsRus = !IsRus;
+        if (IsRus) await I18nText.SetCurrentLanguageAsync("ru");
+        else await I18nText.SetCurrentLanguageAsync("en");
     }
 }

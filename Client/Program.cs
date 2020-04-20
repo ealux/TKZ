@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace TKZ.Client
 {
@@ -18,25 +19,10 @@ namespace TKZ.Client
             #region Singletons
 
             builder.Services.AddSingleton<LogBase>();
+            builder.Services.AddI18nText();
 
             #endregion Singletons
 
-            #region Localization
-
-            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("ru-RU"),
-            };
-
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-            //CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
-            //CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("ru-RU");
-            //CultureInfo.CurrentCulture = new CultureInfo("ru_RU");
-            
-            #endregion Localization
 
             builder.Services.AddBaseAddressHttpClient();
 
