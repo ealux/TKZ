@@ -1,4 +1,6 @@
-﻿<div class="header d-flex">
+﻿@inject LogBase LB
+
+<div class="header d-flex">
     <NavLink class="navbar-brand active mx-5" 
              href="/" 
              Match="NavLinkMatch.All" 
@@ -11,7 +13,13 @@
     <button type="button" class="icon" title="Загрузить"><img src="img/upload.svg" width="25px" height="25px" alt="upload"></button>
     <button type="button" class="icon" title="Сохранить"><img src="img/download.svg" width="25px" height="25px" alt="download"></button>
     <button type="button" class="icon" title="Рассчитать все"><img src="img/two_thunder2.svg " width="25px" height="25px" alt="calc all"></button>
-    <button type="button" class="icon" title="Уведомления" id="bell"><img src="img/bell.svg" width="25px" height="25px" alt="Bell"></button>
+    <button type="button" 
+            class="icon" 
+            title="Уведомления" 
+            id="bell"
+            @onclick="LogEvent">
+        <img src="@LB.ImageChecker()" width="25px" height="25px" alt="Bell">
+    </button>
 
     <div class="ml-auto">
         <button type="button" class="icon" title="Тест IEEE14"><img src="img/IEEE_14.svg " width="25px" height="25px" alt="Test IEEE14"></button>
@@ -19,5 +27,6 @@
     </div>
 </div>
 @code {
-
+    [Parameter]
+    public EventCallback LogEvent { get; set; }
 }

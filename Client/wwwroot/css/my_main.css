@@ -166,89 +166,46 @@
     padding: 0;
 }
 
-.log_bar {
-    margin-left: var(--st_margin);
-    overflow: hidden;
-    height: 81vh;
-    padding-right: 8px
-}
-
 .log {
-    width: 200px;
-    max-width: 20vw;
+    width: auto;
+    max-width: 25vw;
     background-color: var(--P-middle);
-    box-shadow: var(--small_shadow);
-    border-radius: var(--br_radius);
-    margin-left: 0;
     color: black;
     overflow: auto;
-    margin: var(--st_margin);
-    padding: var(--st_margin);
+    height:100%;
+    min-height:100%;
 }
 
-.hidden {
-    display: none;
-}
-
-.log input {
-    position: absolute;
-    opacity: 0;
-    z-index: -1;
-    padding-top: 0;
-    padding-bottom: 0;
-    vertical-align: middle;
-}
-
-.log label {
-    position: relative;
-    display: block;
-    width: 48px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 4px;
-    padding-right: 4px;
-    cursor: pointer;
+.pre_log {
+    width: 10px;
+    background-color: var(--P-middle);
+    color: black;
+    height: 100%;
+    min-height: 100%;
 }
 
 .log-content {
-    display: none;
-    background: var(--P-middle);
-    position: relative;
-    top: 0;
-    left: 0;
-    box-shadow: var(--small_shadow);
-    max-width: 300px;
-    height: 74vh;
-    /*-webkit-transition: max-height .35s;
-  -o-transition: max-height .35s;
-  transition: max-height .35s;*/
-}
-
-/* :checked */
-
-.log input:checked ~ .log-content {
-    overflow: auto;
     display: block;
-    /*-webkit-transition: max-height 1.5s;
-  -o-transition: max-height 1.5s;
-  transition: max-height 1.5s*/
+    background: var(--P-middle);
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /*log messages styles*/
 .message {
     border-radius: var(--br_radius);
-    padding: var(--st_margin);
+    padding: 10px;
 }
 
-    .message.stop {
+    .message_stop {
         background-color: var(--red_color);
     }
 
-    .message.att {
+    .message_att {
         background-color: var(--yellow_color);
     }
 
-    .message.ok {
+    .message_ok {
         background-color: var(--green_color);
     }
 

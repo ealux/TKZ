@@ -1,9 +1,10 @@
 ﻿@namespace TKZ.Client.Pages.Log
 @using Microsoft.AspNetCore.Components
 
-<div class="message_@type">
-    <b>@Header </b>@Text
-</div>
+    <div class="message message_@type">
+        <small><b>@Header </b></small>
+        <small>@Text</small>
+    </div>
 
 @code {
     [Parameter]

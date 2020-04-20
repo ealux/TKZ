@@ -1,39 +1,33 @@
 ﻿@namespace TKZ.Client.Pages.Log
 @inject LogBase LB
 
-    <div class="log" @onchange="LogChangeEvent">
-        <div class="d-flex flex-row" style="flex: 1;">
-            <div style="flex: 1; line-height: 3rem">Журнал</div>
-            <button id="hidLog" class="icon-delete"><img src="img/delete.svg " alt="delete" style="height: 3rem;"></button>
-        </div>
-
-
-
-        <input id="log-one" type="checkbox">
-        <label for="log-one">
-            <img style="width: 40px; height: 40px; padding-top: 8px; " src="@LB.ImageChecker()">
-        </label>
-        @if (LB.Messages.Count > 0)
-        {
-            <div class="log-content">
-
-                <div class="p-1" style="text-align:center;">
-                    <button class="container-fluid btn btn-sm w-auto justify-content-center"
-                            @onclick="RemoveMessageQueue">
-                        Очистить
-                    </button>
-                </div>
-                @foreach (var mes in LB.Messages)
-                {
-                    <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
-                }
+@*<div class="pre_log d-inline-block flex-column">
+    R
+</div>*@
+<div class="log @(Collapse ? "collapse":"")" @onchange="LogChangeEvent">
+    @if (LB.Messages.Count > 0)
+    {
+        <div class="log-content">
+            <div class="p-1" style="text-align:center;">
+                <button class="container-fluid btn btn-sm w-auto justify-content-center"
+                        @onclick="RemoveMessageQueue">
+                    <b>Очистить</b>
+                </button>
             </div>
-        }
-    </div>
+            @foreach (var mes in LB.Messages)
+            {
+                <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
+            }
+        </div>
+    }
+</div>
 
 @code {
     [Parameter]
     public EventCallback LogChangeEvent { get; set; }
+
+    [Parameter]
+    public bool Collapse { get; set; } = true;
 
     private async Task RemoveMessageQueue()
     {
