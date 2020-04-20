@@ -195,7 +195,12 @@
 .message {
     border-radius: var(--br_radius);
     padding: 10px;
+    margin-bottom: 5px;
 }
+
+    .message:hover{
+        cursor:pointer;
+    }
 
     .message_stop {
         background-color: var(--red_color);

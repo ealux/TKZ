@@ -1,7 +1,8 @@
 ﻿@namespace TKZ.Client.Pages.Log
 @using Microsoft.AspNetCore.Components
+@inject NavigationManager navmanager
 
-    <div class="message message_@type">
+    <div class="message message_@type" @onclick="@Redirect">
         <small><b>@Header </b></small>
         <small>@Text</small>
     </div>
@@ -39,14 +40,26 @@
     [Parameter]
     public string Text { get; set; }
 
-    public Message(MessageType type, string header, string text)
+    [Parameter]
+    public string Link { get; set; }
+
+    public Message(MessageType type, string header, string text, string link)
     {
         this.Type = type;
         this.Header = header;
         this.Text = text;
+        this.Link = link;
     }
 
     public Message() { }
+
+    private void Redirect()
+    {
+        if (!String.IsNullOrEmpty(Link))
+        {
+            navmanager.NavigateTo(Link);
+        }
+    }
 
     public enum MessageType
     {

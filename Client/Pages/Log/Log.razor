@@ -4,10 +4,8 @@
 @*<div class="pre_log d-inline-block flex-column">
     R
 </div>*@
-<div class="log @(Collapse ? "collapse":"")" @onchange="LogChangeEvent">
-    @if (LB.Messages.Count > 0)
-    {
-        <div class="log-content">
+<div class="log w3-animate-right w3-animate-fading @(Collapse ? "collapse":"")" @onchange="LogChangeEvent">
+        <div class="log-content" @onchange="LogChangeEvent">
             <div class="p-1" style="text-align:center;">
                 <button class="container-fluid btn btn-sm w-auto justify-content-center"
                         @onclick="RemoveMessageQueue">
@@ -16,10 +14,9 @@
             </div>
             @foreach (var mes in LB.Messages)
             {
-                <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" />
+                <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" Link="@mes.Link" />
             }
         </div>
-    }
 </div>
 
 @code {
@@ -27,7 +24,7 @@
     public EventCallback LogChangeEvent { get; set; }
 
     [Parameter]
-    public bool Collapse { get; set; } = true;
+    public bool Collapse { get; set; }
 
     private async Task RemoveMessageQueue()
     {

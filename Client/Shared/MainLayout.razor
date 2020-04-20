@@ -4,7 +4,7 @@
 
 <div class="container main_container d-block mh-100" style="flex: 1;">
 
-    <TKZ.Client.Shared.Header.Header LogEvent="LogCollapser" />
+    <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser" @ref="HeaderRef"/>
 
 
     <div class="d-flex" style="flex: 1;height:90vh;">
@@ -24,6 +24,8 @@
 </div>
 @code{
 
+    Header.Header HeaderRef = new Header.Header();
+
     private bool LogCollapse;
 
     void LogCollapser()
@@ -34,12 +36,6 @@
 
     void LogChange()
     {
-        StateHasChanged();
-    }
-
-    async Task Add()
-    {
-        await LB.AddMessage(new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"));
         StateHasChanged();
     }
 }

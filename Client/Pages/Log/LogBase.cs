@@ -11,7 +11,7 @@ namespace TKZ.Client.Pages.Log
         {
             Messages = new ObservableCollection<Message>()
             {
-                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!", "contacts"),
             };
         }
 
@@ -22,7 +22,7 @@ namespace TKZ.Client.Pages.Log
 
         public async Task RemoveMessage()
         {
-            await Task.Run(() => Messages.Clear());//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
+            await Task.Run(() => Messages.Clear());
         }
 
         /// <summary>
