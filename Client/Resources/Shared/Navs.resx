@@ -120,6 +120,9 @@
   <data name="AdvBut" xml:space="preserve">
     <value>Советы</value>
   </data>
+  <data name="LoadingBut" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
   <data name="BranchBut" xml:space="preserve">
     <value>Ветви</value>
   </data>
@@ -138,4 +141,58 @@
   <data name="NodeBut" xml:space="preserve">
     <value>Узлы</value>
   </data>
+  <data name="NameBut" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="VoltageСlass" xml:space="preserve">
+    <value>Класс напряжения</value>
+  </data>
+  <data name="startBusName" xml:space="preserve">
+    <value>Имя узла начала</value>
+  </data>
+  <data name="finBusName" xml:space="preserve">
+    <value>Имя узла конца</value>
+  </data>
+  <data name="startBus" xml:space="preserve">
+    <value>узла начала</value>
+  </data>
+  <data name="finBus" xml:space="preserve">
+    <value>узла конца</value>
+  </data>  
+  <data name="groundStartBus" xml:space="preserve">
+    <value>Заземление в нулевой посл. со стор. узла начала</value>
+  </data>
+  <data name="groundFinBus" xml:space="preserve">
+    <value>Заземление в нулевой посл. со со стор. узла конца</value>
+  </data>
+  <data name="firstBranch" xml:space="preserve">
+    <value>Ветвь 1</value>
+  </data>  
+  <data name="secondBranch" xml:space="preserve">
+    <value>Ветвь 2</value>
+  </data>  
+  <data name="ohm" xml:space="preserve">
+    <value>Ом</value>
+  </data>  
+  <data name="kV" xml:space="preserve">
+    <value>кВ</value>
+  </data>
+  <data name="kA" xml:space="preserve">
+    <value>кА</value>
+  </data>
+  <data name="MVA" xml:space="preserve">
+    <value>МВА</value>
+  </data>
+  <data name="MWt" xml:space="preserve">
+    <value>МВт</value>
+  </data>
+  <data name="Mvar" xml:space="preserve">
+    <value>Мвар</value>
+  </data>
+  <data name="Siemens" xml:space="preserve">
+    <value>См</value>
+  </data> 
+  <data name="Unom" xml:space="preserve">
+    <value>Uном</value>
+  </data>  
 </root>

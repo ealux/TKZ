@@ -120,6 +120,9 @@
   <data name="AdvBut" xml:space="preserve">
     <value>Advice</value>
   </data>
+  <data name="LoadingBut" xml:space="preserve">
+    <value>Loading</value>
+  </data>
   <data name="BranchBut" xml:space="preserve">
     <value>Branches</value>
   </data>
@@ -138,4 +141,58 @@
   <data name="NodeBut" xml:space="preserve">
     <value>Nodes</value>
   </data>
+  <data name="NameBut" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="VoltageСlass" xml:space="preserve">
+    <value>Voltage Сlass</value>
+  </data>
+    <data name="startBusName" xml:space="preserve">
+    <value>Bus begin name</value>
+  </data>
+  <data name="finBusName" xml:space="preserve">
+    <value>Bus end name</value>
+  </data>
+  <data name="startBus" xml:space="preserve">
+    <value>bus begin</value>
+  </data>
+  <data name="finBus" xml:space="preserve">
+    <value>bus end</value>
+  </data>
+  <data name="groundStartBus" xml:space="preserve">
+    <value>Grounding in zero sequence from the bus begin</value>
+  </data>
+  <data name="groundFinBus" xml:space="preserve">
+    <value>Grounding in zero sequence from the bus end</value>
+  </data>
+  <data name="firstBranch" xml:space="preserve">
+    <value>Branch 1</value>
+  </data>  
+  <data name="secondBranch" xml:space="preserve">
+    <value>Branch 2</value>
+  </data>
+  <data name="ohm" xml:space="preserve">
+    <value>Ohm</value>
+  </data>
+  <data name="kV" xml:space="preserve">
+    <value>kV</value>
+  </data>
+  <data name="kA" xml:space="preserve">
+    <value>kA</value>
+  </data>
+    <data name="MVA" xml:space="preserve">
+    <value>MVA</value>
+  </data>
+  <data name="MWt" xml:space="preserve">
+    <value>MWt</value>
+  </data>
+  <data name="Mvar" xml:space="preserve">
+    <value>Mvar</value>
+  </data> 
+  <data name="Siemens" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Unom" xml:space="preserve">
+    <value>Unom</value>
+  </data>     
 </root>
