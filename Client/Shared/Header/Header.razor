@@ -1,10 +1,22 @@
-﻿<div style="background: var(--P-middle)">
-    <button type="button" class="icon" title="Загрузить"><img src="img/upload.svg" alt="upload"></button>
-    <button type="button" class="icon" title="Сохранить"><img src="img/download.svg" alt="download"></button>
-    <button type="button" class="icon" title="Рассчитать все"><img src="img/two_thunder2.svg " alt="calc all"></button>
-    <button type="button" class="icon" title="Уведомления" id="bell"><img src="img/bell.svg" alt="Bell"></button>
-    <button type="button" class="icon float-right" title="lang"><img src="img/russia.svg" alt="russia"></button>
-    <button type="button" class="icon float-right" title="Тест IEEE14"><img src="img/IEEE_14.svg " alt="Test IEEE14"></button>
+﻿<div class="header d-flex">
+    <NavLink class="navbar-brand active mx-5" 
+             href="/" 
+             Match="NavLinkMatch.All" 
+             ActiveClass="active" 
+             style="font-family: Amithen; 
+                    color: var(--S-middle); 
+                    font-size: 2.5rem;">
+        Lime
+    </NavLink>
+    <button type="button" class="icon" title="Загрузить"><img src="img/upload.svg" width="25px" height="25px" alt="upload"></button>
+    <button type="button" class="icon" title="Сохранить"><img src="img/download.svg" width="25px" height="25px" alt="download"></button>
+    <button type="button" class="icon" title="Рассчитать все"><img src="img/two_thunder2.svg " width="25px" height="25px" alt="calc all"></button>
+    <button type="button" class="icon" title="Уведомления" id="bell"><img src="img/bell.svg" width="25px" height="25px" alt="Bell"></button>
+
+    <div class="ml-auto">
+        <button type="button" class="icon" title="Тест IEEE14"><img src="img/IEEE_14.svg " width="25px" height="25px" alt="Test IEEE14"></button>
+        <button type="button" class="icon" title="lang"><img src="img/russia.svg" width="25px" height="25px" alt="russia"></button>
+    </div>
 </div>
 @code {
 

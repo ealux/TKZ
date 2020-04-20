@@ -1,32 +1,24 @@
 ﻿@inherits LayoutComponentBase
 @using TKZ.Client.Pages.Log
 @inject LogBase LB
-<div class="container main_container d-flex flex-row">
-    <Navs />
+<div class="container main_container d-block mh-100" style="flex: 1;">
 
+    <TKZ.Client.Shared.Header.Header />
 
-    <div class="d-flex  flex-column " style="flex: 1;">
-        <TKZ.Client.Shared.Header.Header />
-        <div class="d-flex flex-column"
-             style="flex: 1;
-             overflow: auto;">
-
-            <div class="d-flex flex-row" style="flex: 1">
-                <!--main area-->
-                <div class="main-area">
-                    @Body
-                </div>
-                <!--log-->
-                 <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" />
+    <div class="d-flex" style="flex: 1;height:90vh;">
+        <Navs />
+        <div class="d-flex flex-column h-100 mh-100" style="flex: 1;">
+            <!--main area-->
+            <div class="main-area">
+                @Body
             </div>
+            <!--log-->
+            <TKZ.Client.Shared.Footer.Footer />
         </div>
-        <TKZ.Client.Shared.Footer.Footer />
+        <div class="d-flex flex-column h-100 mh-100">
+            <TKZ.Client.Pages.Log.Log LogChangeEvent="LogChange" />
+        </div>
     </div>
-
-
-
-
-
 </div>
 @code{
     void LogChange()
