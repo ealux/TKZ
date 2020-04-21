@@ -1,18 +1,18 @@
 ﻿@page "/mutual_induction"
 @inject HttpClient Http
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<h3>Mutual inductions</h3>
+<h1>Mutual inductions</h1>
 
-<body>    
-
+<body>
     <table id="mutuals" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>@L["firstBranch"]</th>
-                <th>@L["secondBranch"]</th>
-                <th>R, [@L["Om"]]</th>                     
-                <th>X, [@L["Om"]]</th>                     
+                <th>@Localizer["firstBranch"]</th>
+                <th>@Localizer["secondBranch"]</th>
+                <th>R, [@Localizer["ohm"]]</th>
+                <th>X, [@Localizer["ohm"]]</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                 <tr>
                     <td>@elem.Value.Id</td>
                     <td>@grid.Branches[elem.Value.IdFirstBranch]</td>
-                    <td>@grid.Branches[elem.Value.IdSecondBranch]</td>                        
+                    <td>@grid.Branches[elem.Value.IdSecondBranch]</td>
                     <td>@elem.Value.R</td>
                     <td>@elem.Value.X</td>
                 </tr>
@@ -32,4 +32,12 @@
 
 @code {
     Grid grid = new Grid();
+
+    //Localizator
+    I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
+    }
 }

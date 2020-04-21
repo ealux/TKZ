@@ -1,0 +1,22 @@
+{
+    "angle":"angle",
+    "deg":"deg.",
+    "EMF":"EMF",
+    "finBus":"bus end",
+    "finBusName":"Bus end name",
+    "firstBranch":"Branch 1",
+    "groundFinBus":"Grounding in zero sequence from the bus end",
+    "groundStartBus":"Grounding in zero sequence from the bus begin",
+    "kA":"kA",
+    "kV":"kV",
+    "MVA":"MVA",
+    "Mvar":"Mvar",
+    "MWt":"MWt",
+    "ohm":"Om",
+    "secondBranch":"Branch 2",
+    "Siemens":"S",
+    "startBus":"bus begin",
+    "startBusName":"Bus begin name",
+    "trans":"Transformer",
+    "Unom":"Unom"
+}

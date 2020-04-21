@@ -2,13 +2,15 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
+<h1>Nodes</h1>
+
 <body>
     <table id="buses" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>@Localiser["NameBut"]</th>
-                <th>@L["VoltageСlass"]</th>
+                <th>@Localizer.NameBut</th>
+                <th>@Localizer.VoltageСlass</th>
             </tr>
         </thead>
         <tbody>
@@ -27,14 +29,14 @@
 
 @code {
 
-    Grid grid = new Grid();
+    Grid grid { get; set; } = new Grid();
 
 
     //Localizator
-    I18nText.Shared.Navs Localizer = new I18nText.Shared.Navs();
+    I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Navs>(this);
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
     }
 }

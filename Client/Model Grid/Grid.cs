@@ -7,22 +7,20 @@ namespace TKZ.Client
 {    
     public class Grid
     {
-        private Dictionary<int, Bus> m_Buses =  new Dictionary<int, Bus>();
-
-        public Dictionary<int, Bus> Buses { get => m_Buses; set => m_Buses = value; }
-
-        private Dictionary<int, Branch> m_Branches =  new Dictionary<int, Branch>();
-
-        public Dictionary<int, Branch> Branches { get => m_Branches; set => m_Branches = value; }
-        public Dictionary<int, Mutual> Mutuals { get => m_Mutuals; set => m_Mutuals = value; }
-
-        private Dictionary<int, Mutual> m_Mutuals =  new Dictionary<int, Mutual>();
+        public Dictionary<int, Bus> Buses { get; set; }
+        public Dictionary<int, Branch> Branches { get; set; }
+        public Dictionary<int, Mutual> Mutuals { get; set; }
 
         public Grid()
-        {           
+        {
+            Buses = new Dictionary<int, Bus>();
+            Branches = new Dictionary<int, Branch>();
+            Mutuals = new Dictionary<int, Mutual>();
+
             //Must have
             Bus gr = new Bus(0, "Земля", true);
-            this.Buses.Add(gr.Id,gr);
+            this.Buses.Add(gr.Id, gr);
+
 
             //Test case. Erase on Realese.
             Bus b1 = new Bus(100,"333");
@@ -38,7 +36,9 @@ namespace TKZ.Client
             this.Branches.Add(br1.Id,br1); 
             this.Branches.Add(br2.Id,br2);
             this.Branches.Add(br3.Id,br3);
-            this.Branches.Add(gr.Id,br4);
+            this.Branches.Add(br4.Id,br4);
+
+            Console.WriteLine(br4.Id);
 
             Mutual m1 = new Mutual(br1.Id,br2.Id,1,2);
             Mutual m2 = new Mutual(br3.Id,br4.Id,13,2);
