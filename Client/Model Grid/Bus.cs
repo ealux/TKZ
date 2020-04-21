@@ -9,7 +9,6 @@ namespace TKZ.Client.Model
 
         public double Unom { get; set; }
  
-
         public Bus(double Unom, string Name="Noname", bool IsGround = false)
         {
             if (IsGround)

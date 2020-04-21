@@ -13,6 +13,15 @@ namespace TKZ.Client.I18nText.Pages.Contact
         /// <summary>"Your E-mail"</summary>
         public string Email;
 
+        /// <summary>"Enter E-mail"</summary>
+        public string ErrorEmail;
+
+        /// <summary>"Enter message"</summary>
+        public string ErrorMessage;
+
+        /// <summary>"Enter name"</summary>
+        public string ErrorName;
+
         /// <summary>"Message"</summary>
         public string Message;
 
