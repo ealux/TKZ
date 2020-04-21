@@ -1,14 +1,16 @@
 ﻿@page "/nodes"
 @inject HttpClient Http
-@inject IStringLocalizer<Navs> L
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<body>    
+<h1>Nodes</h1>
+
+<body>
     <table id="buses" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>@L["NameBut"]</th>
-                <th>@L["VoltageСlass"]</th>                    
+                <th>@Localizer.NameBut</th>
+                <th>@Localizer.VoltageСlass</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +19,7 @@
                 <tr>
                     <td>@elem.Value.Id</td>
                     <td>@elem.Value.Name</td>
-                    <td>@elem.Value.Unom</td>                        
+                    <td>@elem.Value.Unom</td>
                 </tr>
             }
         </tbody>
@@ -27,6 +29,14 @@
 
 @code {
 
-    Grid grid = new Grid();
+    Grid grid { get; set; } = new Grid();
 
+
+    //Localizator
+    I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
+    }
 }

@@ -1,8 +1,11 @@
 {
-    "ContactHeader":"Connect with us",
-    "Name":"Your name",
-    "Email":"Your E-mail",
-    "Message":"Message",
-    "Send":"Send",
-    "Success":"Your message has been sent successfully!"
+  "ContactHeader": "Connect with us",
+  "Name": "Your name",
+  "Email": "Your E-mail",
+  "Message": "Message",
+  "Send": "Send",
+  "Success": "Your message has been sent successfully!",
+  "ErrorName": "Enter name",
+  "ErrorEmail": "Enter E-mail",
+  "ErrorMessage": "Enter message"
 }

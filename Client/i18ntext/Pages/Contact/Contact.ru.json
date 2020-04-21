@@ -1,8 +1,11 @@
 {
-    "ContactHeader":"Связаться с нами",
-    "Name":"Ваше имя",
-    "Email":"Ваш E-mail",
-    "Message":"Сообщение",
-    "Send":"Отправить",
-    "Success":"Ваш отзыв успешно отправлен!"
+  "ContactHeader": "Связаться с нами",
+  "Name": "Ваше имя",
+  "Email": "Ваш E-mail",
+  "Message": "Сообщение",
+  "Send": "Отправить",
+  "Success": "Ваш отзыв успешно отправлен!",
+  "ErrorName": "Введите имя",
+  "ErrorEmail": "Введите E-mail",
+  "ErrorMessage": "Введите сообщение"
 }
