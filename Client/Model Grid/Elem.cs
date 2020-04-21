@@ -2,13 +2,11 @@ namespace TKZ.Client.Model
 {    
     public class Elem
     {
- 
-        public int m_id;
 
-        private string m_name="Noname";
+        protected int m_id;
 
-        public string Name { get => m_name; set => m_name = value; }
+        public string Name { get; set; } = "Noname";
 
-        public int Id { get => m_id;}
+        public int Id { get => m_id; }
     }
 }
