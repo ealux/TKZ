@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using TKZ.Client.Model;
+using TKZ.Shared.Model;
 using System.Globalization;
 
-namespace TKZ.Client
+namespace TKZ.Shared
 {    
     public class Grid
     {

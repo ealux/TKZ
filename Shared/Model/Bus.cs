@@ -1,6 +1,6 @@
 using System;
 
-namespace TKZ.Client.Model
+namespace TKZ.Shared.Model
 {    
     public class Bus:Elem    
     {

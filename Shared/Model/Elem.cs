@@ -1,4 +1,4 @@
-namespace TKZ.Client.Model
+namespace TKZ.Shared.Model
 {    
     public class Elem
     {
