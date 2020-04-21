@@ -1,11 +1,12 @@
-﻿@page "/Contacts"
+﻿@page "/contacts"
 @layout MainLayout
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject HttpClient Http
 
 <div class="contact">
-    <h1>Связаться с нами</h1>
+    <h1>@Localizer.ContactHeader</h1>
     <EditForm Model="@contact" OnValidSubmit="SendFeedback">
         <DataAnnotationsValidator />
         <div class="text-danger">
@@ -13,29 +14,29 @@
             <text class="text-success">@notification</text>
         </div>
         <div>
-            <p><label for="CustomerName">Ваше имя:</label></p>
+            <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
             <InputText class="form-control"
                        id="CustomerName"
-                       placeholder="Ваше имя"
+                       @bind-placeholder="@contact.Localizer.Name"
                        @bind-Value="contact.Name" />
         </div>
         <div>
-            <p><label for="CustomerEmail">Ваш E-mail:</label></p>
+            <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
             <InputText class="form-control"
                        type="text"
                        id="CustomerEmail"
-                       placeholder="E-mail"
+                       @bind-placeholder="@contact.Localizer.Email"
                        @bind-Value="contact.Email" />
         </div>
         <div>
-            <p><label for="CustomerMessage">Сообщение:</label></p>
+            <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
             <InputTextArea class="form-control big"
                            type="text"
                            id="CustomerMessage"
-                           placeholder="Сообщение"
+                           @bind-placeholder="@contact.Localizer.Message"
                            @bind-Value="contact.Message" />
         </div>
-        <button type="submit" value="Submit" class="my_button long" style="float: right;">Отправить</button>
+        <button type="submit" value="Submit" class="my_button long" style="float: right;">@contact.Localizer.Send</button>
     </EditForm>
 </div>
 
@@ -46,6 +47,8 @@
 
     class Contact
     {
+        public I18nText.Pages.Contact.Contact Localizer { get; set; } = new I18nText.Pages.Contact.Contact();
+
         public DateTime datetime { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя")]
@@ -63,7 +66,18 @@
     {
         this.contact.datetime = DateTime.Now;
         await Http.PostJsonAsync("Feedback", this.contact);
-        notification = "Отзыв успешно отправлен! Спасибо!";
+        notification = Localizer.Success;
         this.contact = new Contact();
+        this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
+    }
+
+
+    //Localizator
+    I18nText.Pages.Contact.Contact Localizer = new I18nText.Pages.Contact.Contact();
+
+    protected override async Task OnInitializedAsync()
+    {
+        this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
     }
 }

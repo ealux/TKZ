@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace TKZ.Client.Pages.Log
@@ -7,22 +8,28 @@ namespace TKZ.Client.Pages.Log
     {
         public ObservableCollection<Message> Messages { get; set; }
 
+        public bool Collapse { get; set; } = true;
+
+        public event Action OnChange;
+
         public LogBase()
         {
             Messages = new ObservableCollection<Message>()
             {
-                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!"),
+                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!", "contacts"),
             };
         }
 
         public async Task AddMessage(Message mes)
         {
             await Task.Run(() => Messages.Add(mes));
+            OnChange?.Invoke();
         }
 
         public async Task RemoveMessage()
         {
-            await Task.Run(() => Messages.Clear());//Messages.Remove(Messages.Where((m) => m.elem.Id == el.Id).First());
+            await Task.Run(() => Messages.Clear());
+            OnChange?.Invoke();
         }
 
         /// <summary>

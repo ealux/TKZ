@@ -1,8 +1,18 @@
 ﻿@page "/"
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<h1>Добро пожаловать на сайт!!</h1>
+<h1>@Localizer.Index_Header</h1>
+
 
 @code
 {
 
+
+    //Localizator
+    I18nText.Pages.Index Localizer = new I18nText.Pages.Index();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Index>(this);
+    }
 }
