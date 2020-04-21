@@ -1,6 +1,7 @@
 ﻿@page "/nodes"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject Grid grid
 
 <h1>Nodes</h1>
 
@@ -28,10 +29,6 @@
 
 
 @code {
-
-    Grid grid { get; set; } = new Grid();
-
-
     //Localizator
     I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
 

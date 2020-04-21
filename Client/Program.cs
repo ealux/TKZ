@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
+using TKZ.Shared;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace TKZ.Client
@@ -20,6 +21,8 @@ namespace TKZ.Client
 
             builder.Services.AddSingleton<LogBase>();
             builder.Services.AddI18nText();
+
+            builder.Services.AddSingleton<Grid>();
 
             #endregion Singletons
 

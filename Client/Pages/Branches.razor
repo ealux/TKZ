@@ -1,6 +1,7 @@
 ﻿@page "/branches"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject Grid grid
 
 <h1>Branches</h1>
 
@@ -48,7 +49,6 @@
 
 
 @code {
-    Grid grid = new Grid();
 
 
     //Localizator

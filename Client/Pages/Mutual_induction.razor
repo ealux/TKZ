@@ -1,6 +1,7 @@
 ﻿@page "/mutual_induction"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject Grid grid
 
 <h1>Mutual inductions</h1>
 
@@ -31,8 +32,6 @@
 </body>
 
 @code {
-    Grid grid = new Grid();
-
     //Localizator
     I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
 
