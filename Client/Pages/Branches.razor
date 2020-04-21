@@ -1,7 +1,54 @@
 ﻿@page "/branches"
+@inject HttpClient Http
+@inject IStringLocalizer<Navs> L
 
-<h3>Branches</h3>
+<h3>@L["BranchBut"]</h3>
+
+<body>    
+
+    <table id="branches" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>@L["startBusName"]</th>
+                <th>@L["finBusName"]</th>
+                <th>R1 (R2), [@L["Om"]]</th>
+                <th>X1 (X2), [@L["Om"]]</th>
+                <th>R0, [@L["Om"]]</th>
+                <th>X0, [@L["Om"]]</th>
+                <th>@L["Unom"] @L["startBus"], [@L["kV"]]</th>
+                <th>@L["Unom"] @L["finBus"], [@L["kV"]]</th>   
+                <th>@L["trans"] @L["angle"], [@L["deg"]] </th>
+                <th>@L["groundStartBus"]</th>
+                <th>@L["groundFinBus"]</th>
+                <th>@L["EMF"], [@L["kV"]]</th>
+                <th>@L["EMF"] @L["angle"], [@L["deg"]]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var elem in grid.Branches)
+            {
+                <tr>
+                    <td>@elem.Value.Id</td>
+                    <td>@grid.Buses[elem.Value.StIdBus]</td>
+                    <td>@grid.Buses[elem.Value.FinIdBus]</td>                        
+                    <td>@elem.Value.R1</td>
+                    <td>@elem.Value.X1</td>
+                    <td>@elem.Value.R0</td>
+                    <td>@elem.Value.X0</td>
+                    <td>@elem.Value.StUnom</td>
+                    <td>@elem.Value.FinUnom</td>
+                    <td>@elem.Value.Fi_trans</td>
+                    <td>@elem.Value.GroundStBus</td>
+                    <td>@elem.Value.GroundFinBus</td>
+                    <td>@elem.Value.E</td>
+                    <td>@elem.Value.Fi_E</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
 
 @code {
-
+    Grid grid = new Grid();
 }
