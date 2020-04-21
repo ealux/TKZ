@@ -15,6 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\TKZ.Shared.csproj" />
   </ItemGroup>
-  <ProjectExtensions><VisualStudio><UserProperties i18ntext_4navs_1en_1json__JsonSchema="utf-8" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="i18ntext\Pages\Contact\" />
+    <Folder Include="i18ntext\Pages\Log\" />
+    <Folder Include="i18ntext\Shared\Footer\" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

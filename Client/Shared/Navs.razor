@@ -40,11 +40,11 @@
 
 
     //Localizator
-    I18nText.Navs Localizer = new I18nText.Navs();
+    I18nText.Shared.Navs Localizer = new I18nText.Shared.Navs();
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Navs>(this);
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Navs>(this);
     }
 
 }

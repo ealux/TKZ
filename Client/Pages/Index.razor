@@ -9,10 +9,10 @@
 
 
     //Localizator
-    I18nText.Index Localizer = new I18nText.Index();
+    I18nText.Pages.Index Localizer = new I18nText.Pages.Index();
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Index>(this);
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Index>(this);
     }
 }
