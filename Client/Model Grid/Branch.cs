@@ -17,6 +17,9 @@ namespace TKZ.Client.Model
         public double FinUnom { get => m_finUnom; set => m_finUnom = value; }
         public bool GroundStBus { get => m_groundStBus; set => m_groundStBus = value; }
         public bool GroundFinBus { get => m_groundFinBus; set => m_groundFinBus = value; }
+        public double Fi_trans { get => m_fi_trans; set => m_fi_trans = value; }
+        public double E { get => m_E; set => m_E = value; }
+        public double Fi_E { get => m_fi_E; set => m_fi_E = value; }
 
         private int m_stIdBus;
         private int m_finIdBus;
@@ -27,10 +30,14 @@ namespace TKZ.Client.Model
         private double m_X0;
         private double m_stUnom;
         private double m_finUnom;
+        private double m_fi_trans = 0;
+        private double m_E;
+        private double m_fi_E;
         private bool m_groundStBus = false;
         private bool m_groundFinBus = false;
 
-        public Branch(int stIdBus, int finIdBus, string NameBranch, double R1, double X1, double R0, double X0, double StUnom, double FinUnom, bool GroundStBus, bool GroundFinBus)
+        public Branch(int stIdBus, int finIdBus, string NameBranch, double R1, double X1, double R0, double X0, 
+            double StUnom, double FinUnom, double Fi_trans, bool GroundStBus, bool GroundFinBus, double E, double Fi_E)
         {
             this.m_id = Branch.curId;
             this.StIdBus = stIdBus;
@@ -41,6 +48,7 @@ namespace TKZ.Client.Model
             this.X0 = X0;
             this.StUnom = StUnom;
             this.FinUnom = FinUnom;
+            this.Fi_trans = Fi_trans;
             this.GroundStBus = GroundStBus;
             this.GroundFinBus = GroundFinBus;
             string str ="";
@@ -53,6 +61,8 @@ namespace TKZ.Client.Model
             {
                 this.Name = NameBranch;
             }     
+            this.E = E;
+            this.Fi_E = Fi_E;
 
         }
 

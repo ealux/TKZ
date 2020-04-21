@@ -10,9 +10,16 @@ namespace TKZ.Client.Model
 
         private double m_unom;        
 
-        public Bus(double Unom, string Name="Noname")
+        public Bus(double Unom, string Name="Noname", bool Ground = false)
         {
-            this.m_id = Bus.curId;
+            if (Ground)
+            {
+                this.m_id = 0;
+            }
+            else
+            {
+                this.m_id = Bus.curId;
+            }            
             this.Unom = Unom;
             this.Name = Name;
         }

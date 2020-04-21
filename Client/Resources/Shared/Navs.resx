@@ -170,6 +170,9 @@
   </data>  
   <data name="secondBranch" xml:space="preserve">
     <value>Ветвь 2</value>
+  </data>
+  <data name="EMF" xml:space="preserve">
+    <value>ЭДС</value>
   </data>  
   <data name="ohm" xml:space="preserve">
     <value>Ом</value>
@@ -191,8 +194,18 @@
   </data>
   <data name="Siemens" xml:space="preserve">
     <value>См</value>
+  </data>
+  <data name="deg" xml:space="preserve">
+    <value>град.</value>
   </data> 
   <data name="Unom" xml:space="preserve">
     <value>Uном</value>
-  </data>  
+  </data>
+  <data name="angle" xml:space="preserve">
+    <value>угол</value>
+  </data>
+  <data name="trans" xml:space="preserve">
+    <value>Трансформатор</value>
+  </data>
+   
 </root>

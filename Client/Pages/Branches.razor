@@ -18,8 +18,11 @@
                 <th>X0, [@L["Om"]]</th>
                 <th>@L["Unom"] @L["startBus"], [@L["kV"]]</th>
                 <th>@L["Unom"] @L["finBus"], [@L["kV"]]</th>   
+                <th>@L["trans"] @L["angle"], [@L["deg"]] </th>
                 <th>@L["groundStartBus"]</th>
                 <th>@L["groundFinBus"]</th>
+                <th>@L["EMF"], [@L["kV"]]</th>
+                <th>@L["EMF"] @L["angle"], [@L["deg"]]</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +38,11 @@
                     <td>@elem.Value.X0</td>
                     <td>@elem.Value.StUnom</td>
                     <td>@elem.Value.FinUnom</td>
+                    <td>@elem.Value.Fi_trans</td>
                     <td>@elem.Value.GroundStBus</td>
                     <td>@elem.Value.GroundFinBus</td>
+                    <td>@elem.Value.E</td>
+                    <td>@elem.Value.Fi_E</td>
                 </tr>
             }
         </tbody>
