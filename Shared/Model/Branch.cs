@@ -6,7 +6,7 @@ namespace TKZ.Shared.Model
     {
         private static int m_curId = 1;
         private static int curId { get { return m_curId++; } }
-
+        public int NumPar {get; set;}
         public int StartBusId { get; set; }
         public int FinalBusId { get; set; }
         public double R1 { get; set; }

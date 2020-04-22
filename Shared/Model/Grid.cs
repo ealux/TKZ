@@ -8,8 +8,8 @@ namespace TKZ.Shared
 {    
     public class Grid
     {
-        public double ArcR = 0;
-        public double ArcX = 0;
+        public double ArcR {get; set;}
+        public double ArcX {get; set;}
         public Dictionary<int, Bus> Buses { get; set; }
         public Dictionary<int, Branch> Branches { get; set; }
         public Dictionary<int, Mutual> Mutuals { get; set; }
