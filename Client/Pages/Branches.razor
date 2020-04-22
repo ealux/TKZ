@@ -1,8 +1,9 @@
 ﻿@page "/branches"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
-<div class="d-flex flex-column" style="flex:1">
-    <h1>Branches</h1>
+@inject Grid grid
+
+<h1>Branches</h1>
 
     <table id="branches" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
         <thead>
@@ -28,8 +29,8 @@
             {
                 <tr>
                     <td>@elem.Value.Id</td>
-                    <td>@grid.Buses[elem.Value.StIdBus]</td>
-                    <td>@grid.Buses[elem.Value.FinIdBus]</td>
+                    <td>@grid.Buses[elem.Value.StartBusId]</td>
+                    <td>@grid.Buses[elem.Value.FinalBusId]</td>
                     <td>@elem.Value.R1</td>
                     <td>@elem.Value.X1</td>
                     <td>@elem.Value.R0</td>
@@ -45,17 +46,16 @@
             }
         </tbody>
     </table>
-    </div>
-
-    @code {
-        Grid grid = new Grid();
 
 
-        //Localizator
-        I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
+@code {
 
-        protected override async Task OnInitializedAsync()
-        {
-            Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
-        }
+
+    //Localizator
+    I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
     }
+}
