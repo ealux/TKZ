@@ -41,11 +41,6 @@ else
 
         <DataGridColumns>
             <DataGridNumericColumn TItem="Branch"
-                                   Field="@nameof(Branch.NumPar)"
-                                   Caption="@Localizer.NumPar"
-                                   Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
-            <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.StartBusId)"
                                    Caption="@Localizer.startBus"
                                    Editable="true"
@@ -53,6 +48,11 @@ else
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinalBusId)"
                                    Caption="@Localizer.finBus"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.NumPar)"
+                                   Caption="@Localizer.NumPar"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
             <DataGridColumn TItem="Branch"
@@ -136,8 +136,12 @@ else
                     <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="btn btn-sm btn-success" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Edit</Button>
-                    <button class="btn btn-sm btn-info" @onclick=@(() => DuplicateItem(context.Item))>@Localizer.Duplicate</button>
+                    <Button Class="btn btn-sm btn-success" 
+                            Style="background-color:var(--S-middle); border:none;"  
+                            Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Edit</Button>
+                    <button class="btn btn-sm btn-info"
+                            style="background-color:var(--P-dark); border:none;"
+                            @onclick=@(() => DuplicateItem(context.Item))>@Localizer.Duplicate</button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
                     <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
