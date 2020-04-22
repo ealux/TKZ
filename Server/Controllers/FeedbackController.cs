@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using TKZ.Shared;
@@ -17,10 +18,10 @@ namespace TKZ.Server.Controllers
         [HttpPost]
         public async Task Post(object context)
         {
-            using (StreamWriter file = new StreamWriter(Environment.CurrentDirectory + "/feedbacks.json", append: true))
-            {
-                await file.WriteLineAsync(JsonConvert.DeserializeObject<Feedback>(context.ToString()).ToString());
-            }
+            var fed = JsonConvert.DeserializeObject<Feedback>(context.ToString());
+            var list = JsonConvert.DeserializeObject<List<Feedback>>(System.IO.File.ReadAllText("feedbacks.json"));
+            list.Add(fed);
+            System.IO.File.WriteAllText("feedbacks.json", JsonConvert.SerializeObject(list, Formatting.Indented));
         }
     }
 }

@@ -3,7 +3,9 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Globalization;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
@@ -22,17 +24,15 @@ namespace TKZ.Client
 
             #region Singletons
 
-            builder.Services.AddSingleton<LogBase>();
-            builder.Services.AddI18nText();
-
-            builder.Services.AddSingleton<Grid>();
-
-            builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true).AddBootstrapProviders().AddFontAwesomeIcons();
+            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }); //Http
+            builder.Services.AddSingleton<LogBase>(); //Log singleton
+            builder.Services.AddI18nText(); //Localizer singleton
+            builder.Services.AddSingleton<Grid>(); //Network singleton
+            builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true) //Tables singleton
+                            .AddBootstrapProviders()
+                            .AddFontAwesomeIcons();
 
             #endregion Singletons
-
-
-            builder.Services.AddBaseAddressHttpClient();
 
             var host = builder.Build();
 
