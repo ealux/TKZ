@@ -8,6 +8,8 @@ namespace TKZ.Shared
 {    
     public class Grid
     {
+        public double ArcR = 0;
+        public double ArcX = 0;
         public Dictionary<int, Bus> Buses { get; set; }
         public Dictionary<int, Branch> Branches { get; set; }
         public Dictionary<int, Mutual> Mutuals { get; set; }
@@ -80,15 +82,22 @@ namespace TKZ.Shared
             this.Mutuals.Add(m1.Id,m1);
             this.Mutuals.Add(m2.Id,m2);
         }      
-
-        public List<int> FindBranchBelt(int BusId, int numBelt=1)
+        /// <summary>
+        /// Finds branches from a given bus.
+        /// </summary>
+        /// <param name="BusId"> Id start Bus.</param>
+        /// <param name="numBelt"> Count belt for find branch.</param>
+        /// <returns></returns>
+        public List<int> FindBranchBelt(int BusId, int numBelt)
         {
+            if (this.Branches.Count() < 1) return new List<int>();
+            if (this.Buses.Count()    < 2) return new List<int>();
             if (numBelt <1) numBelt = 1;           
 
             Dictionary<int,bool> dicBranches = new Dictionary<int, bool>();
             Dictionary<int,bool> dicBuses = new Dictionary<int, bool>();
-            foreach (Branch b in Branches.Values.ToList()) dicBranches.Add(b.Id,false);
-            foreach (Bus b in Buses.Values.ToList()) dicBuses.Add(b.Id,false);
+            foreach (Branch b in this.Branches.Values.ToList()) dicBranches.Add(b.Id,false);
+            foreach (Bus b in this.Buses.Values.ToList())       dicBuses.Add(b.Id,false);
 
             RecursiveFindBeltBranch(dicBranches,dicBuses,BusId,numBelt);
             
@@ -107,22 +116,27 @@ namespace TKZ.Shared
             {
                 int cur = l[ind];
                 dicBranches[cur] = true;
-                if (Branches[cur].StartBusId  == BusId)
+                if (this.Branches[cur].StartBusId  == BusId)
                 {
                     if (dicBuses[Branches[cur].FinalBusId]==false) RecursiveFindBeltBranch (dicBranches, dicBuses,Branches[cur].FinalBusId,Belt - 1);
                     continue;
                 }
-                if (Branches[cur].FinalBusId == BusId) 
+                if (this.Branches[cur].FinalBusId == BusId) 
                 {
                     if (dicBuses[Branches[cur].StartBusId]==false) RecursiveFindBeltBranch (dicBranches, dicBuses,Branches[cur].StartBusId, Belt - 1);
                     continue;
                 }
             }
         }
+        /// <summary>
+        /// Find all branch connectivity given bus.
+        /// </summary>
+        /// <param name="BusId"> Start Bus Id for find branch.</param>
+        /// <returns></returns>
         private int[] FindAllBranchOnBusID(int BusId)
         {            
             List<int> br = new List<int>();
-            foreach (Branch b in Branches.Values )
+            foreach (Branch b in this.Branches.Values )
             {
                 if (b.StartBusId ==BusId ) br.Add(b.Id);
                 if (b.FinalBusId ==BusId ) br.Add(b.Id);
@@ -130,6 +144,49 @@ namespace TKZ.Shared
             int[] res = br.Distinct().ToArray();
             Array.Sort(res);
             return res;
+        }
+
+        /// <summary>
+        /// Check connectivity grid. Return
+        /// true  - 1 island;
+        /// false - many island. 
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckConnectivityGrid()
+        {            
+            if (this.Buses.Count()    < 2) return true;
+            if (this.Branches.Count() < 1) return false;
+            Dictionary<int,int> dicBuses = FindIslandGrid();
+            int numIsland = dicBuses.Values.ToArray().Distinct().ToArray().Count();
+            if ( numIsland == 1 ) return true; else return false;
+        }
+        /// <summary>
+        /// Find all island grid.
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int,int> FindIslandGrid ()
+        {
+            if (this.Buses.Count()    < 2) return new Dictionary<int, int>();
+            if (this.Branches.Count() < 1) return new Dictionary<int, int>();
+            Dictionary<int,int> dicBuses = new Dictionary<int, int>();            
+            int ind = 0;
+            foreach (int busId in this.Buses.Keys.ToList()) dicBuses.Add(busId,ind++); 
+
+            bool FlagChange = true;
+            
+            int[] keys = this.Branches.Keys.ToArray();
+            while (FlagChange)
+            {
+                FlagChange = false;
+                for (ind=0; ind < keys.Count(); ind++ )
+                {
+                    int s = this.Branches[keys[ind]].StartBusId;
+                    int f = this.Branches[keys[ind]].FinalBusId;
+                    if (dicBuses[s] < dicBuses[f]) {dicBuses[f] = dicBuses[s]; FlagChange=true; continue;}
+                    if (dicBuses[f] < dicBuses[s]) {dicBuses[s] = dicBuses[f]; FlagChange=true; continue;}
+                }
+            }        
+            return dicBuses;
         }
     }
 }

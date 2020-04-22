@@ -23,10 +23,5 @@ namespace TKZ.Shared.Model
             this.Unom = Unom;
             this.Name = Name;
         }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

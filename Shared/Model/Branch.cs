@@ -50,10 +50,5 @@ namespace TKZ.Shared.Model
             this.Fi_E = Fi_E;
 
         }
-
-       public override string ToString()
-       {
-            return Name;
-       }
     }
 }
