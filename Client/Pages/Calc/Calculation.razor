@@ -1,121 +1,95 @@
 ﻿@page "/calc"
-@using System.Globalization
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<div class="d-flex flex-column parameter" style="flex: 1">
-    <!--parameter-->
-    <form class="d-flex flex-column"
-          action=""
-          id="parameter"
-          style="flex: 1">
-        <h5>Дуга</h5>
-        <div class="row">
-            <input class="form-control"type="text"
-                   name="Rarc"
-                   placeholder="R"
-                   style="width: calc(50% - 8px); margin-right: var(--st_margin)">
-            <input class="form-control"
-                   type="text"
-                   name="Xarc"
-                   placeholder="X"
-                   style="width: calc(50% - 8px)">
-        </div>
-        <h5>Вид короткого замыкания</h5>
-        <div class="d-flex flex-row">
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="TypeSC-1"
-                   style="margin-right: var(--st_margin)">
-                <input class="mdl-radio__button"
-                       type="radio"
-                       id="TypeSC-1"
-                       name="TypeSC"
-                       value="1">
-                <span class="mdl-radio__label">1</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="TypeSC-2"
-                   style="margin-right: var(--st_margin)">
-                <input class="mdl-radio__button"
-                       type="radio"
-                       id="TypeSC-2"
-                       name="TypeSC"
-                       value="2">
-                <span class="mdl-radio__label">1,1</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="TypeSC-3"
-                   style="margin-right: var(--st_margin)">
-                <input class="mdl-radio__button"
-                       type="radio"
-                       id="TypeSC-3"
-                       name="TypeSC"
-                       value="3">
-                <span class="mdl-radio__label">2</span>
-            </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="TypeSC-4"
-                   style="margin-right: var(--st_margin)">
-                <input class="mdl-radio__button"
-                       type="radio"
-                       id="TypeSC-4"
-                       name="TypeSC"
-                       value="4" checked>
-                <span class="mdl-radio__label">3</span>
-            </label>
-        </div>
-        <h5>Узлы для расчета</h5>
-        <div class="d-flex flex-row">
-            <input class="form-control"
-                   type="text"
-                   name="Node"
-                   id="#NodeNum"
-                   placeholder="ID узла"
-                   style="margin-bottom: var(--st_margin); margin-top: var(--st_margin); flex: 1">
-            <button class="round"
-                    id="add"
-                    style="margin-right: 0;">
-                <img src="img/add.svg">
-            </button>
-        </div>
+<div class="d-flex flex-row" style="flex:1">
+    <div class="d-flex flex-column parameter" style="flex: 1">
+        <!--parameter-->
+        <form class="d-flex flex-column"
+              action=""
+              id="parameter"
+              style="flex: 1">
+            <h5>Дуга</h5>
+            <div class="row">
 
-        <div class="chips_area"
-             style="border: 2px solid var(--P-light); flex: 1; width: 100%; margin-bottom: var(--st_margin)">
-            Зона для выбранных узлов, между ними должна быть переключалка
-        </div>
-        <button class="my_button primary"
-                type="submit"
-                form="parameter"
-                style="margin: 0px;">
-            Рассчитать
-        </button>
-    </form>
+                <label for="Rarc" style="width: calc(50% - 8px); margin-right: var(--st_margin)">R:</label>
+                <label for="Xarc">X:</label>
+                <input class="form-control" type="text"
+                       id="Rarc"
+                       name="Rarc"
+                       placeholder="0"
+                       style="width: calc(50% - 8px); margin-right: var(--st_margin)
+">
+                <input class="form-control"
+                       type="text"
+                       id="Xarc"
+                       name="Xarc"
+                       placeholder="0"
+                       style="width: calc(50% - 8px)">
+            </div>
+            <h5>Вид короткого замыкания:</h5>
+            <div class="d-flex flex-row justify-content-between">
+                <input class="checkbox__input" type="checkbox" id="TypeSC-1" name="TypeSC" value="1">
+                <label class="checkbox__label" for="TypeSC-1">1</label>
 
+                <input class="checkbox__input" type="checkbox" id="TypeSC-2" name="TypeSC" value="2">
+                <label class="checkbox__label" for="TypeSC-2">1,1</label>
 
-</div>
-<div style="flex: 1">
-    <h1>Table</h1>
-    <EditForm Model="request">
-        <div class="form-inline my-0">
-            <p class="my-0">Номера узлов: </p>
+                <input class="checkbox__input" type="checkbox" id="TypeSC-3" name="TypeSC" value="3">
+                <label class="checkbox__label" for="TypeSC-3">2</label>
 
-            <div class="justify-content-center w-auto mx-2">
-                <TKZ.Client.Pages.Calc.InputCalc @bind-Value="request.Request" OnClearEvent="@(()=>request.Request=String.Empty)" />
+                <input class="checkbox__input" type="checkbox" id="TypeSC-4" name="TypeSC" value="4" checked>
+                <label class="checkbox__label" for="TypeSC-4">3</label>
+            </div>
+            <h5>Узлы для расчета:</h5>
+            <div class="d-flex flex-row">
+                <input class="form-control"
+                       type="text"
+                       name="Node"
+                       id="NodeNum"
+                       placeholder="Наименование узла"
+                       style="margin-bottom: var(--st_margin); margin-top: var(--st_margin); flex: 1">
+                <button class="round"
+                        id="add"
+                        style="margin-right: 0;">
+                    <img src="img/add.svg">
+                </button>
             </div>
 
-            <button type="submit"
-                    value="Submit"
-                    class="my_button form-control long mx-2 my-0"
-                    style="border:none;">
-                Рассчитать
+            <div class="chips_area"
+                 style="border: 2px solid var(--P-light); flex: 1; width: 100%; margin-bottom: var(--st_margin)">
+                <input class="radio__input" type="radio" id="node-1" name="Nodes" value="node-1" checked>
+                <label class="radio__label" for="node-1">
+                    1
+                    <button class="icon-delete"><img src="img/delete.svg" style="width: 1rem; height: 1rem"></button>
+                </label>
+
+                <input class="radio__input" type="radio" id="node-2" name="Nodes" value="node-2">
+                <label class="radio__label" for="node-2">
+                    20000
+                    <button class="icon-delete"><img src="img/delete.svg" style="width: 1rem; height: 1rem"></button>
+                </label>
+            </div>
+            <button class="my_button primary"
+                    type="submit"
+                    form="parameter"
+                    style="margin: 0px;">
+                Расчёт
             </button>
-        </div>
+        </form>
 
-        <div class="form-inline">
-            <small id="passwordHelpBlock" class="form-text text-muted">
-                Сгенерированные узлы: @request.Request
-            </small>
-        </div>
-    </EditForm>
+
+    </div>
+    <div style="flex: 1">
+        <h1>Результаты расчёта</h1>
+        <label for="ContNode">Выберите контролируемый узел:</label>
+        <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
+        <button class="round" id="addContNode" style="display: inline-block;"><img src="img/add.svg"></button>
+    </div>
 </div>
-
 
 
 
 @code {
+    
     CalculationRequest request = new CalculationRequest();
 }
