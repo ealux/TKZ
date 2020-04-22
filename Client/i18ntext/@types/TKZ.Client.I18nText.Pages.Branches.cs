@@ -10,13 +10,25 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"angle"</summary>
         public string angle;
 
+        /// <summary>"Cancel"</summary>
+        public string Cancel;
+
         /// <summary>"deg."</summary>
         public string deg;
+
+        /// <summary>"D"</summary>
+        public string Duplicate;
+
+        /// <summary>"Edit"</summary>
+        public string Edit;
 
         /// <summary>"EMF"</summary>
         public string EMF;
 
-        /// <summary>"bus end"</summary>
+        /// <summary>"Clear filter"</summary>
+        public string Filter;
+
+        /// <summary>"End bus"</summary>
         public string finBus;
 
         /// <summary>"Bus end name"</summary>
@@ -25,10 +37,10 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Branch 1"</summary>
         public string firstBranch;
 
-        /// <summary>"Grounding in zero sequence from the bus end"</summary>
+        /// <summary>"Grounding in end bus"</summary>
         public string groundFinBus;
 
-        /// <summary>"Grounding in zero sequence from the bus begin"</summary>
+        /// <summary>"Grounding in start bus"</summary>
         public string groundStartBus;
 
         /// <summary>"kA"</summary>
@@ -46,8 +58,20 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"MWt"</summary>
         public string MWt;
 
+        /// <summary>"Name"</summary>
+        public string Name;
+
+        /// <summary>"New"</summary>
+        public string New;
+
+        /// <summary>"Parall. number"</summary>
+        public string NumPar;
+
         /// <summary>"Om"</summary>
         public string ohm;
+
+        /// <summary>"Save"</summary>
+        public string Save;
 
         /// <summary>"Branch 2"</summary>
         public string secondBranch;
@@ -55,7 +79,7 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"S"</summary>
         public string Siemens;
 
-        /// <summary>"bus begin"</summary>
+        /// <summary>"Start bus"</summary>
         public string startBus;
 
         /// <summary>"Bus begin name"</summary>

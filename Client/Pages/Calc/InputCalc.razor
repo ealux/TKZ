@@ -47,7 +47,7 @@
         //On success...
         outputNodes = new List<int>();
 
-        foreach (Match match in regex.Matches(value))
+        foreach (System.Text.RegularExpressions.Match match in regex.Matches(value))
         {
             //Grouped inputs (2-7, 13-10)
             if (match.Groups["gr"].Captures.Count > 0)

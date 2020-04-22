@@ -1,61 +1,220 @@
 ﻿@page "/branches"
+@using Blazorise.DataGrid
+@using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject Grid grid
+@*<h1>Branches</h1>*@
 
-<h1>Branches</h1>
+@if (branches == null)
+{
+    <div class="row d-block" style="position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h3 style="font-family: Amithen;
+                        color: black;
+                        font-size: 3rem;">
+                    Loading...
+                </h3>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <DataGrid TItem="Branch"
+              Data="@branches"
+              PageSize="@branches.Count"
+              EditMode="@DataGridEditMode.Inline"
+              Editable="true"
+              Sortable="true"
+              Filterable="true"
+              RowInserted="@OnRowInserted"
+              RowUpdated="@OnRowUpdated"
+              RowRemoved="@OnRowRemoved"
+              Striped="true"
+              Bordered="true"
+              Hoverable="true"
+              Narrow="true"
+              HeaderRowClass="small"
+              Class="text-sm-center">
 
-    <table id="branches" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>@Localizer["startBusName"]</th>
-                <th>@Localizer["finBusName"]</th>
-                <th>R1 (R2), [@Localizer["ohm"]]</th>
-                <th>X1 (X2), [@Localizer["ohm"]]</th>
-                <th>R0, [@Localizer["ohm"]]</th>
-                <th>X0, [@Localizer["ohm"]]</th>
-                <th>@Localizer["Unom"] @Localizer["startBus"], [@Localizer["kV"]]</th>
-                <th>@Localizer["Unom"] @Localizer["finBus"], [@Localizer["kV"]]</th>
-                <th>@Localizer["trans"] @Localizer["angle"], [@Localizer["deg"]] </th>
-                <th>@Localizer["groundStartBus"]</th>
-                <th>@Localizer["groundFinBus"]</th>
-                <th>@Localizer["EMF"], [@Localizer["kV"]]</th>
-                <th>@Localizer["EMF"] @Localizer["angle"], [@Localizer["deg"]]</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var elem in grid.Branches)
-            {
-                <tr>
-                    <td>@elem.Value.Id</td>
-                    <td>@grid.Buses[elem.Value.StartBusId]</td>
-                    <td>@grid.Buses[elem.Value.FinalBusId]</td>
-                    <td>@elem.Value.R1</td>
-                    <td>@elem.Value.X1</td>
-                    <td>@elem.Value.R0</td>
-                    <td>@elem.Value.X0</td>
-                    <td>@elem.Value.StUnom</td>
-                    <td>@elem.Value.FinUnom</td>
-                    <td>@elem.Value.Fi_trans</td>
-                    <td>@elem.Value.GroundStBus</td>
-                    <td>@elem.Value.GroundFinBus</td>
-                    <td>@elem.Value.E</td>
-                    <td>@elem.Value.Fi_E</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        <DataGridColumns>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.NumPar)"
+                                   Caption="@Localizer.NumPar"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.StartBusId)"
+                                   Caption="@Localizer.startBus"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.FinalBusId)"
+                                   Caption="@Localizer.finBus"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridColumn TItem="Branch"
+                            Field="@nameof(Branch.Name)"
+                            Caption="@(@Localizer.Name)"
+                            Editable="true"
+                            Sortable="true"></DataGridColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.R1)"
+                                   Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.X1)"
+                                   Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.R0)"
+                                   Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.X0)"
+                                   Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.StUnom)"
+                                   Caption="@(new String(@Localizer.Unom+" "+@Localizer.startBus+", ["+@Localizer.kV+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.FinUnom)"
+                                   Caption="@(new String(@Localizer.Unom+" "+@Localizer.finBus+", ["+@Localizer.kV+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridSelectColumn TItem="Branch"
+                                  Field="@nameof(Branch.GroundStBus)"
+                                  Caption="@Localizer.groundStartBus"
+                                  Editable="true"
+                                  Sortable="true">
+                <EditTemplate>
+                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
+                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
+                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
+                    </Select>
+                </EditTemplate>
+            </DataGridSelectColumn>
+            <DataGridSelectColumn TItem="Branch"
+                                  Field="@nameof(Branch.GroundFinBus)"
+                                  Caption="@Localizer.groundFinBus"
+                                  Editable="true"
+                                  Sortable="true">
+                <EditTemplate>
+                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
+                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
+                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
+                    </Select>
+                </EditTemplate>
+            </DataGridSelectColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.Fi_trans)"
+                                   Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
 
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.E)"
+                                   Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Branch"
+                                   Field="@nameof(Branch.Fi_E)"
+                                   Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+
+            <DataGridCommandColumn TItem="Branch" Width="130px">
+                <NewCommandTemplate>
+                    <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+                </NewCommandTemplate>
+                <EditCommandTemplate>
+                    <Button Class="btn btn-sm btn-success" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Edit</Button>
+                    <button class="btn btn-sm btn-info" @onclick=@(() => DuplicateItem(context.Item))>@Localizer.Duplicate</button>
+                </EditCommandTemplate>
+                <DeleteCommandTemplate>
+                    <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+                </DeleteCommandTemplate>
+                <SaveCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                </SaveCommandTemplate>
+                <CancelCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                </CancelCommandTemplate>
+                <ClearFilterCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                </ClearFilterCommandTemplate>
+            </DataGridCommandColumn>
+        </DataGridColumns>
+    </DataGrid>
+}
 
 @code {
+    private List<Branch> branches { get; set; }
+
+    Branch selectedBranch;
 
 
-    //Localizator
+    //TODO: Implement
+    void OnRowInserted(SavedRowItem<Branch, Dictionary<string, object>> e)
+    {
+    }
+
+    //TODO: Implement(?)
+    void OnRowUpdated(SavedRowItem<Branch, Dictionary<string, object>> e)
+    {
+    }
+
+    void OnRowRemoved(Branch branch)
+    {
+        if (grid.Branches.Values.Contains(branch))
+        {
+            grid.Branches.Remove(branch.Id);
+        }
+    }
+
+    //TODO: Сделать механизм определения номера параллельности
+    void DuplicateItem(Branch e)
+    {
+        var new_branch = new Branch()
+        {
+            Name = e.Name,
+            NumPar = e.NumPar + 1,
+            StartBusId = e.StartBusId,
+            FinalBusId = e.FinalBusId,
+            R1 = e.R1,
+            X1 = e.X1,
+            R0 = e.R0,
+            X0 = e.X0,
+            StUnom = e.StUnom,
+            FinUnom = e.FinUnom,
+            GroundStBus = e.GroundStBus,
+            GroundFinBus = e.GroundFinBus,
+            Fi_trans = e.Fi_trans,
+            E = e.E,
+            Fi_E = e.Fi_E
+        };
+
+        branches.Add(new_branch);
+        grid.Branches.Add(new_branch.Id, new_branch);
+        StateHasChanged();
+    }
+
+    //Localizator + branches filling
     I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
 
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
+        branches = await Task.Run(() => grid.Branches.Values.ToList<Branch>());
     }
+
+
 }

@@ -58,8 +58,8 @@ namespace TKZ.Shared
             Branch br8 = new Branch(b5.Id,b9.Id,"5-9",1,2,3,4,5,6,7,false,false,1,1);
             Branch br9 = new Branch(b6.Id,b10.Id,"6-10",1,2,3,4,5,6,7,false,false,1,1);
             Branch br10 = new Branch(b7.Id,b8.Id,"7-8",1,2,3,4,5,6,7,false,false,1,1);
-            Branch br11 = new Branch(b2.Id,gr.Id,"2-Зем",1,2,3,4,5,6,7,false,false,1,1);
-            Branch br12 = new Branch(gr.Id,b8.Id,"Зем-8",1,2,3,4,5,6,7,false,false,1,1);
+            Branch br11 = new Branch(b2.Id,gr.Id,"2-Зем",1,2,3,4,5,6,7,false,true,1,1);
+            Branch br12 = new Branch(gr.Id,b8.Id,"Зем-8",1,2,3,4,5,6,7,true,false,1,1);
 
             this.Branches.Add(br1.Id,br1);
             this.Branches.Add(br2.Id,br2);

@@ -21,8 +21,16 @@ namespace TKZ.Shared.Model
         public double E { get; set; }
         public double Fi_E { get; set; }
 
-        public Branch(int startBusId, int finalBusId, string NameBranch, double R1, double X1, double R0, double X0, 
-            double StUnom, double FinUnom, double Fi_trans, bool GroundStBus, bool GroundFinBus, double E, double Fi_E)
+        public Branch()
+        {
+            this.m_id = Branch.curId;
+        }
+
+        public Branch(int startBusId, int finalBusId, string NameBranch, 
+                      double R1, double X1, double R0, double X0, 
+                      double StUnom, double FinUnom, double Fi_trans, 
+                      bool GroundStBus, bool GroundFinBus, 
+                      double E, double Fi_E)
         {
             this.m_id = Branch.curId;
             this.StartBusId = startBusId;

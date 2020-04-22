@@ -1,3 +1,6 @@
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
@@ -24,12 +27,18 @@ namespace TKZ.Client
 
             builder.Services.AddSingleton<Grid>();
 
+            builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true).AddBootstrapProviders().AddFontAwesomeIcons();
+
             #endregion Singletons
 
 
             builder.Services.AddBaseAddressHttpClient();
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            host.Services.UseBootstrapProviders().UseFontAwesomeIcons();
+
+            await host.RunAsync();
         }
     }
 }
