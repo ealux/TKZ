@@ -47,7 +47,11 @@ namespace TKZ.Shared.Model
             string str ="";
             if (NameBranch == "")
             {
-                str = "Noname" + Convert.ToString(this.Id);
+                str = Convert.ToString(startBusId)
+                    + " - " 
+                    + Convert.ToString(FinalBusId)
+                    + " " 
+                    + Convert.ToString(this.Id);
                 this.Name = str;
             }       
             else
