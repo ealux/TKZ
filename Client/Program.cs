@@ -24,7 +24,8 @@ namespace TKZ.Client
 
             #region Singletons
 
-            builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }); //Http
+            //builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }); //Http
+            builder.Services.AddBaseAddressHttpClient();
             builder.Services.AddSingleton<LogBase>(); //Log singleton
             builder.Services.AddI18nText(); //Localizer singleton
             builder.Services.AddSingleton<Grid>(); //Network singleton

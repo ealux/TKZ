@@ -3,7 +3,7 @@
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
-@inject System.Net.Http.HttpClient Http
+@inject HttpClient Http
 
 <div class="contact">
     <h1>@Localizer.ContactHeader</h1>
@@ -65,7 +65,7 @@
     private async Task SendFeedback()
     {
         this.contact.datetime = DateTime.Now;
-        await System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync(Http, "Feedback", this.contact);
+        await Http.PostJsonAsync("Feedback", this.contact);
         notification = Localizer.Success;
         this.contact = new Contact();
         this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
