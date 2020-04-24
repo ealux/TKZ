@@ -1,12 +1,12 @@
 using System;
 
 namespace TKZ.Shared.Model
-{    
-    public class Branch:Elem
+{
+    public class Branch : Elem
     {
         private static int m_curId = 1;
         private static int curId { get { return m_curId++; } }
-        public int NumPar {get; set;}
+        public int NumPar { get; set; }
         public int StartBusId { get; set; }
         public int FinalBusId { get; set; }
         public double R1 { get; set; }
@@ -26,15 +26,15 @@ namespace TKZ.Shared.Model
             this.m_id = Branch.curId;
         }
 
-        public Branch(int startBusId, int finalBusId, string NameBranch, 
-                      double R1, double X1, double R0, double X0, 
-                      double StUnom, double FinUnom, double Fi_trans, 
-                      bool GroundStBus, bool GroundFinBus, 
+        public Branch(int startBusId, int finalBusId, string NameBranch,
+                      double R1, double X1, double R0, double X0,
+                      double StUnom, double FinUnom, double Fi_trans,
+                      bool GroundStBus, bool GroundFinBus,
                       double E, double Fi_E)
         {
             this.m_id = Branch.curId;
             this.StartBusId = startBusId;
-            this.FinalBusId = finalBusId;             
+            this.FinalBusId = finalBusId;
             this.R1 = R1;
             this.X1 = X1;
             this.R0 = R0;
@@ -44,23 +44,22 @@ namespace TKZ.Shared.Model
             this.Fi_trans = Fi_trans;
             this.GroundStBus = GroundStBus;
             this.GroundFinBus = GroundFinBus;
-            string str ="";
+            string str = "";
             if (NameBranch == "")
             {
                 str = Convert.ToString(startBusId)
-                    + " - " 
+                    + " - "
                     + Convert.ToString(FinalBusId)
-                    + " " 
+                    + " "
                     + Convert.ToString(this.Id);
                 this.Name = str;
-            }       
+            }
             else
             {
                 this.Name = NameBranch;
-            }     
+            }
             this.E = E;
             this.Fi_E = Fi_E;
-
         }
     }
 }

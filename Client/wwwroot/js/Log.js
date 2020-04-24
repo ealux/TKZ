@@ -1,7 +1,7 @@
 $("#hidLog").click(function () {
-    $('.log').addClass("hidden"); 
+    $('.log').addClass("hidden");
 });
 
 $("#bell").click(function () {
-    $('.log').removeClass("hidden"); 
+    $('.log').removeClass("hidden");
 });

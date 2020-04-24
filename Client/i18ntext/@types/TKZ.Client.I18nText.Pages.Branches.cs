@@ -43,6 +43,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Grounding in start bus"</summary>
         public string groundStartBus;
 
+        /// <summary>"Branches"</summary>
+        public string Header;
+
         /// <summary>"kA"</summary>
         public string kA;
 

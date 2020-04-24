@@ -1,5 +1,5 @@
 namespace TKZ.Shared.Model
-{    
+{
     public class Elem
     {
         protected int m_id;

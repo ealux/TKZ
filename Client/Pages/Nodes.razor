@@ -1,39 +1,120 @@
 ﻿@page "/nodes"
+@using Blazorise.DataGrid
+@using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject Grid grid
+@*<h1>Nodes</h1>*@
 
-<h1>Nodes</h1>
+@if (buses == null)
+{
+    <LoadingElement />
+}
+else
+{
+    <DataGrid TItem="Bus"
+              Data="@buses"
+              PageSize="@buses.Count"
+              EditMode="@DataGridEditMode.Inline"
+              Editable="true"
+              Sortable="true"
+              Filterable="true"
+              RowInserted="@OnRowInserted"
+              RowUpdated="@OnRowUpdated"
+              RowRemoved="@OnRowRemoved"
+              Striped="true"
+              Bordered="true"
+              Hoverable="true"
+              Narrow="true"
+              HeaderRowClass="small"
+              Class="text-sm-center">
 
-<body>
-    <table id="buses" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>@Localizer.NameBut</th>
-                <th>@Localizer.VoltageСlass</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var elem in grid.Buses)
-            {
-                <tr>
-                    <td>@elem.Value.Id</td>
-                    <td>@elem.Value.Name</td>
-                    <td>@elem.Value.Unom</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</body>
+        <DataGridColumn TItem="Bus"
+                        Field="@nameof(Bus.Name)"
+                        Caption="@(@Localizer.NameBut)"
+                        Editable="true"
+                        Sortable="true">
+        </DataGridColumn>
+        <DataGridNumericColumn TItem="Bus"
+                               Field="@nameof(Bus.Unom)"
+                               Caption="@(@Localizer.VoltageСlass)"
+                               Editable="true"
+                               Sortable="true"></DataGridNumericColumn>
 
+        <DataGridCommandColumn TItem="Bus" Width="130px">
+            <NewCommandTemplate>
+                <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+            </NewCommandTemplate>
+            <EditCommandTemplate>
+                <Button Class="btn btn-sm btn-success"
+                        Style="background-color:var(--S-middle); border:none;"
+                        Color="Color.Primary" Clicked="@context.Clicked">
+                    @Localizer.Edit
+                </Button>
+                <button class="btn btn-sm btn-info"
+                        style="background-color:var(--P-dark); border:none;"
+                        @onclick=@(() => DuplicateItem(context.Item))>
+                    @Localizer.Duplicate
+                </button>
+            </EditCommandTemplate>
+            <DeleteCommandTemplate>
+                <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+            </DeleteCommandTemplate>
+            <SaveCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+            </SaveCommandTemplate>
+            <CancelCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+            </CancelCommandTemplate>
+            <ClearFilterCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+            </ClearFilterCommandTemplate>
+        </DataGridCommandColumn>
+    </DataGrid>
+}
 
 @code {
+    private List<Bus> buses { get; set; }
+
+    //TODO: Implement
+    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+    }
+
+    //TODO: Implement(?)
+    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+    }
+
+    void OnRowRemoved(Bus e)
+    {
+        if (grid.Buses.Values.Contains(e))
+        {
+            grid.Buses.Remove(e.Id);
+        }
+    }
+
+    //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
+    void DuplicateItem(Bus e)
+    {
+        var new_bus = new Bus()
+        {
+            Name = e.Name,
+            Unom = e.Unom
+        };
+
+        buses.Add(new_bus);
+        grid.Buses.Add(new_bus.Id, new_bus);
+
+        StateHasChanged();
+    }
+
     //Localizator
     I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
 
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
+        buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
 }

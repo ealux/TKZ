@@ -1,9 +1,9 @@
 namespace TKZ.Shared.Model
-{    
-    public class Mutual:Elem
-    {   
+{
+    public class Mutual : Elem
+    {
         private static int m_curId = 1;
-        private static int curId { get {return m_curId++; } }
+        private static int curId { get { return m_curId++; } }
 
         public int IdFirstBranch { get; set; }
         public int IdSecondBranch { get; set; }
@@ -18,6 +18,5 @@ namespace TKZ.Shared.Model
             this.R = R;
             this.X = X;
         }
-
     }
 }

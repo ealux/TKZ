@@ -3,25 +3,19 @@
 @using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject LogBase Log
 @inject Grid grid
-@*<h1>Branches</h1>*@
+@implements IDisposable
+
+<h1>@Localizer.Header</h1>
 
 @if (branches == null)
 {
-    <div class="row d-block" style="position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);">
-        <div class="container">
-            <div class="row justify-content-center">
-                <h3 style="font-family: Amithen;
-                        color: black;
-                        font-size: 3rem;">
-                    Loading...
-                </h3>
-            </div>
-        </div>
-    </div>
+    <LoadingElement />
 }
 else
 {
+
     <DataGrid TItem="Branch"
               Data="@branches"
               PageSize="@branches.Count"
@@ -44,17 +38,51 @@ else
                                    Field="@nameof(Branch.StartBusId)"
                                    Caption="@Localizer.startBus"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true">
+                <DisplayTemplate>
+                    @{
+                        @if (grid.Buses.ContainsKey(context.StartBusId))
+                        {
+                            @grid.Buses[context.StartBusId];
+                        }
+                    }
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Buses)
+                        {
+                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                        }
+                    </Select>
+                </EditTemplate>
+                <FilterTemplate>
+                    <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
+                </FilterTemplate>
+            </DataGridNumericColumn>
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinalBusId)"
                                    Caption="@Localizer.finBus"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
-            <DataGridNumericColumn TItem="Branch"
-                                   Field="@nameof(Branch.NumPar)"
-                                   Caption="@Localizer.NumPar"
-                                   Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true">
+                <DisplayTemplate>
+                    @{
+                        @if (grid.Buses.ContainsKey(context.FinalBusId))
+                        {
+                            @grid.Buses[context.FinalBusId];
+                        }
+                    }
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Buses)
+                        {
+                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                        }
+                    </Select>
+                </EditTemplate>
+            </DataGridNumericColumn>
             <DataGridColumn TItem="Branch"
                             Field="@nameof(Branch.Name)"
                             Caption="@(@Localizer.Name)"
@@ -136,12 +164,16 @@ else
                     <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="btn btn-sm btn-success" 
-                            Style="background-color:var(--S-middle); border:none;"  
-                            Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Edit</Button>
+                    <Button Class="btn btn-sm btn-success"
+                            Style="background-color:var(--S-middle); border:none;"
+                            Color="Color.Primary" Clicked="@context.Clicked">
+                        @Localizer.Edit
+                    </Button>
                     <button class="btn btn-sm btn-info"
                             style="background-color:var(--P-dark); border:none;"
-                            @onclick=@(() => DuplicateItem(context.Item))>@Localizer.Duplicate</button>
+                            @onclick=@(() => DuplicateItem(context.Item))>
+                        @Localizer.Duplicate
+                    </button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
                     <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
@@ -162,9 +194,6 @@ else
 
 @code {
     private List<Branch> branches { get; set; }
-
-    Branch selectedBranch;
-
 
     //TODO: Implement
     void OnRowInserted(SavedRowItem<Branch, Dictionary<string, object>> e)
@@ -220,5 +249,40 @@ else
         branches = await Task.Run(() => grid.Branches.Values.ToList<Branch>());
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstrender)
+    {
+
+        var IdList = branches.Select(b => b.StartBusId).ToList()
+                         .Union(branches.Select(b => b.FinalBusId).ToList())
+                         .Distinct().ToList()
+                         .Except(grid.Buses.Values.Select(b => b.Id).ToList())
+                         .ToList();
+
+        await Task.Run(async () =>
+        {
+            await Log.RemoveMessage(byClass: MessageClass.Branches);
+
+            foreach (var branch in branches)
+            {
+                foreach (var orphanId in IdList)
+                {
+                    if (branch.StartBusId == orphanId)
+                    {
+                        Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: true, branchName: branch.Name));
+                    }
+                    if (branch.FinalBusId == orphanId)
+                    {
+                        Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: false, branchName: branch.Name));
+                    }
+                }
+            }
+            if (IdList.Count > 0) Log.Collapse = false;
+        });
+    }
+
+    public void Dispose()
+    {
+
+    }
 
 }

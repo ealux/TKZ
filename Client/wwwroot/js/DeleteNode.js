@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('html').on('click','.icon-delete', function () {                               
-        $(this).parent().remove();    
+    $('html').on('click', '.icon-delete', function () {
+        $(this).parent().remove();
     });
 });

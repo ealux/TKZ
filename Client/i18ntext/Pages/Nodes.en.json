@@ -1,4 +1,11 @@
 {
-    "NameBut":"Name",
-    "VoltageСlass":"Voltage Сlass"
+  "NameBut": "Name",
+  "VoltageСlass": "Voltage Сlass",
+  //Конопки формы
+  "Save": "Save",
+  "Cancel": "Cancel",
+  "New": "New",
+  "Filter": "Clear filter",
+  "Edit": "Edit",
+  "Duplicate": "D"
 }
