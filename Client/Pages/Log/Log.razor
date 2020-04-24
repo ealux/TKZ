@@ -15,7 +15,11 @@
         </div>
         @foreach (var mes in LB.Messages)
         {
-            <TKZ.Client.Pages.Log.Message Type="@mes.Type" Header="@mes.Header" Text="@mes.Text" Link="@mes.Link" />
+            <TKZ.Client.Pages.Log.Message Class="@mes.Class"
+                                          Type="@mes.Type"
+                                          Header="@mes.Header"
+                                          Text="@mes.Text"
+                                          Link="@mes.Link" />
         }
     </div>
 </div>

@@ -43,11 +43,20 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Grounding in start bus"</summary>
         public string groundStartBus;
 
+        /// <summary>"Branches"</summary>
+        public string Header;
+
+        /// <summary>"IsActive"</summary>
+        public string IsActive;
+
         /// <summary>"kA"</summary>
         public string kA;
 
         /// <summary>"kV"</summary>
         public string kV;
+
+        /// <summary>"Mutual inductions"</summary>
+        public string MutualHeader;
 
         /// <summary>"MVA"</summary>
         public string MVA;

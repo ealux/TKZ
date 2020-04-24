@@ -3,25 +3,18 @@
 @using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject LogBase Log
 @inject Grid grid
-@*<h1>Branches</h1>*@
+
+<h1>@Localizer.Header</h1>
 
 @if (branches == null)
 {
-    <div class="row d-block" style="position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);">
-        <div class="container">
-            <div class="row justify-content-center">
-                <h3 style="font-family: Amithen;
-                        color: black;
-                        font-size: 3rem;">
-                    Loading...
-                </h3>
-            </div>
-        </div>
-    </div>
+<LoadingElement />
 }
 else
 {
+<div class="w3-animate-opacity">
     <DataGrid TItem="Branch"
               Data="@branches"
               PageSize="@branches.Count"
@@ -33,115 +26,173 @@ else
               RowUpdated="@OnRowUpdated"
               RowRemoved="@OnRowRemoved"
               Striped="true"
-              Bordered="true"
               Hoverable="true"
               Narrow="true"
               HeaderRowClass="small"
               Class="text-sm-center">
 
         <DataGridColumns>
+            @*IsActive*@
+            <DataGridColumn TItem="Branch"
+                            Field="@nameof(Branch.IsActive)"
+                            Caption="@(@Localizer.IsActive)"
+                            Editable="true"
+                            Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                </EditTemplate>
+            </DataGridColumn>
+            @*StartBusId*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.StartBusId)"
                                    Caption="@Localizer.startBus"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true">
+                <DisplayTemplate>
+                    @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId]
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Buses)
+                        {
+                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                        }
+                    </Select>
+                </EditTemplate>
+                <FilterTemplate>
+                    <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
+                </FilterTemplate>
+            </DataGridNumericColumn>
+            @*FinalBusId*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinalBusId)"
                                    Caption="@Localizer.finBus"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
-            <DataGridNumericColumn TItem="Branch"
-                                   Field="@nameof(Branch.NumPar)"
-                                   Caption="@Localizer.NumPar"
-                                   Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true">
+                <DisplayTemplate>
+                    @if (grid.Buses.ContainsKey(context.FinalBusId))@grid.Buses[context.FinalBusId]
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Buses)
+                        {
+                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                        }
+                    </Select>
+                </EditTemplate>
+            </DataGridNumericColumn>
+            @*Name*@
             <DataGridColumn TItem="Branch"
                             Field="@nameof(Branch.Name)"
                             Caption="@(@Localizer.Name)"
                             Editable="true"
                             Sortable="true"></DataGridColumn>
+            @*R1*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.R1)"
                                    Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*X1*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.X1)"
                                    Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*R0*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.R0)"
                                    Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*X0*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.X0)"
                                    Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*StUnom*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.StUnom)"
                                    Caption="@(new String(@Localizer.Unom+" "+@Localizer.startBus+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*FinNom*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinUnom)"
                                    Caption="@(new String(@Localizer.Unom+" "+@Localizer.finBus+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
-            <DataGridSelectColumn TItem="Branch"
-                                  Field="@nameof(Branch.GroundStBus)"
-                                  Caption="@Localizer.groundStartBus"
-                                  Editable="true"
-                                  Sortable="true">
+            @*GroundStBus*@
+            <DataGridCheckColumn TItem="Branch"
+                                 Field="@nameof(Branch.GroundStBus)"
+                                 Caption="@Localizer.groundStartBus"
+                                 Editable="true"
+                                 Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.GroundStBus" Disabled="true" ReadOnly="true" />
+                </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
-                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
-                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
-                    </Select>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
-            </DataGridSelectColumn>
+            </DataGridCheckColumn>
+            @*GroundFinBus*@
             <DataGridSelectColumn TItem="Branch"
                                   Field="@nameof(Branch.GroundFinBus)"
                                   Caption="@Localizer.groundFinBus"
                                   Editable="true"
                                   Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.GroundFinBus" Disabled="true" ReadOnly="true" />
+                </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
-                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
-                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
-                    </Select>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
             </DataGridSelectColumn>
+            @*FI_trans*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.Fi_trans)"
                                    Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
-
+            @*E*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.E)"
                                    Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*FI_E*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.Fi_E)"
                                    Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
 
+            @*Commands*@
             <DataGridCommandColumn TItem="Branch" Width="130px">
                 <NewCommandTemplate>
-                    <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+                    <Button Active="true"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Success" Clicked="@context.Clicked">
+                        @Localizer.New
+                    </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="btn btn-sm btn-success" 
-                            Style="background-color:var(--S-middle); border:none;"  
-                            Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Edit</Button>
+                    <Button Class="btn btn-sm btn-success"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Primary" Clicked="@context.Clicked">
+                        @Localizer.Edit
+                    </Button>
                     <button class="btn btn-sm btn-info"
                             style="background-color:var(--P-dark); border:none;"
-                            @onclick=@(() => DuplicateItem(context.Item))>@Localizer.Duplicate</button>
+                            @onclick=@(() => DuplicateItem(context.Item))>
+                        @Localizer.Duplicate
+                    </button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
                     <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
@@ -158,17 +209,16 @@ else
             </DataGridCommandColumn>
         </DataGridColumns>
     </DataGrid>
+</div>
 }
 
 @code {
     private List<Branch> branches { get; set; }
 
-    Branch selectedBranch;
-
-
     //TODO: Implement
     void OnRowInserted(SavedRowItem<Branch, Dictionary<string, object>> e)
     {
+        grid.Branches.Add(e.Item.Id, e.Item);
     }
 
     //TODO: Implement(?)
@@ -220,5 +270,39 @@ else
         branches = await Task.Run(() => grid.Branches.Values.ToList<Branch>());
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstrender)
+    {
+        try
+        {
+            var IdList = branches.Select(b => b.StartBusId).ToList()
+                             .Union(branches.Select(b => b.FinalBusId).ToList())
+                             .Distinct().ToList()
+                             .Except(grid.Buses.Values.Select(b => b.Id).ToList())
+                             .ToList() ?? null;
 
+            await Task.Run(async () =>
+            {
+                if (Log.Messages.Any((m) => m.Class == MessageClass.Branches)) await Log.RemoveMessage(byClass: MessageClass.Branches);
+                if (IdList.Count > 0)
+                {
+                    foreach (var branch in branches)
+                    {
+                        foreach (var orphanId in IdList)
+                        {
+                            if (branch.StartBusId == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: true, branchName: branch.Name));
+                            }
+                            if (branch.FinalBusId == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: false, branchName: branch.Name));
+                            }
+                        }
+                    }
+                    Log.Collapse = false;
+                }
+            });
+        }
+        catch (Exception) { return; }
+    }
 }

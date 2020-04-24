@@ -7,8 +7,32 @@ namespace TKZ.Client.I18nText.Pages
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Cancel"</summary>
+        public string Cancel;
+
+        /// <summary>"D"</summary>
+        public string Duplicate;
+
+        /// <summary>"Edit"</summary>
+        public string Edit;
+
+        /// <summary>"Clear filter"</summary>
+        public string Filter;
+
+        /// <summary>"Buses"</summary>
+        public string Header;
+
+        /// <summary>"IsActive"</summary>
+        public string IsActive;
+
         /// <summary>"Name"</summary>
         public string NameBut;
+
+        /// <summary>"New"</summary>
+        public string New;
+
+        /// <summary>"Save"</summary>
+        public string Save;
 
         /// <summary>"Voltage Сlass"</summary>
         public string VoltageСlass;

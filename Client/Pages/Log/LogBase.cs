@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TKZ.Client.Pages.Log
@@ -14,21 +15,35 @@ namespace TKZ.Client.Pages.Log
 
         public LogBase()
         {
-            Messages = new ObservableCollection<Message>()
-            {
-                new Message(Message.MessageType.Success, "Внимание!", "У нас кончилась водка!", "contacts"),
-            };
+            Messages = new ObservableCollection<Message>();
         }
 
-        public async Task AddMessage(Message mes)
+        public async void AddMessage(Message mes)
         {
-            await Task.Run(() => Messages.Add(mes));
-            OnChange?.Invoke();
+            if (!this.Messages.Contains(mes))
+            {
+                await Task.Run(() => Messages.Add(mes));
+                OnChange?.Invoke();
+            }
         }
 
         public async Task RemoveMessage()
         {
             await Task.Run(() => Messages.Clear());
+            OnChange?.Invoke();
+        }
+
+        public async Task RemoveMessage(MessageClass byClass)
+        {
+            await Task.Run(() =>
+            {
+                var listClassMessages = this.Messages.Where(m => m.Class == byClass).ToList();
+
+                foreach (var mes in listClassMessages)
+                {
+                    Messages.Remove(mes);
+                }
+            });
             OnChange?.Invoke();
         }
 

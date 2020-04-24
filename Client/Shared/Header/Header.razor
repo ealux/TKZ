@@ -38,13 +38,15 @@
     </button>
 
     <div class="ml-auto">
-        <button type="button" class="icon" title="Тест IEEE14">
+        <button type="button"
+                class="icon"
+                title="Тест IEEE14">
             <svg class="menu-icon">
                 <use xlink:href="#IEEE_14"></use>
             </svg>
         </button>
-        <button type="button" 
-                class="icon" 
+        <button type="button"
+                class="icon"
                 title="lang"
                 @onclick="ChangeLanguage">
             <img src="@(IsRus ? SourceRus : SourceUS )" width="25px" height="25px" alt="russia">
@@ -56,9 +58,9 @@
     [Parameter]
     public EventCallback LogOpenEvent { get; set; }
 
-    async Task Add()
+    void Add()
     {
-        await LB.AddMessage(new Message(Message.MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
+        LB.AddMessage(new Message(MessageClass.System, MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
     }
 
     protected override void OnInitialized()

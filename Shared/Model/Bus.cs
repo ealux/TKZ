@@ -1,15 +1,18 @@
-using System;
-
 namespace TKZ.Shared.Model
-{    
-    public class Bus:Elem    
+{
+    public class Bus : Elem
     {
         private static int m_curId = 1;
         private static int curId { get { return m_curId++; } }
 
         public double Unom { get; set; }
- 
-        public Bus(double Unom, string Name="Noname", bool IsGround = false)
+
+        public Bus()
+        {
+            this.m_id = curId;
+        }
+
+        public Bus(double Unom, string Name = "Noname", bool IsGround = false)
         {
             if (IsGround)
             {

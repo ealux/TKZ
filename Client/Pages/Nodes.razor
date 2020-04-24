@@ -1,39 +1,144 @@
 ﻿@page "/nodes"
+@using Blazorise.DataGrid
+@using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject Grid grid
 
-<h1>Nodes</h1>
+<h1>@Localizer.Header</h1>
 
-<body>
-    <table id="buses" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>@Localizer.NameBut</th>
-                <th>@Localizer.VoltageСlass</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var elem in grid.Buses)
-            {
-                <tr>
-                    <td>@elem.Value.Id</td>
-                    <td>@elem.Value.Name</td>
-                    <td>@elem.Value.Unom</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</body>
+@if (buses == null)
+{
+    <LoadingElement />
+}
+else
+{
+    <div class="w3-animate-opacity">
+        <DataGrid TItem="Bus"
+                  Data="@buses"
+                  PageSize="@buses.Count"
+                  EditMode="@DataGridEditMode.Inline"
+                  Editable="true"
+                  Sortable="true"
+                  Filterable="true"
+                  RowInserted="@OnRowInserted"
+                  RowUpdated="@OnRowUpdated"
+                  RowRemoved="@OnRowRemoved"
+                  Striped="true"
+                  Hoverable="true"
+                  Narrow="true"
+                  HeaderRowClass="small"
+                  Class="text-sm-center">
 
+            @*IsActive*@
+            <DataGridColumn TItem="Bus"
+                            Field="@nameof(Bus.IsActive)"
+                            Caption="@(@Localizer.IsActive)"
+                            Editable="true"
+                            Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                </EditTemplate>
+            </DataGridColumn>
+            @*Name*@
+            <DataGridColumn TItem="Bus"
+                            Field="@nameof(Bus.Name)"
+                            Caption="@(@Localizer.NameBut)"
+                            Editable="true"
+                            Sortable="true">
+            </DataGridColumn>
+            @*Unom*@
+            <DataGridNumericColumn TItem="Bus"
+                                   Field="@nameof(Bus.Unom)"
+                                   Caption="@(@Localizer.VoltageСlass)"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            
+            @*Commands*@
+            <DataGridCommandColumn TItem="Bus" Width="130px">
+                <NewCommandTemplate>
+                    <Button Active="true"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Success" Clicked="@context.Clicked">
+                        @Localizer.New
+                    </Button>
+                </NewCommandTemplate>
+                <EditCommandTemplate>
+                    <Button Class="btn btn-sm btn-success"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Primary" Clicked="@context.Clicked">
+                        @Localizer.Edit
+                    </Button>
+                    <button class="btn btn-sm btn-info"
+                            style="background-color:var(--P-dark); border:none;"
+                            @onclick=@(() => DuplicateItem(context.Item))>
+                        @Localizer.Duplicate
+                    </button>
+                </EditCommandTemplate>
+                <DeleteCommandTemplate>
+                    <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+                </DeleteCommandTemplate>
+                <SaveCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                </SaveCommandTemplate>
+                <CancelCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                </CancelCommandTemplate>
+                <ClearFilterCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                </ClearFilterCommandTemplate>
+            </DataGridCommandColumn>
+        </DataGrid>
+    </div>
+
+}
 
 @code {
+    private List<Bus> buses { get; set; }
+
+    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+        grid.Buses.Add(e.Item.Id, e.Item);
+    }
+
+    //TODO: Implement(?)
+    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+    }
+
+    void OnRowRemoved(Bus e)
+    {
+        if (grid.Buses.Values.Contains(e))
+        {
+            grid.Buses.Remove(e.Id);
+        }
+    }
+
+    //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
+    void DuplicateItem(Bus e)
+    {
+        var new_bus = new Bus()
+        {
+            Name = e.Name,
+            Unom = e.Unom
+        };
+
+        buses.Add(new_bus);
+        grid.Buses.Add(new_bus.Id, new_bus);
+
+        StateHasChanged();
+    }
+
     //Localizator
     I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
 
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
+        buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
+
 }

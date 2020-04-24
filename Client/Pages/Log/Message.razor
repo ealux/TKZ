@@ -2,12 +2,15 @@
 @using Microsoft.AspNetCore.Components
 @inject NavigationManager navmanager
 
-    <div class="message message_@type" @onclick="@Redirect">
-        <small><b>@Header </b></small>
-        <small>@Text</small>
-    </div>
+<div class="message message_@type" @onclick="@Redirect">
+    <small><b>@Header </b></small>
+    <small>@Text</small>
+</div>
 
 @code {
+    [Parameter]
+    public MessageClass Class { get; set; }
+
     [Parameter]
     public MessageType Type
     {
@@ -43,8 +46,10 @@
     [Parameter]
     public string Link { get; set; }
 
-    public Message(MessageType type, string header, string text, string link)
+    //Active ctor
+    public Message(MessageClass mesClass, MessageType type, string header, string text, string link)
     {
+        this.Class = mesClass;
         this.Type = type;
         this.Header = header;
         this.Text = text;
@@ -63,11 +68,27 @@
         }
     }
 
-    //Message type
-    public enum MessageType
+    //Message equality comparator
+    public bool Equals(Message mes)
     {
-        Success,
-        Warning,
-        Danger
+        if (this.Class == mes.Class &&
+            this.Type == mes.Type &&
+            this.Header == mes.Header &&
+            this.Text == mes.Text &&
+            this.Link == mes.Link) return true;
+        else return false;
+    }
+
+    //Base Equal() override
+    public override bool Equals(object obj)
+    {
+        return Equals((Message)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Class.GetHashCode() ^ Type.GetHashCode() ^
+               Header.GetHashCode() ^ Text.GetHashCode() ^
+               Link.GetHashCode();
     }
 }
