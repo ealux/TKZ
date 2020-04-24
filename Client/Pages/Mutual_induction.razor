@@ -82,11 +82,15 @@ else
 
         <DataGridCommandColumn TItem="Mutual" Width="130px">
             <NewCommandTemplate>
-                <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+                <Button Active="true"
+                        Style="background-color:var(--S-middle); border:none; color:black;"
+                        Color="Color.Success" Clicked="@context.Clicked">
+                    @Localizer.New
+                </Button>
             </NewCommandTemplate>
             <EditCommandTemplate>
                 <Button Class="btn btn-sm btn-success"
-                        Style="background-color:var(--S-middle); border:none;"
+                        Style="background-color:var(--S-middle); border:none; color:black;"
                         Color="Color.Primary" Clicked="@context.Clicked">
                     @Localizer.Edit
                 </Button>

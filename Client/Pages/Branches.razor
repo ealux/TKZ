@@ -71,76 +71,87 @@ else
                     </Select>
                 </EditTemplate>
             </DataGridNumericColumn>
+            @*Name*@
             <DataGridColumn TItem="Branch"
                             Field="@nameof(Branch.Name)"
                             Caption="@(@Localizer.Name)"
                             Editable="true"
                             Sortable="true"></DataGridColumn>
+            @*R1*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.R1)"
                                    Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*X1*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.X1)"
                                    Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*R0*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.R0)"
                                    Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*X0*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.X0)"
                                    Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*StUnom*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.StUnom)"
                                    Caption="@(new String(@Localizer.Unom+" "+@Localizer.startBus+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*FinNom*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinUnom)"
                                    Caption="@(new String(@Localizer.Unom+" "+@Localizer.finBus+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
-            <DataGridSelectColumn TItem="Branch"
-                                  Field="@nameof(Branch.GroundStBus)"
-                                  Caption="@Localizer.groundStartBus"
-                                  Editable="true"
-                                  Sortable="true">
+            @*GroundStBus*@
+            <DataGridCheckColumn TItem="Branch"
+                                 Field="@nameof(Branch.GroundStBus)"
+                                 Caption="@Localizer.groundStartBus"
+                                 Editable="true"
+                                 Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.GroundStBus" Disabled="true" ReadOnly="true" />
+                </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
-                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
-                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
-                    </Select>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
-            </DataGridSelectColumn>
+            </DataGridCheckColumn>
+            @*GroundFinBus*@
             <DataGridSelectColumn TItem="Branch"
                                   Field="@nameof(Branch.GroundFinBus)"
                                   Caption="@Localizer.groundFinBus"
                                   Editable="true"
                                   Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.GroundFinBus" Disabled="true" ReadOnly="true" />
+                </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="bool" SelectedValue="@((bool)( ( (CellEditContext)context ).CellValue ))" SelectedValueChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)">
-                        <SelectItem TValue="bool" Value="@(true)">True</SelectItem>
-                        <SelectItem TValue="bool" Value="@(false)">False</SelectItem>
-                    </Select>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
             </DataGridSelectColumn>
+            @*FI_trans*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.Fi_trans)"
                                    Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
-
+            @*E*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.E)"
                                    Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
+            @*FI_E*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.Fi_E)"
                                    Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
@@ -149,11 +160,15 @@ else
 
             <DataGridCommandColumn TItem="Branch" Width="130px">
                 <NewCommandTemplate>
-                    <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+                    <Button Active="true"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Success" Clicked="@context.Clicked">
+                        @Localizer.New
+                    </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
                     <Button Class="btn btn-sm btn-success"
-                            Style="background-color:var(--S-middle); border:none;"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
                             Color="Color.Primary" Clicked="@context.Clicked">
                         @Localizer.Edit
                     </Button>

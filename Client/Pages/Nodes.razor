@@ -43,35 +43,39 @@ else
 
         <DataGridCommandColumn TItem="Bus" Width="130px">
             <NewCommandTemplate>
-                <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
-            </NewCommandTemplate>
-            <EditCommandTemplate>
-                <Button Class="btn btn-sm btn-success"
-                        Style="background-color:var(--S-middle); border:none;"
-                        Color="Color.Primary" Clicked="@context.Clicked">
-                    @Localizer.Edit
-                </Button>
-                <button class="btn btn-sm btn-info"
-                        style="background-color:var(--P-dark); border:none;"
-                        @onclick=@(() => DuplicateItem(context.Item))>
-                    @Localizer.Duplicate
-                </button>
-            </EditCommandTemplate>
-            <DeleteCommandTemplate>
-                <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
-            </DeleteCommandTemplate>
-            <SaveCommandTemplate>
-                <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
-            </SaveCommandTemplate>
-            <CancelCommandTemplate>
-                <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
-            </CancelCommandTemplate>
-            <ClearFilterCommandTemplate>
-                <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
-            </ClearFilterCommandTemplate>
-        </DataGridCommandColumn>
-    </DataGrid>
-}
+                <Button Active="true"
+                        Style="background-color:var(--S-middle); border:none; color:black;"
+                        Color="Color.Success" Clicked="@context.Clicked">
+                    @Localizer.New
+                    </Button>
+                </NewCommandTemplate>
+                <EditCommandTemplate>
+                    <Button Class="btn btn-sm btn-success"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Primary" Clicked="@context.Clicked">
+                        @Localizer.Edit
+                    </Button>
+                    <button class="btn btn-sm btn-info"
+                            style="background-color:var(--P-dark); border:none;"
+                            @onclick=@(() => DuplicateItem(context.Item))>
+                        @Localizer.Duplicate
+                    </button>
+                </EditCommandTemplate>
+                <DeleteCommandTemplate>
+                    <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+                </DeleteCommandTemplate>
+                <SaveCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                </SaveCommandTemplate>
+                <CancelCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                </CancelCommandTemplate>
+                <ClearFilterCommandTemplate>
+                    <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                </ClearFilterCommandTemplate>
+            </DataGridCommandColumn>
+        </DataGrid>
+    }
 
 @code {
     private List<Bus> buses { get; set; }
