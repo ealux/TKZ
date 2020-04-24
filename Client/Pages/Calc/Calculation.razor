@@ -59,13 +59,21 @@
                 <input class="radio__input" type="radio" id="node-1" name="Nodes" value="node-1" checked>
                 <label class="radio__label" for="node-1">
                     1
-                    <button class="icon-delete"><img src="img/delete.svg" style="width: 1rem; height: 1rem"></button>
+                    <button class="icon-delete">
+                        <svg class="my_icon">
+                            <use xlink:href="#close"></use>
+                        </svg>
+                    </button>
                 </label>
 
                 <input class="radio__input" type="radio" id="node-2" name="Nodes" value="node-2">
                 <label class="radio__label" for="node-2">
                     20000
-                    <button class="icon-delete"><img src="img/delete.svg" style="width: 1rem; height: 1rem"></button>
+                    <button class="icon-delete">
+                        <svg class="my_icon">
+                            <use xlink:href="#close"></use>
+                        </svg>
+                    </button>
                 </label>
             </div>
             <button class="my_button primary"
@@ -83,6 +91,7 @@
         <label for="ContNode">Выберите контролируемый узел:</label>
         <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
         <button class="round" id="addContNode" style="display: inline-block;"><img src="img/add.svg"></button>
+
     </div>
 </div>
 

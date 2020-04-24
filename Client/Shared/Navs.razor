@@ -5,30 +5,51 @@
     <!--sidebar-->
     <div class="nav flex-column nav-pills mh-100" style="flex: 1;">
         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/home.svg">@Localizer.Navs_HomeBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#home"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_HomeBut</span>
+</NavLink>
         <NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/node.svg">@Localizer.Navs_NodeBut
+            <svg class="menu-icon">
+                <use xlink:href="#node"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_NodeBut</span>
         </NavLink>
         <NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/branch.svg">@Localizer.Navs_BranchBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#branch"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_BranchBut</span>
+</NavLink>
         <NavLink class="nav-link" href="/mutual_induction" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/mutual_induction.svg">@Localizer.Navs_MutBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#mutual_induction"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_MutBut</span>
+</NavLink>
         <NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/thunder.svg">@Localizer.Navs_CalcBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#thunder"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_CalcBut</span>
+</NavLink>
         <NavLink class="nav-link" href="/adv" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/reading.svg">@Localizer.Navs_AdvBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#adv"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_AdvBut</span>
+</NavLink>
         <NavLink class="nav-link" href="/contacts" Match="NavLinkMatch.All" ActiveClass="active">
-            <img class="menu-icon" src="img/contact.svg">@Localizer.Navs_ContactBut
-        </NavLink>
+            <svg class="menu-icon">
+                <use xlink:href="#contact"></use>
+            </svg>
+            <span class="align-middle">@Localizer.Navs_ContactBut</span>
+</NavLink>
     </div>
 </div>
 
-@code { 
+@code {
 
 
 

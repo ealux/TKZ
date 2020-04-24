@@ -11,13 +11,23 @@
                     font-size: 2.5rem;">
         Lime
     </NavLink>
-    <button type="button" class="icon" title="Загрузить"><img src="img/upload.svg" width="25px" height="25px" alt="upload"></button>
-    <button type="button" class="icon" title="Сохранить"><img src="img/download.svg" width="25px" height="25px" alt="download"></button>
+    <button type="button" class="icon" title="Загрузить">
+        <svg class="menu-icon">
+            <use xlink:href="#upload"></use>
+        </svg>
+    </button>
+    <button type="button" class="icon" title="Сохранить">
+        <svg class="menu-icon">
+            <use xlink:href="#download"></use>
+        </svg>
+    </button>
     <button type="button"
             class="icon"
             title="Рассчитать все"
             @onclick="Add">
-        <img src="img/two_thunder2.svg " width="25px" height="25px" alt="calc all">
+        <svg class="menu-icon">
+            <use xlink:href="#CalcAll"></use>
+        </svg>
     </button>
     <button type="button"
             class="icon"
@@ -28,7 +38,11 @@
     </button>
 
     <div class="ml-auto">
-        <button type="button" class="icon" title="Тест IEEE14"><img src="img/IEEE_14.svg " width="25px" height="25px" alt="Test IEEE14"></button>
+        <button type="button" class="icon" title="Тест IEEE14">
+            <svg class="menu-icon">
+                <use xlink:href="#IEEE_14"></use>
+            </svg>
+        </button>
         <button type="button" 
                 class="icon" 
                 title="lang"
