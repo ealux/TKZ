@@ -19,6 +19,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Clear filter"</summary>
         public string Filter;
 
+        /// <summary>"Buses"</summary>
+        public string Header;
+
         /// <summary>"Name"</summary>
         public string NameBut;
 

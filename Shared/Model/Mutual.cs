@@ -10,6 +10,11 @@ namespace TKZ.Shared.Model
         public double X { get; set; }
         public double R { get; set; }
 
+        public Mutual()
+        {
+            this.m_id = curId;
+        }
+
         public Mutual(int IdFirstBranch, int IdSecondBranch, double R, double X)
         {
             this.m_id = curId;

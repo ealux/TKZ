@@ -52,6 +52,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"kV"</summary>
         public string kV;
 
+        /// <summary>"Mutual inductions"</summary>
+        public string MutualHeader;
+
         /// <summary>"MVA"</summary>
         public string MVA;
 

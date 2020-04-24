@@ -1,42 +1,204 @@
 ﻿@page "/mutual_induction"
+@using Blazorise.DataGrid
+@using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject LogBase Log
 @inject Grid grid
 
-<h1>Mutual inductions</h1>
+<h1>@Localizer.MutualHeader</h1>
 
-<body>
-    <table id="mutuals" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>@Localizer["firstBranch"]</th>
-                <th>@Localizer["secondBranch"]</th>
-                <th>R, [@Localizer["ohm"]]</th>
-                <th>X, [@Localizer["ohm"]]</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var elem in grid.Mutuals)
-            {
-                <tr>
-                    <td>@elem.Value.Id</td>
-                    <td>@grid.Branches[elem.Value.IdFirstBranch]</td>
-                    <td>@grid.Branches[elem.Value.IdSecondBranch]</td>
-                    <td>@elem.Value.R</td>
-                    <td>@elem.Value.X</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</body>
+@if (mutuals == null)
+{
+    <LoadingElement />
+}
+else
+{
+    <DataGrid TItem="Mutual"
+              Data="@mutuals"
+              PageSize="@mutuals.Count"
+              EditMode="@DataGridEditMode.Inline"
+              Editable="true"
+              Sortable="true"
+              Filterable="true"
+              RowInserted="@OnRowInserted"
+              RowUpdated="@OnRowUpdated"
+              RowRemoved="@OnRowRemoved"
+              Striped="true"
+              Hoverable="true"
+              Narrow="true"
+              HeaderRowClass="small"
+              Class="text-sm-center">
+
+        <DataGridNumericColumn TItem="Mutual"
+                               Field="@nameof(Mutual.IdFirstBranch)"
+                               Caption="@Localizer.firstBranch"
+                               Editable="true"
+                               Sortable="true">
+            <DisplayTemplate>
+                @if (grid.Branches.ContainsKey(context.IdFirstBranch))@grid.Branches[context.IdFirstBranch].Name
+            </DisplayTemplate>
+            <EditTemplate>
+                <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    @foreach (var item in grid.Branches)
+                    {
+                        <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                    }
+                </Select>
+            </EditTemplate>
+            <FilterTemplate>
+                <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
+            </FilterTemplate>
+        </DataGridNumericColumn>
+        <DataGridNumericColumn TItem="Mutual"
+                               Field="@nameof(Mutual.IdSecondBranch)"
+                               Caption="@Localizer.secondBranch"
+                               Editable="true"
+                               Sortable="true">
+            <DisplayTemplate>
+                @if (grid.Branches.ContainsKey(context.IdSecondBranch))@grid.Branches[context.IdSecondBranch].Name
+            </DisplayTemplate>
+            <EditTemplate>
+                <Select TValue="int"
+                        SelectedValue="@((int)(((CellEditContext)context).CellValue))"
+                        SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    @foreach (var item in grid.Branches)
+                    {
+                        <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                    }
+                </Select>
+            </EditTemplate>
+        </DataGridNumericColumn>
+        <DataGridNumericColumn TItem="Mutual"
+                               Field="@nameof(Mutual.R)"
+                               Caption="@(new String("R, ["+@Localizer.ohm+"]"))"
+                               Editable="true"
+                               Sortable="true"></DataGridNumericColumn>
+        <DataGridNumericColumn TItem="Mutual"
+                               Field="@nameof(Mutual.X)"
+                               Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
+                               Editable="true"
+                               Sortable="true"></DataGridNumericColumn>
+
+        <DataGridCommandColumn TItem="Mutual" Width="130px">
+            <NewCommandTemplate>
+                <Button Active="true" Color="Color.Success" Clicked="@context.Clicked">@Localizer.New</Button>
+            </NewCommandTemplate>
+            <EditCommandTemplate>
+                <Button Class="btn btn-sm btn-success"
+                        Style="background-color:var(--S-middle); border:none;"
+                        Color="Color.Primary" Clicked="@context.Clicked">
+                    @Localizer.Edit
+                </Button>
+                <button class="btn btn-sm btn-info"
+                        style="background-color:var(--P-dark); border:none;"
+                        @onclick=@(() => DuplicateItem(context.Item))>
+                    @Localizer.Duplicate
+                </button>
+            </EditCommandTemplate>
+            <DeleteCommandTemplate>
+                <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+            </DeleteCommandTemplate>
+            <SaveCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+            </SaveCommandTemplate>
+            <CancelCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+            </CancelCommandTemplate>
+            <ClearFilterCommandTemplate>
+                <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+            </ClearFilterCommandTemplate>
+        </DataGridCommandColumn>
+    </DataGrid>
+}
 
 @code {
+    private List<Mutual> mutuals { get; set; }
+
+    void OnRowInserted(SavedRowItem<Mutual, Dictionary<string, object>> e)
+    {
+        grid.Mutuals.Add(e.Item.Id, e.Item);
+    }
+
+    //TODO: Implement(?)
+    void OnRowUpdated(SavedRowItem<Mutual, Dictionary<string, object>> e)
+    {
+    }
+
+    void OnRowRemoved(Mutual e)
+    {
+        if (grid.Mutuals.Values.Contains(e))
+        {
+            grid.Mutuals.Remove(e.Id);
+        }
+    }
+
+    //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
+    void DuplicateItem(Mutual e)
+    {
+        var new_mut = new Mutual()
+        {
+            Name = e.Name,
+            IdFirstBranch = e.IdFirstBranch,
+            IdSecondBranch = e.IdSecondBranch,
+            X = e.X,
+            R = e.R
+        };
+
+        mutuals.Add(new_mut);
+        grid.Mutuals.Add(new_mut.Id, new_mut);
+
+        StateHasChanged();
+    }
+
     //Localizator
     I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
 
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
+        mutuals = await Task.Run(() => grid.Mutuals.Values.ToList<Mutual>());
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstrender)
+    {
+        try
+        {
+            var IdList = mutuals.Select(b => b.IdFirstBranch).ToList()
+                             .Union(mutuals.Select(b => b.IdSecondBranch).ToList())
+                             .Distinct().ToList()
+                             .Except(grid.Branches.Values.Select(b => b.Id).ToList())
+                             .ToList() ?? null;
+
+            await Task.Run(async () =>
+            {
+                if (Log.Messages.Any((m) => m.Class == MessageClass.Mutuals)) await Log.RemoveMessage(byClass: MessageClass.Mutuals);
+                if (IdList.Count > 0)
+                {
+                    foreach (var mut in mutuals)
+                    {
+                        if (IdList.Contains(mut.IdFirstBranch) & IdList.Contains(mut.IdSecondBranch))
+                        {
+                            Log.AddMessage(MessageCollection.Mutual_OrphanError());
+                            continue;
+                        }
+
+                        foreach (var orphanId in IdList)
+                        {
+                            if (mut.IdFirstBranch == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: true, restBranchName: grid.Branches[mut.IdSecondBranch].Name));
+                            }
+                            if (mut.IdSecondBranch == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: false, restBranchName: grid.Branches[mut.IdFirstBranch].Name));
+                            }
+                        }
+                    }
+                    Log.Collapse = false;
+                }
+            });
+        }
+        catch (Exception) { return; }
     }
 }

@@ -1,6 +1,7 @@
 {
   //Header
   "Header": "Branches",
+  "MutualHeader": "Mutual inductions",
   //
   "angle": "angle",
   "deg": "deg.",

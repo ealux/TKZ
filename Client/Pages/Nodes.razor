@@ -4,7 +4,8 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject Grid grid
-@*<h1>Nodes</h1>*@
+
+<h1>@Localizer.Header</h1>
 
 @if (buses == null)
 {
@@ -23,7 +24,6 @@ else
               RowUpdated="@OnRowUpdated"
               RowRemoved="@OnRowRemoved"
               Striped="true"
-              Bordered="true"
               Hoverable="true"
               Narrow="true"
               HeaderRowClass="small"
@@ -76,9 +76,9 @@ else
 @code {
     private List<Bus> buses { get; set; }
 
-    //TODO: Implement
     void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e)
     {
+        grid.Buses.Add(e.Item.Id, e.Item);
     }
 
     //TODO: Implement(?)
@@ -117,4 +117,5 @@ else
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
+
 }

@@ -5,7 +5,6 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
 @inject Grid grid
-@implements IDisposable
 
 <h1>@Localizer.Header</h1>
 
@@ -27,7 +26,6 @@ else
               RowUpdated="@OnRowUpdated"
               RowRemoved="@OnRowRemoved"
               Striped="true"
-              Bordered="true"
               Hoverable="true"
               Narrow="true"
               HeaderRowClass="small"
@@ -40,16 +38,11 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @{
-                        @if (grid.Buses.ContainsKey(context.StartBusId))
-                        {
-                            @grid.Buses[context.StartBusId];
-                        }
-                    }
+                    @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId]
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        <SelectItem TValue="int" Value="@(0)"></SelectItem>
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
                         @foreach (var item in grid.Buses)
                         {
                             <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
@@ -66,16 +59,11 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @{
-                        @if (grid.Buses.ContainsKey(context.FinalBusId))
-                        {
-                            @grid.Buses[context.FinalBusId];
-                        }
-                    }
+                    @if (grid.Buses.ContainsKey(context.FinalBusId))@grid.Buses[context.FinalBusId]
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        <SelectItem TValue="int" Value="@(0)"></SelectItem>
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
                         @foreach (var item in grid.Buses)
                         {
                             <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
@@ -198,6 +186,7 @@ else
     //TODO: Implement
     void OnRowInserted(SavedRowItem<Branch, Dictionary<string, object>> e)
     {
+        grid.Branches.Add(e.Item.Id, e.Item);
     }
 
     //TODO: Implement(?)
@@ -251,38 +240,37 @@ else
 
     protected override async Task OnAfterRenderAsync(bool firstrender)
     {
-
-        var IdList = branches.Select(b => b.StartBusId).ToList()
-                         .Union(branches.Select(b => b.FinalBusId).ToList())
-                         .Distinct().ToList()
-                         .Except(grid.Buses.Values.Select(b => b.Id).ToList())
-                         .ToList();
-
-        await Task.Run(async () =>
+        try
         {
-            await Log.RemoveMessage(byClass: MessageClass.Branches);
+            var IdList = branches.Select(b => b.StartBusId).ToList()
+                             .Union(branches.Select(b => b.FinalBusId).ToList())
+                             .Distinct().ToList()
+                             .Except(grid.Buses.Values.Select(b => b.Id).ToList())
+                             .ToList() ?? null;
 
-            foreach (var branch in branches)
+            await Task.Run(async () =>
             {
-                foreach (var orphanId in IdList)
+                if (Log.Messages.Any((m) => m.Class == MessageClass.Branches)) await Log.RemoveMessage(byClass: MessageClass.Branches);
+                if (IdList.Count > 0)
                 {
-                    if (branch.StartBusId == orphanId)
+                    foreach (var branch in branches)
                     {
-                        Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: true, branchName: branch.Name));
+                        foreach (var orphanId in IdList)
+                        {
+                            if (branch.StartBusId == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: true, branchName: branch.Name));
+                            }
+                            if (branch.FinalBusId == orphanId)
+                            {
+                                Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: false, branchName: branch.Name));
+                            }
+                        }
                     }
-                    if (branch.FinalBusId == orphanId)
-                    {
-                        Log.AddMessage(MessageCollection.Branch_IdError(IsStartId: false, branchName: branch.Name));
-                    }
+                    Log.Collapse = false;
                 }
-            }
-            if (IdList.Count > 0) Log.Collapse = false;
-        });
+            });
+        }
+        catch (Exception) { return; }
     }
-
-    public void Dispose()
-    {
-
-    }
-
 }
