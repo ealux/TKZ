@@ -22,6 +22,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Buses"</summary>
         public string Header;
 
+        /// <summary>"IsActive"</summary>
+        public string IsActive;
+
         /// <summary>"Name"</summary>
         public string NameBut;
 

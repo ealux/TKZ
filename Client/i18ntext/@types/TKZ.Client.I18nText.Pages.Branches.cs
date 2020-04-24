@@ -46,6 +46,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Branches"</summary>
         public string Header;
 
+        /// <summary>"IsActive"</summary>
+        public string IsActive;
+
         /// <summary>"kA"</summary>
         public string kA;
 

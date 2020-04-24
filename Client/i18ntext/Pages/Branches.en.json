@@ -3,6 +3,7 @@
   "Header": "Branches",
   "MutualHeader": "Mutual inductions",
   //
+  "IsActive": "IsActive",
   "angle": "angle",
   "deg": "deg.",
   "EMF": "EMF",

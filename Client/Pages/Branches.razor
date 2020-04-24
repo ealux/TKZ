@@ -10,11 +10,11 @@
 
 @if (branches == null)
 {
-    <LoadingElement />
+<LoadingElement />
 }
 else
 {
-
+<div class="w3-animate-opacity">
     <DataGrid TItem="Branch"
               Data="@branches"
               PageSize="@branches.Count"
@@ -32,6 +32,20 @@ else
               Class="text-sm-center">
 
         <DataGridColumns>
+            @*IsActive*@
+            <DataGridColumn TItem="Branch"
+                            Field="@nameof(Branch.IsActive)"
+                            Caption="@(@Localizer.IsActive)"
+                            Editable="true"
+                            Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                </EditTemplate>
+            </DataGridColumn>
+            @*StartBusId*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.StartBusId)"
                                    Caption="@Localizer.startBus"
@@ -53,6 +67,7 @@ else
                     <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
                 </FilterTemplate>
             </DataGridNumericColumn>
+            @*FinalBusId*@
             <DataGridNumericColumn TItem="Branch"
                                    Field="@nameof(Branch.FinalBusId)"
                                    Caption="@Localizer.finBus"
@@ -158,6 +173,7 @@ else
                                    Editable="true"
                                    Sortable="true"></DataGridNumericColumn>
 
+            @*Commands*@
             <DataGridCommandColumn TItem="Branch" Width="130px">
                 <NewCommandTemplate>
                     <Button Active="true"
@@ -193,6 +209,7 @@ else
             </DataGridCommandColumn>
         </DataGridColumns>
     </DataGrid>
+</div>
 }
 
 @code {

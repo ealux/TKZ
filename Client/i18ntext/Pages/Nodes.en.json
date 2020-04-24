@@ -2,6 +2,7 @@
   //Header
   "Header": "Buses",
   //
+  "IsActive": "IsActive",
   "NameBut": "Name",
   "VoltageСlass": "Voltage Сlass",
   //Конопки формы

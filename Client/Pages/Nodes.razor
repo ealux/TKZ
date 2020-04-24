@@ -13,40 +13,57 @@
 }
 else
 {
-    <DataGrid TItem="Bus"
-              Data="@buses"
-              PageSize="@buses.Count"
-              EditMode="@DataGridEditMode.Inline"
-              Editable="true"
-              Sortable="true"
-              Filterable="true"
-              RowInserted="@OnRowInserted"
-              RowUpdated="@OnRowUpdated"
-              RowRemoved="@OnRowRemoved"
-              Striped="true"
-              Hoverable="true"
-              Narrow="true"
-              HeaderRowClass="small"
-              Class="text-sm-center">
+    <div class="w3-animate-opacity">
+        <DataGrid TItem="Bus"
+                  Data="@buses"
+                  PageSize="@buses.Count"
+                  EditMode="@DataGridEditMode.Inline"
+                  Editable="true"
+                  Sortable="true"
+                  Filterable="true"
+                  RowInserted="@OnRowInserted"
+                  RowUpdated="@OnRowUpdated"
+                  RowRemoved="@OnRowRemoved"
+                  Striped="true"
+                  Hoverable="true"
+                  Narrow="true"
+                  HeaderRowClass="small"
+                  Class="text-sm-center">
 
-        <DataGridColumn TItem="Bus"
-                        Field="@nameof(Bus.Name)"
-                        Caption="@(@Localizer.NameBut)"
-                        Editable="true"
-                        Sortable="true">
-        </DataGridColumn>
-        <DataGridNumericColumn TItem="Bus"
-                               Field="@nameof(Bus.Unom)"
-                               Caption="@(@Localizer.VoltageСlass)"
-                               Editable="true"
-                               Sortable="true"></DataGridNumericColumn>
-
-        <DataGridCommandColumn TItem="Bus" Width="130px">
-            <NewCommandTemplate>
-                <Button Active="true"
-                        Style="background-color:var(--S-middle); border:none; color:black;"
-                        Color="Color.Success" Clicked="@context.Clicked">
-                    @Localizer.New
+            @*IsActive*@
+            <DataGridColumn TItem="Bus"
+                            Field="@nameof(Bus.IsActive)"
+                            Caption="@(@Localizer.IsActive)"
+                            Editable="true"
+                            Sortable="true">
+                <DisplayTemplate>
+                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                </EditTemplate>
+            </DataGridColumn>
+            @*Name*@
+            <DataGridColumn TItem="Bus"
+                            Field="@nameof(Bus.Name)"
+                            Caption="@(@Localizer.NameBut)"
+                            Editable="true"
+                            Sortable="true">
+            </DataGridColumn>
+            @*Unom*@
+            <DataGridNumericColumn TItem="Bus"
+                                   Field="@nameof(Bus.Unom)"
+                                   Caption="@(@Localizer.VoltageСlass)"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            
+            @*Commands*@
+            <DataGridCommandColumn TItem="Bus" Width="130px">
+                <NewCommandTemplate>
+                    <Button Active="true"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Success" Clicked="@context.Clicked">
+                        @Localizer.New
                     </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
@@ -75,7 +92,9 @@ else
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>
-    }
+    </div>
+
+}
 
 @code {
     private List<Bus> buses { get; set; }

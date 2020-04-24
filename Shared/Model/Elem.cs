@@ -4,6 +4,8 @@ namespace TKZ.Shared.Model
     {
         protected int m_id;
 
+        public bool IsActive { get; set; } = true;
+
         public string Name { get; set; } = "Noname";
 
         public int Id { get => m_id; }
