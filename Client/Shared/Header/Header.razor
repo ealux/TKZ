@@ -12,21 +12,21 @@
         Lime
     </NavLink>
     <button type="button" class="icon" title="Загрузить">
-        <svg class="menu-icon">
-            <use xlink:href="#upload"></use>
+        <svg @onclick="@(() => {})" class="menu-icon">
+            <use href="/img/Icon.svg#upload"></use>
         </svg>
     </button>
     <button type="button" class="icon" title="Сохранить">
-        <svg class="menu-icon">
-            <use xlink:href="#download"></use>
+        <svg @onclick="@(() => {})" class="menu-icon">
+            <use href="/img/Icon.svg#download"></use>
         </svg>
     </button>
     <button type="button"
             class="icon"
             title="Рассчитать все"
             @onclick="Add">
-        <svg class="menu-icon">
-            <use xlink:href="#CalcAll"></use>
+        <svg @onclick="@(() => {})" class="menu-icon">
+            <use href="/img/Icon.svg#CalcAll"></use>
         </svg>
     </button>
     <button type="button"
@@ -41,15 +41,18 @@
         <button type="button"
                 class="icon"
                 title="Тест IEEE14">
-            <svg class="menu-icon">
-                <use xlink:href="#IEEE_14"></use>
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="/img/Icon.svg#IEEE_14"></use>
             </svg>
         </button>
         <button type="button"
                 class="icon"
                 title="lang"
                 @onclick="ChangeLanguage">
-            <img src="@(IsRus ? SourceRus : SourceUS )" width="25px" height="25px" alt="russia">
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="@(IsRus ? SourceRus : SourceUS )"></use>
+            </svg>
+            @*<img src="@(IsRus ? SourceRus : SourceUS )" width="25px" height="25px" alt="russia">*@
         </button>
     </div>
 </div>
@@ -68,8 +71,8 @@
         LB.OnChange += StateHasChanged;
     }
 
-    public const string SourceRus = "img/russia.svg";
-    public const string SourceUS = "img/US.svg";
+    public const string SourceRus = "/img/Icon.svg#russia";
+    public const string SourceUS = "/img/Icon.svg#USA";
 
     public bool IsRus { get; set; } = true;
 

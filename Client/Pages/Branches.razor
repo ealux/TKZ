@@ -179,7 +179,9 @@ else
                     <Button Active="true"
                             Style="background-color:var(--S-middle); border:none; color:black;"
                             Color="Color.Success" Clicked="@context.Clicked">
-                        @Localizer.New
+                        <svg @onclick="@(() => {})" class="menu-icon">
+                            <use href="/img/Icon.svg#Add"></use>
+                        </svg>
                     </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
@@ -195,7 +197,11 @@ else
                     </button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
-                    <Button Class="btn btn-sm btn-danger" Color="Color.Danger" Clicked="@context.Clicked">🗙</Button>
+                    <Button Class="btn-sm p-0" Color="Color.None" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="menu-icon">
+                            <use href="/img/Icon.svg#Delete"></use>
+                        </svg>
+                    </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
                     <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
