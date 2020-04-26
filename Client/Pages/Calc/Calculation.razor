@@ -50,7 +50,9 @@
                 <button class="round"
                         id="add"
                         style="margin-right: 0;">
-                    <img src="img/add.svg">
+                    <svg @onclick="@(() => {})" class="menu-icon">
+                        <use href="/img/Icon.svg#Add"></use>
+                    </svg>
                 </button>
             </div>
 
@@ -60,8 +62,8 @@
                 <label class="radio__label" for="node-1">
                     1
                     <button class="icon-delete">
-                        <svg class="my_icon">
-                            <use xlink:href="#close"></use>
+                        <svg @onclick="@(() => {})" class="my_icon">
+                            <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </button>
                 </label>
@@ -70,8 +72,8 @@
                 <label class="radio__label" for="node-2">
                     20000
                     <button class="icon-delete">
-                        <svg class="my_icon">
-                            <use xlink:href="#close"></use>
+                        <svg @onclick="@(() => {})" class="my_icon">
+                            <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </button>
                 </label>
@@ -88,7 +90,11 @@
         <h1>Результаты расчёта</h1>
         <label for="ContNode">Выберите контролируемый узел:</label>
         <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
-        <button class="round" id="addContNode" style="display: inline-block;"><img src="img/add.svg"></button>
+        <button class="round" id="addContNode" style="display: inline-block;">
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="/img/Icon.svg#Add"></use>
+            </svg>
+        </button>
 
     </div>
 </div>
