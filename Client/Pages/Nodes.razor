@@ -3,6 +3,7 @@
 @using TKZ.Shared.Model
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject LogBase Log
 @inject Grid grid
 
 <h1>@Localizer.Header</h1>
@@ -28,6 +29,7 @@ else
                   Hoverable="true"
                   Narrow="true"
                   HeaderRowClass="small"
+                  HeaderRowStyle="background-color:var(--light_color);"
                   Class="text-sm-center">
 
             @*IsActive*@
@@ -55,8 +57,15 @@ else
                                    Field="@nameof(Bus.Unom)"
                                    Caption="@(@Localizer.VoltageСlass)"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
-            
+                                   Sortable="true">
+                <DisplayTemplate>
+                    @{
+                        var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
+                        @(unom + " " + Localizer.kV)
+                    }
+                </DisplayTemplate>
+            </DataGridNumericColumn>
+
             @*Commands*@
             <DataGridCommandColumn TItem="Bus" Width="130px">
                 <NewCommandTemplate>
@@ -82,9 +91,10 @@ else
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
                     <Button Class="btn-sm p-0" Color="Color.None" Clicked="@context.Clicked">
-                    <svg @onclick="@(() => {})" class="menu-icon">
-                        <use href="/img/Icon.svg#Delete"></use>
-                    </svg></Button>
+                        <svg @onclick="@(() => {})" class="menu-icon">
+                            <use href="/img/Icon.svg#Delete"></use>
+                        </svg>
+                    </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
                     <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
@@ -146,4 +156,9 @@ else
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await ValidateOnRender();
+    }
 }

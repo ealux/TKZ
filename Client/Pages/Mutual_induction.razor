@@ -29,6 +29,7 @@ else
                   Hoverable="true"
                   Narrow="true"
                   HeaderRowClass="small"
+                  HeaderRowStyle="background-color:var(--light_color);"
                   Class="text-sm-center">
 
             @*IsActive*@
@@ -193,43 +194,6 @@ else
 
     protected override async Task OnAfterRenderAsync(bool firstrender)
     {
-        try
-        {
-            var IdList = mutuals.Select(b => b.IdFirstBranch).ToList()
-                             .Union(mutuals.Select(b => b.IdSecondBranch).ToList())
-                             .Distinct().ToList()
-                             .Except(grid.Branches.Values.Select(b => b.Id).ToList())
-                             .ToList() ?? null;
-
-            await Task.Run(async () =>
-            {
-                if (Log.Messages.Any((m) => m.Class == MessageClass.Mutuals)) await Log.RemoveMessage(byClass: MessageClass.Mutuals);
-                if (IdList.Count > 0)
-                {
-                    foreach (var mut in mutuals)
-                    {
-                        if (IdList.Contains(mut.IdFirstBranch) & IdList.Contains(mut.IdSecondBranch))
-                        {
-                            Log.AddMessage(MessageCollection.Mutual_OrphanError());
-                            continue;
-                        }
-
-                        foreach (var orphanId in IdList)
-                        {
-                            if (mut.IdFirstBranch == orphanId)
-                            {
-                                Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: true, restBranchName: grid.Branches[mut.IdSecondBranch].Name));
-                            }
-                            if (mut.IdSecondBranch == orphanId)
-                            {
-                                Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: false, restBranchName: grid.Branches[mut.IdFirstBranch].Name));
-                            }
-                        }
-                    }
-                    Log.Collapse = false;
-                }
-            });
-        }
-        catch (Exception) { return; }
+        await ValidateOnRender();
     }
 }
