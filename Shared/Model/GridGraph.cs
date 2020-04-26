@@ -133,7 +133,7 @@ namespace TKZ.Shared
         /// Check contains bus Id all Branches in Buses.
         /// </summary>
         /// <returns>true - there is a missing bus; flase - all rigth </returns>
-        public bool CheckContainsBusId()
+        public bool CheckContainsMissingBusId()
         {
             List<int> misBusId = FindMissingBusId();
             if (misBusId.Count() > 0) return true; else return false;
