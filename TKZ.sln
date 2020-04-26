@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TKZ.Client", "Client\TKZ.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TKZ.Shared", "Shared\TKZ.Shared.csproj", "{7F3D4C36-7555-46F3-84D8-F0ACA423E2AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTest", "..\TKZ - копия\xUnitTest\xUnitTest.csproj", "{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,18 @@ Global
 		{7F3D4C36-7555-46F3-84D8-F0ACA423E2AD}.Release|x64.Build.0 = Release|Any CPU
 		{7F3D4C36-7555-46F3-84D8-F0ACA423E2AD}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F3D4C36-7555-46F3-84D8-F0ACA423E2AD}.Release|x86.Build.0 = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|x64.Build.0 = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Debug|x86.Build.0 = Debug|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|x64.ActiveCfg = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|x64.Build.0 = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|x86.ActiveCfg = Release|Any CPU
+		{03A4AA18-DF04-4BBB-A7E9-BA68978E4E87}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

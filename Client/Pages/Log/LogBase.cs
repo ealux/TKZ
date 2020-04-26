@@ -53,7 +53,7 @@ namespace TKZ.Client.Pages.Log
         /// <returns><b>string</b>: Log image source</returns>
         public string ImageChecker()
         {
-            string src = Messages.Count == 0 ? "img/bell.svg" : "img/bell_content.svg";
+            string src = Messages.Count == 0 ? "/img/Icon.svg#bell" : "/img/Icon.svg#bell_content";
             return src;
         }
     }

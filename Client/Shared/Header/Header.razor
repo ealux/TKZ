@@ -34,7 +34,9 @@
             title="Уведомления"
             id="bell"
             @onclick="LogOpenEvent">
-        <img src="@LB.ImageChecker()" width="25px" height="25px" alt="Bell">
+        <svg class="menu-icon">
+            <use href="@LB.ImageChecker()"></use>
+        </svg>
     </button>
 
     <div class="ml-auto">
