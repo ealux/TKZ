@@ -43,6 +43,13 @@ else
                 <EditTemplate>
                     <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
+                <FilterTemplate>
+                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
+                        <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
+                    </Select>
+                </FilterTemplate>
             </DataGridColumn>
             @*Name*@
             <DataGridColumn TItem="Bus"
@@ -113,22 +120,14 @@ else
 @code {
     private List<Bus> buses { get; set; }
 
-    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e)
-    {
-        grid.Buses.Add(e.Item.Id, e.Item);
-    }
+    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
 
     //TODO: Implement(?)
-    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e)
-    {
-    }
+    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e) { }
 
     void OnRowRemoved(Bus e)
     {
-        if (grid.Buses.Values.Contains(e))
-        {
-            grid.Buses.Remove(e.Id);
-        }
+        if (grid.Buses.Values.Contains(e)) grid.Buses.Remove(e.Id);
     }
 
     //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
@@ -154,7 +153,6 @@ else
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
