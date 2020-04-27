@@ -25,12 +25,10 @@ else
                   RowInserted="@OnRowInserted"
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
-                  Striped="true"
                   Narrow="true"
                   HeaderRowClass="small"
                   HeaderRowStyle="background-color:var(--P-light);"
-                  Class="table text-sm-center">
-
+                  Class="my_table">
             @*IsActive*@
             <DataGridColumn TItem="Bus"
                             Field="@nameof(Bus.IsActive)"
@@ -73,7 +71,7 @@ else
             </DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Bus" Width="130px">
+            <DataGridCommandColumn TItem="Bus" Width="270px">
                 <NewCommandTemplate>
                     <Button Active="true"
                             Class="round"
@@ -84,32 +82,34 @@ else
                     </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="btn btn-sm btn-success"
-                            Style="background-color:var(--S-middle); border:none; color:black;"
-                            Color="Color.Primary" Clicked="@context.Clicked">
-                        @Localizer.Edit
+                    <Button Class="transparent"
+                            Clicked="@context.Clicked">
+                        <svg class="edit-icon" @onclick="@(() => {})">
+                            <use href="/img/Icon.svg#Edit"></use>
+                        </svg>
                     </Button>
-                    <button class="btn btn-sm btn-info"
-                            style="background-color:var(--P-dark); border:none;"
+                    <Button Class="transparent"
                             @onclick=@(() => DuplicateItem(context.Item))>
-                        @Localizer.Duplicate
-                    </button>
+                        <svg class="edit-icon" @onclick="@(() => {})">
+                            <use href="/img/Icon.svg#Copy"></use>
+                        </svg>
+                    </Button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
-                    <Button Class="btn-sm p-0" Color="Color.None" Clicked="@context.Clicked">
+                    <Button Class="transparent" Clicked="@context.Clicked">
                         <svg @onclick="@(() => {})" class="edit-icon">
                             <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
-                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                    <Button Class="my_button primary" Clicked="@context.Clicked">@Localizer.Save</Button>
                 </SaveCommandTemplate>
                 <CancelCommandTemplate>
-                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
                 </CancelCommandTemplate>
                 <ClearFilterCommandTemplate>
-                    <Button Class="my_button secondary" Style="font-size: 0.7rem" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Filter</Button>
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>
