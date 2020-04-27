@@ -1,4 +1,6 @@
-﻿namespace TKZ.Client.Pages.Log
+﻿using System.IO;
+
+namespace TKZ.Client.Pages.Log
 {
     public class MessageCollection
     {
@@ -45,7 +47,6 @@
         //
 
         #region Mutuals
-
         //Mutuals ID
         public static Message Mutual_IdError(bool IsStartId, string restBranchName)
         {
@@ -63,7 +64,26 @@
         //Mutuals Duplicates
         public static Message Mutual_Duplicates(string startBranchName, string endBranchName)
             => new Message(MessageClass.Mutuals, MessageType.Warning, $"Обнаружены дубликаты магнитосвязей!", $"Ветвь начала: {startBranchName} Ветвь конца: {endBranchName}", "mutual_induction");
-
         #endregion Mutuals
+
+        //
+        //Serialization/Deserialization messages
+        //
+
+        //Serialize Successfully
+        public static Message Serialize_Success(string filename)
+            => new Message(MessageClass.Serialization, MessageType.Success, "Сеть успешно выгружена!", $"Файл: {filename}", "nodes");
+
+        //Serialize Nodes Error
+        #region Serialization/Deserialization
+        public static Message Serialize_NodeError()
+            => new Message(MessageClass.Serialization, MessageType.Danger, "Сеть не сохранена!", "Остутствуют узлы! Нечего сохранять!", "nodes");
+        
+        //Serialize Branches Error
+        public static Message Serialize_BranchError()
+            => new Message(MessageClass.Serialization, MessageType.Danger, "Сеть не сохранена!", "Остутствуют ветви! Нечего сохранять!", "branches");
+        #endregion
+
+
     }
 }
