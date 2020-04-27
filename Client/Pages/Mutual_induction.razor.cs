@@ -24,13 +24,13 @@ namespace TKZ.Client.Pages
                                  .ToList() ?? null;
 
                 await Task.Run(() =>
-                {                    
+                {
                     if (IdList.Count > 0)
                     {
                         List<Mutual> signed = new List<Mutual>();
                         foreach (var mut in mutuals.Distinct().ToList())
                         {
-                            if (signed.Any(m => m.IdFirstBranch == mut.IdFirstBranch 
+                            if (signed.Any(m => m.IdFirstBranch == mut.IdFirstBranch
                                                 && m.IdSecondBranch == mut.IdSecondBranch
                                                 && m.R == mut.R
                                                 && m.X == mut.X)) continue;
@@ -54,7 +54,6 @@ namespace TKZ.Client.Pages
                                     Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: false, restBranchName: grid.Branches[mut.IdFirstBranch].Name));
                                     signed.Add(mut);
                                 }
-                                
                             }
                         }
                         Log.Collapse = false;
@@ -67,12 +66,12 @@ namespace TKZ.Client.Pages
             try
             {
                 var query = grid.Mutuals.Values.GroupBy(x => new
-                                                                {
-                                                                    _idStart = x.IdFirstBranch,
-                                                                    _idEnd = x.IdSecondBranch,
-                                                                    _R = x.R,
-                                                                    _X = x.X
-                                                                })
+                {
+                    _idStart = x.IdFirstBranch,
+                    _idEnd = x.IdSecondBranch,
+                    _R = x.R,
+                    _X = x.X
+                })
                                                .Where(g => g.Count() > 1)
                                                .Select(y => y.Key).ToList();
                 await Task.Run(() =>
