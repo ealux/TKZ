@@ -53,7 +53,7 @@ else
                                        Editable="true"
                                        Sortable="true">
                     <DisplayTemplate>
-                        @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId]
+                        @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId].Name
                     </DisplayTemplate>
                     <EditTemplate>
                         <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
@@ -64,9 +64,6 @@ else
                             }
                         </Select>
                     </EditTemplate>
-                    <FilterTemplate>
-                        <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
-                    </FilterTemplate>
                 </DataGridNumericColumn>
                 @*FinalBusId*@
                 <DataGridNumericColumn TItem="Branch"
@@ -137,7 +134,7 @@ else
                                        Sortable="true">
                     <DisplayTemplate>
                         @{
-                            
+
                             var unom = (context).StUnom < 0 ? (context).StUnom = 0 : (context).StUnom;
                             @(unom + " " + Localizer.kV)
                         }

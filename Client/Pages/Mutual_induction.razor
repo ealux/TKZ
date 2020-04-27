@@ -52,7 +52,10 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @if (grid.Branches.ContainsKey(context.IdFirstBranch))@grid.Branches[context.IdFirstBranch].Name
+                    @if (grid.Branches.ContainsKey(context.IdFirstBranch))
+                    {
+                        @grid.Branches[context.IdFirstBranch].Name;
+                    }
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
@@ -73,12 +76,13 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @if (grid.Branches.ContainsKey(context.IdSecondBranch))@grid.Branches[context.IdSecondBranch].Name
+                    @if (grid.Branches.ContainsKey(context.IdSecondBranch))
+                    {
+                        @grid.Branches[context.IdSecondBranch].Name;
+                    }
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="int"
-                            SelectedValue="@((int)(((CellEditContext)context).CellValue))"
-                            SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                         @foreach (var item in grid.Branches)
                         {
                             <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>

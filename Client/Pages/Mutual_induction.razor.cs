@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
+using TKZ.Shared.Model;
 
 namespace TKZ.Client.Pages
 {
@@ -25,11 +27,18 @@ namespace TKZ.Client.Pages
                 {                    
                     if (IdList.Count > 0)
                     {
+                        List<Mutual> signed = new List<Mutual>();
                         foreach (var mut in mutuals.Distinct().ToList())
                         {
+                            if (signed.Any(m => m.IdFirstBranch == mut.IdFirstBranch 
+                                                && m.IdSecondBranch == mut.IdSecondBranch
+                                                && m.R == mut.R
+                                                && m.X == mut.X)) continue;
+
                             if (IdList.Contains(mut.IdFirstBranch) & IdList.Contains(mut.IdSecondBranch))
                             {
                                 Log.AddMessage(MessageCollection.Mutual_OrphanError());
+                                signed.Add(mut);
                                 continue;
                             }
 
@@ -38,11 +47,14 @@ namespace TKZ.Client.Pages
                                 if (mut.IdFirstBranch == orphanId)
                                 {
                                     Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: true, restBranchName: grid.Branches[mut.IdSecondBranch].Name));
+                                    signed.Add(mut);
                                 }
                                 else if (mut.IdSecondBranch == orphanId)
                                 {
                                     Log.AddMessage(MessageCollection.Mutual_IdError(IsStartId: false, restBranchName: grid.Branches[mut.IdFirstBranch].Name));
+                                    signed.Add(mut);
                                 }
+                                
                             }
                         }
                         Log.Collapse = false;

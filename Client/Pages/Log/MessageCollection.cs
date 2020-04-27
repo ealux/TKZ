@@ -10,6 +10,10 @@
         //Nodes Duplicates
         public static Message Node_Duplicates(string nodeName)
              => new Message(MessageClass.Nodes, MessageType.Warning, $"Обнаружены дубликаты узлов!", $"Наименование узла: {nodeName}", "nodes");
+
+        //Nodes Similar Names
+        public static Message Node_SimilarNames(string nodeName)
+             => new Message(MessageClass.Nodes, MessageType.Warning, $"Обнаружены узлы с одинаковыми наименованиями!", $"Наименование: {nodeName}", "nodes");
         #endregion
 
 
