@@ -40,6 +40,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Branch 1"</summary>
         public string firstBranch;
 
+        /// <summary>"Ground"</summary>
+        public string Ground;
+
         /// <summary>"Grounding in end bus"</summary>
         public string groundFinBus;
 

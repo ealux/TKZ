@@ -35,5 +35,7 @@
   "Duplicate": "D",
   //filter
   "ActiveFilter": "Active",
-  "NotActiveFilter": "Disabled"
+  "NotActiveFilter": "Disabled",
+  //ground
+  "Ground": "Ground"
 }

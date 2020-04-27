@@ -66,9 +66,10 @@ else
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        @foreach (var item in grid.Branches)
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Branches.Values.OrderBy(b=>b.Name))
                         {
-                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                         }
                     </Select>
                 </EditTemplate>
@@ -99,9 +100,10 @@ else
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        @foreach (var item in grid.Branches)
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Branches.Values.OrderBy(b=>b.Name))
                         {
-                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                         }
                     </Select>
                 </EditTemplate>

@@ -35,6 +35,7 @@
   "Duplicate": "Д",
   //filter
   "ActiveFilter": "Включено",
-  "NotActiveFilter": "Отключено"
-
+  "NotActiveFilter": "Отключено",
+  //ground
+  "Ground": "Земля"
 }
