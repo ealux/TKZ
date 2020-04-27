@@ -43,27 +43,44 @@ else
                     <EditTemplate>
                         <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                     </EditTemplate>
+                    <FilterTemplate>
+                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                            <SelectItem Value="@("*")"></SelectItem>
+                            <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
+                            <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
+                        </Select>
+                    </FilterTemplate>
                 </DataGridColumn>
                 @*StartBusId*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.StartBusId)"
                                        Caption="@Localizer.startBus"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       Filterable="true">
                     <DisplayTemplate>
-                        @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId]
+                        @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId].Name
                     </DisplayTemplate>
                     <EditTemplate>
                         <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                            <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
-                            @foreach (var item in grid.Buses)
+                            <SelectItem Class="active" TValue="int" Value="@(0)">@Localizer.Ground</SelectItem>
+                            @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {
-                                <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                                <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                             }
                         </Select>
                     </EditTemplate>
                     <FilterTemplate>
-                        <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
+                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                            <SelectItem Value="@("*")"></SelectItem>
+                            @foreach (var item in branches.Select(b => b.StartBusId).Distinct().OrderBy(n => n))
+                            {
+                                if (grid.Buses.ContainsKey(item))
+                                {
+                                    <SelectItem Value="@item">@grid.Buses[item].Name</SelectItem>
+                                }
+                            }
+                        </Select>
                     </FilterTemplate>
                 </DataGridNumericColumn>
                 @*FinalBusId*@
@@ -77,13 +94,25 @@ else
                     </DisplayTemplate>
                     <EditTemplate>
                         <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                            <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
-                            @foreach (var item in grid.Buses)
+                            <SelectItem Class="active" TValue="int" Value="@(0)">@Localizer.Ground</SelectItem>
+                            @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {
-                                <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                                <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                             }
                         </Select>
                     </EditTemplate>
+                    <FilterTemplate>
+                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                            <SelectItem Value="@("*")"></SelectItem>
+                            @foreach (var item in branches.Select(b => b.FinalBusId).Distinct().OrderBy(n => n))
+                            {
+                                if (grid.Buses.ContainsKey(item))
+                                {
+                                    <SelectItem Value="@item">@grid.Buses[item].Name</SelectItem>
+                                }
+                            }
+                        </Select>
+                    </FilterTemplate>
                 </DataGridNumericColumn>
                 @*Name*@
                 <DataGridColumn TItem="Branch"
@@ -135,7 +164,7 @@ else
                                        Sortable="true">
                     <DisplayTemplate>
                         @{
-                            
+
                             var unom = (context).StUnom < 0 ? (context).StUnom = 0 : (context).StUnom;
                             @(unom + " " + Localizer.kV)
                         }
