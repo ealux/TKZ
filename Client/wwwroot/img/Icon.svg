@@ -1,5 +1,5 @@
 ﻿<svg width="0" height="0" display="none">
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="home">
+  <symbol viewBox="0 0 64 64" id="home">
     <path data-name="layer1"
           d="M54 26.267l7.555 7.3a.25.25 0 0 1-.174.43H54V62H40V44H24v18H10V34H2.618a.25.25 0 0 1-.174-.43L32 5l13 12.567V12h9z"
           stroke-linecap="round" stroke-miterlimit="10"
@@ -8,7 +8,6 @@
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="node">
     <ellipse fill-opacity="0" ry="18" rx="18" cy="32" cx="32" stroke-opacity="null" />
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="branch">
     <ellipse fill-opacity="0" ry="7.423099" rx="7.398055" cy="16.854149" cx="31.999999" stroke-opacity="null" />
     <g transform="rotate(37.56938934326172 17.08741188049316,36.304168701171875) ">
@@ -20,7 +19,6 @@
       <line stroke-linecap="null" stroke-linejoin="null" y2="18.942173" x2="46.85711" y1="38.67899" x1="46.85711" fill-opacity="0" stroke-opacity="null" />
     </g>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="mutual_induction">
     <ellipse cx="50" cy="11.7" rx="7.4" ry="7.4" />
     <ellipse transform="matrix(0.6124 -0.7905 0.7905 0.6124 -34.2823 32.0826)" cx="15.6" cy="51" rx="7.4" ry="7.4" />
@@ -35,14 +33,12 @@
     <polygon points="32.6,25.1 34.4,24.2 34.2,26 33.9,27.8 32.4,26.9 30.8,26 " />
     <polygon points="32.9,35.6 31.1,36.4 31.4,34.7 31.7,32.9 33.2,33.8 34.7,34.8 " />
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="thunder">
     <path d="M41 6L13 34h14.187L23 58l27.998-29.999H37L41 6z"
           stroke-miterlimit="10" data-name="layer1"
           stroke-linejoin="round" stroke-linecap="round">
     </path>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="adv">
     <path data-name="layer1"
           d="M54 12h8v44H42c-6 0-10 2-10 3.8" stroke-miterlimit="10"
@@ -54,7 +50,6 @@
           stroke-miterlimit="10" stroke-linejoin="round"
           stroke-linecap="round"></path>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="contact">
     <path data-name="layer2"
           stroke-miterlimit="10" d="M2 12l30 27.4L62 12"
@@ -62,7 +57,6 @@
     <path data-name="layer1" stroke-miterlimit="10"
           d="M2 12h60v40H2z" stroke-linejoin="round" stroke-linecap="round"></path>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="upload">
     <path d="M31 48V3M16 20L31 3l15 16"
           stroke-miterlimit="10" stroke-linecap="round"
@@ -71,13 +65,11 @@
           stroke-linecap="round" data-name="layer1"
           stroke-linejoin="round"></path>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="download">
     <path transform="rotate(-180 31,25.499999999999996) " stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
           d="m31,48l0,-45m-15,17l15,-17l15,16" />
     <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" d="m8,46l0,16l46,0l0,-16" />
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="CalcAll">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m24.112887,5.737533l-20.16701,28l10.218192,0l-3.015688,24l20.16557,-29.999l-10.082065,0l2.881001,-22.001z" />
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="m52.853059,5.737532l-20.167011,28l10.218192,0l-3.015688,24l20.16557,-29.999l-10.082065,0l2.881002,-22.001z" />
@@ -88,7 +80,6 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="currentColor" d="m256,0c-23.5,0 -42.7,19.1 -42.7,42.7l0,42.7c0,5.9 4.8,10.7 10.7,10.7s10.7,-4.8 10.7,-10.7l0,-42.7c0,-11.8 9.6,-21.3 21.3,-21.3s21.3,9.6 21.3,21.3l0,42.7c0,5.9 4.8,10.7 10.7,10.7s10.7,-4.8 10.7,-10.7l0,-42.7c0,-23.6 -19.2,-42.7 -42.7,-42.7z"/>
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="currentColor" d="m302.2,431.9c-3,-5.1 -9.5,-6.7 -14.6,-3.8c-5.1,3 -6.8,9.5 -3.8,14.6c2.8,4.7 4.3,10.4 4.3,15.9c0,17.6 -14.4,32 -32,32s-32,-14.4 -32,-32c0,-5.6 1.5,-11.2 4.3,-15.9c3,-5.1 1.3,-11.6 -3.8,-14.6c-5.1,-2.9 -11.6,-1.3 -14.6,3.8c-4.7,8.1 -7.2,17.3 -7.2,26.7c0,29.4 23.9,53.3 53.3,53.3s53.3,-23.9 53.4,-53.3c-0.1,-9.4 -2.6,-18.6 -7.3,-26.7z"/>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="bell_content">
     <!--bell content-->
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="currentColor" d="m467.8,431.9l-36.7,-61.1c-16.9,-28.2 -25.8,-60.4 -25.8,-93.3l0,-53.5c0,-82.3 -67,-149.3 -149.3,-149.3s-149.3,67 -149.3,149.3l0,53.5c0,32.9 -8.9,65.1 -25.8,93.3l-36.7,61.1c-2,3.3 -2,7.4 -0.1,10.7c1.9,3.3 5.5,5.4 9.3,5.4l405.3,0c3.8,0 7.4,-2.1 9.3,-5.4c1.8,-3.3 1.8,-7.5 -0.2,-10.7zm-395.6,-5.2l26.9,-44.9c18.9,-31.5 28.9,-67.6 28.9,-104.3l0,-53.5c0,-70.6 57.4,-128 128,-128s128,57.4 128,128l0,53.5c0,36.7 10,72.8 28.9,104.3l27,44.9l-367.7,0l0,0z"/>
@@ -96,7 +87,6 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="currentColor" d="m302.2,431.9c-3,-5.1 -9.5,-6.7 -14.6,-3.8c-5.1,3 -6.8,9.5 -3.8,14.6c2.8,4.7 4.3,10.4 4.3,15.9c0,17.6 -14.4,32 -32,32s-32,-14.4 -32,-32c0,-5.6 1.5,-11.2 4.3,-15.9c3,-5.1 1.3,-11.6 -3.8,-14.6c-5.1,-2.9 -11.6,-1.3 -14.6,3.8c-4.7,8.1 -7.2,17.3 -7.2,26.7c0,29.4 23.9,53.3 53.3,53.3s53.3,-23.9 53.4,-53.3c-0.1,-9.4 -2.6,-18.6 -7.3,-26.7z"/>
     <circle r="65.5" cy="72.299873" cx="443.927708" fill="#79ec56"/>
   </symbol>
-
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="IEEE_14">
     <path d="M11.5,5.4V27H8.7V5.4H11.5z" />
     <path d="M27.5,16.9h-8.4v7.8h9.3V27H16.4V5.4h11.7v2.3h-8.9v6.8h8.4V16.9z" />
@@ -106,7 +96,6 @@
     <path d="M42,56.6v-5.7h-9.7v-1.8l9.3-13.3h3v12.9h2.9v2.2h-2.9v5.7H42z M42,48.7v-6.9c0-1.1,0-2.2,0.1-3.3H42
 		        c-0.6,1.2-1.2,2.1-1.7,3.1l-5.1,7.1v0.1H42z" />
   </symbol>
-
   <symbol id="russia" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256" />
@@ -114,7 +103,6 @@
 	        C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043L256,367.304L496.077,345.043z" />
         <path style="fill:#D80027;" d="M256,512c110.071,0,203.906-69.472,240.077-166.957H15.923C52.094,442.528,145.929,512,256,512z" />
     </symbol>
-
   <symbol id="USA" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256" />
@@ -138,19 +126,12 @@
 	        <path style="fill:#D80027;" d="M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047
 		        l-97.802,97.803V189.219z" />
     </symbol>
-
   <!--ТАБЛИЦЫ-->
   <!--ADD-->
   <symbol id="Add" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"  aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
       <path transform="rotate(44.53133773803711 30.99900054931642,31.000999450683587) " stroke-linecap="round" stroke-linejoin="round" d="m41.999,20.002l-22,22m22,0l-21.999,-22.002" stroke-miterlimit="10"/>
   </symbol>
-  <!--DELETE Orion
-  <symbol id="Delete" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
-          aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m42.999999,21.001001l-22,22m22,0l-21.999,-22.002" stroke-miterlimit="10" />
-  </symbol>-->
-  <!--Delete Bootstrap-->
    <symbol id="Delete" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
     <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
@@ -169,5 +150,4 @@
   <path fill-rule="evenodd" d="M3 2h8a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V4a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1H3z" clip-rule="evenodd"/>
   <path d="M5 0h8a2 2 0 012 2v10a2 2 0 01-2 2v-1a1 1 0 001-1V2a1 1 0 00-1-1H5a1 1 0 00-1 1H3a2 2 0 012-2z"/>
   </symbol>  
-
 </svg>

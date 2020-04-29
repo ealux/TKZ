@@ -52,12 +52,12 @@
     border: 2px solid transparent;
 }
 
-    .nav-pills .nav-link.active,
-    .nav-pills .show > .nav-link {
-        color: rgb(0,0,0);
-        background-color: white;
-        border: 2px solid var(--S-middle);
-    }
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: rgb(0,0,0);
+    background-color: white;
+    border: 2px solid var(--S-middle);
+}
 
 .nav-link.active {
     border-radius: var(--br_radius);
@@ -79,12 +79,12 @@
     min-width: 80%;
 }
 
-    .footer p {
-        margin-bottom: 0;
-    }
+.footer p {
+    margin-bottom: 0;
+}
 
 .my_button {
-    padding-right: : var(--st_margin);
+    padding-right: var(--st_margin);
     padding: 0.4rem;
     min-width: 100px;
     margin: var(--st_margin) calc(var(--st_margin) / 2);
@@ -95,28 +95,28 @@
     outline: none;
 }
 
-    .my_button.primary {
-        background-color: var(--P-dark);
-        color: white;
-    }
+.my_button.primary {
+    background-color: var(--P-dark);
+    color: white;
+}
 
-        .my_button.primary:hover, .my_button.primary:focus {
-            background-color: var(--S-middle);
-            color:black;
-            border: 2px solid var(--S-middle);
-        }
+.my_button.primary:hover, .my_button.primary:focus {
+    background-color: var(--S-middle);
+    color:black;
+    border: 2px solid var(--S-middle);
+}
 
-    .my_button.secondary {
-        background-color: white;
-        border: 2px solid var(--P-dark);
-        color: var(--P-dark);
-    }
+.my_button.secondary {
+    background-color: white;
+    border: 2px solid var(--P-dark);
+    color: var(--P-dark);
+}
 
-        .my_button.secondary:hover, .my_button.secondary:focus {
-            background: var(--S-light);
-            border: 2px solid var(--S-middle);
-            color: black;
-        }
+.my_button.secondary:hover, .my_button.secondary:focus {
+    background: var(--S-light);
+    border: 2px solid var(--S-middle);
+    color: black;
+}
 
 .round {
     background-color: var(--S-middle);
@@ -129,15 +129,15 @@
     outline: none;
 }
 
-    .round:hover {
-        background-color: var(--P-middle);
-        border: 2px solid var(--P-middle);
-        outline: none;
-    }
+.round:hover {
+    background-color: var(--P-middle);
+    border: 2px solid var(--P-middle);
+    outline: none;
+}
 
-    .round:focus {
-        outline: none;
-    }
+.round:focus {
+    outline: none;
+}
 
 .icon {
     background-color: transparent;
@@ -153,16 +153,16 @@
     border: 2px solid transparent;
 }
 
-    .icon:hover {
-        background: white;
-        color: black;
-        border: 2px solid var(--S-middle);
-        outline: none;
-    }
+.icon:hover {
+    background: white;
+    color: black;
+    border: 2px solid var(--S-middle);
+    outline: none;
+}
 
-    .icon:focus {
-        outline: none;
-    }
+.icon:focus {
+    outline: none;
+}
 
 .menu-icon {
     height: 1.75rem;
@@ -269,7 +269,7 @@
     border-bottom: 2px solid #191970;
     border-radius: 0.25rem;
     height: 40px;
-    min-height: auto;
+    min-height:inherit;
 }
 
 /*контакты*/
@@ -279,12 +279,12 @@
     padding: var(--st_margin);
 }
 
-    .contact p {
-        padding-bottom: 0;
-        padding-top: 0;
-        margin-bottom: 0;
-        line-height: 1;
-    }
+.contact p {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    line-height: 1;
+}
 
 
 
@@ -306,23 +306,23 @@
     margin-bottom: var(--st_margin);
 }
 
-    .form-control:focus {
-        color: black;
-        background-color: #fff;
-        border-color: var(--P-dark);
-        outline: 0;
-        box-shadow: none;
-    }
+.form-control:focus {
+    color: black;
+    background-color: #fff;
+    border-color: var(--P-dark);
+    outline: 0;
+    box-shadow: none;
+}
 
-    .form-control.big {
-        min-height: 50px;
-        height: 100px;
-        max-height: 350px;
-    }
+.form-control.big {
+    min-height: 50px;
+    height: 100px;
+    max-height: 350px;
+}
 
-    .form-control::placeholder {
-        color: rgba(0, 0, 0, 0.35);
-    }
+.form-control {
+    color: rgba(0, 0, 0, 0.35);
+}
 
 .contact p:after {
     content: " *";
@@ -388,10 +388,10 @@ h5 {
 }
 
 input[type="checkbox"][class="checkbox__input"]:checked + label {
-   background-color: var(--S-middle);
-   /*box-shadow: 0px 0px 4px var(--S-middle);*/
-
-.checkbox__label:last-child {
+    background-color: var(--S-middle);
+    /*box-shadow: 0px 0px 4px var(--S-middle);*/
+}
+.checkbox__label:last-child{
     margin-right: 0px;
 }
 
@@ -493,7 +493,7 @@ input[type="radio"][class="radio__input"]:checked + label {
     float: right;
     display: inline-block;
 }
-.transparent: hover, .transparent:focus, .transparent:active {
+.transparent:hover, .transparent:focus, .transparent:active {
     outline: none !important;
 }
 
