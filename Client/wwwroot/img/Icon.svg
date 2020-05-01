@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE svg>
-  <svg width="0" height="0" display="none">
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="home">
     <path data-name="layer1"
           d="M54 26.267l7.555 7.3a.25.25 0 0 1-.174.43H54V62H40V44H24v18H10V34H2.618a.25.25 0 0 1-.174-.43L32 5l13 12.567V12h9z"

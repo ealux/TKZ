@@ -3,7 +3,7 @@ namespace TKZ.Shared.Model
     public class Mutual : Elem
     {
         private static int m_curId = 1;
-        private static int curId { get { return m_curId++; } }
+        private static int CurId { get { return m_curId++; } }
 
         public int IdFirstBranch { get; set; }
         public int IdSecondBranch { get; set; }
@@ -12,12 +12,12 @@ namespace TKZ.Shared.Model
 
         public Mutual()
         {
-            this.m_id = curId;
+            this.m_id = CurId;
         }
 
         public Mutual(int IdFirstBranch, int IdSecondBranch, double R, double X)
         {
-            this.m_id = curId;
+            this.m_id = CurId;
             this.IdFirstBranch = IdFirstBranch;
             this.IdSecondBranch = IdSecondBranch;
             this.R = R;

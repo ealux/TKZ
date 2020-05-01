@@ -5,7 +5,7 @@ namespace TKZ.Shared.Model
     public class Branch : Elem
     {
         private static int m_curId = 1;
-        private static int curId { get { return m_curId++; } }
+        private static int CurId { get { return m_curId++; } }
         public int NumPar { get; set; }
         public int StartBusId { get; set; }
         public int FinalBusId { get; set; }
@@ -20,10 +20,28 @@ namespace TKZ.Shared.Model
         public double Fi_trans { get; set; }
         public double E { get; set; }
         public double Fi_E { get; set; }
+        /// <summary>
+        /// Branch ground conductivity.
+        /// </summary>
+        /// <value></value>
+        public double B { get; set; }
 
+        /// <summary>
+        /// Ratio transformer. St Bus U / Fin Bus U.
+        /// </summary>
+        /// <value>Ratio value.</value>
+        public double Ratio
+        {
+            get
+            {
+                double r = 0;
+                if (FinUnom > 0) r = StUnom / FinUnom;
+                return r;
+            }
+        }
         public Branch()
         {
-            this.m_id = Branch.curId;
+            this.m_id = Branch.CurId;
         }
 
         public Branch(int startBusId, int finalBusId, string NameBranch,
@@ -32,7 +50,7 @@ namespace TKZ.Shared.Model
                       bool GroundStBus, bool GroundFinBus,
                       double E, double Fi_E)
         {
-            this.m_id = Branch.curId;
+            this.m_id = Branch.CurId;
             this.StartBusId = startBusId;
             this.FinalBusId = finalBusId;
             this.R1 = R1;
@@ -44,7 +62,7 @@ namespace TKZ.Shared.Model
             this.Fi_trans = Fi_trans;
             this.GroundStBus = GroundStBus;
             this.GroundFinBus = GroundFinBus;
-            string str = "";
+            string str;
             if (NameBranch == "")
             {
                 str = Convert.ToString(startBusId)
