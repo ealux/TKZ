@@ -1,6 +1,5 @@
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TKZ.Shared.Model;
 
 namespace TKZ.Shared
@@ -15,12 +14,12 @@ namespace TKZ.Shared
         /// <returns>Branch Id</returns>
         public List<int> FindBranchBelt(int BusId, int numBelt)
         {
-            if (this.Branches.Count() < 1) return new List<int>();
-            if (this.Buses.Count() < 2) return new List<int>();
+            if (this.Branches.Count() < 1 || this.Buses.Count() < 2) return new List<int>();
             if (numBelt < 1) numBelt = 1;
 
             Dictionary<int, bool> dicBranches = new Dictionary<int, bool>();
             Dictionary<int, bool> dicBuses = new Dictionary<int, bool>();
+
             foreach (Branch b in this.Branches.Values.ToList()) dicBranches.Add(b.Id, false);
             foreach (Bus b in this.Buses.Values.ToList()) dicBuses.Add(b.Id, false);
 
@@ -34,11 +33,10 @@ namespace TKZ.Shared
         private void RecursiveFindBeltBranch(Dictionary<int, bool> dicBranches, Dictionary<int, bool> dicBuses, int BusId, int Belt)
         {
             dicBuses[BusId] = true;
-            if (Belt < 1) return;
-            if (BusId == 0) return; //must not worked, if bus is ground
+            if (Belt < 1 || BusId == 0) return; //must not worked, if bus is ground
 
             List<int> l = FindAllBranchOnBusID(BusId);
-            for (int ind = 0; ind < l.Count(); ind++)
+            for (int ind = 0; ind < l.Count; ind++)
             {
                 int cur = l[ind];
                 dicBranches[cur] = true;
@@ -65,8 +63,7 @@ namespace TKZ.Shared
             List<int> res = new List<int>();
             foreach (Branch b in this.Branches.Values)
             {
-                if (b.StartBusId == BusId) res.Add(b.Id);
-                if (b.FinalBusId == BusId) res.Add(b.Id);
+                if (b.StartBusId == BusId | b.FinalBusId == BusId) res.Add(b.Id);
             }
             return res;
         }
@@ -82,23 +79,25 @@ namespace TKZ.Shared
             List<int> br = FindAllBranchOnBusID(BusId);
             for (int ind = 0; ind < br.Count(); ind++)
             {
-                if (this.Branches[br[ind]].StartBusId != BusId) res.Add(BusId);
-                if (this.Branches[br[ind]].FinalBusId != BusId) res.Add(BusId);
+                if (this.Branches[br[ind]].StartBusId != BusId | this.Branches[br[ind]].FinalBusId != BusId) res.Add(BusId);
             }
             return res;
         }
 
         /// <summary>
-        /// Check connectivity grid. Return
+        /// Check grid connectivity 
         /// </summary>
         /// <returns>/// true  - 1 island; false - many island.</returns>
         public bool CheckConnectivityGrid()
         {
             if (this.Buses.Count() < 2) return true;
             if (this.Branches.Count() < 1) return false;
+
             Dictionary<int, int> dicBuses = FindIslandGrid();
             int numIsland = dicBuses.Values.ToArray().Distinct().ToArray().Count();
-            if (numIsland == 1) return true; else return false;
+
+            if (numIsland == 1) return true; 
+            else return false;
         }
 
         /// <summary>
@@ -107,8 +106,8 @@ namespace TKZ.Shared
         /// <returns></returns>
         public Dictionary<int, int> FindIslandGrid()
         {
-            if (this.Buses.Count() < 2) return new Dictionary<int, int>();
-            if (this.Branches.Count() < 1) return new Dictionary<int, int>();
+            if (this.Buses.Count() < 2 || this.Branches.Count() < 1) return new Dictionary<int, int>();
+
             Dictionary<int, int> dicBuses = new Dictionary<int, int>();
             int ind = 0;
             foreach (int busId in this.Buses.Keys.ToList()) dicBuses.Add(busId, ind++);
@@ -129,14 +128,15 @@ namespace TKZ.Shared
             }
             return dicBuses;
         }
+
         /// <summary>
         /// Check contains bus Id all Branches in Buses.
         /// </summary>
         /// <returns>true - there is a missing bus; flase - all rigth </returns>
         public bool CheckContainsMissingBusId()
         {
-            List<int> misBusId = FindMissingBusId();
-            if (misBusId.Count() > 0) return true; else return false;
+            if (FindMissingBusId().Count() > 0) return true; 
+            else return false;
         }
 
         /// <summary>
@@ -147,10 +147,10 @@ namespace TKZ.Shared
         {
             List<int> res = new List<int>();
             int[] keys = this.Branches.Keys.ToArray();
-            for (int ind =0; ind < keys.Count(); ind++)
+            for (int ind = 0; ind < keys.Length; ind++)
             {
-                if (! this.Buses.ContainsKey(this.Branches[keys[ind]].StartBusId) ) res.Add( this.Branches[keys[ind]].StartBusId);
-                if (! this.Buses.ContainsKey(this.Branches[keys[ind]].FinalBusId) ) res.Add( this.Branches[keys[ind]].FinalBusId);
+                if (!this.Buses.ContainsKey(this.Branches[keys[ind]].StartBusId)) res.Add(this.Branches[keys[ind]].StartBusId);
+                if (!this.Buses.ContainsKey(this.Branches[keys[ind]].FinalBusId)) res.Add(this.Branches[keys[ind]].FinalBusId);
             }
             return res.Distinct().ToList();
         }

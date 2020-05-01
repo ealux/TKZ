@@ -1,8 +1,0 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title"
-aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Thunder</title>
-  <desc>A line styled icon from Orion Icon Library.</desc>
-  <path d="M41 6L13 34h14.187L23 58l27.998-29.999H37L41 6z"
-  stroke-width="2" stroke-miterlimit="10" stroke="#202020" fill="none" data-name="layer1"
-  stroke-linejoin="round" stroke-linecap="round"></path>
-</svg>
