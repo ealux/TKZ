@@ -12,8 +12,5 @@
   "New": "Добавить",
   "Filter": "Сброс фильтра",
   "Edit": "Ред.",
-  "Duplicate": "Д",
-  //filter
-  "ActiveFilter": "Включено",
-  "NotActiveFilter": "Отключено"
+  "Duplicate": "Д"
 }

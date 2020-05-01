@@ -7,9 +7,6 @@ namespace TKZ.Client.I18nText.Pages
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
-        /// <summary>"Active"</summary>
-        public string ActiveFilter;
-
         /// <summary>"angle"</summary>
         public string angle;
 
@@ -39,9 +36,6 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>"Branch 1"</summary>
         public string firstBranch;
-
-        /// <summary>"Ground"</summary>
-        public string Ground;
 
         /// <summary>"Grounding in end bus"</summary>
         public string groundFinBus;
@@ -78,9 +72,6 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>"New"</summary>
         public string New;
-
-        /// <summary>"Disabled"</summary>
-        public string NotActiveFilter;
 
         /// <summary>"Parall. number"</summary>
         public string NumPar;

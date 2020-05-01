@@ -12,8 +12,5 @@
   "New": "New",
   "Filter": "Clear filter",
   "Edit": "Edit",
-  "Duplicate": "D",
-  //filter
-  "ActiveFilter": "Active",
-  "NotActiveFilter": "Disabled"
+  "Duplicate": "D"
 }

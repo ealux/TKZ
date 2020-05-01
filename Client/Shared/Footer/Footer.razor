@@ -13,6 +13,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Footer.Footer>(this);
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Footer.Footer > (this);
     }
 }

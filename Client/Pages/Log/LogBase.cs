@@ -35,7 +35,15 @@ namespace TKZ.Client.Pages.Log
 
         public async Task RemoveMessage(MessageClass byClass)
         {
-            await Task.Run(() => { foreach (var mes in Messages.Where(m => m.Class == byClass).ToList()) Messages.Remove(mes); });
+            await Task.Run(() =>
+            {
+                var listClassMessages = this.Messages.Where(m => m.Class == byClass).ToList();
+
+                foreach (var mes in listClassMessages)
+                {
+                    Messages.Remove(mes);
+                }
+            });
             OnChange?.Invoke();
         }
 
@@ -43,6 +51,10 @@ namespace TKZ.Client.Pages.Log
         /// Change log image source depending on the log messages count
         /// </summary>
         /// <returns><b>string</b>: Log image source</returns>
-        public string ImageChecker() => Messages.Count == 0 ? "/img/Icon.svg#bell" : "/img/Icon.svg#bell_content";
+        public string ImageChecker()
+        {
+            string src = Messages.Count == 0 ? "img/bell.svg" : "img/bell_content.svg";
+            return src;
+        }
     }
 }

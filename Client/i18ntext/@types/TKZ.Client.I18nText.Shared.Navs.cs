@@ -13,7 +13,7 @@ namespace TKZ.Client.I18nText.Shared
         /// <summary>"Branches"</summary>
         public string Navs_BranchBut;
 
-        /// <summary>"Calculation"</summary>
+        /// <summary>"Calc"</summary>
         public string Navs_CalcBut;
 
         /// <summary>"Contacts"</summary>

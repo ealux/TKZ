@@ -25,10 +25,13 @@ else
                   RowInserted="@OnRowInserted"
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
+                  Striped="true"
+                  Hoverable="true"
                   Narrow="true"
                   HeaderRowClass="small"
-                  HeaderRowStyle="background-color:var(--P-light);"
-                  Class="my_table">
+                  HeaderRowStyle="background-color:var(--light_color);"
+                  Class="text-sm-center">
+
             @*IsActive*@
             <DataGridColumn TItem="Bus"
                             Field="@nameof(Bus.IsActive)"
@@ -41,13 +44,6 @@ else
                 <EditTemplate>
                     <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
-                <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                        <SelectItem Value="@("*")"></SelectItem>
-                        <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
-                        <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
-                    </Select>
-                </FilterTemplate>
             </DataGridColumn>
             @*Name*@
             <DataGridColumn TItem="Bus"
@@ -71,45 +67,43 @@ else
             </DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Bus" Width="270px">
+            <DataGridCommandColumn TItem="Bus" Width="130px">
                 <NewCommandTemplate>
                     <Button Active="true"
-                            Class="round"
-                            Clicked="@context.Clicked">
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Success" Clicked="@context.Clicked">
                         <svg @onclick="@(() => {})" class="menu-icon">
                             <use href="/img/Icon.svg#Add"></use>
                         </svg>
                     </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="transparent"
-                            Clicked="@context.Clicked">
-                        <svg class="edit-icon" @onclick="@(() => {})">
-                            <use href="/img/Icon.svg#Edit"></use>
-                        </svg>
+                    <Button Class="btn btn-sm btn-success"
+                            Style="background-color:var(--S-middle); border:none; color:black;"
+                            Color="Color.Primary" Clicked="@context.Clicked">
+                        @Localizer.Edit
                     </Button>
-                    <Button Class="transparent"
+                    <button class="btn btn-sm btn-info"
+                            style="background-color:var(--P-dark); border:none;"
                             @onclick=@(() => DuplicateItem(context.Item))>
-                        <svg class="edit-icon" @onclick="@(() => {})">
-                            <use href="/img/Icon.svg#Copy"></use>
-                        </svg>
-                    </Button>
+                        @Localizer.Duplicate
+                    </button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
-                    <Button Class="transparent" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="edit-icon">
+                    <Button Class="btn-sm p-0" Color="Color.None" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="menu-icon">
                             <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
-                    <Button Class="my_button primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
                 </SaveCommandTemplate>
                 <CancelCommandTemplate>
-                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
                 </CancelCommandTemplate>
                 <ClearFilterCommandTemplate>
-                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                    <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>
@@ -120,14 +114,22 @@ else
 @code {
     private List<Bus> buses { get; set; }
 
-    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
+    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+        grid.Buses.Add(e.Item.Id, e.Item);
+    }
 
     //TODO: Implement(?)
-    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e) { }
+    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e)
+    {
+    }
 
     void OnRowRemoved(Bus e)
     {
-        if (grid.Buses.Values.Contains(e)) grid.Buses.Remove(e.Id);
+        if (grid.Buses.Values.Contains(e))
+        {
+            grid.Buses.Remove(e.Id);
+        }
     }
 
     //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
@@ -153,6 +155,7 @@ else
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

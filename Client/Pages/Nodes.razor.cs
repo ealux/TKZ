@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
-using TKZ.Shared.Model;
 
 namespace TKZ.Client.Pages
 {
     public partial class Nodes
     {
+        
         //Валидаторы
         private async Task ValidateOnRender()
         {
@@ -17,7 +17,7 @@ namespace TKZ.Client.Pages
             //Duplicates
             try
             {
-                var query = grid.Buses.Values.GroupBy(x => new { _Name = x.Name, _Unom = x.Unom })
+                var query = grid.Buses.Values.GroupBy(x => new{ _Name = x.Name, _Unom = x.Unom })
                                                .Where(g => g.Count() > 1)
                                                .Select(y => y.Key).ToList();
                 await Task.Run(() =>
@@ -31,29 +31,6 @@ namespace TKZ.Client.Pages
             }
             catch (Exception) { return; }
 
-            //Similar Names
-            try
-            {
-                var query = grid.Buses.Values.Where(n => grid.Buses.Values.Where(i => i != n).Any(comp => n.Name == comp.Name && n.Unom != comp.Unom)).Distinct().ToList();
-
-                await Task.Run(() =>
-                {
-                    if (query.Count > 0)
-                    {
-                        List<Bus> signed = new List<Bus>();
-                        foreach (var item in query)
-                        {
-                            if (!signed.Any(n => n.Name == item.Name))
-                            {
-                                Log.AddMessage(MessageCollection.Node_SimilarNames(item.Name));
-                                signed.Add(item);
-                            }
-                        }
-                        Log.Collapse = false;
-                    }
-                });
-            }
-            catch (Exception) { return; }
         }
     }
 }

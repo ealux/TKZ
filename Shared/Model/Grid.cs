@@ -6,8 +6,6 @@ namespace TKZ.Shared
 {
     public partial class Grid
     {
-        private static Grid CurrentGrid { get; set; } //Singleton needed
-
         public double ArcR { get; set; }
         public double ArcX { get; set; }
         public Dictionary<int, Bus> Buses { get; set; }
