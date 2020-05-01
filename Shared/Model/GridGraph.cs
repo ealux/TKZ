@@ -154,5 +154,45 @@ namespace TKZ.Shared
             }
             return res.Distinct().ToList();
         }
+        
+        /// <summary>
+        /// Search for grounded transformer branches
+        /// </summary>
+        /// <returns>Problem branch Id</returns>
+        public List<int> FindBranchTransformerGround()
+        {
+            List<int> res = new List<int>();
+            int[] keys = this.Branches.Keys.ToArray();
+            for (int ind = 0; ind < keys.Count(); ind++)
+            {
+                if (this.Branches[keys[ind]].Ratio > 0)
+                {
+                    if (this.Branches[keys[ind]].StartBusId == this.BusGround.Id) res.Add(keys[ind]); 
+                    if (this.Branches[keys[ind]].FinalBusId == this.BusGround.Id) res.Add(keys[ind]); 
+                }
+                
+            } 
+            return res;
+        }
+        /// <summary>
+        /// Search generator between two buses (not ground)
+        /// </summary>
+        /// <returns>Problem branch Id</returns>
+        public List<int> FindGeneratorBetweenBuses()
+        {
+            List<int> res = new List<int>();
+            int[] keys = this.Branches.Keys.ToArray();
+            for (int ind = 0; ind < keys.Count(); ind++)
+            {
+                if ((this.Branches[ keys[ind] ].E > 0) &&
+                    (this.Branches[ keys[ind] ].StartBusId >0) && 
+                    (this.Branches[ keys[ind] ].FinalBusId >0))
+                {
+                    res.Add(keys[ind]);
+                }
+            } 
+            return res;
+        }
+
     }
 }

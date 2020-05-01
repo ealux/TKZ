@@ -6,6 +6,7 @@ namespace TKZ.Shared
 {
     public partial class Grid
     {
+        private Bus BusGround = new Bus(0, "Земля", true);
         public double ArcR { get; set; }
         public double ArcX { get; set; }
         public Dictionary<int, Bus> Buses { get; set; }
@@ -26,9 +27,8 @@ namespace TKZ.Shared
             Branches = new Dictionary<int, Branch>();
             Mutuals = new Dictionary<int, Mutual>();
 
-            //Must have
-            Bus gr = new Bus(0, "Земля", true);
-            this.Buses.Add(gr.Id, gr);
+            //Must have            
+            this.Buses.Add(this.BusGround.Id, this.BusGround);
 
             //Test case. Erase on Realese.
             createTestGrid();
