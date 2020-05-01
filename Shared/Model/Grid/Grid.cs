@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using TKZ.Shared.Model;
+using TKZ.Shared;
 
 namespace TKZ.Shared
 {
     public partial class Grid
     {
-        private Bus BusGround = new Bus(0, "Земля", true);
+        private static Grid CurrentGrid { get; set; } //Singleton needed
+
         public double ArcR { get; set; }
         public double ArcX { get; set; }
         public Dictionary<int, Bus> Buses { get; set; }
@@ -23,12 +25,13 @@ namespace TKZ.Shared
         //ctor
         public Grid()
         {
-            Buses = new Dictionary<int, Bus>();
-            Branches = new Dictionary<int, Branch>();
-            Mutuals = new Dictionary<int, Mutual>();
+            this.Buses = new Dictionary<int, Bus>();
+            this.Branches = new Dictionary<int, Branch>();
+            this.Mutuals = new Dictionary<int, Mutual>();
 
-            //Must have            
-            this.Buses.Add(this.BusGround.Id, this.BusGround);
+            //Must have
+            Bus gr = new Bus(0, "Земля", true);
+            this.Buses.Add(gr.Id, gr);
 
             //Test case. Erase on Realese.
             createTestGrid();

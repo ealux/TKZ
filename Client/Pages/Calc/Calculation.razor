@@ -59,20 +59,20 @@
             <div class="chips_area"
                  style="border: 2px solid var(--P-light); flex: 1; width: 100%; margin-bottom: var(--st_margin)">
                 <input class="radio__input" type="radio" id="node-1" name="Nodes" value="node-1" checked>
-                <label class="radio__label" for="node-1">
-                    1
-                    <button class="icon-delete">
-                        <svg @onclick="@(() => {})" class="my_icon">
+                <label class="radio__label d-flex flex-row" for="node-1">
+                    <span class="align-middle" style="flex: 1">1</span>
+                    <button class="transparent icon-delete align-middle">
+                        <svg @onclick="@(() => {})" class="edit-icon">
                             <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </button>
                 </label>
 
                 <input class="radio__input" type="radio" id="node-2" name="Nodes" value="node-2">
-                <label class="radio__label" for="node-2">
-                    20000
-                    <button class="icon-delete">
-                        <svg @onclick="@(() => {})" class="my_icon">
+                <label class="radio__label d-flex flex-row" for="node-2">
+                    <span class="align-middle" style="flex: 1">Самый главный узел c очень длинным названием</span>
+                    <button class="transparent icon-delete align-middle">
+                        <svg @onclick="@(() => {})" class="edit-icon">
                             <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </button>
@@ -86,17 +86,21 @@
             </button>
         </form>
     </div>
-    <div style="flex: 1">
-        <h1>Результаты расчёта</h1>
-        <label for="ContNode">Выберите контролируемый узел:</label>
-        <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
-        <button class="round" id="addContNode" style="display: inline-block;">
-            <svg @onclick="@(() => {})" class="menu-icon">
-                <use href="/img/Icon.svg#Add"></use>
-            </svg>
-        </button>
-
+    <div class="d-flex flex-column" style="flex: 1; padding:0 ">
+        <div >
+            <label for="ContNode">Выберите контролируемый узел:</label>
+            <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
+            <button class="round" id="addContNode" style="display: inline-block;">
+                <svg class="menu-icon">
+                    <use href="/img/Icon.svg#Add"></use>
+                </svg>
+            </button>
+        </div>
+        <div>
+            <h1>Результаты расчёта</h1>
+        </div>
     </div>
+
 </div>
 
 @code {

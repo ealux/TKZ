@@ -32,5 +32,10 @@
   "New": "Добавить",
   "Filter": "Сброс фильтра",
   "Edit": "Ред.",
-  "Duplicate": "Д"
+  "Duplicate": "Д",
+  //filter
+  "ActiveFilter": "Включено",
+  "NotActiveFilter": "Отключено",
+  //ground
+  "Ground": "Земля"
 }

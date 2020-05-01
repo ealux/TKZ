@@ -8,7 +8,6 @@ using TKZ.Client.Pages.Log;
 using TKZ.Shared;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
-
 namespace TKZ.Client
 {
     public class Program
@@ -26,10 +25,10 @@ namespace TKZ.Client
             builder.Services.AddSingleton<LogBase>(); //Log singleton
             builder.Services.AddI18nText(); //Localizer singleton
             builder.Services.AddSingleton<Grid>(); //Network singleton
-            builder.Services.AddSingleton<ResultCalc>();
             builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true) //Tables singleton
                             .AddBootstrapProviders()
-                            .AddFontAwesomeIcons();            
+                            .AddFontAwesomeIcons();
+
             #endregion Singletons
 
             var host = builder.Build();

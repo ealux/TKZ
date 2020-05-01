@@ -25,12 +25,10 @@ else
                   RowInserted="@OnRowInserted"
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
-                  Striped="true"
-                  Hoverable="true"
                   Narrow="true"
                   HeaderRowClass="small"
                   HeaderRowStyle="background-color:var(--light_color);"
-                  Class="text-sm-center">
+                  Class="my_table">
 
             @*IsActive*@
             <DataGridColumn TItem="Mutual"
@@ -44,6 +42,13 @@ else
                 <EditTemplate>
                     <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
+                <FilterTemplate>
+                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
+                        <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
+                    </Select>
+                </FilterTemplate>
             </DataGridColumn>
             @*IdFirstBranch*@
             <DataGridNumericColumn TItem="Mutual"
@@ -52,18 +57,31 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @if (grid.Branches.ContainsKey(context.IdFirstBranch))@grid.Branches[context.IdFirstBranch].Name
+                    @if (grid.Branches.ContainsKey(context.IdFirstBranch))
+                    {
+                        @grid.Branches[context.IdFirstBranch].Name;
+                    }
                 </DisplayTemplate>
                 <EditTemplate>
                     <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        @foreach (var item in grid.Branches)
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Branches.Values.OrderBy(b => b.Name))
                         {
-                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                         }
                     </Select>
                 </EditTemplate>
                 <FilterTemplate>
-                    <TextEdit TextChanged="@(v=>context.TriggerFilterChange(v))" />
+                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        @foreach (var item in mutuals.Select(b => b.IdFirstBranch).Distinct().OrderBy(n => n))
+                        {
+                            if (grid.Branches.ContainsKey(item))
+                            {
+                                <SelectItem Value="@item">@grid.Branches[item].Name</SelectItem>
+                            }
+                        }
+                    </Select>
                 </FilterTemplate>
             </DataGridNumericColumn>
             @*IdSecondBranch*@
@@ -73,18 +91,32 @@ else
                                    Editable="true"
                                    Sortable="true">
                 <DisplayTemplate>
-                    @if (grid.Branches.ContainsKey(context.IdSecondBranch))@grid.Branches[context.IdSecondBranch].Name
+                    @if (grid.Branches.ContainsKey(context.IdSecondBranch))
+                    {
+                        @grid.Branches[context.IdSecondBranch].Name;
+                    }
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="int"
-                            SelectedValue="@((int)(((CellEditContext)context).CellValue))"
-                            SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                        @foreach (var item in grid.Branches)
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
+                        @foreach (var item in grid.Branches.Values.OrderBy(b => b.Name))
                         {
-                            <SelectItem TValue="int" Value="@(item.Value.Id)">@item.Value.Name</SelectItem>
+                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                         }
                     </Select>
                 </EditTemplate>
+                <FilterTemplate>
+                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        @foreach (var item in mutuals.Select(b => b.IdSecondBranch).Distinct().OrderBy(n => n))
+                        {
+                            if (grid.Branches.ContainsKey(item))
+                            {
+                                <SelectItem Value="@item">@grid.Branches[item].Name</SelectItem>
+                            }
+                        }
+                    </Select>
+                </FilterTemplate>
             </DataGridNumericColumn>
             @*R*@
             <DataGridNumericColumn TItem="Mutual"
@@ -100,43 +132,45 @@ else
                                    Sortable="true"></DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Mutual" Width="130px">
+            <DataGridCommandColumn TItem="Mutual" Width="270px">
                 <NewCommandTemplate>
                     <Button Active="true"
-                            Style="background-color:var(--S-middle); border:none; color:black;"
-                            Color="Color.Success" Clicked="@context.Clicked">
+                            Class="round"
+                            Clicked="@context.Clicked">
                         <svg @onclick="@(() => {})" class="menu-icon">
                             <use href="/img/Icon.svg#Add"></use>
                         </svg>
                     </Button>
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button Class="btn btn-sm btn-success"
-                            Style="background-color:var(--S-middle); border:none; color:black;"
-                            Color="Color.Primary" Clicked="@context.Clicked">
-                        @Localizer.Edit
+                    <Button Class="transparent"
+                            Clicked="@context.Clicked">
+                        <svg class="edit-icon" @onclick="@(() => {})">
+                            <use href="/img/Icon.svg#Edit"></use>
+                        </svg>
                     </Button>
-                    <button class="btn btn-sm btn-info"
-                            style="background-color:var(--P-dark); border:none;"
+                    <Button Class="transparent"
                             @onclick=@(() => DuplicateItem(context.Item))>
-                        @Localizer.Duplicate
-                    </button>
+                        <svg class="edit-icon" @onclick="@(() => {})">
+                            <use href="/img/Icon.svg#Copy"></use>
+                        </svg>
+                    </Button>
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
-                    <Button Class="btn-sm p-0" Color="Color.None" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="menu-icon">
+                    <Button Class="transparent" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="edit-icon">
                             <use href="/img/Icon.svg#Delete"></use>
                         </svg>
                     </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
-                    <Button Class="btn-sm" Color="Color.Primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                    <Button Class="my_button primary" Clicked="@context.Clicked">@Localizer.Save</Button>
                 </SaveCommandTemplate>
                 <CancelCommandTemplate>
-                    <Button Class="btn-sm" Color="Color.Secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
                 </CancelCommandTemplate>
                 <ClearFilterCommandTemplate>
-                    <Button Class="btn-sm" Color="Color.Warning" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Filter</Button>
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>

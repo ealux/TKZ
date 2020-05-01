@@ -16,6 +16,8 @@
         Nodes,
         Branches,
         Mutuals,
-        Calculation
+        Calculation,
+        Serialization,
+        Deserialization
     }
 }
