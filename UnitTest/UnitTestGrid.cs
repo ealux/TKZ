@@ -53,5 +53,40 @@ namespace TKZ.Test
             bool Expected = true;
             Assert.AreEqual(Expected, res);
         }
+        [TestMethod]
+        public void TestMethod_FindBranchTransformerGround_FindSucess()
+        {
+            Grid grid = TestGrid.smalTestGrid4();
+            Branch br1 = grid.Branches.Values.ToArray()[2];
+            int res = grid.FindBranchTransformerGround()[0];
+            int Expected = br1.Id;
+            Assert.AreEqual(Expected, res, "Не найдена ветвь: " + br1.Name );
+        }
+        [TestMethod]
+        public void TestMethod_FindBranchTransformerGround_FindFail()
+        {
+            Grid grid = TestGrid.smalTestGrid();
+            List<int> res = grid.FindBranchTransformerGround();
+            int Expected = 0;
+            Assert.AreEqual(Expected, res.Count());
+        }
+        [TestMethod]
+        public void TestMethod_FindGeneratorBetweenBuses_FindSucess()
+        {
+            Grid grid = TestGrid.smalTestGrid4();
+            Branch br1 = grid.Branches.Values.ToArray()[3];
+            int res = grid.FindGeneratorBetweenBuses()[0];
+            int Expected = br1.Id;
+            Assert.AreEqual(Expected, res, "Не найдена ветвь: " + br1.Name );
+        }
+        [TestMethod]
+        public void TestMethod_FindGeneratorBetweenBuses_FindFail()
+        {
+            Grid grid = TestGrid.smalTestGrid();
+            List<int> res = grid.FindGeneratorBetweenBuses();
+            int Expected = 0;
+            Assert.AreEqual(Expected, res.Count());
+        }
+        
     }
 }
