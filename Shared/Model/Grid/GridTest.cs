@@ -32,18 +32,18 @@ namespace TKZ.Shared
             this.Buses.Add(b9.Id, b9);
             this.Buses.Add(b10.Id, b10);
 
-            Branch br1 = new Branch(b1.Id, b2.Id, "1-2", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br2 = new Branch(b3.Id, b1.Id, "3-1", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br3 = new Branch(b1.Id, b4.Id, "1-4", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br4 = new Branch(b2.Id, b5.Id, "2-5", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br5 = new Branch(b3.Id, b6.Id, "3-6", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br6 = new Branch(b3.Id, b7.Id, "3-7", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br7 = new Branch(b4.Id, b8.Id, "4-8", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br8 = new Branch(b5.Id, b9.Id, "5-9", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br9 = new Branch(b6.Id, b10.Id, "6-10", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br10 = new Branch(b7.Id, b8.Id, "7-8", 1, 2, 3, 4, 5, 6, 7, false, false, 1, 1);
-            Branch br11 = new Branch(b2.Id, 0, "2-Зем", 1, 2, 3, 4, 5, 6, 7, false, true, 1, 1);
-            Branch br12 = new Branch(0, b8.Id, "Зем-8", 1, 2, 3, 4, 5, 6, 7, true, false, 1, 1);
+            Branch br1 = new Branch(b1.Id, b2.Id, "1-2", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br2 = new Branch(b3.Id, b1.Id, "3-1", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br3 = new Branch(b1.Id, b4.Id, "1-4", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br4 = new Branch(b2.Id, b5.Id, "2-5", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br5 = new Branch(b3.Id, b6.Id, "3-6", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br6 = new Branch(b3.Id, b7.Id, "3-7", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br7 = new Branch(b4.Id, b8.Id, "4-8", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br8 = new Branch(b5.Id, b9.Id, "5-9", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br9 = new Branch(b6.Id, b10.Id, "6-10", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br10 = new Branch(b7.Id, b8.Id, "7-8", 1, 2, 3, 4, 5, 6, 7, false, false);
+            Branch br11 = new Branch(b2.Id, b10.Id, "2-10", 1, 2, 3, 4, 5, 6, 7, false, true);
+            Branch br12 = new Branch(b10.Id, b8.Id, "10-8", 1, 2, 3, 4, 5, 6, 7, true, false);
 
             this.Branches.Add(br1.Id, br1);
             this.Branches.Add(br2.Id, br2);

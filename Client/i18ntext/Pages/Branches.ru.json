@@ -37,5 +37,7 @@
   "ActiveFilter": "Включено",
   "NotActiveFilter": "Отключено",
   //ground
-  "Ground": "Земля"
+  "Ground": "Земля",
+  //Equipment connection bus
+  "Bus": "Узел"
 }

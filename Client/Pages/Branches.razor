@@ -6,8 +6,6 @@
 @inject LogBase Log
 @inject Grid grid
 
-<h1>@Localizer.Header</h1>
-
 @if (branches == null)
 {
     <LoadingElement />
@@ -28,7 +26,7 @@ else
                   Narrow="true"
                   HeaderRowClass="small"
                   HeaderRowStyle="background-color:var(--light_color);"
-                  Class="my_table">
+                  Class="my_table text-center">
 
             <DataGridColumns>
                 @*IsActive*@
@@ -63,7 +61,7 @@ else
                     </DisplayTemplate>
                     <EditTemplate>
                         <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                            <SelectItem Class="active" TValue="int" Value="@(0)">@Localizer.Ground</SelectItem>
+                            <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {
                                 <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
@@ -94,7 +92,7 @@ else
                     </DisplayTemplate>
                     <EditTemplate>
                         <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
-                            <SelectItem Class="active" TValue="int" Value="@(0)">@Localizer.Ground</SelectItem>
+                            <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {
                                 <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
@@ -154,6 +152,18 @@ else
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.X0)"
                                        Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
+                                       Editable="true"
+                                       Sortable="true"></DataGridNumericColumn>
+                @*B*@
+                <DataGridNumericColumn TItem="Branch"
+                                       Field="@nameof(Branch.B)"
+                                       Caption="@(new String("B, ["+@Localizer.Siemens+"]"))"
+                                       Editable="true"
+                                       Sortable="true"></DataGridNumericColumn>
+                @*G*@
+                <DataGridNumericColumn TItem="Branch"
+                                       Field="@nameof(Branch.G)"
+                                       Caption="@(new String("G, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
                                        Sortable="true"></DataGridNumericColumn>
                 @*StUnom*@
@@ -229,36 +239,9 @@ else
                                      Max="360" />
                     </EditTemplate>
                 </DataGridNumericColumn>
-                @*E*@
-                <DataGridNumericColumn TItem="Branch"
-                                       Field="@nameof(Branch.E)"
-                                       Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
-                                       Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
-                @*FI_E*@
-                <DataGridNumericColumn TItem="Branch"
-                                       Field="@nameof(Branch.Fi_E)"
-                                       Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
-                                       Editable="true"
-                                       Sortable="true">
-
-                    <DisplayTemplate>
-                        @{
-                            double angle = ((context).Fi_E == 360 || (context).Fi_E == -360) ? (context).Fi_E = 0 : (context).Fi_E;
-                            @(angle + " °")
-                        }
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="double"
-                                     Value="@((double)(((CellEditContext)context).CellValue))"
-                                     ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"
-                                     Min="-360"
-                                     Max="360" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
 
                 @*Commands*@
-                <DataGridCommandColumn TItem="Branch" Width="270px">
+                <DataGridCommandColumn TItem="Branch" Width="130px">
                     <NewCommandTemplate>
                         <Button Active="true"
                                 Class="round"
@@ -290,13 +273,25 @@ else
                         </Button>
                     </DeleteCommandTemplate>
                     <SaveCommandTemplate>
-                        <Button Class="my_button primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Check"></use>
+                            </svg>
+                        </Button>
                     </SaveCommandTemplate>
                     <CancelCommandTemplate>
-                        <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Delete"></use>
+                            </svg>
+                        </Button>
                     </CancelCommandTemplate>
                     <ClearFilterCommandTemplate>
-                        <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Filter"></use>
+                            </svg>
+                        </Button>
                     </ClearFilterCommandTemplate>
                 </DataGridCommandColumn>
             </DataGridColumns>
@@ -339,13 +334,14 @@ else
             X1 = e.X1,
             R0 = e.R0,
             X0 = e.X0,
+            B = e.B,
+            G = e.G,
             StUnom = e.StUnom,
             FinUnom = e.FinUnom,
             GroundStBus = e.GroundStBus,
             GroundFinBus = e.GroundFinBus,
             Fi_trans = e.Fi_trans,
-            E = e.E,
-            Fi_E = e.Fi_E
+            IsActive = e.IsActive
         };
 
         branches.Add(new_branch);

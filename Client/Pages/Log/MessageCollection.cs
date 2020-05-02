@@ -21,6 +21,30 @@ namespace TKZ.Client.Pages.Log
         #endregion Nodes
 
         //
+        //Equipment messages
+        //
+
+        #region Equipment
+
+        //Equipment Duplicates
+        public static Message Equipment_Duplicates(string equipName)
+             => new Message(MessageClass.Equipment, MessageType.Warning, $"Обнаружены дубликаты оборудования!", $"Наименование: {equipName}", "equip");
+
+        //Equipment Similar Names
+        public static Message Equipment_SimilarNames(string equipName)
+             => new Message(MessageClass.Equipment, MessageType.Warning, $"Обнаружено оборудование с одинаковыми наименованиями!", $"Наименование: {equipName}", "equip");
+
+        //Equipment ID
+        public static Message Equipment_IdError(string equipName)
+        {
+            return new Message(MessageClass.Equipment, MessageType.Danger,
+                               $"Отсутствует узел привязки оборудования!",
+                               $"Наименование: {equipName}",
+                               "equip");
+        }
+        #endregion Equipment
+
+        //
         //Branches messages
         //
 

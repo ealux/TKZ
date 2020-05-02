@@ -4,7 +4,7 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
 <div class="header d-flex">
-    <NavLink class="navbar-brand active mx-5 mr-auto"
+    <NavLink class="navbar-brand active mx-5"
              href="/"
              Match="NavLinkMatch.All"
              ActiveClass="active"
@@ -13,7 +13,7 @@
                     font-size: 2.5rem;">
         Lime
     </NavLink>
-    <div class="btn-group " style="margin-right:3.5rem">
+    <div class="btn-group ml-5">
         <button type="button" class="icon" title="Загрузить">
             <svg @onclick="@(() => {})" class="menu-icon">
                 <use href="/img/Icon.svg#upload"></use>
@@ -42,7 +42,7 @@
             </svg>
         </button>
     </div>
-    <div>
+    <div class="ml-auto">
         <button type="button"
                 class="icon"
                 title="Тест IEEE14">
@@ -57,7 +57,6 @@
             <svg @onclick="@(() => {})" class="menu-icon">
                 <use href="@(IsRus ? SourceRus : SourceUS )"></use>
             </svg>
-            @*<img src="@(IsRus ? SourceRus : SourceUS )" width="25px" height="25px" alt="russia">*@
         </button>
     </div>
 </div>
@@ -94,7 +93,10 @@
     {
         StateHasChanged();
 
-        if(grid.Branches.Count == 0)
+        //Отчистка лога
+        if (Log.Messages.Any((m) => m.Class == MessageClass.Serialization)) await Log.RemoveMessage(byClass: MessageClass.Serialization);
+
+        if (grid.Branches.Count == 0)
         {
             Log.AddMessage(MessageCollection.Serialize_BranchError());
             Log.Collapse = false;

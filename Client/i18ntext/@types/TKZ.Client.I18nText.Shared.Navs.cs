@@ -19,6 +19,9 @@ namespace TKZ.Client.I18nText.Shared
         /// <summary>"Contacts"</summary>
         public string Navs_ContactBut;
 
+        /// <summary>"Equipment"</summary>
+        public string Navs_EquipBut;
+
         /// <summary>"Home"</summary>
         public string Navs_HomeBut;
 

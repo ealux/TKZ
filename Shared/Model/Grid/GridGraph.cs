@@ -167,8 +167,8 @@ namespace TKZ.Shared
             {
                 if (this.Branches[keys[ind]].Ratio > 0)
                 {
-                    if (this.Branches[keys[ind]].StartBusId == this.BusGround.Id) res.Add(keys[ind]);
-                    if (this.Branches[keys[ind]].FinalBusId == this.BusGround.Id) res.Add(keys[ind]);
+                    //if (this.Branches[keys[ind]].StartBusId == this.BusGround.Id) res.Add(keys[ind]);
+                    //if (this.Branches[keys[ind]].FinalBusId == this.BusGround.Id) res.Add(keys[ind]);
                 }
 
             }
@@ -184,7 +184,7 @@ namespace TKZ.Shared
             int[] keys = this.Branches.Keys.ToArray();
             for (int ind = 0; ind < keys.Count(); ind++)
             {
-                if ((this.Branches[keys[ind]].E > 0) &&
+                if (//(this.Branches[keys[ind]].E > 0) &&
                     (this.Branches[keys[ind]].StartBusId > 0) &&
                     (this.Branches[keys[ind]].FinalBusId > 0))
                 {

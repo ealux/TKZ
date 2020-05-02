@@ -13,6 +13,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"angle"</summary>
         public string angle;
 
+        /// <summary>"Bus"</summary>
+        public string Bus;
+
         /// <summary>"Cancel"</summary>
         public string Cancel;
 

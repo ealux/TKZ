@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TKZ.Client", "Client\TKZ.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TKZ.Shared", "Shared\TKZ.Shared.csproj", "{7F3D4C36-7555-46F3-84D8-F0ACA423E2AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{BDCEDD3C-58D3-40BE-90FA-3CA54A21C1A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{BDCEDD3C-58D3-40BE-90FA-3CA54A21C1A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,7 +68,6 @@ Global
 		{BDCEDD3C-58D3-40BE-90FA-3CA54A21C1A4}.Release|x64.Build.0 = Release|Any CPU
 		{BDCEDD3C-58D3-40BE-90FA-3CA54A21C1A4}.Release|x86.ActiveCfg = Release|Any CPU
 		{BDCEDD3C-58D3-40BE-90FA-3CA54A21C1A4}.Release|x86.Build.0 = Release|Any CPU
-
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

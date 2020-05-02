@@ -18,13 +18,16 @@ namespace TKZ.Shared.Model
         public bool GroundStBus { get; set; }
         public bool GroundFinBus { get; set; }
         public double Fi_trans { get; set; }
-        public double E { get; set; }
-        public double Fi_E { get; set; }
         /// <summary>
         /// Branch ground conductivity.
         /// </summary>
         /// <value></value>
         public double B { get; set; }
+        /// <summary>
+        /// Branch ground conductivity (active).
+        /// </summary>
+        /// <value></value>
+        public double G { get; set; }
 
         /// <summary>
         /// Ratio transformer. St Bus U / Fin Bus U.
@@ -47,8 +50,7 @@ namespace TKZ.Shared.Model
         public Branch(int startBusId, int finalBusId, string NameBranch,
                       double R1, double X1, double R0, double X0,
                       double StUnom, double FinUnom, double Fi_trans,
-                      bool GroundStBus, bool GroundFinBus,
-                      double E, double Fi_E)
+                      bool GroundStBus, bool GroundFinBus)
         {
             this.m_id = Branch.CurId;
             this.StartBusId = startBusId;
@@ -76,8 +78,6 @@ namespace TKZ.Shared.Model
             {
                 this.Name = NameBranch;
             }
-            this.E = E;
-            this.Fi_E = Fi_E;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "/nodes"
+﻿@page "/equip"
 @using Blazorise.DataGrid
 @using TKZ.Shared.Model
 @inject HttpClient Http
@@ -6,16 +6,16 @@
 @inject LogBase Log
 @inject Grid grid
 
-@if (buses == null)
+@if (equipment == null)
 {
     <LoadingElement />
 }
 else
 {
     <div class="w3-animate-opacity">
-        <DataGrid TItem="Bus"
-                  Data="@buses"
-                  PageSize="@buses.Count"
+        <DataGrid TItem="Equip"
+                  Data="@equipment"
+                  PageSize="@equipment.Count"
                   EditMode="@DataGridEditMode.Inline"
                   Editable="true"
                   Sortable="true"
@@ -26,8 +26,8 @@ else
                   Narrow="true"
                   Class="my_table text-center">
             @*IsActive*@
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.IsActive)"
+            <DataGridColumn TItem="Equip"
+                            Field="@nameof(Equip.IsActive)"
                             Caption="@(@Localizer.IsActive)"
                             Editable="true"
                             Sortable="true">
@@ -45,29 +45,89 @@ else
                     </Select>
                 </FilterTemplate>
             </DataGridColumn>
+            @*BusId*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.BusId)"
+                                   Caption="@Localizer.Bus"
+                                   Editable="true"
+                                   Sortable="true"
+                                   Filterable="true">
+                <DisplayTemplate>
+                    @if (grid.Buses.ContainsKey(context.BusId))@grid.Buses[context.BusId].Name
+                </DisplayTemplate>
+                <EditTemplate>
+                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
+                        {
+                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
+                        }
+                    </Select>
+                </EditTemplate>
+                <FilterTemplate>
+                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem Value="@("*")"></SelectItem>
+                        @foreach (var item in equipment.Select(b => b.BusId).Distinct().OrderBy(n => n))
+                        {
+                            if (grid.Buses.ContainsKey(item))
+                            {
+                                <SelectItem Value="@item">@grid.Buses[item].Name</SelectItem>
+                            }
+                        }
+                    </Select>
+                </FilterTemplate>
+            </DataGridNumericColumn>
+
             @*Name*@
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.Name)"
-                            Caption="@(@Localizer.NameBut)"
+            <DataGridColumn TItem="Equip"
+                            Field="@nameof(Equip.Name)"
+                            Caption="@(@Localizer.Name)"
                             Editable="true"
                             Sortable="true">
             </DataGridColumn>
-            @*Unom*@
-            <DataGridNumericColumn TItem="Bus"
-                                   Field="@nameof(Bus.Unom)"
-                                   Caption="@(@Localizer.VoltageСlass)"
+            @*R*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.R)"
+                                   Caption="@(new String("R, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            @*X*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.X)"
+                                   Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            @*E*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.E)"
+                                   Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
+                                   Editable="true"
+                                   Sortable="true"></DataGridNumericColumn>
+            @*FI_E*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.Fi_E)"
+                                   Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
                                    Sortable="true">
+
                 <DisplayTemplate>
                     @{
-                        var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
-                        @(unom + " " + Localizer.kV)
+                        double angle = ((context).Fi_E == 360 || (context).Fi_E == -360) ? (context).Fi_E = 0 : (context).Fi_E;
+                        @(angle + " °")
                     }
                 </DisplayTemplate>
+                <EditTemplate>
+                    <NumericEdit TValue="double"
+                                 Value="@((double)(((CellEditContext)context).CellValue))"
+                                 ValueChanged="@(v=>((CellEditContext)context).CellValue=v)"
+                                 Min="-360"
+                                 Max="360" />
+                </EditTemplate>
             </DataGridNumericColumn>
 
+
             @*Commands*@
-            <DataGridCommandColumn TItem="Bus" Width="130px">
+            <DataGridCommandColumn TItem="Equip" Width="130px">
                 <NewCommandTemplate>
                     <Button Active="true"
                             Class="round"
@@ -127,45 +187,50 @@ else
 }
 
 @code {
-    private List<Bus> buses { get; set; }
+    private List<Equip> equipment { get; set; }
 
-    void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
+    void OnRowInserted(SavedRowItem<Equip, Dictionary<string, object>> e) => grid.Equipment.Add(e.Item.Id, e.Item);
 
     //TODO: Implement(?)
-    void OnRowUpdated(SavedRowItem<Bus, Dictionary<string, object>> e) { }
+    void OnRowUpdated(SavedRowItem<Equip, Dictionary<string, object>> e) { }
 
-    void OnRowRemoved(Bus e)
+    void OnRowRemoved(Equip e)
     {
-        if (grid.Buses.Values.Contains(e)) grid.Buses.Remove(e.Id);
+        if (grid.Equipment.Values.Contains(e)) grid.Equipment.Remove(e.Id);
     }
 
     //TODO: Сделать механизм возникновения ошибки при одинаковых номерах (наименованиях)
-    void DuplicateItem(Bus e)
+    void DuplicateItem(Equip e)
     {
-        var new_bus = new Bus()
+        var new_equip = new Equip()
         {
             Name = e.Name,
-            Unom = e.Unom,
+            R = e.R,
+            X = e.X,
+            E = e.E,
+            Fi_E = e.Fi_E,
+            BusId = e.BusId,
             IsActive = e.IsActive
         };
 
-        buses.Add(new_bus);
-        grid.Buses.Add(new_bus.Id, new_bus);
+        equipment.Add(new_equip);
+        grid.Equipment.Add(new_equip.Id, new_equip);
 
         StateHasChanged();
     }
 
     //Localizator
-    I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
+    I18nText.Pages.Branches Localizer = new I18nText.Pages.Branches();
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
-        buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
+        equipment = await Task.Run(() => grid.Equipment.Values.ToList<Equip>());
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await ValidateOnRender();
     }
+
 }

@@ -14,6 +14,7 @@
         System,
         IO,
         Nodes,
+        Equipment,
         Branches,
         Mutuals,
         Calculation,

@@ -37,5 +37,7 @@
   "ActiveFilter": "Active",
   "NotActiveFilter": "Disabled",
   //ground
-  "Ground": "Ground"
+  "Ground": "Ground",
+  //Equipment connection bus
+  "Bus": "Bus"
 }

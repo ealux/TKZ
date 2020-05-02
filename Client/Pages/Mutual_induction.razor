@@ -6,8 +6,6 @@
 @inject LogBase Log
 @inject Grid grid
 
-<h1>@Localizer.MutualHeader</h1>
-
 @if (mutuals == null)
 {
     <LoadingElement />
@@ -28,7 +26,7 @@ else
                   Narrow="true"
                   HeaderRowClass="small"
                   HeaderRowStyle="background-color:var(--light_color);"
-                  Class="my_table">
+                  Class="my_table text-center">
 
             @*IsActive*@
             <DataGridColumn TItem="Mutual"
@@ -132,7 +130,7 @@ else
                                    Sortable="true"></DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Mutual" Width="270px">
+            <DataGridCommandColumn TItem="Mutual" Width="130px">
                 <NewCommandTemplate>
                     <Button Active="true"
                             Class="round"
@@ -164,13 +162,25 @@ else
                     </Button>
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
-                    <Button Class="my_button primary" Clicked="@context.Clicked">@Localizer.Save</Button>
+                    <Button Class="transparent" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="edit-icon">
+                            <use href="/img/Icon.svg#Check"></use>
+                        </svg>
+                    </Button>
                 </SaveCommandTemplate>
                 <CancelCommandTemplate>
-                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Cancel</Button>
+                    <Button Class="transparent" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="edit-icon">
+                            <use href="/img/Icon.svg#Delete"></use>
+                        </svg>
+                    </Button>
                 </CancelCommandTemplate>
                 <ClearFilterCommandTemplate>
-                    <Button Class="my_button secondary" Clicked="@context.Clicked">@Localizer.Filter</Button>
+                    <Button Class="transparent" Clicked="@context.Clicked">
+                        <svg @onclick="@(() => {})" class="edit-icon">
+                            <use href="/img/Icon.svg#Filter"></use>
+                        </svg>
+                    </Button>
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>
@@ -208,7 +218,8 @@ else
             IdFirstBranch = e.IdFirstBranch,
             IdSecondBranch = e.IdSecondBranch,
             X = e.X,
-            R = e.R
+            R = e.R,
+            IsActive = e.IsActive
         };
 
         mutuals.Add(new_mut);
