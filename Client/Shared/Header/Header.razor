@@ -4,7 +4,7 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
 <div class="header d-flex">
-    <NavLink class="navbar-brand active mx-5"
+    <NavLink class="navbar-brand active mx-5 mr-auto"
              href="/"
              Match="NavLinkMatch.All"
              ActiveClass="active"
@@ -13,35 +13,36 @@
                     font-size: 2.5rem;">
         Lime
     </NavLink>
-    <button type="button" class="icon" title="Загрузить">
-        <svg @onclick="@(() => {})" class="menu-icon">
-            <use href="/img/Icon.svg#upload"></use>
-        </svg>
-    </button>
-    <button type="button" class="icon" title="Сохранить" @onclick="DownloadFile">
-        <svg @onclick="@(() => {})" class="menu-icon">
-            <use href="/img/Icon.svg#download"></use>
-        </svg>
-    </button>
-    <button type="button"
-            class="icon"
-            title="Рассчитать все"
-            @onclick="Add">
-        <svg @onclick="@(() => {})" class="menu-icon">
-            <use href="/img/Icon.svg#CalcAll"></use>
-        </svg>
-    </button>
-    <button type="button"
-            class="icon"
-            title="Уведомления"
-            id="bell"
-            @onclick="LogOpenEvent">
-        <svg class="menu-icon">
-            <use href="@LB.ImageChecker()"></use>
-        </svg>
-    </button>
-
-    <div class="ml-auto">
+    <div class="btn-group " style="margin-right:3.5rem">
+        <button type="button" class="icon" title="Загрузить">
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="/img/Icon.svg#upload"></use>
+            </svg>
+        </button>
+        <button type="button" class="icon" title="Сохранить" @onclick="DownloadFile">
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="/img/Icon.svg#download"></use>
+            </svg>
+        </button>
+        <button type="button"
+                class="icon"
+                title="Рассчитать все"
+                @onclick="Add">
+            <svg @onclick="@(() => {})" class="menu-icon">
+                <use href="/img/Icon.svg#CalcAll"></use>
+            </svg>
+        </button>
+        <button type="button"
+                class="icon"
+                title="Уведомления"
+                id="bell"
+                @onclick="LogOpenEvent">
+            <svg class="menu-icon">
+                <use href="@LB.ImageChecker()"></use>
+            </svg>
+        </button>
+    </div>
+    <div>
         <button type="button"
                 class="icon"
                 title="Тест IEEE14">
