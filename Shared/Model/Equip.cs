@@ -22,5 +22,18 @@ namespace TKZ.Shared.Model
         {
             this.m_id = CurId;
         }
+
+        public Equip(int busId, double r, double x,
+                     string name,
+                     double e, double fi_e)
+        {
+            this.m_id = CurId;
+            this.BusId = busId;
+            this.Name = name;
+            this.R = r;
+            this.X = x;
+            this.E = e;
+            this.Fi_E = fi_e;
+        }
     }
 }

@@ -32,5 +32,10 @@
   <ItemGroup>
     <Watch Remove="i18ntext\Pages\Advices\Advices.ru.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\img\Icon.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

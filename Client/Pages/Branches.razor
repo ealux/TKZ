@@ -25,9 +25,7 @@ else
                   RowRemoved="@OnRowRemoved"
                   Narrow="true"
                   HeaderRowClass="small"
-                  HeaderRowStyle="background-color:var(--light_color);"
                   Class="my_table text-center">
-
             <DataGridColumns>
                 @*IsActive*@
                 <DataGridColumn TItem="Branch"
@@ -176,7 +174,7 @@ else
                         @{
 
                             var unom = (context).StUnom < 0 ? (context).StUnom = 0 : (context).StUnom;
-                            @(unom + " " + Localizer.kV)
+                            @(unom)
                         }
                     </DisplayTemplate>
                 </DataGridNumericColumn>
@@ -189,7 +187,7 @@ else
                     <DisplayTemplate>
                         @{
                             var unom = (context).FinUnom < 0 ? (context).FinUnom = 0 : (context).FinUnom;
-                            @(unom + " " + Localizer.kV)
+                            @(unom)
                         }
                     </DisplayTemplate>
                 </DataGridNumericColumn>

@@ -63,6 +63,16 @@ namespace TKZ.Shared
 
             this.Mutuals.Add(m1.Id, m1);
             this.Mutuals.Add(m2.Id, m2);
+
+            Equip e1 = new Equip(b1.Id, 1, 1, "Генератор 1-1", 1, 30);
+            Equip e2 = new Equip(b1.Id, 1, 1, "Генератор 1-2", 1, 30);
+            Equip e3 = new Equip(b2.Id, 1, 1, "Генератор 2-1", 1, 30);
+            Equip e4 = new Equip(b2.Id, 1, 1, "Генератор 2-2", 1, 30);
+
+            this.Equipment.Add(e1.Id, e1);
+            this.Equipment.Add(e2.Id, e2);
+            this.Equipment.Add(e3.Id, e3);
+            this.Equipment.Add(e4.Id, e4);
         }
     }
 }

@@ -4,7 +4,7 @@
   //
   "IsActive": "IsActive",
   "NameBut": "Name",
-  "VoltageСlass": "Voltage Сlass",
+  "VoltageСlass": "Unom, [kV]",
   "kV": "kV",
   //Конопки формы
   "Save": "Save",

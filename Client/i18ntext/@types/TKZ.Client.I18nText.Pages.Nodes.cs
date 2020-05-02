@@ -43,7 +43,7 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Save"</summary>
         public string Save;
 
-        /// <summary>"Voltage Сlass"</summary>
+        /// <summary>"Unom, [kV]"</summary>
         public string VoltageСlass;
     }
 }

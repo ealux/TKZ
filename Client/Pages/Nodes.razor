@@ -23,104 +23,133 @@ else
                   RowInserted="@OnRowInserted"
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
+                  @bind-SelectedRow="@selectedNode"
+                  DetailRowTrigger="@((item)=>grid.Equipment.Values.Where(e => e.BusId == item.Id).ToList().Count > 0 && item.Id == selectedNode?.Id)"
                   Narrow="true"
                   Class="my_table text-center">
             @*IsActive*@
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.IsActive)"
-                            Caption="@(@Localizer.IsActive)"
-                            Editable="true"
-                            Sortable="true">
-                <DisplayTemplate>
-                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
-                </DisplayTemplate>
-                <EditTemplate>
-                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
-                </EditTemplate>
-                <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                        <SelectItem Value="@("*")"></SelectItem>
-                        <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
-                        <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
-                    </Select>
-                </FilterTemplate>
-            </DataGridColumn>
-            @*Name*@
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.Name)"
-                            Caption="@(@Localizer.NameBut)"
-                            Editable="true"
-                            Sortable="true">
-            </DataGridColumn>
-            @*Unom*@
-            <DataGridNumericColumn TItem="Bus"
-                                   Field="@nameof(Bus.Unom)"
-                                   Caption="@(@Localizer.VoltageСlass)"
-                                   Editable="true"
-                                   Sortable="true">
-                <DisplayTemplate>
-                    @{
-                        var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
-                        @(unom + " " + Localizer.kV)
+            <DataGridColumns>
+
+                <DataGridColumn TItem="Bus"
+                                Field="@nameof(Bus.IsActive)"
+                                Caption="@(@Localizer.IsActive)"
+                                Editable="true"
+                                Sortable="true">
+                    <DisplayTemplate>
+                        <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                    </EditTemplate>
+                    <FilterTemplate>
+                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                            <SelectItem Value="@("*")"></SelectItem>
+                            <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
+                            <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
+                        </Select>
+                    </FilterTemplate>
+                </DataGridColumn>
+                @*Name*@
+                <DataGridColumn TItem="Bus"
+                                Field="@nameof(Bus.Name)"
+                                Caption="@(@Localizer.NameBut)"
+                                Editable="true"
+                                Sortable="true">
+                </DataGridColumn>
+                @*Unom*@
+                <DataGridNumericColumn TItem="Bus"
+                                       Field="@nameof(Bus.Unom)"
+                                       Caption="@(@Localizer.VoltageСlass)"
+                                       Editable="true"
+                                       Sortable="true">
+                    <DisplayTemplate>
+                        @{
+                            var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
+                            @(unom + " " + Localizer.kV)
+                        }
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+
+                @*Commands*@
+                <DataGridCommandColumn TItem="Bus" Width="130px">
+                    <NewCommandTemplate>
+                        <Button Active="true"
+                                Class="round"
+                                Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="menu-icon">
+                                <use href="/img/Icon.svg#Add"></use>
+                            </svg>
+                        </Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Class="transparent"
+                                Clicked="@context.Clicked">
+
+                            <svg class="edit-icon" @onclick="@(() => {})">
+                                <use href="/img/Icon.svg#Edit"></use>
+                            </svg>
+                        </Button>
+                        <Button Class="transparent"
+                                @onclick=@(() => DuplicateItem(context.Item))>
+                            <svg class="edit-icon" @onclick="@(() => {})">
+                                <use href="/img/Icon.svg#Copy"></use>
+                            </svg>
+                        </Button>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Delete"></use>
+                            </svg>
+                        </Button>
+                    </DeleteCommandTemplate>
+                    <SaveCommandTemplate>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Check"></use>
+                            </svg>
+                        </Button>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Delete"></use>
+                            </svg>
+                        </Button>
+                    </CancelCommandTemplate>
+                    <ClearFilterCommandTemplate>
+                        <Button Class="transparent" Clicked="@context.Clicked">
+                            <svg @onclick="@(() => {})" class="edit-icon">
+                                <use href="/img/Icon.svg#Filter"></use>
+                            </svg>
+                        </Button>
+                    </ClearFilterCommandTemplate>
+                </DataGridCommandColumn>
+            </DataGridColumns>
+
+            @* Details *@
+            <DetailRowTemplate>
+                @{
+                    var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
+
+                    if (equips != null)
+                    {
+                        <DataGrid TItem="Equip"
+                                  Data="equips"
+                                  Sortable="false"
+                                  ShowCaptions="false"
+                                  Narrow="true"
+                                  HeaderRowClass="small"
+                                  Class="my_table text-center">
+                            <DataGridColumn TItem="Equip"
+                                            Field="@nameof(Equip.Name)"
+                                            Caption="@(@Localizer.NameBut)"
+                                            Editable="false"
+                                            Sortable="true" />
+                        </DataGrid>
                     }
-                </DisplayTemplate>
-            </DataGridNumericColumn>
-
-            @*Commands*@
-            <DataGridCommandColumn TItem="Bus" Width="130px">
-                <NewCommandTemplate>
-                    <Button Active="true"
-                            Class="round"
-                            Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="menu-icon">
-                            <use href="/img/Icon.svg#Add"></use>
-                        </svg>
-                    </Button>
-                </NewCommandTemplate>
-                <EditCommandTemplate>
-                    <Button Class="transparent"
-                            Clicked="@context.Clicked">
-
-                        <svg class="edit-icon" @onclick="@(() => {})">
-                            <use href="/img/Icon.svg#Edit"></use>
-                        </svg>
-                    </Button>
-                    <Button Class="transparent"
-                            @onclick=@(() => DuplicateItem(context.Item))>
-                        <svg class="edit-icon" @onclick="@(() => {})">
-                            <use href="/img/Icon.svg#Copy"></use>
-                        </svg>
-                    </Button>
-                </EditCommandTemplate>
-                <DeleteCommandTemplate>
-                    <Button Class="transparent" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="edit-icon">
-                            <use href="/img/Icon.svg#Delete"></use>
-                        </svg>
-                    </Button>
-                </DeleteCommandTemplate>
-                <SaveCommandTemplate>
-                    <Button Class="transparent" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="edit-icon">
-                            <use href="/img/Icon.svg#Check"></use>
-                        </svg>
-                    </Button>
-                </SaveCommandTemplate>
-                <CancelCommandTemplate>
-                    <Button Class="transparent" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="edit-icon">
-                            <use href="/img/Icon.svg#Delete"></use>
-                        </svg>
-                    </Button>
-                </CancelCommandTemplate>
-                <ClearFilterCommandTemplate>
-                    <Button Class="transparent" Clicked="@context.Clicked">
-                        <svg @onclick="@(() => {})" class="edit-icon">
-                            <use href="/img/Icon.svg#Filter"></use>
-                        </svg>
-                    </Button>
-                </ClearFilterCommandTemplate>
-            </DataGridCommandColumn>
+                }
+            </DetailRowTemplate>
         </DataGrid>
     </div>
 
@@ -128,6 +157,7 @@ else
 
 @code {
     private List<Bus> buses { get; set; }
+    private Bus selectedNode;
 
     void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
 

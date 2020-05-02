@@ -24,6 +24,7 @@ else
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
                   Narrow="true"
+                  HeaderRowClass="small"
                   Class="my_table text-center">
             @*IsActive*@
             <DataGridColumn TItem="Equip"
@@ -60,7 +61,7 @@ else
                         <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                         {
-                            <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
+                        <SelectItem TValue="int" Value="@(item.Id)">@item.Name</SelectItem>
                         }
                     </Select>
                 </EditTemplate>
@@ -71,7 +72,7 @@ else
                         {
                             if (grid.Buses.ContainsKey(item))
                             {
-                                <SelectItem Value="@item">@grid.Buses[item].Name</SelectItem>
+                        <SelectItem Value="@item">@grid.Buses[item].Name</SelectItem>
                             }
                         }
                     </Select>
@@ -108,7 +109,8 @@ else
                                    Field="@nameof(Equip.Fi_E)"
                                    Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
-                                   Sortable="true">
+                                   Sortable="true"
+                                   Width="130px">
 
                 <DisplayTemplate>
                     @{
@@ -124,7 +126,6 @@ else
                                  Max="360" />
                 </EditTemplate>
             </DataGridNumericColumn>
-
 
             @*Commands*@
             <DataGridCommandColumn TItem="Equip" Width="130px">
