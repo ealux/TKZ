@@ -21,10 +21,10 @@
     background-color: white;
     box-shadow: var(--small_shadow);
     height: 100vh;
-    min-height: 100%;
     margin: auto;
     min-width: 100vw;
     padding: 0;
+    overflow: auto;
 }
 
 .header {
@@ -416,6 +416,31 @@ input[type="radio"][class="radio__input"]:checked + label {
 .radio__label:last-child {
     margin-bottom: 0px;
 }
+
+.choose-grid {
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    background-color: transparent;
+}
+.choose-grid:focus {
+  background-color: transparent;
+  border-color: var(--P-dark);
+  outline: 0;
+}
+.choose-grid:focus {
+    color: black;
+}
+.choose-grid:focus:first-child {
+    color:white;
+}
+.choose-grid option {
+    color: black;
+    font-size: 1.25rem;
+}
+
+
+
 /*MODAL*/
 .modal-footer {
     display: -ms-flexbox;
@@ -449,19 +474,29 @@ input[type="radio"][class="radio__input"]:checked + label {
     height: 1.5rem;
     width: 1.5rem;
     stroke: currentColor;
-    stroke-width: 1px;
+    stroke-width: 4px;
 }
 .edit-icon:hover {
     stroke: var(--P-dark);
 }
-.menu-icon {
+.header-icon {
     height: 1.75rem;
     width: 1.75rem;
     stroke: currentColor;
     fill: none;
-    stroke-width: 3px;
+    stroke-width: 4px;
     display: inline-block;
 }
+.menu-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2px;
+    display: inline-block;
+}
+
+
 .button-icon {
     height: 1.5rem;
     width: 1.5rem;

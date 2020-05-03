@@ -130,37 +130,62 @@
 		    l-97.802,97.803V189.219z"/>
     </symbol>
   <!--ТАБЛИЦЫ-->
-  <!--ADD-->
+  
   <symbol id="Add" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"  aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
       <path transform="rotate(44.53133773803711 30.99900054931642,31.000999450683587) " stroke-linecap="round" stroke-linejoin="round" d="m41.999,20.002l-22,22m22,0l-21.999,-22.002" stroke-miterlimit="10"/>
   </symbol>
-   <symbol id="Delete" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
+   <!--Delete--> 
+   <symbol id="Delete" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
-    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+     <path stroke-linecap="round" stroke-linejoin="round" d="m42.999999,21.001001l-22,22m22,0l-21.999,-22.002" stroke-miterlimit="10" fill="none"/>
   </symbol> 
-  <!--Edit Bootstrap-->
-  <symbol id="Edit" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
+  <!--Edit-->
+  <symbol id="Edit" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <path fill-rule="evenodd" d="M5.707 13.707a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391L10.086 2.5a2 2 0 012.828 0l.586.586a2 2 0 010 2.828l-7.793 7.793zM3 11l7.793-7.793a1 1 0 011.414 0l.586.586a1 1 0 010 1.414L5 13l-3 1 1-3z" clip-rule="evenodd"/>
-    <path fill-rule="evenodd" d="M9.854 2.56a.5.5 0 00-.708 0L5.854 5.855a.5.5 0 01-.708-.708L8.44 1.854a1.5 1.5 0 012.122 0l.293.292a.5.5 0 01-.707.708l-.293-.293z" clip-rule="evenodd"/>
-    <path d="M13.293 1.207a1 1 0 011.414 0l.03.03a1 1 0 01.03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
+    <path 
+    stroke-miterlimit="10" fill="none" d="M55.737 16.309l3.674-3.67a5.675 5.675 0 1 0-8.025-8.025l-3.674 3.669"
+    stroke-linejoin="round" stroke-linecap="round"></path>
+    <path d="M17.337 54.667l38.4-38.358-8.025-8.026L9.307 46.642 2.926 61.049l14.411-6.382zm-8.03-8.025l8.03 8.025"
+    stroke-miterlimit="10" fill="none"
+    stroke-linejoin="round" stroke-linecap="round"></path>
   </symbol>  
-  <!--Copy Bootstrap-->
-  <symbol id="Copy" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
+  <!--Copy-->
+  <symbol id="Copy" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path fill-rule="evenodd" d="M3 2h8a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V4a2 2 0 012-2zm0 1a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1H3z" clip-rule="evenodd"/>
-  <path d="M5 0h8a2 2 0 012 2v10a2 2 0 01-2 2v-1a1 1 0 001-1V2a1 1 0 00-1-1H5a1 1 0 00-1 1H3a2 2 0 012-2z"/>
+    <path data-name="layer2"
+    fill="none" stroke-miterlimit="10" d="M16 16h46v46H16z"
+    stroke-linejoin="round" stroke-linecap="round"></path>
+    <path data-name="layer2" fill="none" stroke-miterlimit="10"
+    d="M16 48H2V2h46v14" stroke-linejoin="round" stroke-linecap="round"></path>
+    <path data-name="layer1" fill="none" stroke-miterlimit="10"
+    d="M39 26v26m13-13H26" stroke-linejoin="round" stroke-linecap="round"></path>
   </symbol>  
-  <!--Check Bootstrap-->
-    <symbol id="Check" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
+  <!--Check-->
+    <symbol id="Check" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+      <path data-name="layer2"
+      fill="none" stroke-miterlimit="10" d="M16 30l12 14L62 2"
+      stroke-linejoin="round" stroke-linecap="round"></path>
   </symbol> 
-   <!--Filter Bootstrap-->
-    <symbol id="Filter" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16" aria-labelledby="title"
+   <!--Filter-->
+    <symbol id="Filter" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
           aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 012 1h12a.5.5 0 01.5.5v2a.5.5 0 01-.128.334L10 8.692V13.5a.5.5 0 01-.342.474l-3 1A.5.5 0 016 14.5V8.692L1.628 3.834A.5.5 0 011.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 017 8.5v5.306l2-.666V8.5a.5.5 0 01.128-.334L13.5 3.308V2h-11z" clip-rule="evenodd"/>
-  </symbol>    
+      <path d="m1.84252,6.15748l60,0l-24,26l0,20l-12,6l0,-26l-24,-26z" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+      <line stroke-linecap="round" stroke-linejoin="round" y2="58.842995" x2="61.370059" y1="39.000487" x1="41.685031" fill="none"/>
+      <line transform="rotate(90 51.52754592895508,48.92174148559571) " stroke-linecap="round" stroke-linejoin="undefined" y2="58.842997" x2="61.370059" y1="39.000489" x1="41.685031" fill="none"/>
+    </symbol>  
+   <!--Equipment-->
+     <symbol id="Equipment" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
+          aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
+       <rect data-name="layer2"
+       x="12" y="2" width="40" height="60" rx="3" ry="3" fill="none" 
+       stroke-linecap="round" stroke-linejoin="round"></rect>
+       <circle data-name="layer1" cx="32" cy="46" r="10" fill="none" 
+       stroke-linecap="round" stroke-linejoin="round" ></circle>
+       <path data-name="layer2" fill="none" stroke-linecap="round"
+       stroke-linejoin="round" d="M18 8h28v22H18z"></path>
+       <circle data-name="layer1" cx="32" cy="46" r="2" fill="none"
+       stroke-linecap="round" stroke-linejoin="round"></circle>    
+     </symbol>    
 </svg>

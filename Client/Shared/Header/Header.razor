@@ -3,24 +3,33 @@
 @inject LogBase Log
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<div class="header d-flex">
+<div class="header d-flex align-items-center">
     <NavLink class="navbar-brand active mx-5"
              href="/"
              Match="NavLinkMatch.All"
              ActiveClass="active"
              style="font-family: Amithen;
                     color: var(--S-middle);
-                    font-size: 2.5rem;">
+                    font-size: 2.5rem;
+                    width: 120px;">
         Lime
     </NavLink>
+    <form>
+        <select class="form-control choose-grid transparent" id="ChooseGrid">
+            <option>My Grid 1</option>
+            <option>My Grid 2</option>
+            <option>Test IEEE12</option>
+            <option>Add new grid</option>
+        </select>
+    </form>
     <div class="btn-group ml-5">
         <button type="button" class="icon" title="Загрузить">
-            <svg @onclick="@(() => {})" class="menu-icon">
+            <svg @onclick="@(() => {})" class="header-icon">
                 <use href="/img/Icon.svg#upload"></use>
             </svg>
         </button>
         <button type="button" class="icon" title="Сохранить" @onclick="DownloadFile">
-            <svg @onclick="@(() => {})" class="menu-icon">
+            <svg @onclick="@(() => {})" class="header-icon">
                 <use href="/img/Icon.svg#download"></use>
             </svg>
         </button>
@@ -28,7 +37,7 @@
                 class="icon"
                 title="Рассчитать все"
                 @onclick="Add">
-            <svg @onclick="@(() => {})" class="menu-icon">
+            <svg @onclick="@(() => {})" class="header-icon">
                 <use href="/img/Icon.svg#CalcAll"></use>
             </svg>
         </button>
@@ -37,7 +46,7 @@
                 title="Уведомления"
                 id="bell"
                 @onclick="LogOpenEvent">
-            <svg class="menu-icon">
+            <svg class="header-icon">
                 <use href="@LB.ImageChecker()"></use>
             </svg>
         </button>
@@ -46,7 +55,7 @@
         <button type="button"
                 class="icon"
                 title="Тест IEEE14">
-            <svg @onclick="@(() => {})" class="menu-icon">
+            <svg @onclick="@(() => {})" class="header-icon">
                 <use href="/img/Icon.svg#IEEE_14"></use>
             </svg>
         </button>
@@ -54,7 +63,7 @@
                 class="icon"
                 title="lang"
                 @onclick="ChangeLanguage">
-            <svg @onclick="@(() => {})" class="menu-icon">
+            <svg @onclick="@(() => {})" class="header-icon">
                 <use href="@(IsRus ? SourceRus : SourceUS )"></use>
             </svg>
         </button>
@@ -102,7 +111,7 @@
             Log.Collapse = false;
             return;
         }
-        if(grid.Buses.Count == 0)
+        if (grid.Buses.Count == 0)
         {
             Log.AddMessage(MessageCollection.Serialize_NodeError());
             Log.Collapse = false;
