@@ -4,42 +4,42 @@
 @using System.ComponentModel.DataAnnotations
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject HttpClient Http
-
-<div class="contact">
-    <h1>@Localizer.ContactHeader</h1>
+    <div class="d-flex flex-row justify-content-center align-items-center" style="flex:1">
+        <div class="row">
+        <div class="col">
+            <h1>@Localizer.ContactHeader</h1>
+            <p> У вас остались вопросы? Есть пожелания по работе сервиса? Напишите нам!</p>
+        </div>
+        <div class="col contact frame"
     <EditForm Model="@contact" OnValidSubmit="SendFeedback">
         <DataAnnotationsValidator />
         <div class="text-danger">
             <ValidationSummary />
             <text class="text-success">@notification</text>
         </div>
-        <div>
             <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
             <InputText class="form-control"
                        id="CustomerName"
                        @bind-placeholder="@contact.Localizer.Name"
                        @bind-Value="contact.Name" />
-        </div>
-        <div>
             <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
             <InputText class="form-control"
                        type="text"
                        id="CustomerEmail"
                        @bind-placeholder="@contact.Localizer.Email"
                        @bind-Value="contact.Email" />
-        </div>
-        <div>
             <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
-            <InputTextArea class="form-control big"
+            <InputTextArea class="form-control textarea-height"
                            type="text"
+                           style ="height:200px;"
                            id="CustomerMessage"
                            @bind-placeholder="@contact.Localizer.Message"
                            @bind-Value="contact.Message" />
-        </div>
-        <button type="submit" value="Submit" class="my_button long" style="float: right;">@contact.Localizer.Send</button>
+        <button type="submit" value="Submit" class="my_button primary float-right">@contact.Localizer.Send</button>
     </EditForm>
+            </div>
 </div>
-
+</div>
 @code {
     Contact contact = new Contact();
 
