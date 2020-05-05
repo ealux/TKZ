@@ -6,7 +6,8 @@
   "NameBut": "Name",
   "VoltageСlass": "Unom, [kV]",
   "kV": "kV",
-  //Конопки формы
+  "Equipment": "Equipment",
+  //Кнопки формы
   "Save": "Save",
   "Cancel": "Cancel",
   "New": "New",

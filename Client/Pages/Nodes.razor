@@ -69,6 +69,34 @@ else
                         }
                     </DisplayTemplate>
                 </DataGridNumericColumn>
+                @*Unom*@
+                <DataGridNumericColumn TItem="Bus"
+                                       Field="@nameof(Bus.Unom)"
+                                       Caption="@(@Localizer.VoltageСlass)"
+                                       Editable="true"
+                                       Sortable="true">
+                    <DisplayTemplate>
+                        @{
+                            var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
+                            @(unom + " " + Localizer.kV)
+                        }
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+
+                <DataGridNumericColumn TItem="Bus"
+                                       Editable="false"
+                                       Sortable="false"
+                                       Filterable="false">
+                    <DisplayTemplate>
+                        <Tooltip Text="@(@Localizer.Equipment)">
+                            <Button Class="transparent">
+                                <svg class="edit-icon" @onclick="@(() => {})">
+                                    <use href="/img/Icon.svg#Equipment"></use>
+                                </svg>
+                            </Button>
+                        </Tooltip>
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
 
                 @*Commands*@
                 <DataGridCommandColumn TItem="Bus" Width="130px">
@@ -128,28 +156,29 @@ else
             </DataGridColumns>
 
             @* Details *@
-            <DetailRowTemplate>
-                @{
-                    var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
+        <DetailRowTemplate>
+            @{
+                var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
 
-                    if (equips != null)
-                    {
-                        <DataGrid TItem="Equip"
-                                  Data="equips"
-                                  Sortable="false"
-                                  ShowCaptions="false"
-                                  Narrow="true"
-                                  HeaderRowClass="small"
-                                  Class="my_table text-center">
-                            <DataGridColumn TItem="Equip"
-                                            Field="@nameof(Equip.Name)"
-                                            Caption="@(@Localizer.NameBut)"
-                                            Editable="false"
-                                            Sortable="true" />
-                        </DataGrid>
-                    }
+                if (equips != null)
+                {
+                    <DataGrid TItem="Equip"
+                              Data="equips"
+                              Sortable="false"
+                              ShowCaptions="false"
+                              Narrow="true"
+                              Striped="false"
+                              HeaderRowClass="small"
+                              Class="equipment">
+                        <DataGridColumn TItem="Equip"
+                                        Field="@nameof(Equip.Name)"
+                                        Caption="@(@Localizer.NameBut)"
+                                        Editable="false"
+                                        Sortable="true" />
+                    </DataGrid>
                 }
-            </DetailRowTemplate>
+                }
+        </DetailRowTemplate>
         </DataGrid>
     </div>
 

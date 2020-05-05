@@ -19,6 +19,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Edit"</summary>
         public string Edit;
 
+        /// <summary>"Equipment"</summary>
+        public string Equipment;
+
         /// <summary>"Clear filter"</summary>
         public string Filter;
 

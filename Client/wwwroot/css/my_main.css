@@ -461,6 +461,9 @@ input[type="radio"][class="radio__input"]:checked + label {
 .edit-icon:hover {
     stroke: var(--P-dark);
 }
+.edit-icon:disabled {
+    stroke: #C8C8C8;
+}
 .header-icon {
     height: 1.75rem;
     width: 1.75rem;
@@ -513,6 +516,20 @@ input[type="radio"][class="radio__input"]:checked + label {
 .my_table tbody tr:hover {
     background-color: var(--S-light);
 }
+.equipment {
+    width: 15%;
+    border:1px solid var(--P-dark);
+    float: right;
+}
+.equipment tbody tr {
+    background-color: white !important;
+}
+.equipment td {
+    border-bottom: 1px solid var(--P-dark);
+}
+.equipment tbody tr:hover {
+    background-color: var(--S-light);
+}
 
 /*customize css from blazorize*/
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -552,9 +569,9 @@ input[type="radio"][class="radio__input"]:checked + label {
 }
 
 
-    .bg-primary { /*bootstrap class for selected row in table*/
-        border: 2px solid var(--P-dark) !important;
-     }
+.bg-primary { /*bootstrap class for selected row in table*/
+    border: 2px solid var(--P-dark) !important;
+}
 @font-face {
     font-family: "Amithen";
     src: url("../fonts/Amithen.ttf") format("truetype");
