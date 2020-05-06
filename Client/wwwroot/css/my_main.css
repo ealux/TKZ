@@ -22,12 +22,11 @@ select { /*delete ouline from blazorize table filter*/
 /*COMPONENTS*/
 .main_container {
     background-color: white;
-    box-shadow: var(--small_shadow);
-    height: 100vh;
-    margin: auto;
-    min-width: 100vw;
     padding: 0;
     overflow: auto;
+    flex: 1;
+    height: 100vh;
+    max-height: 100vh;   
 }
 
 .header {
@@ -37,18 +36,14 @@ select { /*delete ouline from blazorize table filter*/
 
 .my_sidebar {
     background: var(--P-middle);
-    max-width: 20vw;
-    min-width: 10vw;
     padding-right: 8px;
     padding-left: 8px;
-    text-align: center;
     padding-top: var(--st_margin);
     padding-bottom: var(--st_margin);
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
     z-index: 10;
 }
 .main-area {
-    flex: 1;
     overflow: auto;
     padding: var(--st_margin);
 }
@@ -227,6 +222,13 @@ h5 {
     text-align: left;
     font-size: 0.8em;
     border: 2px solid transparent;
+}
+.nav-link {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0.5rem 0.5rem;
+    align-items: center;
+
 }
 
 .nav-pills .nav-link.active,
