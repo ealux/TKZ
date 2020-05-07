@@ -574,6 +574,39 @@ input[type="radio"][class="radio__input"]:checked + label {
 .bg-primary { /*bootstrap class for selected row in table*/
     border: 2px solid var(--P-dark) !important;
 }
+/*blazorize tooltip customization*/
+[data-tooltip]:not(.is-loading)::before,
+[data-tooltip]:not(.is-disabled)::before,
+[data-tooltip]:not([disabled])::before {
+    background: var(--P-middle);
+}
+[data-tooltip]:not(.is-loading)::before,
+[data-tooltip]:not(.is-loading)::after,
+[data-tooltip]:not(.is-disabled)::before,
+[data-tooltip]:not(.is-disabled)::after,
+[data-tooltip]:not([disabled])::before,
+[data-tooltip]:not([disabled])::after {
+    color: black;
+}
+
+[data-tooltip]:not(.is-loading)::after,
+[data-tooltip]:not(.is-disabled)::after,
+[data-tooltip]:not([disabled])::after {
+    border-color: var(--P-middle) transparent transparent transparent;
+}
+[data-tooltip]:not(.is-loading).b-tooltip-bottom::after,
+[data-tooltip]:not(.is-disabled).b-tooltip-bottom::after,
+[data-tooltip]:not([disabled]).b-tooltip-bottom::after {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: -5px;
+    margin-left: -5px;
+    border-color: transparent transparent  var(--P-middle) transparent;
+}
 @font-face {
     font-family: "Amithen";
     src: url("../fonts/Amithen.ttf") format("truetype");

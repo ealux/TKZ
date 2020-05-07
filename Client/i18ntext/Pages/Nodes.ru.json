@@ -10,10 +10,11 @@
   //Конопки формы
   "Save": "Сохранить",
   "Cancel": "Отмена",
+  "Delete" : "Удалить",
   "New": "Добавить",
   "Filter": "Сброс фильтра",
-  "Edit": "Ред.",
-  "Duplicate": "Д",
+  "Edit": "Редактировать",
+  "Duplicate": "Дублировать",
   //filter
   "ActiveFilter": "Включено",
   "NotActiveFilter": "Отключено"

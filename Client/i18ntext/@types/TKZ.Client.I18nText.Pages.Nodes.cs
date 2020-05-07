@@ -13,7 +13,10 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Cancel"</summary>
         public string Cancel;
 
-        /// <summary>"D"</summary>
+        /// <summary>"Delete"</summary>
+        public string Delete;
+
+        /// <summary>"Duplicate"</summary>
         public string Duplicate;
 
         /// <summary>"Edit"</summary>

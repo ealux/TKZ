@@ -10,10 +10,11 @@
   //Кнопки формы
   "Save": "Save",
   "Cancel": "Cancel",
+  "Delete" : "Delete",
   "New": "New",
   "Filter": "Clear filter",
   "Edit": "Edit",
-  "Duplicate": "D",
+  "Duplicate": "Duplicate",
   //filter
   "ActiveFilter": "Active",
   "NotActiveFilter": "Disabled"

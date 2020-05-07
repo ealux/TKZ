@@ -3,7 +3,7 @@
 @inject LogBase Log
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<div class="header d-flex align-items-center">
+<header class="header d-flex align-items-center">
     <NavLink class="navbar-brand active mx-5"
              href="/"
              Match="NavLinkMatch.All"
@@ -23,52 +23,60 @@
         </select>
     </form>
     <div class="btn-group ml-5">
-        <button type="button" class="icon" title="Загрузить">
-            <svg @onclick="@(() => {})" class="header-icon">
-                <use href="/img/Icon.svg#upload"></use>
-            </svg>
-        </button>
-        <button type="button" class="icon" title="Сохранить" @onclick="DownloadFile">
-            <svg @onclick="@(() => {})" class="header-icon">
-                <use href="/img/Icon.svg#download"></use>
-            </svg>
-        </button>
-        <button type="button"
-                class="icon"
-                title="Рассчитать все"
-                @onclick="Add">
-            <svg @onclick="@(() => {})" class="header-icon">
-                <use href="/img/Icon.svg#CalcAll"></use>
-            </svg>
-        </button>
-        <button type="button"
-                class="icon"
-                title="Уведомления"
-                id="bell"
-                @onclick="LogOpenEvent">
-            <svg class="header-icon">
-                <use href="@LB.ImageChecker()"></use>
-            </svg>
-        </button>
+        <Tooltip Text="Upload" Placement="Placement.Bottom">
+            <button type="button" class="icon">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#upload"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="Download" Placement="Placement.Bottom">
+            <button type="button" class="icon" @onclick="DownloadFile">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#download"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="Calculate All" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    @onclick="Add">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#CalcAll"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="Log" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    id="bell"
+                    @onclick="LogOpenEvent">
+                <svg class="header-icon">
+                    <use href="@LB.ImageChecker()"></use>
+                </svg>
+            </button>
+        </Tooltip>
     </div>
-    <div class="ml-auto">
-        <button type="button"
-                class="icon"
-                title="Тест IEEE14">
-            <svg @onclick="@(() => {})" class="header-icon">
-                <use href="/img/Icon.svg#IEEE_14"></use>
-            </svg>
-        </button>
-        <button type="button"
-                class="icon"
-                title="lang"
-                @onclick="ChangeLanguage">
-            <svg @onclick="@(() => {})" class="header-icon">
-                <use href="@(IsRus ? SourceRus : SourceUS )"></use>
-            </svg>
-        </button>
+    <div class="btn-group ml-auto">
+        <Tooltip Text="Test IEEE 14" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#IEEE_14"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="Language" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    @onclick="ChangeLanguage">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="@(IsRus ? SourceRus : SourceUS )"></use>
+                </svg>
+            </button>
+        </Tooltip>
     </div>
-</div>
+</header>
 
 @code {
     [Inject] Grid grid { get; set; } = Grid.GetInstance();
