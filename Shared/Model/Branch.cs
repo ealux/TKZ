@@ -20,6 +20,7 @@ namespace TKZ.Shared.Model
         public double Fi_trans { get; set; }
         /// <summary>
         /// Branch ground conductivity.
+        /// - indeuctive; + capacity
         /// </summary>
         /// <value></value>
         public double B { get; set; }
@@ -50,7 +51,7 @@ namespace TKZ.Shared.Model
         public Branch(int startBusId, int finalBusId, string NameBranch,
                       double R1, double X1, double R0, double X0,
                       double StUnom, double FinUnom, double Fi_trans,
-                      bool GroundStBus, bool GroundFinBus)
+                      bool GroundStBus, bool GroundFinBus, double B = 0, double G =0)
         {
             this.m_id = Branch.CurId;
             this.StartBusId = startBusId;
@@ -78,6 +79,8 @@ namespace TKZ.Shared.Model
             {
                 this.Name = NameBranch;
             }
+            this.B = B;
+            this.G = G;
         }
     }
 }

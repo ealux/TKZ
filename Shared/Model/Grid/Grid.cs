@@ -8,8 +8,8 @@ namespace TKZ.Shared
     public partial class Grid
     {
         private static Grid CurrentGrid { get; set; } //Singleton needed
-
-        //private Bus BusGround = new Bus(0, "Земля", true);
+        
+        public string Name { get; set; }
         public double ArcR { get; set; }
         public double ArcX { get; set; }
 
@@ -23,7 +23,10 @@ namespace TKZ.Shared
         /// Index - A BusID in which a short circuit.
         /// </summary>
         /// <value></value>
-        public Dictionary<int, ResultCalc> ResCalc { get; set; }
+        public Dictionary<int, ResultCalc> ResCalc_K1 { get; set; }
+        public Dictionary<int, ResultCalc> ResCalc_K11 { get; set; }
+        public Dictionary<int, ResultCalc> ResCalc_K2 { get; set; }
+        public Dictionary<int, ResultCalc> ResCalc_K3 { get; set; }
 
         //ctor
         public Grid()
@@ -32,9 +35,6 @@ namespace TKZ.Shared
             this.Branches = new Dictionary<int, Branch>();
             this.Mutuals = new Dictionary<int, Mutual>();
             this.Equipment = new Dictionary<int, Equip>();
-            
-            //Must have            
-            //this.Buses.Add(BusGround.Id, BusGround);
 
             //Test case. Erase on Realese.
             createTestGrid();

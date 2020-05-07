@@ -5,6 +5,8 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
 @inject Grid grid
+@using TKZ.Client.Pages.Components
+
 
 @if (branches == null)
 {
@@ -241,55 +243,23 @@ else
                 @*Commands*@
                 <DataGridCommandColumn TItem="Branch" Width="130px">
                     <NewCommandTemplate>
-                        <Button Active="true"
-                                Class="round"
-                                Clicked="@context.Clicked">
-                            <svg @onclick="@(() => {})" class="menu-icon">
-                                <use href="/img/Icon.svg#Add"></use>
-                            </svg>
-                        </Button>
+                        <Button_Add OnClickCallback = "@context.Clicked" />
                     </NewCommandTemplate>
                     <EditCommandTemplate>
-                        <Button Class="transparent"
-                                Clicked="@context.Clicked">
-                            <svg class="edit-icon" @onclick="@(() => {})">
-                                <use href="/img/Icon.svg#Edit"></use>
-                            </svg>
-                        </Button>
-                        <button class="transparent"
-                                @onclick=@(() => DuplicateItem(context.Item))>
-                            <svg class="edit-icon" @onclick="@(() => {})">
-                                <use href="/img/Icon.svg#Copy"></use>
-                            </svg>
-                        </button>
+                        <Button_Edit OnClickCallback = "@context.Clicked"/>
+                        <Button_Duplicate OnClickCallback = "@(() => DuplicateItem(context.Item))" />
                     </EditCommandTemplate>
                     <DeleteCommandTemplate>
-                        <Button Class="transparent" Clicked="@context.Clicked">
-                            <svg @onclick="@(() => {})" class="edit-icon">
-                                <use href="/img/Icon.svg#Delete"></use>
-                            </svg>
-                        </Button>
+                        <Button_Delete OnClickCallback = "@context.Clicked"/>
                     </DeleteCommandTemplate>
                     <SaveCommandTemplate>
-                        <Button Class="transparent" Clicked="@context.Clicked">
-                            <svg @onclick="@(() => {})" class="edit-icon">
-                                <use href="/img/Icon.svg#Check"></use>
-                            </svg>
-                        </Button>
+                        <Button_Save OnClickCallback = "@context.Clicked"/>
                     </SaveCommandTemplate>
                     <CancelCommandTemplate>
-                        <Button Class="transparent" Clicked="@context.Clicked">
-                            <svg @onclick="@(() => {})" class="edit-icon">
-                                <use href="/img/Icon.svg#Delete"></use>
-                            </svg>
-                        </Button>
+                        <Button_Cancel OnClickCallback = "@context.Clicked"/>
                     </CancelCommandTemplate>
                     <ClearFilterCommandTemplate>
-                        <Button Class="transparent" Clicked="@context.Clicked">
-                            <svg @onclick="@(() => {})" class="edit-icon">
-                                <use href="/img/Icon.svg#Filter"></use>
-                            </svg>
-                        </Button>
+                        <Button_Filter OnClickCallback = "@context.Clicked"/>
                     </ClearFilterCommandTemplate>
                 </DataGridCommandColumn>
             </DataGridColumns>

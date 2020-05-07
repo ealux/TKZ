@@ -66,7 +66,6 @@ namespace TKZ.Test
             grid.Branches.Add(br2.Id, br2);                        
 
             return grid;
-            return grid;
         }
 
         /// <summary>

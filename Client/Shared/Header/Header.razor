@@ -61,6 +61,7 @@
         <Tooltip Text="Test IEEE 14" Placement="Placement.Bottom">
             <button type="button"
                     class="icon"
+                     @onclick="LoadIEEE14">
                 <svg @onclick="@(() => {})" class="header-icon">
                     <use href="/img/Icon.svg#IEEE_14"></use>
                 </svg>
@@ -96,7 +97,7 @@
 
     public const string SourceRus = "/img/Icon.svg#russia";
     public const string SourceUS = "/img/Icon.svg#USA";
-
+    private const string SourceIEEE14 = "/Test Grid/IEEE 14/Test.json";
     public bool IsRus { get; set; } = true;
 
     public async Task ChangeLanguage()
@@ -106,13 +107,23 @@
         else await I18nText.SetCurrentLanguageAsync("en");
     }
 
+    public async void LoadIEEE14()
+    {
+        //TODO: Сделать загрузку файла с тестовой схемой. По какой-то причине не могу получить доступ к файлу
+        //grid = await Grid.Deserialize(SourceIEEE14);        
+        Log.AddMessage(MessageCollection.Serialize_Success("Загружена схема IEEE 14"));
+
+        StateHasChanged();
+    }
     public async void DownloadFile()
     {
-        StateHasChanged();
+         StateHasChanged();
 
         //Отчистка лога
         if (Log.Messages.Any((m) => m.Class == MessageClass.Serialization)) await Log.RemoveMessage(byClass: MessageClass.Serialization);
-
+        //Если я буду набирать большую таблицу, то мне может потребоваться сохраняться по частям
+        //Предлагаю убрать эти проверки
+        /*
         if (grid.Branches.Count == 0)
         {
             Log.AddMessage(MessageCollection.Serialize_BranchError());
@@ -125,9 +136,9 @@
             Log.Collapse = false;
             return;
         }
-
+        */
         var now = DateTime.Now.ToLocalTime().ToString();
-        var name = "Network_" + now + ".json";
+        string name = grid.Name + "_" + now + ".json";        
 
         string content = await grid.Serialize();
 

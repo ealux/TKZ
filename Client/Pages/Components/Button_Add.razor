@@ -1,0 +1,16 @@
+@using Microsoft.AspNetCore.Components.Web
+ 
+<div>
+    <Button Active="true"
+        Class="round"
+        Clicked="@OnClickCallback">
+        <svg @onclick="@(() => {})" class="menu-icon">
+            <use href="/img/Icon.svg#Add"></use>
+        </svg>
+    </Button>
+</div>
+ 
+@code {
+    [Parameter]
+    public EventCallback OnClickCallback { get; set; }
+}

@@ -1,15 +1,28 @@
 using TKZ.Shared.Model;
+using System.IO;
+using Newtonsoft.Json;
+
 
 namespace TKZ.Shared
 {
     public partial class Grid
     {
+        private static Grid loadIEEE14()
+        {
+            StreamReader r = new StreamReader(@"Shared\Test Grid\IEEE 14\IEEE 14-bus modified test system.json");
+            string json = r.ReadToEnd();
+            Grid g =  JsonConvert.DeserializeObject<Grid>(json);            
+            return g;            
+        }
+
         /// <summary>
         /// Test grid with out ground.
         /// Consist random parametrs.
         /// </summary>
         private void createTestGrid()
         {
+            this.Name = "Test Grid";
+
             Bus b1 = new Bus(100, "1");
             Bus b2 = new Bus(100, "2");
             Bus b3 = new Bus(100, "3");
@@ -64,10 +77,10 @@ namespace TKZ.Shared
             this.Mutuals.Add(m1.Id, m1);
             this.Mutuals.Add(m2.Id, m2);
 
-            Equip e1 = new Equip(b1.Id, 1, 1, "Генератор 1-1", 1, 30);
-            Equip e2 = new Equip(b1.Id, 1, 1, "Генератор 1-2", 1, 30);
-            Equip e3 = new Equip(b2.Id, 1, 1, "Генератор 2-1", 1, 30);
-            Equip e4 = new Equip(b2.Id, 1, 1, "Генератор 2-2", 1, 30);
+            Equip e1 = new Equip(b1.Id, 1, 1, "Р“РµРЅРµСЂР°С‚РѕСЂ 1-1", 1, 30);
+            Equip e2 = new Equip(b1.Id, 1, 1, "РќР°РіСЂСѓР·РєР° 1-2", 1, 30);
+            Equip e3 = new Equip(b2.Id, 1, 1, "РќРµ РїРѕР№РјРё С‡С‚Рѕ 2-1", 1, 30);
+            Equip e4 = new Equip(b2.Id, 1, 1, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-2", 1, 30);
 
             this.Equipment.Add(e1.Id, e1);
             this.Equipment.Add(e2.Id, e2);

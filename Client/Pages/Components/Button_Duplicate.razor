@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Components.Web
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<Tooltip Text="@(@Localizer.Duplicate)">
+    <Button Class="transparent"
+            Clicked="@OnClickCallback">
+        <svg class="edit-icon" @onclick="@(() => {})">
+            <use href="/img/Icon.svg#Copy"></use>
+        </svg>
+    </Button>
+</Tooltip>
+ 
+@code {
+    [Parameter]
+    public EventCallback OnClickCallback { get; set; }
+    
+    //Localizator
+    I18nText.Pages.Nodes Localizer = new I18nText.Pages.Nodes();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);        
+    }
+}

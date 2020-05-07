@@ -37,23 +37,6 @@ namespace TKZ.Test
         }
 
         [TestMethod]
-        public void TestMethod_CheckContainsMissingBusId_false()
-        {
-            Grid grid = TestGrid.smalTestGrid();
-            bool res = grid.CheckContainsMissingBusId();
-            bool Expected = false;
-            Assert.AreEqual(Expected, res);
-        }
-
-        [TestMethod]
-        public void TestMethod_CheckContainsMissingBusId_true()
-        {
-            Grid grid = TestGrid.smalTestGrid3();
-            bool res = grid.CheckContainsMissingBusId();
-            bool Expected = true;
-            Assert.AreEqual(Expected, res);
-        }
-        [TestMethod]
         public void TestMethod_FindBranchTransformerGround_FindSucess()
         {
             Grid grid = TestGrid.smalTestGrid4();
