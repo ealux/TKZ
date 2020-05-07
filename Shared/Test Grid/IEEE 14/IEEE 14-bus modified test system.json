@@ -1,0 +1,78 @@
+{
+    "ArcR":0.0,
+    "ArcX":0.0,
+    "Buses":
+        {
+            "1":{"Unom":220.0,"IsActive":true,"Name":"1","Id":1},
+            "2":{"Unom":220.0,"IsActive":true,"Name":"2","Id":2},     
+            "3":{"Unom":220.0,"IsActive":true,"Name":"3","Id":3},
+            "4":{"Unom":220.0,"IsActive":true,"Name":"4","Id":4},
+            "5":{"Unom":220.0,"IsActive":true,"Name":"5","Id":5},
+            "6":{"Unom":132.0,"IsActive":true,"Name":"6","Id":6},         
+            "7":{"Unom":132.0,"IsActive":true,"Name":"7","Id":7},                    
+            "8":{"Unom":132.0,"IsActive":true,"Name":"8","Id":8},
+            "9":{"Unom":132.0,"IsActive":true,"Name":"9","Id":9},
+            "10":{"Unom":132.0,"IsActive":true,"Name":"10","Id":10},                                             
+            "33":{"Unom":132.0,"IsActive":true,"Name":"11","Id":33},
+            "34":{"Unom":132.0,"IsActive":true,"Name":"12","Id":34},
+            "35":{"Unom":132.0,"IsActive":true,"Name":"13","Id":35},
+            "36":{"Unom":132.0,"IsActive":true,"Name":"14","Id":36},
+            "37":{"Unom":22.0,"IsActive":true,"Name":"15","Id":37},
+            "38":{"Unom":13.8,"IsActive":true,"Name":"16","Id":38},
+            "39":{"Unom":13.8,"IsActive":true,"Name":"17","Id":39},
+            "40":{"Unom":13.8,"IsActive":true,"Name":"18","Id":40},
+            "41":{"Unom":13.8,"IsActive":true,"Name":"19","Id":41}
+        },
+        "Equipment":
+            {
+                "4":{"BusId":40,"R":0.0,"X":0.0,"E":0.0,"Fi_E":-10.5,"IsActive":true,"Name":"Генератор 18","Id":4},
+                "3":{"BusId":39,"R":0.0,"X":0.0,"E":0.0,"Fi_E":-7.38,"IsActive":true,"Name":"Генератор 17","Id":3},
+                "2":{"BusId":38,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Генератор 16","Id":2},
+                "1":{"BusId":37,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Генератор Система","Id":1},
+                "5":{"BusId":41,"R":0.0,"X":0.0,"E":0.0,"Fi_E":-13.16,"IsActive":true,"Name":"Генератор 19","Id":5},
+                "6":{"BusId":10,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"БСК","Id":6},
+                "7":{"BusId":2,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":7},
+                "8":{"BusId":3,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":8},
+                "9":{"BusId":4,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":9},
+                "10":{"BusId":5,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":10},
+                "11":{"BusId":6,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":11},
+                "12":{"BusId":9,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":12},
+                "13":{"BusId":10,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":13},
+                "14":{"BusId":33,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":14},
+                "15":{"BusId":34,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":15},
+                "16":{"BusId":35,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":16},
+                "17":{"BusId":36,"R":0.0,"X":0.0,"E":0.0,"Fi_E":0.0,"IsActive":true,"Name":"Нагрузка","Id":17}
+            },
+            "Branches":
+                {
+                    "36":{"NumPar":0,"StartBusId":6,"FinalBusId":33,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"6-11","Id":36},
+                    "35":{"NumPar":0,"StartBusId":6,"FinalBusId":34,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"6-12","Id":35},
+                    "34":{"NumPar":0,"StartBusId":5,"FinalBusId":6,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":220.0,"FinUnom":132.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":1.6666666666666667,"IsActive":true,"Name":"5-6","Id":34},
+                    "33":{"NumPar":0,"StartBusId":4,"FinalBusId":5,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"4-5","Id":33},
+                    "31":{"NumPar":0,"StartBusId":4,"FinalBusId":7,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":220.0,"FinUnom":132.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":1.6666666666666667,"IsActive":true,"Name":"4-7","Id":31},
+                    "32":{"NumPar":0,"StartBusId":4,"FinalBusId":9,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":220.0,"FinUnom":132.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":1.6666666666666667,"IsActive":true,"Name":"4-9","Id":32},
+                    "30":{"NumPar":0,"StartBusId":3,"FinalBusId":4,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"3-4","Id":30},
+                    "29":{"NumPar":0,"StartBusId":2,"FinalBusId":4,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"2-4","Id":29},
+                    "28":{"NumPar":0,"StartBusId":2,"FinalBusId":5,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"2-5","Id":28},
+                    "27":{"NumPar":0,"StartBusId":2,"FinalBusId":3,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"2-3","Id":27},
+                    "26":{"NumPar":0,"StartBusId":1,"FinalBusId":5,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"1-5","Id":26},
+                    "25":{"NumPar":0,"StartBusId":1,"FinalBusId":2,"R1":9.37992,"X1":28.63828,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"1-2","Id":25},
+                    "37":{"NumPar":0,"StartBusId":6,"FinalBusId":35,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"6-13","Id":37},
+                    "38":{"NumPar":0,"StartBusId":7,"FinalBusId":9,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"7-9","Id":38},
+                    "39":{"NumPar":0,"StartBusId":7,"FinalBusId":8,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"7-8","Id":39},
+                    "40":{"NumPar":0,"StartBusId":8,"FinalBusId":40,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":132.0,"FinUnom":13.8,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":9.5652173913043477,"IsActive":true,"Name":"8-18","Id":40},
+                    "41":{"NumPar":0,"StartBusId":9,"FinalBusId":36,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"9-14","Id":41},
+                    "42":{"NumPar":0,"StartBusId":9,"FinalBusId":10,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"9-10","Id":42},
+                    "43":{"NumPar":0,"StartBusId":10,"FinalBusId":33,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"10-11","Id":43},
+                    "44":{"NumPar":0,"StartBusId":34,"FinalBusId":35,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"12-13","Id":44},
+                    "45":{"NumPar":0,"StartBusId":35,"FinalBusId":36,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":0.0,"FinUnom":0.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.0,"IsActive":true,"Name":"13-14","Id":45},
+                    "46":{"NumPar":0,"StartBusId":1,"FinalBusId":37,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":22.0,"FinUnom":220.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.1,"IsActive":true,"Name":"15-1","Id":46},
+                    "47":{"NumPar":0,"StartBusId":2,"FinalBusId":38,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":13.8,"FinUnom":220.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.062727272727272729,"IsActive":true,"Name":"16-2","Id":47},
+                    "48":{"NumPar":0,"StartBusId":3,"FinalBusId":39,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":13.8,"FinUnom":220.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.062727272727272729,"IsActive":true,"Name":"17-3","Id":48},
+                    "49":{"NumPar":0,"StartBusId":6,"FinalBusId":41,"R1":0.0,"X1":0.0,"R0":0.0,"X0":0.0,"StUnom":13.8,"FinUnom":132.0,"GroundStBus":false,"GroundFinBus":false,"Fi_trans":0.0,"B":0.0,"G":0.0,"Ratio":0.10454545454545455,"IsActive":true,"Name":"19-6","Id":49}},
+                "Mutuals":
+                {
+                    
+                },
+                "ResCalc":null
+}
