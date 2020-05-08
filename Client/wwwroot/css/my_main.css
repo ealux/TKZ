@@ -42,10 +42,13 @@ select { /*delete ouline from blazorize table filter*/
     padding-bottom: var(--st_margin);
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
     z-index: 10;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
 }
 .main-area {
     overflow: auto;
-    padding: var(--st_margin);
 }
 
 .footer {
@@ -94,6 +97,7 @@ select { /*delete ouline from blazorize table filter*/
     box-shadow: 0px 0px 0.5rem rgba(0, 0, 0, 0.25);
     padding: 1rem;
     margin: 0.5rem;
+    overflow: auto;
 }
 /*HEADING*/
 h1 {
@@ -253,13 +257,12 @@ h5 {
 /*LOG*/
 
 .log {
-    width: auto;
-    max-width: 25vw;
-    background-color: var(--P-middle);
+    width: 224px;
+   /* background-color: var(--P-middle);*/
     color: black;
     overflow: auto;
-    height: 100%;
-    min-height: 100%;
+    display: flex;
+    flex-direction: column;    
 }
 
 .pre_log {
@@ -271,16 +274,17 @@ h5 {
 }
 
 .log-content {
-    display: block;
-    margin-left: 5px;
-    margin-right: 5px;
+    overflow: auto;
 }
 
 /*log messages styles*/
 .message {
-    border-radius: var(--br_radius);
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: white;
+    font-size: 1rem;
+    width: 100%;
 }
 
 .message:hover {
@@ -288,15 +292,15 @@ h5 {
 }
 
 .message_stop {
-    background-color: var(--red_color);
+    border-left: 1px solid var(--red_color) ;
 }
 
 .message_att {
-    background-color: var(--yellow_color);
+    border-left: 1px solid var(--yellow_color) ;
 }
 
 .message_ok {
-    background-color: var(--green_color);
+    border-left: 1px solid var(--S-middle) ;
 }
 
 
@@ -344,7 +348,7 @@ h5 {
 }
 
 .form-control:focus, .form-control:active,   {
-    border-color: var(--P-dark);
+    border: 1px solid var(--P-dark);
     outline: none !important;
     box-shadow: none !important;
 }
@@ -492,7 +496,7 @@ input[type="radio"][class="radio__input"]:checked + label {
     stroke-width: 1px;
 }
 /*Blazorize table customization*/
-.my_table {
+/*.my_table {
     border-collapse: collapse !important;
 }
 .my_table td {
@@ -517,6 +521,40 @@ input[type="radio"][class="radio__input"]:checked + label {
 
 .my_table tbody tr:hover {
     background-color: var(--S-light);
+}*/
+.my_table {
+    border-collapse: collapse !important;
+}
+.my_table td {
+    border-bottom: 1px solid rgb(240, 240, 240);
+    border-top: 0px;
+    padding: 0.5rem;
+    background-color: white;
+}
+
+.my_table thead > tr:last-child > th {
+    border-bottom: 1px solid var(--P-dark);
+    background-color: var(--P-light);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.my_table thead > tr:first-child > th {
+    vertical-align: middle;
+    border-bottom: 1px solid var(--P-light);
+    background-color: var(--P-light);
+    border-top: 0px;
+    height: 4rem;
+    padding-bottom: 0;
+}
+.my_table thead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.my_table tbody tr:hover {
+    background-color: var(--P-light);
 }
 .equipment {
     width: 15%;
@@ -524,13 +562,14 @@ input[type="radio"][class="radio__input"]:checked + label {
     float: right;
 }
 .equipment tbody tr {
-    background-color: white !important;
+    background-color: var(--P-light) !important;
 }
 .equipment td {
-    border-bottom: 1px solid var(--P-dark);
+    border-bottom: 1px solid var(--P-middle);
+    background-color: var(--P-light) !important;
 }
 .equipment tbody tr:hover {
-    background-color: var(--S-light);
+    background-color: var(--P-middle);
 }
 
 /*customize css from blazorize*/

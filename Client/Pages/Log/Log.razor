@@ -5,14 +5,17 @@
 @*<div class="pre_log d-inline-block flex-column">
         R
     </div>*@
-<div class="log w3-animate-right w3-animate-fading @(LB.Collapse ? "collapse":"")" @onchange="LogChangeEvent">
-    <div class="log-content" @onchange="LogChangeEvent">
-        <div class="p-1" style="text-align:center;">
-            <button class="container-fluid btn btn-sm w-auto justify-content-center"
-                    @onclick="RemoveMessageQueue">
-                <b>@Localizer.Clear</b>
-            </button>
-        </div>
+<div class="log frame w3-animate-right w3-animate-fading flex-fill  @(LB.Collapse ? "collapse":"")" @onchange="LogChangeEvent">
+    <div class="d-flex flex-row flex-nowrap align-items-center" style="border-bottom: 1px solid var(--P-dark)">
+        <div class="font-weight-bold flex-fill">Журнал событий</div>
+        <Button Class="transparent">
+            <svg class="edit-icon" @onclick="@(() => {})">
+                <use href="/img/Icon.svg#Delete"></use>
+            </svg>
+        </Button>
+    </div>
+    <div class="log-content flex-fill" @onchange="LogChangeEvent">
+
         @foreach (var mes in LB.Messages)
         {
             <TKZ.Client.Pages.Log.Message Class="@mes.Class"
@@ -21,7 +24,12 @@
                                           Text="@mes.Text"
                                           Link="@mes.Link" />
         }
+
     </div>
+    <button class="my_button primary"
+            @onclick="RemoveMessageQueue">
+        <b>@Localizer.Clear</b>
+    </button>
 </div>
 
 @code {

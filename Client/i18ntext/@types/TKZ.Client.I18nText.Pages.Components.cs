@@ -25,7 +25,7 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"View equipment"</summary>
         public string Equipment;
 
-        /// <summary>"Clear filter (Alt + F)"</summary>
+        /// <summary>"Clear filter (Alt + X)"</summary>
         public string Filter_clear;
 
         /// <summary>"Save row (Shift + Enter)"</summary>

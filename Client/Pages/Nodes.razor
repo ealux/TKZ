@@ -21,6 +21,7 @@ else
                   Editable="true"
                   Sortable="true"
                   Filterable="true"
+                  Striped="false"
                   RowInserted="@OnRowInserted"
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
@@ -78,7 +79,7 @@ else
                             Sortable="false"
                             Filterable="false">
                 <DisplayTemplate>
-                    <Button_Equipment />
+                    <Button_Equipment/>
                 </DisplayTemplate>
             </DataGridColumn>
 
@@ -107,26 +108,29 @@ else
         </DataGridColumns>
 
             @* Details *@
-            <DetailRowTemplate>
-                @{
-                    var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
+        <DetailRowTemplate>
+            @{
+                var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
 
-                    if (equips != null)
-                    {
-                        <DataGrid TItem="Equip"
-                                  Data="equips"
-                                  Sortable="false"
-                                  ShowCaptions="false"
-                                  Narrow="true"
-                                  Striped="false"
-                                  HeaderRowClass="small"
-                                  Class="equipment">
-                            <DataGridColumn TItem="Equip"
-                                            Field="@nameof(Equip.Name)"
-                                            Caption="@(@Localizer.NameBut)"
-                                            Editable="false"
-                                            Sortable="true" />
-                        </DataGrid>
+                if (equips != null)
+                {
+                                    <DataGrid TItem="Equip"
+                                              Data="equips"
+                                              Sortable="false"
+                                              ShowCaptions="false"
+                                              Narrow="true"
+                                              Striped="false"
+                                              HeaderRowClass="small"
+                                              Class="equipment">
+
+                                        <DataGridColumn TItem="Equip"
+                                                        Field="@nameof(Equip.Name)"
+                                                        Caption="@(@Localizer.NameBut)"
+                                                        Editable="false"
+                                                        Sortable="true" />
+                                    </DataGrid>
+
+
                     }
                 }
             </DetailRowTemplate>
