@@ -7,10 +7,10 @@ namespace TKZ.Client.I18nText.Pages
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
-        /// <summary>"Add element"</summary>
+        /// <summary>"Add element (Alt + N)"</summary>
         public string Add;
 
-        /// <summary>"Cancel"</summary>
+        /// <summary>"Cancel (Ecs)"</summary>
         public string Cancel;
 
         /// <summary>"Delete row"</summary>
@@ -25,10 +25,10 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"View equipment"</summary>
         public string Equipment;
 
-        /// <summary>"Clear filter"</summary>
+        /// <summary>"Clear filter (Alt + F)"</summary>
         public string Filter_clear;
 
-        /// <summary>"Save row"</summary>
+        /// <summary>"Save row (Shift + Enter)"</summary>
         public string Save;
     }
 }

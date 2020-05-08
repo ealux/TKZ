@@ -1,10 +1,10 @@
 {
-  "Add": "Add element",
-  "Cancel": "Cancel",
+  "Add": "Add element (Alt + N)",
+  "Cancel": "Cancel (Ecs)",
   "Delete": "Delete row",
   "Duplicate": "Copy row",
   "Edit": "Edit",
-  "Filter_clear": "Clear filter",
-  "Save": "Save row",
+  "Filter_clear": "Clear filter (Alt + X)",
+  "Save": "Save row (Shift + Enter)",
   "Equipment": "View equipment"
 }

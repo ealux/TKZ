@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<Tooltip Text="@(@Localizer.Duplicate)">
+<Tooltip Text="@(@Localizer.Duplicate)" Placement="Placement.Left">
     <Button Class="transparent"
             Clicked="@OnClickCallback">
         <svg class="edit-icon" @onclick="@(() => {})">

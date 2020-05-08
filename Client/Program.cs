@@ -28,7 +28,7 @@ namespace TKZ.Client
             builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true) //Tables singleton
                             .AddBootstrapProviders()
                             .AddFontAwesomeIcons();
-
+            builder.Services.AddHotKeys();
             #endregion Singletons
 
             var host = builder.Build();

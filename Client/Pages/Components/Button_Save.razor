@@ -1,15 +1,19 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@implements IDisposable
+@using Toolbelt.Blazor.HotKeys
+@inject HotKeys HotKeys
 
-<Tooltip Text="@(@Localizer.Save)">
+
+<Tooltip Text="@(@Localizer.Save)" Placement="Placement.Left">
     <Button Class="transparent"
-        Clicked="@OnClickCallback">
+            Clicked="@OnClickCallback">
         <svg @onclick="@(() => {})" class="edit-icon">
             <use href="/img/Icon.svg#Check"></use>
         </svg>
     </Button>
 </Tooltip>
- 
+
 @code {
     [Parameter]
     public EventCallback OnClickCallback { get; set; }
@@ -20,5 +24,18 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Components>(this);
+    }
+
+    HotKeysContext HotKeysContext;
+
+    protected override void OnInitialized()
+    {
+        this.HotKeysContext = this.HotKeys.CreateContext()
+          .Add(ModKeys.Shift, Keys.Enter, OnClickCallback.InvokeAsync, "");
+    }
+
+    public void Dispose()
+    {
+        this.HotKeysContext.Dispose();
     }
 }

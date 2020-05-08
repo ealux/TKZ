@@ -1,7 +1,9 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@using Toolbelt.Blazor.HotKeys
+@inject HotKeys HotKeys
 
-<Tooltip Text="@Localizer.Add"  Placement="Placement.Bottom">
+<Tooltip Text="@Localizer.Add" Placement="Placement.Left">
     <Button Active="true"
             Class="round"
             Clicked="@OnClickCallback">
@@ -21,5 +23,18 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Components>(this);
+    }
+
+    HotKeysContext HotKeysContext;
+
+    protected override void OnInitialized()
+    {
+        this.HotKeysContext = this.HotKeys.CreateContext()
+          .Add(ModKeys.Alt, Keys.N, OnClickCallback.InvokeAsync, "");
+    }
+
+    public void Dispose()
+    {
+        this.HotKeysContext.Dispose();
     }
 }

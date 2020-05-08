@@ -6,56 +6,56 @@
     <div class="nav flex-column nav-pills" style="flex: 1;">
         @* Домой *@
         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#home"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_HomeBut</span>
         </NavLink>
         @* Узлы *@
         <NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#node"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_NodeBut</span>
         </NavLink>
         @* Оборудование *@
         <NavLink class="nav-link" href="/equip" Match="NavLinkMatch.All" ActiveClass="active">
-           <svg @onclick="@(() => {})" class="menu-icon mr-2">
+           <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#Equipment"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_EquipBut</span>
         </NavLink>
         @* Ветви *@
         <NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#branch"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_BranchBut</span>
         </NavLink>
         @* Магнитосвязи *@
         <NavLink class="nav-link" href="/mutual_induction" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#mutual_induction"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_MutBut</span>
         </NavLink>
         @* Расчёт *@
         <NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#thunder"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_CalcBut</span>
         </NavLink>
         @* Советы *@
         <NavLink class="nav-link" href="/advices" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#adv"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_AdvBut</span>
         </NavLink>
         @* Контакты *@
         <NavLink class="nav-link" href="/contacts" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => {})" class="menu-icon mr-2">
+            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#contact"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_ContactBut</span>
@@ -72,5 +72,4 @@
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Navs>(this);
     }
-
 }

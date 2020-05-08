@@ -1,7 +1,9 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@using Toolbelt.Blazor.HotKeys
+@inject HotKeys HotKeys
 
-<Tooltip Text="@(@Localizer.Cancel)">
+<Tooltip Text="@(@Localizer.Cancel)" Placement="Placement.Left">
     <Button Class="transparent"
             Clicked="@OnClickCallback">
         <svg class="edit-icon" @onclick="@(() => {})">
@@ -9,7 +11,7 @@
         </svg>
     </Button>
 </Tooltip>
- 
+
 @code {
     [Parameter]
     public EventCallback OnClickCallback { get; set; }
@@ -20,5 +22,18 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Components>(this);
+    }
+
+    HotKeysContext HotKeysContext;
+
+    protected override void OnInitialized()
+    {
+        this.HotKeysContext = this.HotKeys.CreateContext()
+          .Add(ModKeys.None,Keys.ESC, OnClickCallback.InvokeAsync, "");
+    }
+
+    public void Dispose()
+    {
+        this.HotKeysContext.Dispose();
     }
 }
