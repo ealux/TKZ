@@ -6,15 +6,6 @@
   "NameBut": "Name",
   "VoltageСlass": "Unom, [kV]",
   "kV": "kV",
-  "Equipment": "Equipment",
-  //Кнопки формы
-  "Save": "Save",
-  "Cancel": "Cancel",
-  "Delete" : "Delete",
-  "New": "New",
-  "Filter": "Clear filter",
-  "Edit": "Edit",
-  "Duplicate": "Duplicate",
   //filter
   "ActiveFilter": "Active",
   "NotActiveFilter": "Disabled"

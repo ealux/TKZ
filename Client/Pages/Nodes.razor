@@ -78,13 +78,7 @@ else
                             Sortable="false"
                             Filterable="false">
                 <DisplayTemplate>
-                    <Tooltip Text="@(@Localizer.Equipment)">
-                        <Button Class="transparent" id="show">                                
-                            <svg class="edit-icon" @onclick="@(() => {})">
-                                <use href="/img/Icon.svg#Equipment"></use>
-                            </svg>
-                        </Button>
-                    </Tooltip>
+                    <Button_Equipment />
                 </DisplayTemplate>
             </DataGridColumn>
 

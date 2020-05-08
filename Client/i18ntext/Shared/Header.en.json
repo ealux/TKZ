@@ -1,0 +1,8 @@
+﻿{
+  "Upload": "Upload a file with network data to the site",
+  "Download": "Download file with network data",
+  "Calculate_All": "Calculate everything and download to Excel file",
+  "Log": "Protocol",
+  "Test_IEEE14": "Add IEEE 14 test network",
+  "Language": "Switch language"
+}

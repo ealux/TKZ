@@ -37,5 +37,8 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Components.ru.json" />
+  </ItemGroup>
 
 </Project>

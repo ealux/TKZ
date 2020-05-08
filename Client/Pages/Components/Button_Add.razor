@@ -1,16 +1,25 @@
 @using Microsoft.AspNetCore.Components.Web
- 
-<div>
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<Tooltip Text="@Localizer.Add"  Placement="Placement.Bottom">
     <Button Active="true"
-        Class="round"
-        Clicked="@OnClickCallback">
-        <svg @onclick="@(() => {})" class="menu-icon">
+            Class="round"
+            Clicked="@OnClickCallback">
+        <svg class="menu-icon" @onclick="@(() => {})">
             <use href="/img/Icon.svg#Add"></use>
         </svg>
     </Button>
-</div>
- 
+</Tooltip>
+
 @code {
     [Parameter]
     public EventCallback OnClickCallback { get; set; }
+
+    //Localizator
+    I18nText.Pages.Components Localizer = new I18nText.Pages.Components();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Components>(this);
+    }
 }

@@ -10,24 +10,6 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Active"</summary>
         public string ActiveFilter;
 
-        /// <summary>"Cancel"</summary>
-        public string Cancel;
-
-        /// <summary>"Delete"</summary>
-        public string Delete;
-
-        /// <summary>"Duplicate"</summary>
-        public string Duplicate;
-
-        /// <summary>"Edit"</summary>
-        public string Edit;
-
-        /// <summary>"Equipment"</summary>
-        public string Equipment;
-
-        /// <summary>"Clear filter"</summary>
-        public string Filter;
-
         /// <summary>"Buses"</summary>
         public string Header;
 
@@ -40,14 +22,8 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Name"</summary>
         public string NameBut;
 
-        /// <summary>"New"</summary>
-        public string New;
-
         /// <summary>"Disabled"</summary>
         public string NotActiveFilter;
-
-        /// <summary>"Save"</summary>
-        public string Save;
 
         /// <summary>"Unom, [kV]"</summary>
         public string VoltageСlass;

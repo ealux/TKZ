@@ -1,11 +1,10 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<Tooltip Text="@(@Localizer.Filter_clear)">
-    <Button Class="transparent" 
-        Clicked="@OnClickCallback">
-        <svg @onclick="@(() => {})" class="edit-icon">
-            <use href="/img/Icon.svg#Filter"></use>
+<Tooltip Text="@(@Localizer.Equipment)">
+    <Button Class="transparent" id="show">                                
+        <svg class="edit-icon" @onclick="@(() => {})">
+            <use href="/img/Icon.svg#Equipment"></use>
         </svg>
     </Button>
 </Tooltip>
