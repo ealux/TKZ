@@ -2,28 +2,30 @@
 @using TKZ.Client.Pages.Log
 @inject LogBase LB
 
-<div class="main_container d-flex flex-column">
+<div class="main_container d-flex flex-column overflow-auto">
 
     <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser" />
 
-    <div class="d-flex flex-row flex-fill">
+    <div class="d-flex flex-row flex-fill overflow-auto">
         <Navs />
         <div class="d-flex flex-column flex-fill">
             <!--main area-->
-            <div class="main-area d-flex flex-column flex-fill" style="background-color: var(--P-light); overflow:hidden">
-                @Body
+            <div class="d-flex flex-row flex-fill overflow-auto">
+                <div class="main-area d-flex flex-column flex-fill overflow-auto">
+                    @Body
+                </div>
+                <div class="d-flex flex-column">
+                <TKZ.Client.Pages.Log.Log LogChangeEvent="() => { StateHasChanged(); }" />
+                </div>
             </div>
-            <TKZ.Client.Shared.Footer.Footer />
-        </div>
-        <div class="d-flex flex-column" style="background-color: var(--P-light)">
-            <TKZ.Client.Pages.Log.Log LogChangeEvent="() => { StateHasChanged(); }" />
+                <TKZ.Client.Shared.Footer.Footer />
+            </div>
         </div>
     </div>
-</div>
-@code{
-    void LogCollapser()
-    {
-        LB.Collapse = !LB.Collapse;
-        StateHasChanged();
+    @code{
+        void LogCollapser()
+        {
+            LB.Collapse = !LB.Collapse;
+            StateHasChanged();
+        }
     }
-}

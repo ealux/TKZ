@@ -1,13 +1,12 @@
 ﻿@page "/calc"
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
-
+@using TKZ.Client.Pages.Components
 <div class="d-flex flex-row" style="flex:1">
-    <div class="d-flex flex-column parameter" style="flex: 1">
+    <div class="d-flex flex-column parameter frame flex-fill">
         <!--parameter-->
-        <form class="d-flex flex-column"
+        <form class="d-flex flex-column flex-fill"
               action=""
-              id="parameter"
-              style="flex: 1">
+              id="parameter">
             <h5>Дуга</h5>
             <div class="row">
 
@@ -47,13 +46,7 @@
                        id="NodeNum"
                        placeholder="Наименование узла"
                        style="margin-bottom: var(--st_margin); margin-top: var(--st_margin); flex: 1">
-                <button class="round"
-                        id="add"
-                        style="margin-right: 0;">
-                    <svg @onclick="@(() => {})" class="menu-icon">
-                        <use href="/img/Icon.svg#Add"></use>
-                    </svg>
-                </button>
+                <Button_Add_Node_For_Calc />
             </div>
 
             <div class="chips_area"
@@ -86,17 +79,13 @@
             </button>
         </form>
     </div>
-    <div class="d-flex flex-column" style="flex: 1; padding:0 ">
-        <div >
+    <div class="d-flex flex-column flex-fill" style="padding:0 ">
+        <div class="frame">
             <label for="ContNode">Выберите контролируемый узел:</label>
             <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
-            <button class="round" id="addContNode" style="display: inline-block;">
-                <svg class="menu-icon">
-                    <use href="/img/Icon.svg#Add"></use>
-                </svg>
-            </button>
+            <Button_Add_Node_For_Calc/>
         </div>
-        <div>
+        <div class="frame flex-fill">
             <h1>Результаты расчёта</h1>
         </div>
     </div>

@@ -3,7 +3,6 @@
 @using Toolbelt.Blazor.HotKeys
 @inject HotKeys HotKeys
 
-<Tooltip Text="@Localizer.Add" Placement="Placement.Left">
     <Button Active="true"
             Class="round"
             Clicked="@OnClickCallback">
@@ -11,7 +10,7 @@
             <use href="/img/Icon.svg#Add"></use>
         </svg>
     </Button>
-</Tooltip>
+
 
 @code {
     [Parameter]

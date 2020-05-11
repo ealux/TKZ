@@ -89,12 +89,12 @@
     <circle r="65.5" cy="72.299873" cx="443.927708" fill="#79ec56"/>
   </symbol>
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="IEEE_14">
-    <path d="M11.5,5.4V27H8.7V5.4H11.5z" />
-    <path d="M27.5,16.9h-8.4v7.8h9.3V27H16.4V5.4h11.7v2.3h-8.9v6.8h8.4V16.9z" />
-    <path d="M43.3,16.9h-8.4v7.8h9.3V27H32.1V5.4h11.7v2.3h-8.9v6.8h8.4V16.9z" />
-    <path d="M59,16.9h-8.4v7.8H60V27H47.9V5.4h11.7v2.3h-8.9v6.8H59V16.9z" />
-    <path d="M23,38.4L23,38.4l-3.7,2l-0.5-2.1l4.5-2.4h2.4v20.8H23V38.4z" />
-    <path d="M42,56.6v-5.7h-9.7v-1.8l9.3-13.3h3v12.9h2.9v2.2h-2.9v5.7H42z M42,48.7v-6.9c0-1.1,0-2.2,0.1-3.3H42
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M11.5,5.4V27H8.7V5.4H11.5z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M27.5,16.9h-8.4v7.8h9.3V27H16.4V5.4h11.7v2.3h-8.9v6.8h8.4V16.9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M43.3,16.9h-8.4v7.8h9.3V27H32.1V5.4h11.7v2.3h-8.9v6.8h8.4V16.9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M59,16.9h-8.4v7.8H60V27H47.9V5.4h11.7v2.3h-8.9v6.8H59V16.9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M23,38.4L23,38.4l-3.7,2l-0.5-2.1l4.5-2.4h2.4v20.8H23V38.4z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M42,56.6v-5.7h-9.7v-1.8l9.3-13.3h3v12.9h2.9v2.2h-2.9v5.7H42z M42,48.7v-6.9c0-1.1,0-2.2,0.1-3.3H42
 		        c-0.6,1.2-1.2,2.1-1.7,3.1l-5.1,7.1v0.1H42z" />
   </symbol>
   <symbol id="russia" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

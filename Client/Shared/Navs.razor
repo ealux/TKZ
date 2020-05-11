@@ -1,9 +1,8 @@
 ﻿@using System.Globalization
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<div class="my_sidebar d-flex flex-column">
+<aside class="my_sidebar d-flex flex-column nav nav-pills">
     <!--sidebar-->
-    <div class="nav flex-column nav-pills" style="flex: 1;">
         @* Домой *@
         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
@@ -60,8 +59,7 @@
             </svg>
             <span class="align-middle">@Localizer.Navs_ContactBut</span>
         </NavLink>
-    </div>
-</div>
+</aside>
 
 @code {
 
