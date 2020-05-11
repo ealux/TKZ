@@ -123,7 +123,7 @@ else
                             var end = grid.Buses.ContainsKey(context.FinalBusId) ? grid.Buses[context.FinalBusId].Name : "";
                             var name = (context).Name == ""
                                        || (context).Name == "Noname"
-                                       || (context).Name == null ? (context).Name = (start + "-" + end)
+                                       || (context).Name == null ? (context).Name = (start + " - " + end)
                                                                  : (context).Name;
                             @name.ToString();
                         }
@@ -274,7 +274,7 @@ else
     //TODO: Implement
     void OnRowInserted(SavedRowItem<Branch, Dictionary<string, object>> e)
     {
-        grid.Branches.Add(e.Item.Id, e.Item);
+        AddBranch(e.Item);
     }
 
     //TODO: Implement(?)

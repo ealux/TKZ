@@ -64,6 +64,12 @@ namespace TKZ.Client.Pages.Log
         public static Message Branch_Duplicates(string branchName)
             => new Message(MessageClass.Branches, MessageType.Warning, $"Обнаружены дубликаты ветвей!", $"Наименование ветви: {branchName}", "branches");
 
+        public static Message Branch_ErrorRatio(string branchName)
+            => new Message(MessageClass.Branches, MessageType.Warning, $"Проверить корректность коэффициента трансформации!", $"Наименование ветви: {branchName}", "branches");
+        
+        public static Message Branch_FixRatio(string branchName)
+            => new Message(MessageClass.Branches, MessageType.Warning, $"Не указано одно из напряжений для расчёта коэффициента трансформации! Использовано значение класса напряжения узла.", $"Наименование ветви: {branchName}", "branches");
+
         #endregion Branches
 
         //
