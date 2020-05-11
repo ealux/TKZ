@@ -4,7 +4,6 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
-@inject Grid grid
 @using TKZ.Client.Pages.Components
 
 @if (mutuals == null)
@@ -158,6 +157,8 @@ else
 }
 
 @code {
+    [Inject] Grid grid { get; set; }
+
     private List<Mutual> mutuals { get; set; }
 
     void OnRowInserted(SavedRowItem<Mutual, Dictionary<string, object>> e)
@@ -202,6 +203,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        grid = await Grid.GetInstance();
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
         mutuals = await Task.Run(() => grid.Mutuals.Values.ToList<Mutual>());
     }

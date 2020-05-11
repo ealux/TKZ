@@ -4,7 +4,6 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
-@inject Grid grid
 @using TKZ.Client.Pages.Components
 
 
@@ -268,6 +267,8 @@ else
 }
 
 @code {
+    [Inject] Grid grid { get; set; }
+
     private List<Branch> branches { get; set; }
 
     //TODO: Implement
@@ -322,6 +323,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        grid = await Grid.GetInstance();
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Branches>(this);
         branches = await Task.Run(() => grid.Branches.Values.ToList<Branch>());
     }

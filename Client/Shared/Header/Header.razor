@@ -1,8 +1,9 @@
-﻿@inject LogBase LB
-@inject IJSRuntime JS
+﻿@inject IJSRuntime JS
 @inject LogBase Log
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject NavigationManager navmanager
+@using Blazorise
 
 <header class="header d-flex align-items-center sticky-top">
     <NavLink class="navbar-brand active mx-5"
@@ -15,14 +16,38 @@
                     width: 120px;">
         Lime
     </NavLink>
-    <form>
-        <select class="form-control choose-grid transparent" id="ChooseGrid">
-            <option>My Grid 1</option>
-            <option>My Grid 2</option>
-            <option>Test IEEE12</option>
-            <option>Add new grid</option>
-        </select>
-    </form>
+
+    <Select TValue="string"
+            SelectedValue="selector"
+            SelectedValueChanged="@OnSelectedValueChanged"
+            Class="choose-grid transparent"
+            id="ChooseGrid">
+        @if (Grid.Networks != null & Grid.Networks.Count > 1)
+        {
+            @foreach (var item in Grid.Networks.Where(g => g.Name != "Test Grid"))
+            {
+                <SelectItem Value="item.Name">@item.Name</SelectItem>
+            }
+        }
+        else
+        {
+            <SelectItem Value="@("")">(new grid)</SelectItem>
+        }
+        <hr />
+        <SelectItem Value="@("Test_internal")">Тестовая</SelectItem>
+        <SelectItem Value="@("Add")">Add grid</SelectItem>
+    </Select>
+
+    @*<form>
+            <select class="form-control choose-grid transparent" id="ChooseGrid">
+                <option>My Grid 1</option>
+                <option>My Grid 2</option>
+                <option>Test IEEE12</option>
+                <hr />
+                <option>Add new grid</option>
+            </select>
+        </form>*@
+
     <div class="btn-group ml-5">
         <Tooltip Text="@Localizer.Upload" Placement="Placement.Bottom">
             <button type="button" class="icon">
@@ -53,7 +78,7 @@
                     id="bell"
                     @onclick="LogOpenEvent">
                 <svg class="header-icon">
-                    <use href="@LB.ImageChecker()"></use>
+                    <use href="@Log.ImageChecker()"></use>
                 </svg>
             </button>
         </Tooltip>
@@ -81,14 +106,14 @@
 </header>
 
 @code {
-    [Inject] Grid grid { get; set; } = Grid.GetInstance();
+    [Inject] Grid grid { get; set; }
 
     [Parameter]
     public EventCallback LogOpenEvent { get; set; }
 
     void Add()
     {
-        LB.AddMessage(new Message(MessageClass.System, MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
+        Log.AddMessage(new Message(MessageClass.System, MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
     }
 
     //Localizator
@@ -97,16 +122,17 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Header>(this);
+        grid = await Grid.GetInstance();
     }
 
     protected override void OnInitialized()
     {
-        LB.OnChange += StateHasChanged;
+        Log.OnChange += StateHasChanged;
     }
 
     public const string SourceRus = "/img/Icon.svg#russia";
     public const string SourceUS = "/img/Icon.svg#USA";
-    public const string SourceIEEE14 = "/Test Grid/IEEE 14/IEEE 14-bus modified test system.json";
+
     public bool IsRus { get; set; } = true;
 
     public async Task ChangeLanguage()
@@ -116,21 +142,48 @@
         else await I18nText.SetCurrentLanguageAsync("en");
     }
 
+    //селектор
+    string selector;
+
+    void OnSelectedValueChanged(string value)
+    {
+        if (value == "Test_internal")
+        {
+            Grid.SetInstance(Grid.Networks[0]);
+            navmanager.NavigateTo("/");
+            return;
+        }
+
+        Grid.SetInstance(null);
+        navmanager.NavigateTo("/");
+
+        StateHasChanged();
+    }
+
+
+
+    //Serialization
+
+    public const string SourceIEEE14 = "/Test Grid/IEEE 14/IEEE 14-bus modified test system.json";
+
     public async void LoadIEEE14()
     {
         //TODO: Сделать загрузку файла с тестовой схемой. По какой-то причине не могу получить доступ к файлу
-        grid = await Grid.Deserialize(SourceIEEE14);
+        //grid = await Grid.Deserialize(SourceIEEE14);
+
+        grid = await Http.GetFromJsonAsync<Grid>("TestGrid"); //на основе контроллера (пока что ошибка десериализации)
         Log.AddMessage(MessageCollection.Serialize_Success("Загружена схема IEEE 14"));
 
         StateHasChanged();
     }
+
     public async void DownloadFile()
     {
         StateHasChanged();
 
         //Отчистка лога
         if (Log.Messages.Any((m) => m.Class == MessageClass.Serialization)) await Log.RemoveMessage(byClass: MessageClass.Serialization);
-        
+
         var now = DateTime.Now.ToLocalTime().ToString();
         string name = grid.Name + "_" + now + ".json";
 

@@ -4,7 +4,6 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
-@inject Grid grid
 @using TKZ.Client.Pages.Components
 
 @if (buses == null)
@@ -31,105 +30,104 @@ else
                   Class="my_table text-center">
 
             @*IsActive*@
-        <DataGridColumns>
+            <DataGridColumns>
 
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.IsActive)"
-                            Caption="@(@Localizer.IsActive)"
-                            Editable="true"
-                            Sortable="true">
-                <DisplayTemplate>
-                    <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
-                </DisplayTemplate>
-                <EditTemplate>
-                    <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
-                </EditTemplate>
-                <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                        <SelectItem Value="@("*")"></SelectItem>
-                        <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
-                        <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
-                    </Select>
-                </FilterTemplate>
-            </DataGridColumn>
-            @*Name*@
-            <DataGridColumn TItem="Bus"
-                            Field="@nameof(Bus.Name)"
-                            Caption="@(@Localizer.NameBut)"
-                            Editable="true"
-                            Sortable="true">
-            </DataGridColumn>
-            @*Unom*@
-            <DataGridNumericColumn TItem="Bus"
-                                   Field="@nameof(Bus.Unom)"
-                                   Caption="@(@Localizer.VoltageСlass)"
-                                   Editable="true"
-                                   Sortable="true">
-                <DisplayTemplate>
-                    @{
-                        var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
-                        @(unom + " " + Localizer.kV)
-                    }
-                </DisplayTemplate>
-            </DataGridNumericColumn>
+                <DataGridColumn TItem="Bus"
+                                Field="@nameof(Bus.IsActive)"
+                                Caption="@(@Localizer.IsActive)"
+                                Editable="true"
+                                Sortable="true">
+                    <DisplayTemplate>
+                        <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
+                    </EditTemplate>
+                    <FilterTemplate>
+                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                            <SelectItem Value="@("*")"></SelectItem>
+                            <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
+                            <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
+                        </Select>
+                    </FilterTemplate>
+                </DataGridColumn>
+                @*Name*@
+                <DataGridColumn TItem="Bus"
+                                Field="@nameof(Bus.Name)"
+                                Caption="@(@Localizer.NameBut)"
+                                Editable="true"
+                                Sortable="true">
+                </DataGridColumn>
+                @*Unom*@
+                <DataGridNumericColumn TItem="Bus"
+                                       Field="@nameof(Bus.Unom)"
+                                       Caption="@(@Localizer.VoltageСlass)"
+                                       Editable="true"
+                                       Sortable="true">
+                    <DisplayTemplate>
+                        @{
+                            var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
+                            @(unom + " " + Localizer.kV)
+                        }
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
 
-            @*Equipment*@
-            <DataGridColumn TItem="Bus"
-                            Editable="false"
-                            Sortable="false"
-                            Filterable="false">
-                <DisplayTemplate>
-                    <Button_Equipment/>
-                </DisplayTemplate>
-            </DataGridColumn>
+                @*Equipment*@
+                <DataGridColumn TItem="Bus"
+                                Editable="false"
+                                Sortable="false"
+                                Filterable="false">
+                    <DisplayTemplate>
+                        <Button_Equipment />
+                    </DisplayTemplate>
+                </DataGridColumn>
 
-            @*Commands*@
-            <DataGridCommandColumn TItem="Bus" Width="130px">
-                <NewCommandTemplate>
-                    <Button_Add OnClickCallback = "@context.Clicked" />
-                </NewCommandTemplate>
-                <EditCommandTemplate>
-                    <Button_Edit OnClickCallback = "@context.Clicked"/>
-                    <Button_Duplicate OnClickCallback = "@(() => DuplicateItem(context.Item))" />
-                </EditCommandTemplate>
-                <DeleteCommandTemplate>
-                    <Button_Delete OnClickCallback = "@context.Clicked"/>
-                </DeleteCommandTemplate>
-                <SaveCommandTemplate>
-                    <Button_Save OnClickCallback = "@context.Clicked"/>
-                </SaveCommandTemplate>
-                <CancelCommandTemplate>
-                    <Button_Cancel OnClickCallback = "@context.Clicked"/>
-                </CancelCommandTemplate>
-                <ClearFilterCommandTemplate>
-                    <Button_Filter OnClickCallback = "@context.Clicked"/>
-                </ClearFilterCommandTemplate>
-            </DataGridCommandColumn>
-        </DataGridColumns>
+                @*Commands*@
+                <DataGridCommandColumn TItem="Bus" Width="130px">
+                    <NewCommandTemplate>
+                        <Button_Add OnClickCallback="@context.Clicked" />
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button_Edit OnClickCallback="@context.Clicked" />
+                        <Button_Duplicate OnClickCallback="@(() => DuplicateItem(context.Item))" />
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Button_Delete OnClickCallback="@context.Clicked" />
+                    </DeleteCommandTemplate>
+                    <SaveCommandTemplate>
+                        <Button_Save OnClickCallback="@context.Clicked" />
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Button_Cancel OnClickCallback="@context.Clicked" />
+                    </CancelCommandTemplate>
+                    <ClearFilterCommandTemplate>
+                        <Button_Filter OnClickCallback="@context.Clicked" />
+                    </ClearFilterCommandTemplate>
+                </DataGridCommandColumn>
+            </DataGridColumns>
 
             @* Details *@
-        <DetailRowTemplate>
-            @{
-                var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
+            <DetailRowTemplate>
+                @{
+                    var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
 
-                if (equips != null)
-                {
-                                    <DataGrid TItem="Equip"
-                                              Data="equips"
-                                              Sortable="false"
-                                              ShowCaptions="false"
-                                              Narrow="true"
-                                              Striped="false"
-                                              HeaderRowClass="small"
-                                              Class="equipment">
+                    if (equips != null)
+                    {
+                        <DataGrid TItem="Equip"
+                                  Data="equips"
+                                  Sortable="false"
+                                  ShowCaptions="false"
+                                  Narrow="true"
+                                  Striped="false"
+                                  HeaderRowClass="small"
+                                  Class="equipment">
 
-                                        <DataGridColumn TItem="Equip"
-                                                        Field="@nameof(Equip.Name)"
-                                                        Caption="@(@Localizer.NameBut)"
-                                                        Editable="false"
-                                                        Sortable="true" />
-                                    </DataGrid>
-
+                            <DataGridColumn TItem="Equip"
+                                            Field="@nameof(Equip.Name)"
+                                            Caption="@(@Localizer.NameBut)"
+                                            Editable="false"
+                                            Sortable="true" />
+                        </DataGrid>
 
                     }
                 }
@@ -140,6 +138,8 @@ else
 }
 
 @code {
+    [Inject] Grid grid { get; set; }
+
     private List<Bus> buses { get; set; }
     private Bus selectedNode;
 
@@ -174,6 +174,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        grid = await Grid.GetInstance();
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }

@@ -9,7 +9,7 @@
     <div class="d-flex flex-row flex-nowrap align-items-center" style="border-bottom: 1px solid var(--P-dark)">
         <div class="font-weight-bold flex-fill">Журнал событий</div>
         <Button Class="transparent">
-            <svg class="edit-icon" @onclick="@(() => {})">
+            <svg class="edit-icon" @onclick="@(() => { LB.Collapse = true; })">
                 <use href="/img/Icon.svg#Delete"></use>
             </svg>
         </Button>
