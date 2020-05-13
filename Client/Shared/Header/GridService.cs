@@ -13,7 +13,7 @@ namespace TKZ.Client.Shared.Header
 
         public GridService()
         {
-            CurrentGridName = "Test Grid";
+            CurrentGridName = "stock";
         }
     }
 }
