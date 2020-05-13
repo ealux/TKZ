@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
+using TKZ.Client.Shared.Header;
 using TKZ.Shared;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
@@ -23,6 +24,7 @@ namespace TKZ.Client
             //builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }); //Http
             builder.Services.AddBaseAddressHttpClient();
             builder.Services.AddSingleton<LogBase>(); //Log singleton
+            builder.Services.AddSingleton<GridService>(); //GridService singleton
             builder.Services.AddI18nText(); //Localizer singleton
             builder.Services.AddSingleton<Grid>(); //Network singleton
             builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true) //Tables singleton

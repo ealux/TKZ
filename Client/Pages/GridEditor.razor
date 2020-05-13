@@ -1,0 +1,76 @@
+﻿@inject IJSRuntime JS
+@inject LogBase Log
+@inject HttpClient Http
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject NavigationManager navmanager
+@inject GridService service
+@using Blazorise
+@using TKZ.Shared
+@page "/gridmanager"
+
+<Row>
+    <Column Padding="Padding.Is2">
+        <Inline>
+            <Field>
+                <FieldLabel>Новая сеть: </FieldLabel>
+            </Field>
+            <Field Padding="Padding.Is4.OnX">
+                <Validation Validator="@Validate">
+                    <TextEdit Role="TextRole.Text"
+                              Placeholder="Имя новой сети"
+                              @bind-Text="@name"
+                              Style="width:400px;">
+                    </TextEdit>
+                </Validation>
+            </Field>
+            <Field>
+                <Button Color="Color.Primary"
+                        Clicked="@AddGrid">
+                    Добавить сеть
+                </Button>
+            </Field>
+        </Inline>
+    </Column>
+</Row>
+
+@code {
+    string name { get; set; }
+
+    async void Validate(ValidatorEventArgs e)
+    {
+        var name = Convert.ToString(e.Value);
+
+        if (string.IsNullOrEmpty(name)) e.Status = ValidationStatus.None;
+        else if (Grid.Networks.Any(g => g.Name == name)) e.Status = ValidationStatus.Error;
+        else e.Status = ValidationStatus.Success;
+    }
+
+    async Task AddGrid()
+    {
+        if (Log.Messages.Any((m) => m.Class == MessageClass.Grid)) await Log.RemoveMessage(byClass: MessageClass.Grid);
+
+        if (String.IsNullOrEmpty(name))
+        {
+            Log.AddMessage(MessageCollection.NewGrid_Noname());
+            Log.Collapse = false;
+            return;
+        }
+
+        if (Grid.Networks.Where(g => g.Name == name).Any())
+        {
+            Log.AddMessage(MessageCollection.NewGrid_Duplicate(name));
+            Log.Collapse = false;
+            return;
+        }
+
+        await Task.Run(() =>
+        {
+            Grid.Networks.Add(new Grid() { Name = name });
+            Grid.SetInstance(Grid.Networks.Where(g => g.Name == name).FirstOrDefault());
+            Log.AddMessage(MessageCollection.NewGrid_Added(name));
+            service.CurrentGridName = name;
+            Log.Collapse = false;
+            navmanager.NavigateTo("/");
+        });
+    }
+}

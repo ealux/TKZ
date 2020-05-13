@@ -100,12 +100,13 @@ namespace TKZ.Client.Pages.Log
         //Serialization/Deserialization messages
         //
 
+        #region Serialization/Deserialization
         //Serialize Successfully
         public static Message Serialize_Success(string filename)
             => new Message(MessageClass.Serialization, MessageType.Success, "Сеть успешно выгружена!", $"Файл: {filename}", "nodes");
 
         //Serialize Nodes Error
-        #region Serialization/Deserialization
+        
         public static Message Serialize_NodeError()
             => new Message(MessageClass.Serialization, MessageType.Danger, "Сеть не сохранена!", "Остутствуют узлы! Нечего сохранять!", "nodes");
         
@@ -114,6 +115,39 @@ namespace TKZ.Client.Pages.Log
             => new Message(MessageClass.Serialization, MessageType.Danger, "Сеть не сохранена!", "Остутствуют ветви! Нечего сохранять!", "branches");
         #endregion
 
+        //
+        //Add new grid
+        //
 
+        #region NewGrid
+
+        //Successfull addition
+        public static Message NewGrid_Added(string gridName)
+        {
+            return new Message(MessageClass.Grid, MessageType.Success,
+                               $"Добавлена новая сеть!",
+                               $"Имя сети: {gridName}",
+                               "/gridmanager");
+        }
+
+        //Nonname addition
+        public static Message NewGrid_Noname()
+        {
+            return new Message(MessageClass.Grid, MessageType.Danger,
+                               $"Требуется имя для добавленая новой сети!",
+                               $"",
+                               "/gridmanager");
+        }
+
+        //Duplicate addition
+        public static Message NewGrid_Duplicate(string gridName)
+        {
+            return new Message(MessageClass.Grid, MessageType.Danger,
+                               $"Имя сети уже использовано!",
+                               $"Имя сети: {gridName}. Попробуйте другое имя.",
+                               "/gridmanager");
+        }
+
+        #endregion
     }
 }
