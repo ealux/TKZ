@@ -54,7 +54,8 @@ else
                                        Caption="@Localizer.startBus"
                                        Editable="true"
                                        Sortable="true"
-                                       Filterable="true">
+                                       Filterable="true"
+                                       Width="100px">
                     <DisplayTemplate>
                         @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId].Name
                     </DisplayTemplate>
@@ -85,7 +86,8 @@ else
                                        Field="@nameof(Branch.FinalBusId)"
                                        Caption="@Localizer.finBus"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       Width="100px">
                     <DisplayTemplate>
                         @if (grid.Buses.ContainsKey(context.FinalBusId))@grid.Buses[context.FinalBusId]
                     </DisplayTemplate>
@@ -134,43 +136,50 @@ else
                                        Field="@nameof(Branch.R1)"
                                        Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*X1*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.X1)"
                                        Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*R0*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.R0)"
                                        Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*X0*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.X0)"
                                        Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*B*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.B)"
                                        Caption="@(new String("B, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*G*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.G)"
                                        Caption="@(new String("G, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
-                                       Sortable="true"></DataGridNumericColumn>
+                                       Sortable="true"
+                                       Width="100px"></DataGridNumericColumn>
                 @*StUnom*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.StUnom)"
                                        Caption="@(new String(@Localizer.Unom+" "+@Localizer.startBus+", ["+@Localizer.kV+"]"))"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       Width="75px">
                     <DisplayTemplate>
                         @{
 
@@ -184,7 +193,8 @@ else
                                        Field="@nameof(Branch.FinUnom)"
                                        Caption="@(new String(@Localizer.Unom+" "+@Localizer.finBus+", ["+@Localizer.kV+"]"))"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       Width="75px">
                     <DisplayTemplate>
                         @{
                             var unom = (context).FinUnom < 0 ? (context).FinUnom = 0 : (context).FinUnom;
@@ -197,7 +207,8 @@ else
                                      Field="@nameof(Branch.GroundStBus)"
                                      Caption="@Localizer.groundStartBus"
                                      Editable="true"
-                                     Sortable="true">
+                                     Sortable="true"
+                                     Width="100px">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.GroundStBus" Disabled="true" ReadOnly="true" />
                     </DisplayTemplate>
@@ -210,7 +221,8 @@ else
                                       Field="@nameof(Branch.GroundFinBus)"
                                       Caption="@Localizer.groundFinBus"
                                       Editable="true"
-                                      Sortable="true">
+                                      Sortable="true"
+                                      Width="100px">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.GroundFinBus" Disabled="true" ReadOnly="true" />
                     </DisplayTemplate>
@@ -223,7 +235,8 @@ else
                                        Field="@nameof(Branch.Fi_trans)"
                                        Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       Width="100px">
                     <DisplayTemplate>
                         @{
                             double angle = ((context).Fi_trans == 360 || (context).Fi_trans == -360) ? (context).Fi_trans = 0 : (context).Fi_trans;

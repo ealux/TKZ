@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TKZ.Shared.Model;
 using TKZ.Shared;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace TKZ.Shared
 {
@@ -11,7 +12,6 @@ namespace TKZ.Shared
         private static Grid CurrentGrid { get; set; } //Singleton needed
         public static List<Grid> Networks = new List<Grid>() { createTestGrid() };
         
-
         public string Name { get; set; }
         public double ArcR { get; set; }
         public double ArcX { get; set; }
@@ -26,9 +26,13 @@ namespace TKZ.Shared
         /// Index - A BusID in which a short circuit.
         /// </summary>
         /// <value></value>
+        [JsonIgnore]
         public Dictionary<int, ResultCalc> ResCalc_K1 { get; set; } = new Dictionary<int, ResultCalc>();
+        [JsonIgnore]
         public Dictionary<int, ResultCalc> ResCalc_K11 { get; set; } = new Dictionary<int, ResultCalc>();
+        [JsonIgnore]
         public Dictionary<int, ResultCalc> ResCalc_K2 { get; set; } = new Dictionary<int, ResultCalc>();
+        [JsonIgnore]
         public Dictionary<int, ResultCalc> ResCalc_K3 { get; set; } = new Dictionary<int, ResultCalc>();
 
         //ctor

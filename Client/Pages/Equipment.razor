@@ -52,7 +52,8 @@ else
                                    Caption="@Localizer.Bus"
                                    Editable="true"
                                    Sortable="true"
-                                   Filterable="true">
+                                   Filterable="true"
+                                   Width="150px">
                 <DisplayTemplate>
                     @if (grid.Buses.ContainsKey(context.BusId))@grid.Buses[context.BusId].Name
                 </DisplayTemplate>

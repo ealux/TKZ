@@ -27,6 +27,7 @@ else
                   @bind-SelectedRow="@selectedNode"
                   DetailRowTrigger="@((item)=>grid.Equipment.Values.Where(e => e.BusId == item.Id).ToList().Count > 0 && item.Id == selectedNode?.Id)"
                   Narrow="true"
+                  HeaderRowClass="small"
                   Class="my_table text-center">
 
             @*IsActive*@
