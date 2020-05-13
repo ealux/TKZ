@@ -12,7 +12,7 @@
 }
 else
 {
-    <div class="w3-animate-opacity">
+    <div class="frame table-container overflow-auto">
         <DataGrid TItem="Equip"
                   Data="@equipment"
                   PageSize="@equipment.Count"
@@ -24,14 +24,14 @@ else
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
                   Narrow="true"
-                  HeaderRowClass="small"
                   Class="my_table text-center">
             @*IsActive*@
             <DataGridColumn TItem="Equip"
                             Field="@nameof(Equip.IsActive)"
                             Caption="@(@Localizer.IsActive)"
                             Editable="true"
-                            Sortable="true">
+                            Sortable="true"
+                            CellClass="@((item)=>"check-column")">
                 <DisplayTemplate>
                     <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
                 </DisplayTemplate>
@@ -39,7 +39,7 @@ else
                     <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
                 <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                    <Select Class="black check-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                         <SelectItem Value="@("*")"></SelectItem>
                         <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
                         <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
@@ -53,12 +53,12 @@ else
                                    Editable="true"
                                    Sortable="true"
                                    Filterable="true"
-                                   Width="150px">
+                                   CellClass="@((item)=>"name-column")">
                 <DisplayTemplate>
                     @if (grid.Buses.ContainsKey(context.BusId))@grid.Buses[context.BusId].Name
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    <Select  TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                         <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                         {
@@ -67,7 +67,7 @@ else
                     </Select>
                 </EditTemplate>
                 <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                    <Select Class="black name-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                         <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in equipment.Select(b => b.BusId).Distinct().OrderBy(n => n))
                         {
@@ -85,38 +85,42 @@ else
                             Field="@nameof(Equip.Name)"
                             Caption="@(@Localizer.Name)"
                             Editable="true"
-                            Sortable="true">
+                            Sortable="true"
+                            CellClass="@((item)=>"name-column")">
             </DataGridColumn>
             @*R*@
             <DataGridNumericColumn TItem="Equip"
                                    Field="@nameof(Equip.R)"
                                    Caption="@(new String("R, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*X*@
             <DataGridNumericColumn TItem="Equip"
                                    Field="@nameof(Equip.X)"
                                    Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*E*@
             <DataGridNumericColumn TItem="Equip"
                                    Field="@nameof(Equip.E)"
                                    Caption="@(new String(@Localizer.EMF+", ["+@Localizer.kV+"]"))"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*FI_E*@
             <DataGridNumericColumn TItem="Equip"
                                    Field="@nameof(Equip.Fi_E)"
                                    Caption="@(new String(@Localizer.EMF+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                    Editable="true"
                                    Sortable="true"
-                                   Width="130px">
+                                   CellClass="@((item)=>"numeric-column")">
 
                 <DisplayTemplate>
                     @{
                         double angle = ((context).Fi_E == 360 || (context).Fi_E == -360) ? (context).Fi_E = 0 : (context).Fi_E;
-                        @(angle + " °")
+                        @(angle + "°")
                     }
                 </DisplayTemplate>
                 <EditTemplate>
@@ -129,7 +133,8 @@ else
             </DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Equip" Width="130px">
+            <DataGridCommandColumn TItem="Equip" 
+                                   CellClass="@((item)=>"edit-column")">
                 <NewCommandTemplate>
                     <Button_Add OnClickCallback = "@context.Clicked" />
                 </NewCommandTemplate>

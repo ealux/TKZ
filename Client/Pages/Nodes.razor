@@ -12,7 +12,7 @@
 }
 else
 {
-    <div class="table-container">
+    <div class="frame table-container overflow-auto">
         <DataGrid TItem="Bus"
                   Data="@buses"
                   PageSize="@buses.Count"
@@ -27,7 +27,6 @@ else
                   @bind-SelectedRow="@selectedNode"
                   DetailRowTrigger="@((item)=>grid.Equipment.Values.Where(e => e.BusId == item.Id).ToList().Count > 0 && item.Id == selectedNode?.Id)"
                   Narrow="true"
-                  HeaderRowClass="small"
                   Class="my_table text-center">
 
             @*IsActive*@
@@ -45,7 +44,7 @@ else
                         <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                     </EditTemplate>
                     <FilterTemplate>
-                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <Select Class="black check-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                             <SelectItem Value="@("*")"></SelectItem>
                             <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
                             <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
@@ -57,14 +56,16 @@ else
                                 Field="@nameof(Bus.Name)"
                                 Caption="@(@Localizer.NameBut)"
                                 Editable="true"
-                                Sortable="true">
+                                Sortable="true"
+                                CellClass="@((item)=>"name-column")">
                 </DataGridColumn>
                 @*Unom*@
                 <DataGridNumericColumn TItem="Bus"
                                        Field="@nameof(Bus.Unom)"
                                        Caption="@(@Localizer.VoltageСlass)"
                                        Editable="true"
-                                       Sortable="true">
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
                     <DisplayTemplate>
                         @{
                             var unom = (context).Unom < 0 ? (context).Unom = 0 : (context).Unom;
@@ -77,14 +78,16 @@ else
                 <DataGridColumn TItem="Bus"
                                 Editable="false"
                                 Sortable="false"
-                                Filterable="false">
+                                Filterable="false"
+                                CellClass="@((item)=>"equipment-column")">
                     <DisplayTemplate>
                         <Button_Equipment />
                     </DisplayTemplate>
                 </DataGridColumn>
 
                 @*Commands*@
-                <DataGridCommandColumn TItem="Bus" Width="130px">
+                <DataGridCommandColumn TItem="Bus"
+                                       CellClass="@((item)=>"edit-column")">
                     <NewCommandTemplate>
                         <Button_Add OnClickCallback="@context.Clicked" />
                     </NewCommandTemplate>

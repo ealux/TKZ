@@ -8,26 +8,23 @@
 @using TKZ.Shared
 @page "/gridmanager"
 
-<Row>
+<Row Class="frame m-auto">
     <Column Padding="Padding.Is2">
         <Inline>
             <Field>
-                <FieldLabel>Новая сеть: </FieldLabel>
+                <FieldLabel>Добавить новую сеть: </FieldLabel>
             </Field>
             <Field Padding="Padding.Is4.OnX">
                 <Validation Validator="@Validate">
                     <TextEdit Role="TextRole.Text"
-                              Placeholder="Имя новой сети"
+                              Placeholder="Наименование"
                               @bind-Text="@name"
                               Style="width:400px;">
                     </TextEdit>
                 </Validation>
             </Field>
             <Field>
-                <Button Color="Color.Primary"
-                        Clicked="@AddGrid">
-                    Добавить сеть
-                </Button>
+                <TKZ.Client.Pages.Components.Button_Add_Node_For_Calc OnClickCallback ="@AddGrid"/>
             </Field>
         </Inline>
     </Column>

@@ -13,7 +13,7 @@
 }
 else
 {
-    <div class="w3-animate-opacity">
+    <div class="frame table-container overflow-auto">
         <DataGrid TItem="Branch"
                   Data="@branches"
                   PageSize="@branches.Count"
@@ -25,7 +25,6 @@ else
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
                   Narrow="true"
-                  HeaderRowClass="small"
                   Class="my_table text-center">
             <DataGridColumns>
                 @*IsActive*@
@@ -33,7 +32,8 @@ else
                                 Field="@nameof(Branch.IsActive)"
                                 Caption="@(@Localizer.IsActive)"
                                 Editable="true"
-                                Sortable="true">
+                                Sortable="true"
+                                CellClass="@((item)=>"check-column")">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
                     </DisplayTemplate>
@@ -41,7 +41,7 @@ else
                         <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                     </EditTemplate>
                     <FilterTemplate>
-                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <Select Class="black check-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                             <SelectItem Value="@("*")"></SelectItem>
                             <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
                             <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
@@ -55,7 +55,7 @@ else
                                        Editable="true"
                                        Sortable="true"
                                        Filterable="true"
-                                       Width="100px">
+                                       CellClass="@((item)=>"name-column")">
                     <DisplayTemplate>
                         @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId].Name
                     </DisplayTemplate>
@@ -69,7 +69,7 @@ else
                         </Select>
                     </EditTemplate>
                     <FilterTemplate>
-                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <Select Class="black check-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                             <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in branches.Select(b => b.StartBusId).Distinct().OrderBy(n => n))
                             {
@@ -87,7 +87,7 @@ else
                                        Caption="@Localizer.finBus"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px">
+                                       CellClass="@((item)=>"name-column")">
                     <DisplayTemplate>
                         @if (grid.Buses.ContainsKey(context.FinalBusId))@grid.Buses[context.FinalBusId]
                     </DisplayTemplate>
@@ -101,7 +101,7 @@ else
                         </Select>
                     </EditTemplate>
                     <FilterTemplate>
-                        <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <Select Class="black name-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                             <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in branches.Select(b => b.FinalBusId).Distinct().OrderBy(n => n))
                             {
@@ -118,7 +118,8 @@ else
                                 Field="@nameof(Branch.Name)"
                                 Caption="@(@Localizer.Name)"
                                 Editable="true"
-                                Sortable="true">
+                                Sortable="true"
+                                CellClass="@((item)=>"name-column")">
                     <DisplayTemplate>
                         @{
                             var start = grid.Buses.ContainsKey(context.StartBusId) ? grid.Buses[context.StartBusId].Name : "";
@@ -137,49 +138,49 @@ else
                                        Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*X1*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.X1)"
                                        Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*R0*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.R0)"
                                        Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*X0*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.X0)"
                                        Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*B*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.B)"
                                        Caption="@(new String("B, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*G*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.G)"
                                        Caption="@(new String("G, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px"></DataGridNumericColumn>
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*StUnom*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.StUnom)"
                                        Caption="@(new String(@Localizer.Unom+" "+@Localizer.startBus+", ["+@Localizer.kV+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="75px">
+                                       CellClass="@((item)=>"numeric-column")">
                     <DisplayTemplate>
                         @{
 
@@ -194,7 +195,7 @@ else
                                        Caption="@(new String(@Localizer.Unom+" "+@Localizer.finBus+", ["+@Localizer.kV+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="75px">
+                                       CellClass="@((item)=>"numeric-column")">
                     <DisplayTemplate>
                         @{
                             var unom = (context).FinUnom < 0 ? (context).FinUnom = 0 : (context).FinUnom;
@@ -208,7 +209,7 @@ else
                                      Caption="@Localizer.groundStartBus"
                                      Editable="true"
                                      Sortable="true"
-                                     Width="100px">
+                                     CellClass="@((item)=>"check-column")">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.GroundStBus" Disabled="true" ReadOnly="true" />
                     </DisplayTemplate>
@@ -222,7 +223,7 @@ else
                                       Caption="@Localizer.groundFinBus"
                                       Editable="true"
                                       Sortable="true"
-                                      Width="100px">
+                                      CellClass="@((item)=>"check-column")">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.GroundFinBus" Disabled="true" ReadOnly="true" />
                     </DisplayTemplate>
@@ -236,11 +237,11 @@ else
                                        Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
                                        Editable="true"
                                        Sortable="true"
-                                       Width="100px">
+                                       CellClass="@((item)=>"check-column")">
                     <DisplayTemplate>
                         @{
                             double angle = ((context).Fi_trans == 360 || (context).Fi_trans == -360) ? (context).Fi_trans = 0 : (context).Fi_trans;
-                            @(angle + " °")
+                            @(angle + "°")
                         }
                     </DisplayTemplate>
                     <EditTemplate>
@@ -253,7 +254,8 @@ else
                 </DataGridNumericColumn>
 
                 @*Commands*@
-                <DataGridCommandColumn TItem="Branch" Width="130px">
+                <DataGridCommandColumn TItem="Branch" 
+                                       CellClass="@((item)=>"edit-column")">
                     <NewCommandTemplate>
                         <Button_Add OnClickCallback = "@context.Clicked" />
                     </NewCommandTemplate>

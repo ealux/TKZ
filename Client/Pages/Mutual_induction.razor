@@ -12,7 +12,7 @@
 }
 else
 {
-    <div class="w3-animate-opacity">
+    <div class="frame table-container overflow-auto">
         <DataGrid TItem="Mutual"
                   Data="@mutuals"
                   PageSize="@mutuals.Count"
@@ -24,8 +24,6 @@ else
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
                   Narrow="true"
-                  HeaderRowClass="small"
-                  HeaderRowStyle="background-color:var(--light_color);"
                   Class="my_table text-center">
 
             @*IsActive*@
@@ -33,7 +31,8 @@ else
                             Field="@nameof(Mutual.IsActive)"
                             Caption="@(@Localizer.IsActive)"
                             Editable="true"
-                            Sortable="true">
+                            Sortable="true"
+                            CellClass="@((item)=>"check-column")">
                 <DisplayTemplate>
                     <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
                 </DisplayTemplate>
@@ -41,7 +40,7 @@ else
                     <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                 </EditTemplate>
                 <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                    <Select Class="black check-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                         <SelectItem Value="@("*")"></SelectItem>
                         <SelectItem Value="@(true.ToString())">@Localizer.ActiveFilter</SelectItem>
                         <SelectItem Value="@(false.ToString())">@Localizer.NotActiveFilter</SelectItem>
@@ -53,7 +52,8 @@ else
                                    Field="@nameof(Mutual.IdFirstBranch)"
                                    Caption="@Localizer.firstBranch"
                                    Editable="true"
-                                   Sortable="true">
+                                   Sortable="true"
+                                   CellClass="@((item)=>"name-column")">
                 <DisplayTemplate>
                     @if (grid.Branches.ContainsKey(context.IdFirstBranch))
                     {
@@ -70,8 +70,8 @@ else
                     </Select>
                 </EditTemplate>
                 <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                        <SelectItem Value="@("*")"></SelectItem>
+                    <Select Class="black name-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                        <SelectItem  Value="@("*")"></SelectItem>
                         @foreach (var item in mutuals.Select(b => b.IdFirstBranch).Distinct().OrderBy(n => n))
                         {
                             if (grid.Branches.ContainsKey(item))
@@ -87,7 +87,8 @@ else
                                    Field="@nameof(Mutual.IdSecondBranch)"
                                    Caption="@Localizer.secondBranch"
                                    Editable="true"
-                                   Sortable="true">
+                                   Sortable="true"
+                                   CellClass="@((item)=>"name-column")">
                 <DisplayTemplate>
                     @if (grid.Branches.ContainsKey(context.IdSecondBranch))
                     {
@@ -95,7 +96,7 @@ else
                     }
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    <Select Class="black name-column" TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                         <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
                         @foreach (var item in grid.Branches.Values.OrderBy(b => b.Name))
                         {
@@ -121,16 +122,19 @@ else
                                    Field="@nameof(Mutual.R)"
                                    Caption="@(new String("R, ["+@Localizer.ohm+"]"))"
                                    Editable="true"
-                                   Sortable="true"></DataGridNumericColumn>
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*X*@
         <DataGridNumericColumn TItem="Mutual"
                                Field="@nameof(Mutual.X)"
                                Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
                                Editable="true"
-                               Sortable="true"></DataGridNumericColumn>
+                               Sortable="true"
+                               CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Mutual" Width="130px">
+            <DataGridCommandColumn TItem="Mutual" 
+                                   CellClass="@((item)=>"edit-column")">
                 <NewCommandTemplate>
                     <Button_Add OnClickCallback = "@context.Clicked" />
                 </NewCommandTemplate>
