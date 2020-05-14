@@ -16,15 +16,14 @@
             </Field>
             <Field Padding="Padding.Is4.OnX">
                 <Validation Validator="@Validate">
-                    <TextEdit Role="TextRole.Text"
-                              Placeholder="Наименование"
+                    <TextEdit Placeholder="Наименование"
                               @bind-Text="@name"
                               Style="width:400px;">
                     </TextEdit>
                 </Validation>
             </Field>
             <Field>
-                <TKZ.Client.Pages.Components.Button_Add_Node_For_Calc OnClickCallback ="@AddGrid"/>
+                <TKZ.Client.Pages.Components.Button_Add_Node_For_Calc OnClickCallback="@AddGrid" />
             </Field>
         </Inline>
     </Column>
@@ -33,7 +32,7 @@
 @code {
     string name { get; set; }
 
-    async void Validate(ValidatorEventArgs e)
+    void Validate(ValidatorEventArgs e)
     {
         var name = Convert.ToString(e.Value);
 

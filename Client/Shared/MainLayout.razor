@@ -15,19 +15,18 @@
                     @Body
                 </div>
                 <div class="d-flex flex-column">
-                <TKZ.Client.Pages.Log.Log LogChangeEvent="() => { StateHasChanged(); }" />
+                    <TKZ.Client.Pages.Log.Log LogChangeEvent="() => { StateHasChanged(); }" />
                 </div>
             </div>
-                <TKZ.Client.Shared.Footer.Footer />
-            </div>
+            <TKZ.Client.Shared.Footer.Footer />
         </div>
     </div>
-    @code{
-        void LogCollapser()
-        {
-            LB.Collapse = !LB.Collapse;
-            StateHasChanged();
-        }
+</div>
 
-
+@code{
+    void LogCollapser()
+    {
+        LB.Collapse = !LB.Collapse;
+        StateHasChanged();
     }
+}

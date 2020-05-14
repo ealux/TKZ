@@ -15,10 +15,9 @@ namespace TKZ.Server.Controllers
     {
         // GET
         [HttpGet]
-        public Grid Get()
+        public async Task<string> Get()
         {
-            Grid g = JsonConvert.DeserializeObject<Grid>(System.IO.File.ReadAllText("IEE 14-bus modified test system.json"));
-            return g;
+            return await System.IO.File.ReadAllTextAsync("IEEE 14-bus modified test system.json");            
         }
     }
 }

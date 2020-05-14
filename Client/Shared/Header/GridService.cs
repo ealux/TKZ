@@ -9,8 +9,6 @@ namespace TKZ.Client.Shared.Header
     {
         public string CurrentGridName { get; set; }
 
-        public event Action OnChange;
-
         public GridService()
         {
             CurrentGridName = "stock";

@@ -1,0 +1,86 @@
+﻿@using BlazorInputFile
+@using System.IO
+@using TKZ.Shared
+@inject NavigationManager navmanager
+@inject GridService service
+@inject LogBase Log
+@page "/gridinput"
+
+<div style="display:block;" class="frame m-auto">
+    <h1>Выберите файлы</h1>
+
+    <p>Выберите один или несколько файлов формата json</p>
+
+    <div class="drag-drop-zone m-auto">
+        <BlazorInputFile.InputFile multiple OnChange="ViewFile" />
+    </div>
+
+    @if (selectedFiles != null)
+    {
+        foreach (var item in selectedFiles)
+        {
+            <h3>@item.Name</h3>
+            Console.WriteLine(item.Data);
+        }
+
+        <button class="my_button" @onclick="Upload">Загрузить</button>
+        <button class="my_button" @onclick="Clear">Сброс</button>
+    }
+</div>
+
+@code {
+    string fileTextContents;
+
+    List<IFileListEntry> selectedFiles;
+
+    void ViewFile(IFileListEntry[] files)
+    {
+        selectedFiles = files.Where(f => f.Name.Contains(".json")).ToList();
+    }
+
+    async Task Upload()
+    {
+        if (selectedFiles == null || selectedFiles.Count == 0) return;
+
+        List<Grid> grids = new List<Grid>();
+
+        foreach (var item in selectedFiles)
+        {
+            try
+            {
+                grids.Add(await Grid.Deserialize(item.Data));
+                //Console.WriteLine(item.Name);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ошибка");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        if (grids.Count > 0)
+        {
+            Console.WriteLine(grids.Count);
+
+            foreach (var newGrid in grids)
+            {
+                Grid.Networks.Add(newGrid);
+                Log.AddMessage(MessageCollection.NewGrid_Added(newGrid.Name));
+            }
+
+            service.CurrentGridName = Grid.Networks[Grid.Networks.Count-1].Name;
+            Grid.SetInstance(Grid.Networks[Grid.Networks.Count - 1]);
+            Log.Collapse = false;
+            navmanager.NavigateTo("/");
+        }
+
+        StateHasChanged();
+    }
+
+    void Clear()
+    {
+        selectedFiles = null;
+        StateHasChanged();
+    }
+}

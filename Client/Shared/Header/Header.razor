@@ -37,7 +37,7 @@
     <div class="btn-group ml-5">
         <Tooltip Text="@Localizer.Upload" Placement="Placement.Bottom">
             <button type="button" class="icon">
-                <svg @onclick="@(() => {})" class="header-icon">
+                <svg @onclick="@(() => { navmanager.NavigateTo("/gridinput"); })" class="header-icon">
                     <use href="/img/Icon.svg#upload"></use>
                 </svg>
             </button>
@@ -106,13 +106,18 @@
     //Localizator
     I18nText.Shared.Header Localizer = new I18nText.Shared.Header();
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync() //Initial
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Header>(this);
         grid = await Grid.GetInstance();
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender) //Rerender
+    {
+        grid = await Grid.GetInstance();
+    }
+
+    protected override void OnInitialized() //Initial
     {
         Log.OnChange += StateHasChanged;
     }
@@ -130,7 +135,7 @@
     }
 
     //селектор
-    string selector;
+    string selector = "";
 
     void OnSelectedValueChanged(string value)
     {
@@ -160,11 +165,14 @@
 
     public async void LoadIEEE14()
     {
-        //TODO: Сделать загрузку файла с тестовой схемой. По какой-то причине не могу получить доступ к файлу
-        //grid = await Grid.Deserialize(SourceIEEE14);
+        var testIEEE = await Grid.Deserialize(await Http.GetStringAsync("TestGrid"));
+        Grid.Networks.Add(testIEEE);
+        service.CurrentGridName = Grid.Networks[Grid.Networks.Count - 1].Name;
+        Grid.SetInstance(Grid.Networks[Grid.Networks.Count - 1]);
 
-        grid = await Http.GetFromJsonAsync<Grid>("TestGrid"); //на основе контроллера (пока что ошибка десериализации)
         Log.AddMessage(MessageCollection.Serialize_Success("Загружена схема IEEE 14"));
+        Log.Collapse = false;
+        navmanager.NavigateTo("/");
 
         StateHasChanged();
     }
