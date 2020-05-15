@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Threading.Tasks;
 using TKZ.Shared.Model;
+using System.Collections.Generic;
 
 namespace TKZ.Shared
 {
@@ -34,6 +36,8 @@ namespace TKZ.Shared
                 grid.Name = (string)o["Name"];
                 grid.ArcR = (double)o["ArcR"];
                 grid.ArcX = (double)o["ArcX"];
+
+                Dictionary<int, Bus> tmpBuses = new Dictionary<int, Bus>();
                 foreach (var item in o["Buses"])
                 {
                     foreach (var item2 in item)
@@ -44,6 +48,7 @@ namespace TKZ.Shared
                             IsActive = (bool)item2["IsActive"],
                             Name = (string)item2["Name"]
                         };
+                        tmpBuses.Add((int)item2["Id"], b);
                         grid.Buses.Add(b.Id, b);
                     }
                 }
@@ -54,7 +59,7 @@ namespace TKZ.Shared
                     {
                         Equip e = new Equip()
                         {
-                            BusId = (int)item2["BusId"],
+                            BusId = tmpBuses.ContainsKey((int)item2["BusId"]) ? tmpBuses[(int)item2["BusId"]].Id : default,
                             R = (double)item2["R"],
                             X = (double)item2["X"],
                             E = (double)item2["E"],
@@ -66,6 +71,7 @@ namespace TKZ.Shared
                     }
                 }
 
+                Dictionary<int, Branch> tmpBranches = new Dictionary<int, Branch>();
                 foreach (var item in o["Branches"])
                 {
                     foreach (var item2 in item)
@@ -73,8 +79,8 @@ namespace TKZ.Shared
                         Branch br = new Branch()
                         {
                             NumPar = (int)item2["NumPar"],
-                            StartBusId = (int)item2["StartBusId"],
-                            FinalBusId = (int)item2["FinalBusId"],
+                            StartBusId = tmpBuses.ContainsKey((int)item2["StartBusId"]) ? tmpBuses[(int)item2["StartBusId"]].Id : default,
+                            FinalBusId = tmpBuses.ContainsKey((int)item2["FinalBusId"]) ? tmpBuses[(int)item2["FinalBusId"]].Id : default,
                             R1 = (double)item2["R1"],
                             X1 = (double)item2["X1"],
                             R0 = (double)item2["R0"],
@@ -91,6 +97,7 @@ namespace TKZ.Shared
                             IsActive = (bool)item2["IsActive"],
                             Name = (string)item2["Name"]
                         };
+                        tmpBranches.Add((int)item2["Id"], br);
                         grid.Branches.Add(br.Id, br);
                     }
                 }
@@ -101,8 +108,8 @@ namespace TKZ.Shared
                     {
                         Mutual m = new Mutual()
                         {
-                            IdFirstBranch = (int)item2["IdFirstBranch"],
-                            IdSecondBranch = (int)item2["IdSecondBranch"],
+                            IdFirstBranch = tmpBranches.ContainsKey((int)item2["IdFirstBranch"]) ? tmpBranches[(int)item2["IdFirstBranch"]].Id : default,
+                            IdSecondBranch = tmpBranches.ContainsKey((int)item2["IdSecondBranch"]) ? tmpBranches[(int)item2["IdSecondBranch"]].Id : default,
                             R = (double)item2["R"],
                             X = (double)item2["X"],
                             IsActive = (bool)item2["IsActive"],
