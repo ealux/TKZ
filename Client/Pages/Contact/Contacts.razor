@@ -4,11 +4,12 @@
 @using System.ComponentModel.DataAnnotations
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject HttpClient Http
+
 <div class="d-flex flex-row justify-content-center align-items-center" style="flex:1">
     <div class="row">
         <div class="col">
             <h1>@Localizer.ContactHeader</h1>
-            <p> У вас остались вопросы? Есть пожелания по работе сервиса? Напишите нам!</p>
+            <p>@contact.Localizer.Ctxt</p>
         </div>
         <div class="col contact frame"
             <EditForm Model="@contact" OnValidSubmit="SendFeedback">
@@ -37,7 +38,8 @@
                             @bind-Value="contact.Message" />
                 <button type="submit"
                         value="Submit" 
-                        class="my_button primary float-right">@contact.Localizer.Send</button>
+                        class="my_button primary float-right">@contact.Localizer.Send
+                </button>
             </EditForm>
         </div>
     </div>
@@ -53,10 +55,10 @@
 
         public DateTime datetime { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Не указано имя")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите адрес e-mail")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Не введен email")]
         [EmailAddress(ErrorMessage = "Некорректный адрес e-mail")]
         public string Email { get; set; }
 

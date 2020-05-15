@@ -10,6 +10,9 @@ namespace TKZ.Client.I18nText.Pages.Contact
         /// <summary>"Connect with us"</summary>
         public string ContactHeader;
 
+        /// <summary>"Still have questions? Any suggestions for the service? Write to us!"</summary>
+        public string Ctxt;
+
         /// <summary>"Your E-mail"</summary>
         public string Email;
 

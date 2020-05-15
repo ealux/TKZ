@@ -1,59 +1,63 @@
 ﻿@using System.Globalization
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@using Toolbelt.Blazor.HotKeys
+@inject HotKeys HotKeys
+@inject NavigationManager NavigationManager
+
 
 <aside class="my_sidebar d-flex flex-column nav nav-pills" >
     <!--sidebar-->
-        @* Домой *@
-        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" ActiveClass="active">
-            <svg @onclick="@(() => { })" class="menu-icon mr-2">
-                <use href="/img/Icon.svg#home"></use>
-            </svg>
-            <span class="align-middle">@Localizer.Navs_HomeBut</span>
-        </NavLink>
+        @* Домой *@        
+        <NavLink class="nav-link" href="@_pageMain" Match="NavLinkMatch.All" ActiveClass="active">            
+                <svg @onclick="@(() => { })" class="menu-icon mr-2">
+                    <use href="/img/Icon.svg#home"></use>
+                </svg>
+                <span class="align-middle">@Localizer.Navs_HomeBut</span>            
+        </NavLink>                
         @* Узлы *@
-        <NavLink class="nav-link" href="/nodes" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageNode" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#node"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_NodeBut</span>
         </NavLink>
         @* Оборудование *@
-        <NavLink class="nav-link" href="/equip" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageEquip" Match="NavLinkMatch.All" ActiveClass="active">
            <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#Equipment"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_EquipBut</span>
         </NavLink>
         @* Ветви *@
-        <NavLink class="nav-link" href="/branches" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageBranches" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#branch"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_BranchBut</span>
         </NavLink>
         @* Магнитосвязи *@
-        <NavLink class="nav-link" href="/mutual_induction" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageMutual" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#mutual_induction"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_MutBut</span>
         </NavLink>
         @* Расчёт *@
-        <NavLink class="nav-link" href="/calc" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageCalc" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#thunder"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_CalcBut</span>
         </NavLink>
         @* Советы *@
-        <NavLink class="nav-link" href="/advices" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageAdvice" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#adv"></use>
             </svg>
             <span class="align-middle">@Localizer.Navs_AdvBut</span>
         </NavLink>
         @* Контакты *@
-        <NavLink class="nav-link" href="/contacts" Match="NavLinkMatch.All" ActiveClass="active">
+        <NavLink class="nav-link" href="@_pageContact" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">
                 <use href="/img/Icon.svg#contact"></use>
             </svg>
@@ -62,6 +66,16 @@
 </aside>
 
 @code {
+    private const string _pageMain = "/";
+    private const string _pageNode = "/nodes";
+    private const string _pageEquip = "/equip";
+    private const string _pageBranches = "/branches";
+    private const string _pageMutual = "/mutual_induction";
+    private const string _pageCalc = "/calc";
+    private const string _pageAdvice = "/advices";
+    private const string _pageContact = "/contacts";
+    private const string _pageDisclamer = "/Disclaimer";
+    
 
     //Localizator
     I18nText.Shared.Navs Localizer = new I18nText.Shared.Navs();
@@ -69,5 +83,57 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Navs>(this);
+    }
+    
+    HotKeysContext HotKeysContext;
+    protected override void OnInitialized()
+    {
+        this.HotKeysContext = this.HotKeys.CreateContext()
+          .Add(ModKeys.Alt, Keys.Num1, NavigateToMain, "")
+          .Add(ModKeys.Alt, Keys.Num2, NavigateToNode, "")
+          .Add(ModKeys.Alt, Keys.Num3, NavigateToEqiupment, "")
+          .Add(ModKeys.Alt, Keys.Num4, NavigateToBranches, "")
+          .Add(ModKeys.Alt, Keys.Num5, NavigateToMutual, "")
+          .Add(ModKeys.Alt, Keys.Num6, NavigateToCalc, "")
+          .Add(ModKeys.Alt, Keys.Num7, NavigateToAdvice, "")
+          .Add(ModKeys.Alt, Keys.Num8, NavigateToContact, "")
+          .Add(ModKeys.Alt, Keys.Num9, NavigateToDisclamer, "");
+    }
+
+    private void NavigateToMain()
+    {
+        NavigationManager.NavigateTo(_pageMain);
+    }
+    private void NavigateToNode()
+    {
+        NavigationManager.NavigateTo(_pageNode);
+    }
+    private void NavigateToBranches()
+    {
+        NavigationManager.NavigateTo(_pageBranches);
+    }
+    private void NavigateToEqiupment()
+    {
+        NavigationManager.NavigateTo(_pageEquip);
+    }
+    private void NavigateToMutual()
+    {
+        NavigationManager.NavigateTo(_pageMutual);
+    }
+    private void NavigateToCalc()
+    {
+        NavigationManager.NavigateTo(_pageCalc);
+    }
+    private void NavigateToAdvice()
+    {
+        NavigationManager.NavigateTo(_pageAdvice);
+    }
+    private void NavigateToContact()
+    {
+        NavigationManager.NavigateTo(_pageContact);
+    }
+    private void NavigateToDisclamer()
+    {
+        NavigationManager.NavigateTo(_pageDisclamer);
     }
 }

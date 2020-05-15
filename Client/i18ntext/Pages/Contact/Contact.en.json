@@ -7,5 +7,6 @@
   "Success": "Your message has been sent successfully!",
   "ErrorName": "Enter name",
   "ErrorEmail": "Enter E-mail",
-  "ErrorMessage": "Enter message"
+  "ErrorMessage": "Enter message",
+  "Ctxt": "Still have questions? Any suggestions for the service? Write to us!"
 }
