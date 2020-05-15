@@ -9,5 +9,23 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>"Welcome!"</summary>
         public string Index_Header;
+
+        /// <summary>"У нас Вы можете выполнить расчёт токов короткого замыкания в электрической сети на основе метода симметричных составляющих."</summary>
+        public string Index_p1;
+
+        /// <summary>"Мы не накладываем ограничения на цели выполнения расчётов: обучение, бизнес или исследования."</summary>
+        public string Index_p2;
+
+        /// <summary>"С чего начать работу можно посмотреть в нашем "</summary>
+        public string Index_p3;
+
+        /// <summary>"руководстве пользователя."</summary>
+        public string Index_p3_1;
+
+        /// <summary>"Для начала работы просто создайте свою "</summary>
+        public string Index_p4_1;
+
+        /// <summary>" новую сеть."</summary>
+        public string Index_p4_2;
     }
 }

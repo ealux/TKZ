@@ -134,10 +134,6 @@
         if (IsRus) await I18nText.SetCurrentLanguageAsync("ru");
         else await I18nText.SetCurrentLanguageAsync("en");
     }
-
-    //селектор
-    string selector = "";
-
     void OnSelectedValueChanged(string value)
     {
         if (value == "Test_internal")
@@ -155,7 +151,7 @@
         }
 
         Grid.SetInstance(Grid.Networks.Where(g => g.Name == value).First());
-        navmanager.NavigateTo("/");
+        //navmanager.NavigateTo("/");
 
         StateHasChanged();
     }
