@@ -95,6 +95,8 @@ select { /*delete ouline from blazorize table filter*/
 .chips_area {
     overflow: auto;
     padding: 4px;
+    border: 2px solid var(--P-light); 
+    margin-bottom: var(--st_margin)
 }
 
 .parameter {
@@ -239,8 +241,8 @@ h5 {
     outline: none !important;
 }
 .icon-delete {
-    float: right;
-    display: inline-block;
+
+
 }
 .btn { /*delete ouline from blazorize table button*/
     box-shadow: none !important;
@@ -352,58 +354,6 @@ h5 {
     outline: none !important;
     box-shadow: none !important;
     background-color: red;
-}
-
-.checkbox__label {
-    background-color: var(--P-light);
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    cursor: pointer;
-    margin-right: var(--st_margin);
-    padding: 0px;
-}
-
-.checkbox__input {
-    display: none;
-    opacity: 1;
-}
-
-input[type="checkbox"][class="checkbox__input"]:checked + label {
-    background-color: var(--S-middle);
-    /*box-shadow: 0px 0px 4px var(--S-middle);*/
-}
-.checkbox__label:last-child{
-    margin-right: 0px;
-}
-
-.radio__label {
-    background-color: var(--P-light);
-    border-radius: var(--st_margin);
-    line-height: 1.25rem;
-    text-align: center;
-    cursor: pointer;
-    display: block;
-    flex: 1;
-    padding: 0.3rem;
-    margin-bottom: 4px;
-}
-
-.radio__input {
-    display: none;
-    opacity: 1;
-}
-
-input[type="radio"][class="radio__input"]:checked + label {
-    background-color: var(--S-middle);
-    /*box-shadow: 0px 0px 4px var(--S-middle);*/
-
-}
-
-.radio__label:last-child {
-    margin-bottom: 0px;
 }
 
 .choose-grid {
@@ -596,41 +546,62 @@ input[type="radio"][class="radio__input"]:checked + label {
     background-size: 2rem 2rem;
 }
 .custom-control-input:checked ~ .custom-control-label::before {
-    border-color: transparent;
+    content: none;
+}
+.custom-control-label {
+    padding-left: 0.75rem;
+    padding-right: 0.25rem;
+}
+.custom-control-label::before {
+    content: none;
+}
+
+.custom-control-label::after {
     background-color: transparent;
     border-radius: 0.25rem;
-    border: 1px solid var(--P-dark);
-    box-shadow: none !important;
-    outline: none !important
+    border: 0px;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+    top: -0.75rem;
+    background-size: 1.5rem 1.5rem;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3e%3cellipse stroke='%235c8ecc' ry='25.914644' rx='26.036595' cy='36.036599' cx='27.731706' fill-opacity='null' stroke-width='4' fill='none'/%3e%3c/svg%3e");
 }
-
-.custom-control-label::before {
-    position: absolute;
-    top: 0rem;
-    left: -1.5rem;
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    pointer-events: none;
-    content: "";
-    background-color: transparent;
-    border: 1px solid var(--P-dark);
-    box-shadow: none !important;
-    outline: none !important
-}
-
+    
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
     background-color: transparent;
     border-radius: 0.25rem;
     border: 0px;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
     padding: 0;
-    top: 0;
-    background-size: 2rem 2rem;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 16 16' fill='%2379ec56' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M15.354 2.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
+    top: -0.75rem;
+    background-size: 1.5rem 1.5rem;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' aria-labelledby='title' aria-describedby='desc' role='img' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cpath fill='none' stroke='%2379ec56' stroke-miterlimit='10' stroke-width='4' d='M15.74 30l12 14 34-42' stroke-linejoin='round' stroke-linecap='round'%3e%3c/path%3e%3cpath d='M53.443 32A26.002 26.002 0 1 1 27.75 10a25.914 25.914 0 0 1 10 1.993' fill='none' stroke='%235c8ecc' stroke-miterlimit='10' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3e%3c/path%3e%3c/svg%3e");
+}
+.custom-radio .custom-control-input ~ .custom-control-label::after {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    border: 0px;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+    top: 0rem;
+    background-size: 1.5rem 1.5rem;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3e%3cellipse stroke='%235c8ecc' ry='25.914644' rx='26.036595' cy='36.036599' cx='27.731706' fill-opacity='null' stroke-width='4' fill='none'/%3e%3c/svg%3e");
 }
 
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    border: 0px;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+    top: 0rem;
+    background-size: 1.5rem 1.5rem;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' aria-labelledby='title' aria-describedby='desc' role='img' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cpath fill='none' stroke='%2379ec56' stroke-miterlimit='10' stroke-width='4' d='M15.74 30l12 14 34-42' stroke-linejoin='round' stroke-linecap='round'%3e%3c/path%3e%3cpath d='M53.443 32A26.002 26.002 0 1 1 27.75 10a25.914 25.914 0 0 1 10 1.993' fill='none' stroke='%235c8ecc' stroke-miterlimit='10' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3e%3c/path%3e%3c/svg%3e");
+}
 
 .bg-primary { /*bootstrap class for selected row in table*/
     border: 2px solid var(--P-dark) !important;
