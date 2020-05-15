@@ -1,15 +1,16 @@
 ﻿@using BlazorInputFile
 @using System.IO
 @using TKZ.Shared
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject NavigationManager navmanager
 @inject GridService service
 @inject LogBase Log
 @page "/gridinput"
 
 <div style="display:block;" class="frame m-auto">
-    <h1>Выберите файлы</h1>
+    <h1>@Localizer.Choose</h1>
 
-    <p>Выберите один или несколько файлов формата json</p>
+    <p>@Localizer.Info</p>
 
     <div class="drag-drop-zone m-auto">
         <BlazorInputFile.InputFile multiple OnChange="ViewFile" />
@@ -23,8 +24,8 @@
             Console.WriteLine(item.Data);
         }
 
-        <button class="my_button" @onclick="Upload">Загрузить</button>
-        <button class="my_button" @onclick="Clear">Сброс</button>
+        <button class="my_button" @onclick="Upload">@Localizer.Upload</button>
+        <button class="my_button" @onclick="Clear">@Localizer.Clear</button>
     }
 </div>
 
@@ -42,6 +43,9 @@
     {
         if (selectedFiles == null || selectedFiles.Count == 0) return;
 
+        //Отчистка лога
+        if (Log.Messages.Any((m) => m.Class == MessageClass.Deserialization)) await Log.RemoveMessage(byClass: MessageClass.Deserialization);
+
         List<Grid> grids = new List<Grid>();
 
         foreach (var item in selectedFiles)
@@ -49,13 +53,11 @@
             try
             {
                 grids.Add(await Grid.Deserialize(item.Data));
-                //Console.WriteLine(item.Name);
-
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine("ошибка");
-                Console.WriteLine(e.Message);
+                Log.AddMessage(MessageCollection.Deserialize_Error(item.Name));
+                Log.Collapse = false;
             }
         }
 
@@ -69,7 +71,7 @@
                 Log.AddMessage(MessageCollection.NewGrid_Added(newGrid.Name));
             }
 
-            service.CurrentGridName = Grid.Networks[Grid.Networks.Count-1].Name;
+            service.CurrentGridName = Grid.Networks[Grid.Networks.Count - 1].Name;
             Grid.SetInstance(Grid.Networks[Grid.Networks.Count - 1]);
             Log.Collapse = false;
             navmanager.NavigateTo("/");
@@ -82,5 +84,13 @@
     {
         selectedFiles = null;
         StateHasChanged();
+    }
+
+    //Localizator
+    I18nText.Pages.InputGrid Localizer = new I18nText.Pages.InputGrid();
+
+    protected override async Task OnInitializedAsync() //Initial
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.InputGrid>(this);
     }
 }

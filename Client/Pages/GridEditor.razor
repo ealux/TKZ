@@ -12,11 +12,11 @@
     <Column Padding="Padding.Is2">
         <Inline>
             <Field>
-                <FieldLabel>Добавить новую сеть: </FieldLabel>
+                <FieldLabel>@Localizer.NewGrid</FieldLabel>
             </Field>
             <Field Padding="Padding.Is4.OnX">
                 <Validation Validator="@Validate">
-                    <TextEdit Placeholder="Наименование"
+                    <TextEdit Placeholder="@Localizer.NewGridPlaceholder"
                               @bind-Text="@name"
                               Style="width:400px;">
                     </TextEdit>
@@ -68,5 +68,13 @@
             Log.Collapse = false;
             navmanager.NavigateTo("/");
         });
+    }
+
+    //Localizator
+    I18nText.Pages.GridEditor Localizer = new I18nText.Pages.GridEditor();
+
+    protected override async Task OnInitializedAsync() //Initial
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.GridEditor>(this);
     }
 }

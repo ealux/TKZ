@@ -7,6 +7,9 @@ namespace TKZ.Client.I18nText.Shared
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Add New Network"</summary>
+        public string AddNewGrid;
+
         /// <summary>"Calculate everything and download to Excel file"</summary>
         public string Calculate_All;
 

@@ -20,6 +20,7 @@
             SelectedValue="service.CurrentGridName"
             SelectedValueChanged="@OnSelectedValueChanged"
             Class="choose-grid transparent"
+            @ondblclick ="@(()=>{ navmanager.NavigateTo("/gridmanager"); })"
             id="ChooseGrid">
         @if (Grid.Networks != null & Grid.Networks.Count > 1)
         {
@@ -30,14 +31,14 @@
         }
         <hr />
         <SelectItem Value="@("Test_internal")">Тестовая</SelectItem>
-        <SelectItem Value="@("Add_new_grid_internal")">Add grid</SelectItem>
+        <SelectItem Style="color: var(--P-dark);" Value="@("Add_new_grid_internal")">@Localizer.AddNewGrid</SelectItem>
         <SelectItem Value="@("stock")" Visibility="Visibility.Never"></SelectItem>
     </Select>
 
     <div class="btn-group ml-5">
         <Tooltip Text="@Localizer.Upload" Placement="Placement.Bottom">
-            <button type="button" class="icon">
-                <svg @onclick="@(() => { navmanager.NavigateTo("/gridinput"); })" class="header-icon">
+            <button type="button" class="icon" @onclick="@(() => {navmanager.NavigateTo("/gridinput");})">
+                <svg @onclick="@(() => { })" class="header-icon">
                     <use href="/img/Icon.svg#upload"></use>
                 </svg>
             </button>

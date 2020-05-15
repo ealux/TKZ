@@ -113,6 +113,10 @@ namespace TKZ.Client.Pages.Log
         //Serialize Branches Error
         public static Message Serialize_BranchError()
             => new Message(MessageClass.Serialization, MessageType.Danger, "Сеть не сохранена!", "Остутствуют ветви! Нечего сохранять!", "branches");
+
+        //Deserialize Error
+        public static Message Deserialize_Error(string name)
+            => new Message(MessageClass.Deserialization, MessageType.Danger, "Содержимое файла не соответсвует заданому формату!", $"Имя файла: {name}", "");
         #endregion
 
         //
