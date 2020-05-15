@@ -81,7 +81,7 @@ else
                                 Filterable="false"
                                 CellClass="@((item)=>"equipment-column")">
                     <DisplayTemplate>
-                        <Button_Equipment />
+                        @if(grid.Equipment.Values.Any(e => e.BusId == (context).Id)) { <Button_Equipment /> }                        
                     </DisplayTemplate>
                 </DataGridColumn>
 
