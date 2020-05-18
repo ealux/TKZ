@@ -477,12 +477,19 @@ h5 {
     border-bottom: 1px solid var(--P-light);
     background-color: var(--P-light);
     border-top: 0px;
-    height: 4rem;
+    height: 6.5rem;
     padding-bottom: 0;
     position: sticky;
     top: 0;
-    z-index: 10; 
-
+    z-index: 10;
+}
+.my_table thead > tr:first-child > th:last-child {
+    position: sticky;
+    right: 0;
+}
+.my_table thead > tr:last-child > th:last-child {
+    position: sticky;
+    right: 0;
 }
 .my_table thead > tr:last-child > th {
     border-bottom: 0px solid var(--P-dark);
@@ -491,23 +498,30 @@ h5 {
     padding-top: 1rem;
     padding-bottom: 1rem;
     position: sticky;
-    top: calc(4rem - 0px);
+    top: 6.5rem;
     z-index: 10;
 
 }
 .my_table tbody tr:hover {
     background-color: var(--P-light);
 }
+.my_table tbody tr > td:last-child {
+    position: sticky;
+    right: 0;
+}
 .equipment {
-    border:1px solid var(--P-dark);
-    width: 20%;
+    border:1px solid rgba(0,0,0, 0.25);
+    width: 100%;
+    margin-bottom: 0;
 }
 .equipment tbody tr {
     background-color: var(--P-light);
+
 }
 .equipment td {
-    border-bottom: 1px solid var(--P-dark);
+    border-bottom: 1px solid rgba(0,0,0, 0.25);
     background-color: var(--P-light);
+    text-align: left;
 }
 .equipment tbody tr:hover {
     background-color: var(--P-middle);

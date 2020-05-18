@@ -61,7 +61,7 @@ else
                     }
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    <Select Class="black name-column" TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                         <SelectItem Class="active" TValue="int" Value="@(0)"></SelectItem>
                         @foreach (var item in grid.Branches.Values.OrderBy(b => b.Name))
                         {
@@ -105,7 +105,7 @@ else
                     </Select>
                 </EditTemplate>
                 <FilterTemplate>
-                    <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                    <Select Class="black name-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                         <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in mutuals.Select(b => b.IdSecondBranch).Distinct().OrderBy(n => n))
                         {

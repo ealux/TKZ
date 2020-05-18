@@ -60,7 +60,7 @@ else
                         @if (grid.Buses.ContainsKey(context.StartBusId))@grid.Buses[context.StartBusId].Name
                     </DisplayTemplate>
                     <EditTemplate>
-                        <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <Select Class="black name-column" TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                             <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {
@@ -92,7 +92,7 @@ else
                         @if (grid.Buses.ContainsKey(context.FinalBusId))@grid.Buses[context.FinalBusId]
                     </DisplayTemplate>
                     <EditTemplate>
-                        <Select TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                        <Select Class="black name-column" TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                             <SelectItem Value="@("*")"></SelectItem>
                             @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                             {

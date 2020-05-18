@@ -58,7 +58,7 @@ else
                     @if (grid.Buses.ContainsKey(context.BusId))@grid.Buses[context.BusId].Name
                 </DisplayTemplate>
                 <EditTemplate>
-                    <Select  TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
+                    <Select Class="black name-column"  TValue="int" SelectedValue="@((int)(((CellEditContext)context).CellValue))" SelectedValueChanged="@((v) => ((CellEditContext)context).CellValue = v)">
                         <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in grid.Buses.Values.Where(b => b.Id != 0).OrderBy(b => b.Name))
                         {
