@@ -102,6 +102,34 @@ else
                                    Editable="true"
                                    Sortable="true"
                                    CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+            @*R2*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.R2)"
+                                   Caption="@(new String("R2, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+            @*X2*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.X2)"
+                                   Caption="@(new String("X2, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+            @*R0*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.R0)"
+                                   Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+            @*X0*@
+            <DataGridNumericColumn TItem="Equip"
+                                   Field="@nameof(Equip.X0)"
+                                   Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*E*@
             <DataGridNumericColumn TItem="Equip"
                                    Field="@nameof(Equip.E)"

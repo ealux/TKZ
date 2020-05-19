@@ -14,6 +14,12 @@ namespace TKZ.Shared.Model
         public double R { get; set; }
         public double X { get; set; }
 
+        public double R2 { get; set; }
+        public double X2 { get; set; }
+
+        public double R0 { get; set; }
+        public double X0 { get; set; }
+
         public double E { get; set; }
         public double Fi_E { get; set; }
 

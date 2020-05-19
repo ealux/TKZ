@@ -163,14 +163,28 @@ else
                 @*B*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.B)"
-                                       Caption="@(new String("B, ["+@Localizer.Siemens+"]"))"
+                                       Caption="@(new String("B1 (B2), ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
                                        Sortable="true"
                                        CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
                 @*G*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.G)"
-                                       Caption="@(new String("G, ["+@Localizer.Siemens+"]"))"
+                                       Caption="@(new String("G1 (G2), ["+@Localizer.Siemens+"]"))"
+                                       Editable="true"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+                @*B0*@
+                <DataGridNumericColumn TItem="Branch"
+                                       Field="@nameof(Branch.B0)"
+                                       Caption="@(new String("B0, ["+@Localizer.Siemens+"]"))"
+                                       Editable="true"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+                @*G0*@
+                <DataGridNumericColumn TItem="Branch"
+                                       Field="@nameof(Branch.G0)"
+                                       Caption="@(new String("G0, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
                                        Sortable="true"
                                        CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
@@ -202,6 +216,27 @@ else
                             @(unom)
                         }
                     </DisplayTemplate>
+                </DataGridNumericColumn>                
+                @*FI_trans*@
+                <DataGridNumericColumn TItem="Branch"
+                                       Field="@nameof(Branch.Fi_trans)"
+                                       Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
+                                       Editable="true"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"check-column")">
+                    <DisplayTemplate>
+                        @{
+                            double angle = ((context).Fi_trans == 360 || (context).Fi_trans == -360) ? (context).Fi_trans = 0 : (context).Fi_trans;
+                            @(angle + "°")
+                        }
+                    </DisplayTemplate>
+                    <EditTemplate>
+                        <NumericEdit TValue="double"
+                                     Value="@((double)(((CellEditContext)context).CellValue))"
+                                     ValueChanged="@(v=>((CellEditContext)context).CellValue = v)"
+                                     Min="-360"
+                                     Max="360" />
+                    </EditTemplate>
                 </DataGridNumericColumn>
                 @*GroundStBus*@
                 <DataGridCheckColumn TItem="Branch"
@@ -231,28 +266,6 @@ else
                         <Check TValue="bool" Checked="@((bool)( ( (CellEditContext)context ).CellValue ))" CheckedChanged="@(( v ) => ( (CellEditContext)context ).CellValue = v)" />
                     </EditTemplate>
                 </DataGridSelectColumn>
-                @*FI_trans*@
-                <DataGridNumericColumn TItem="Branch"
-                                       Field="@nameof(Branch.Fi_trans)"
-                                       Caption="@(new String(@Localizer.trans+" "+@Localizer.angle+", ["+@Localizer.deg+"]"))"
-                                       Editable="true"
-                                       Sortable="true"
-                                       CellClass="@((item)=>"check-column")">
-                    <DisplayTemplate>
-                        @{
-                            double angle = ((context).Fi_trans == 360 || (context).Fi_trans == -360) ? (context).Fi_trans = 0 : (context).Fi_trans;
-                            @(angle + "°")
-                        }
-                    </DisplayTemplate>
-                    <EditTemplate>
-                        <NumericEdit TValue="double"
-                                     Value="@((double)(((CellEditContext)context).CellValue))"
-                                     ValueChanged="@(v=>((CellEditContext)context).CellValue = v)"
-                                     Min="-360"
-                                     Max="360" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
-
                 @*Commands*@
                 <DataGridCommandColumn TItem="Branch" 
                                        CellClass="@((item)=>"edit-column")">
