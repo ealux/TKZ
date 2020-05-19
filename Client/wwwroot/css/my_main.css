@@ -128,10 +128,10 @@ select { /*delete ouline from blazorize table filter*/
 }
 /*HEADING*/
 h1 {
-    text-align: left;
+    text-align: center;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -180,6 +180,11 @@ h5 {
     background: var(--S-light);
     border: 2px solid var(--S-middle);
     color: black;
+}
+.my_button.landing {
+    font-size: 2rem;
+    padding: 1rem;
+
 }
 
 .round {
@@ -653,7 +658,67 @@ h5 {
     margin-left: -5px;
     border-color: transparent transparent  var(--P-middle) transparent;
 }
-
+.landing-main-text {
+    font-size: 4rem;
+    line-height: 5rem;
+    margin-bottom: 2rem;
+}
+.landing-main-text span {
+    color: var(--S-middle);
+    font-family: Amithen;
+    font-size: 6rem;
+}
+.landing-header-link {
+    color: var(--P-dark);
+    font-weight: bold;
+}
+.landing-text {
+    font-size: 2rem;
+}
+.landing-icon {
+    height: 5rem;
+    width: 5rem;
+    margin-right: 2rem;
+}
+.landing-screen {
+    margin-bottom: 2rem;
+    padding-top: 4rem;
+    
+}
+.landing-navs {
+    height: 4rem;
+    background-color: white;
+}
+.landing-image {
+    background-image: url("../img/Lighting.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.landing-feature {
+    border: 2px solid var(--P-dark);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+.landing-feature p {
+    display: block;
+}
+.landing-navs-section {
+    position: fixed;
+    top: 45vh;
+    right: 32px;
+}
+.landing-navs-section-item {
+    border: 1px solid var(--P-dark);
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: block;
+}
+.landing-navs-section-item.active {
+    background-color: var(--S-middle);
+}
 @font-face {
     font-family: "Amithen";
     src: url("../fonts/Amithen.ttf") format("truetype");

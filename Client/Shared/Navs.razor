@@ -7,13 +7,6 @@
 
 <aside class="my_sidebar d-flex flex-column nav nav-pills" >
     <!--sidebar-->
-        @* Домой *@        
-        <NavLink class="nav-link" href="@_pageMain" Match="NavLinkMatch.All" ActiveClass="active">            
-                <svg @onclick="@(() => { })" class="menu-icon mr-2">
-                    <use href="/img/Icon.svg#home"></use>
-                </svg>
-                <span class="align-middle">@Localizer.Navs_HomeBut</span>            
-        </NavLink>                
         @* Узлы *@
         <NavLink class="nav-link" href="@_pageNode" Match="NavLinkMatch.All" ActiveClass="active">
             <svg @onclick="@(() => { })" class="menu-icon mr-2">

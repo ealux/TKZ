@@ -187,5 +187,16 @@
        stroke-linejoin="round" d="M18 8h28v22H18z"></path>
        <circle data-name="layer1" cx="32" cy="46" r="2" fill="none"
        stroke-linecap="round" stroke-linejoin="round"></circle>    
-     </symbol>    
+     </symbol> 
+   <!--Round Check-->
+     <symbol id="RoundCheck" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" aria-labelledby="title"
+          aria-describedby="desc" xmlns:xlink="http://www.w3.org/1999/xlink">
+       <path fill="none" stroke="#79ec56" stroke-miterlimit="10" stroke-width="2" d="M15.74 30l12 14 34-42"
+       stroke-linejoin="round" stroke-linecap="round"></path>
+       <path d="M53.443 32A26.002 26.002 0 1 1 27.75 10a25.914 25.914 0 0 1 10 1.993"
+       fill="none" stroke="#5c8ecc" stroke-miterlimit="10" stroke-width="2" stroke-linejoin="round"
+       stroke-linecap="round"></path>   
+     </symbol>     
+ 
+    
 </svg>

@@ -1,17 +1,147 @@
-﻿@page "/"
+﻿@layout SecondaryLayout
+@page "/"
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject NavigationManager navmanager
+@using TKZ.Shared
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient Http
 
-<div class="w3-animate-opacity">
-    <h1 class="text-center">@Localizer.Index_Header</h1>
-    <img src="/img/Lighting.png" style="height:250px"/>
-    <p>@Localizer.Index_p1</p>
-    <p>@Localizer.Index_p2</p>
-    <p>@Localizer.Index_p3 <a href="/advices">@Localizer.Index_p3_1</a> </p>
-    <p>@Localizer.Index_p4_1 <a href="/gridmanager">@Localizer.Index_p4_2</a></p>
+<header class="d-flex align-items-center sticky-top landing-navs">
+    <NavLink class="navbar-brand active mx-5"
+             href="/"
+             Match="NavLinkMatch.All"
+             ActiveClass="active"
+             style="        font-family: Amithen;
+        color: var(--S-middle);
+        font-size: 2.5rem;
+        width: 120px;">
+        Lime
+    </NavLink>
+    <NavLink class="ml-auto landing-header-link"
+             href="/nodes"
+             Match="NavLinkMatch.All"
+             ActiveClass="active">
+        Рассчитать
+    </NavLink>
+</header>
+
+<div class="landing-navs-section">
+    <Link class="landing-navs-section-item"
+             href="#main"
+             ActiveClass="active">
+    </Link>
+    <Link class="landing-navs-section-item"
+             href="#feature"
+             ActiveClass="active">
+    </Link>
+    <Link class="landing-navs-section-item"
+             href="#contacts"
+             ActiveClass="active">
+    </Link>
+
+
+</div>
+<div class="d-flex flex-column landing-screen landing-image"  id="main">
+    <div class="landing-main-text">
+        <p>
+            <span>Lime</span> - сервис расчета токов замыкания в электрической сети на основе метода симметричных составляющих.
+        </p>
+        <Button Class="my_button primary landing" @onclick="@(() => {navmanager.NavigateTo("/nodes");})">Начать расчет</Button>
+    </div>
+</div>
+<div class="d-flex flex-column landing-screen" id="feature">
+    <h1>Наши преимущества</h1>
+    <div class="d-flex flex-row  landing-feature landing-text align-items-center">
+        <svg @onclick="@(() => { })" class="landing-icon">
+            <use href="/img/Icon.svg#RoundCheck"></use>
+        </svg>
+        <div>Абсолютно бесплатный</div>
+    </div>
+    <div class="d-flex flex-row landing-feature landing-text align-items-center">
+        <svg @onclick="@(() => { })" class="landing-icon">
+            <use href="/img/Icon.svg#RoundCheck"></use>
+        </svg>
+        <div>Для любых целей: обучение, бизнес или исследования</div>
+    </div>
+    <div class="d-flex flex-row landing-feature landing-text align-items-center">
+        <svg @onclick="@(() => { })" class="landing-icon">
+            <use href="/img/Icon.svg#RoundCheck"></use>
+        </svg>
+        <div>Удобный интерфейс</div>
+    </div>
+    <div class="d-flex flex-row landing-feature landing-text align-items-center">
+        <svg @onclick="@(() => { })" class="landing-icon">
+            <use href="/img/Icon.svg#RoundCheck"></use>
+        </svg>
+        <div>Подробное руководство пользователя</div>
+    </div>
+</div>
+<div class="d-flex flex-column landing-screen" id="contacts">
+    <h1>Контакты</h1>
+    <p class="landing-text">Остались вопросы? Напишите нам!</p>
+    <EditForm Model="@contact" OnValidSubmit="SendFeedback">
+        <DataAnnotationsValidator />
+        <div class="text-danger">
+            <ValidationSummary />
+            <text class="text-success">@notification</text>
+        </div>
+        <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
+        <InputText class="form-control"
+                   id="CustomerName"
+                   @bind-placeholder="@contact.Localizer.Name"
+                   @bind-Value="contact.Name" />
+        <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
+        <InputText class="form-control"
+                   type="text"
+                   id="CustomerEmail"
+                   @bind-placeholder="@contact.Localizer.Email"
+                   @bind-Value="contact.Email" />
+        <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
+        <InputTextArea class="form-control textarea-height"
+                       type="text"
+                       style="height:200px;"
+                       id="CustomerMessage"
+                       @bind-placeholder="@contact.Localizer.Message"
+                       @bind-Value="contact.Message" />
+        <button type="submit"
+                value="Submit"
+                class="my_button primary landing float-right">
+            @contact.Localizer.Send
+        </button>
+    </EditForm>
 </div>
 
-@code
-{
+
+@code {
+    Contact contact = new Contact();
+
+    string notification { get; set; }
+
+    class Contact
+    {
+        public I18nText.Pages.Contact.Contact Localizer { get; set; } = new I18nText.Pages.Contact.Contact();
+
+        public DateTime datetime { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Не указано имя")]
+        public string Name { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Не введен email")]
+        [EmailAddress(ErrorMessage = "Некорректный адрес e-mail")]
+        public string Email { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Оставьте сообщение")]
+        public string Message { get; set; }
+    }
+
+    private async Task SendFeedback()
+    {
+        this.contact.datetime = DateTime.Now;
+        await Http.PostJsonAsync("Feedback", this.contact);
+        notification = "Сообщение успешно отправлено";
+        this.contact = new Contact();
+        this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
+    }
 
     //Localizator
     I18nText.Pages.Index Localizer = new I18nText.Pages.Index();
