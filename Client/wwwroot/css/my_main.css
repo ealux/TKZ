@@ -682,17 +682,25 @@ h5 {
 }
 .landing-screen {
     margin-bottom: 2rem;
-    padding-top: 4rem;
-    
+    padding-top: 4rem;    
 }
 .landing-navs {
     height: 4rem;
     background-color: white;
 }
-.landing-image {
+.landing-image:after {
+    content: "";
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
     background-image: url("../img/Lighting.png");
     background-size: 100%;
     background-repeat: no-repeat;
+    background-attachment:scroll;
 }
 .landing-feature {
     border: 2px solid var(--P-dark);

@@ -27,5 +27,11 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>" новую сеть."</summary>
         public string Index_p4_2;
+
+        /// <summary>"Switch language"</summary>
+        public string Language;
+
+        /// <summary>"Send"</summary>
+        public string Send;
     }
 }

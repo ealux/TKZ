@@ -6,112 +6,121 @@
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
 
-<header class="d-flex align-items-center sticky-top landing-navs">
-    <NavLink class="navbar-brand active mx-5"
-             href="/"
-             Match="NavLinkMatch.All"
-             ActiveClass="active"
-             style="        font-family: Amithen;
-        color: var(--S-middle);
-        font-size: 2.5rem;
-        width: 120px;">
-        Lime
-    </NavLink>
-    <NavLink class="ml-auto landing-header-link"
-             href="/nodes"
-             Match="NavLinkMatch.All"
-             ActiveClass="active">
-        Рассчитать
-    </NavLink>
-</header>
+<div class="landing-image">
+    <header class="d-flex align-items-center sticky-top landing-navs">
+        <NavLink class="navbar-brand active mx-5"
+                 href="/"
+                 Match="NavLinkMatch.All"
+                 ActiveClass="active"
+                 style="font-family: Amithen;
+                    color: var(--S-middle);
+                    font-size: 2.5rem;
+                    width: 120px;">
+            Lime
+        </NavLink>
+        <NavLink class="ml-auto landing-header-link"
+                 href="/nodes"
+                 Match="NavLinkMatch.All"
+                 ActiveClass="active">
+            Рассчитать
+        </NavLink>
+        <Tooltip Text="@Localizer.Language" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    @onclick="ChangeLanguage">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="@(IsRus ? SourceRus : SourceUS )"></use>
+                </svg>
+            </button>
+        </Tooltip>
+    </header>
 
-<div class="landing-navs-section">
-    <Link class="landing-navs-section-item"
-             href="#main"
-             ActiveClass="active">
-    </Link>
-    <Link class="landing-navs-section-item"
-             href="#feature"
-             ActiveClass="active">
-    </Link>
-    <Link class="landing-navs-section-item"
-             href="#contacts"
-             ActiveClass="active">
-    </Link>
-
-
-</div>
-<div class="d-flex flex-column landing-screen landing-image"  id="main">
-    <div class="landing-main-text">
-        <p>
-            <span>Lime</span> - сервис расчета токов замыкания в электрической сети на основе метода симметричных составляющих.
-        </p>
-        <Button Class="my_button primary landing" @onclick="@(() => {navmanager.NavigateTo("/nodes");})">Начать расчет</Button>
+    <div class="landing-navs-section">
+        <Link class="landing-navs-section-item"
+              href="#main"
+              ActiveClass="active" />
+        <Link class="landing-navs-section-item"
+              href="#feature"
+              ActiveClass="active" />
+        <Link class="landing-navs-section-item"
+              href="#contacts"
+              ActiveClass="active" />
     </div>
-</div>
-<div class="d-flex flex-column landing-screen" id="feature">
-    <h1>Наши преимущества</h1>
-    <div class="d-flex flex-row  landing-feature landing-text align-items-center">
-        <svg @onclick="@(() => { })" class="landing-icon">
-            <use href="/img/Icon.svg#RoundCheck"></use>
-        </svg>
-        <div>Абсолютно бесплатный</div>
-    </div>
-    <div class="d-flex flex-row landing-feature landing-text align-items-center">
-        <svg @onclick="@(() => { })" class="landing-icon">
-            <use href="/img/Icon.svg#RoundCheck"></use>
-        </svg>
-        <div>Для любых целей: обучение, бизнес или исследования</div>
-    </div>
-    <div class="d-flex flex-row landing-feature landing-text align-items-center">
-        <svg @onclick="@(() => { })" class="landing-icon">
-            <use href="/img/Icon.svg#RoundCheck"></use>
-        </svg>
-        <div>Удобный интерфейс</div>
-    </div>
-    <div class="d-flex flex-row landing-feature landing-text align-items-center">
-        <svg @onclick="@(() => { })" class="landing-icon">
-            <use href="/img/Icon.svg#RoundCheck"></use>
-        </svg>
-        <div>Подробное руководство пользователя</div>
-    </div>
-</div>
-<div class="d-flex flex-column landing-screen" id="contacts">
-    <h1>Контакты</h1>
-    <p class="landing-text">Остались вопросы? Напишите нам!</p>
-    <EditForm Model="@contact" OnValidSubmit="SendFeedback">
-        <DataAnnotationsValidator />
-        <div class="text-danger">
-            <ValidationSummary />
-            <text class="text-success">@notification</text>
+    <div class="d-flex flex-column landing-screen" id="main">
+        <div class="landing-main-text text-justify">
+            <p>
+                <span>Lime</span> - сервис для расчета токов замыкания в электрической сети на основе метода симметричных составляющих
+            </p>
+            <div class="container-fluid text-center">
+                <Button Class="my_button primary landing"
+                        @onclick="@(() => {navmanager.NavigateTo("/nodes"); })">
+                    Начать
+                </Button>
+            </div>
         </div>
-        <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
-        <InputText class="form-control"
-                   id="CustomerName"
-                   @bind-placeholder="@contact.Localizer.Name"
-                   @bind-Value="contact.Name" />
-        <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
-        <InputText class="form-control"
-                   type="text"
-                   id="CustomerEmail"
-                   @bind-placeholder="@contact.Localizer.Email"
-                   @bind-Value="contact.Email" />
-        <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
-        <InputTextArea class="form-control textarea-height"
+    </div>
+    <div class="d-flex flex-column landing-screen" id="feature">
+        <h1>Наши преимущества</h1>
+        <div class="d-flex flex-row  landing-feature landing-text align-items-center">
+            <svg @onclick="@(() => { })" class="landing-icon">
+                <use href="/img/Icon.svg#RoundCheck"></use>
+            </svg>
+            <div>Абсолютно бесплатный</div>
+        </div>
+        <div class="d-flex flex-row landing-feature landing-text align-items-center">
+            <svg @onclick="@(() => { })" class="landing-icon">
+                <use href="/img/Icon.svg#RoundCheck"></use>
+            </svg>
+            <div>Для любых целей: обучение, бизнес или исследования</div>
+        </div>
+        <div class="d-flex flex-row landing-feature landing-text align-items-center">
+            <svg @onclick="@(() => { })" class="landing-icon">
+                <use href="/img/Icon.svg#RoundCheck"></use>
+            </svg>
+            <div>Удобный интерфейс</div>
+        </div>
+        <div class="d-flex flex-row landing-feature landing-text align-items-center">
+            <svg @onclick="@(() => { })" class="landing-icon">
+                <use href="/img/Icon.svg#RoundCheck"></use>
+            </svg>
+            <div>Подробное руководство пользователя</div>
+        </div>
+    </div>
+    <div class="d-flex flex-column landing-screen" id="contacts">
+        <h1>Контакты</h1>
+        <p class="landing-text">Остались вопросы? Напишите нам!</p>
+        <EditForm Model="@contact" OnValidSubmit="SendFeedback">
+            <DataAnnotationsValidator />
+            <div class="text-danger">
+                <ValidationSummary />
+                <text class="text-success">@notification</text>
+            </div>
+            <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
+            <InputText class="form-control"
+                       id="CustomerName"
+                       @bind-placeholder="@contact.Localizer.Name"
+                       @bind-Value="contact.Name" />
+            <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
+            <InputText class="form-control"
                        type="text"
-                       style="height:200px;"
-                       id="CustomerMessage"
-                       @bind-placeholder="@contact.Localizer.Message"
-                       @bind-Value="contact.Message" />
-        <button type="submit"
-                value="Submit"
-                class="my_button primary landing float-right">
-            @contact.Localizer.Send
-        </button>
-    </EditForm>
+                       id="CustomerEmail"
+                       @bind-placeholder="@contact.Localizer.Email"
+                       @bind-Value="contact.Email" />
+            <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
+            <InputTextArea class="form-control textarea-height"
+                           type="text"
+                           style="height:200px;"
+                           id="CustomerMessage"
+                           @bind-placeholder="@contact.Localizer.Message"
+                           @bind-Value="contact.Message" />
+            <button type="submit"
+                    value="Submit"
+                    class="my_button primary landing float-right">
+                @contact.Localizer.Send
+            </button>
+        </EditForm>
+    </div>
 </div>
-
-
 @code {
     Contact contact = new Contact();
 
@@ -141,6 +150,18 @@
         notification = "Сообщение успешно отправлено";
         this.contact = new Contact();
         this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);
+    }
+
+    public const string SourceRus = "/img/Icon.svg#russia";
+    public const string SourceUS = "/img/Icon.svg#USA";
+
+    public bool IsRus { get; set; } = true;
+
+    public async Task ChangeLanguage()
+    {
+        IsRus = !IsRus;
+        if (IsRus) await I18nText.SetCurrentLanguageAsync("ru");
+        else await I18nText.SetCurrentLanguageAsync("en");
     }
 
     //Localizator
