@@ -109,6 +109,9 @@
     [Parameter]
     public EventCallback LogOpenEvent { get; set; }
 
+    [Parameter]
+    public EventCallback ChangeEvent { get; set; }
+
     void Add()
     {
         Log.AddMessage(new Message(MessageClass.System, MessageType.Danger, "Внимание!", "У нас кончилась водка!", "contacts"));
@@ -144,11 +147,16 @@
         if (IsRus) await I18nText.SetCurrentLanguageAsync("ru");
         else await I18nText.SetCurrentLanguageAsync("en");
     }
-    void OnSelectedValueChanged(string value)
+
+    async void OnSelectedValueChanged(string value)
     {
         if (value == "Test_internal")
         {
-            Grid.SetInstance(Grid.Networks[0]);
+            await Task.Run(() =>
+            {
+                service.CurrentGridName = "Test_internal";
+                Grid.SetInstance(Grid.Networks[0]);
+            });
             navmanager.NavigateTo("/");
             navmanager.NavigateTo("/nodes");
             return;
@@ -161,8 +169,14 @@
             return;
         }
 
-        Grid.SetInstance(Grid.Networks.Where(g => g.Name == value).First());
-        //navmanager.NavigateTo("/");
+        await Task.Run(()=>
+        {
+            service.CurrentGridName = Grid.Networks.Where(g => g.Name == value).First().Name;
+            Grid.SetInstance(Grid.Networks.Where(g => g.Name == value).First());
+        });
+
+        navmanager.NavigateTo("/");
+        navmanager.NavigateTo("/nodes");
 
         StateHasChanged();
     }
@@ -180,7 +194,9 @@
 
         Log.AddMessage(MessageCollection.Serialize_Success("Загружена схема IEEE 14"));
         Log.Collapse = false;
-        navmanager.NavigateTo("/");
+
+        navmanager.NavigateTo("/contacts");
+        navmanager.NavigateTo("/nodes");
 
         StateHasChanged();
     }

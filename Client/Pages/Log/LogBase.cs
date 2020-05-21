@@ -39,6 +39,8 @@ namespace TKZ.Client.Pages.Log
             OnChange?.Invoke();
         }
 
+        public async void InvokeOnChange() => OnChange?.Invoke();
+
         /// <summary>
         /// Change log image source depending on the log messages count
         /// </summary>

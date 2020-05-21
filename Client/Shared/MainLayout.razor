@@ -1,10 +1,11 @@
 ﻿@inherits LayoutComponentBase
 @using TKZ.Client.Pages.Log
 @inject LogBase LB
+@inject GridService service
 
 <div class="main_container d-flex flex-column overflow-auto">
 
-    <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser" />
+    <TKZ.Client.Shared.Header.Header LogOpenEvent="LogCollapser" ChangeEvent="()=> { StateHasChanged(); }"/>
 
     <div class="d-flex flex-row flex-fill overflow-auto">
         <Navs />
@@ -28,5 +29,10 @@
     {
         LB.Collapse = !LB.Collapse;
         StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        service.OnChange += StateHasChanged;
     }
 }

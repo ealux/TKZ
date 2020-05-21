@@ -7,11 +7,23 @@ namespace TKZ.Client.Shared.Header
 {
     public class GridService
     {
-        public string CurrentGridName { get; set; }
+        private string currentname;
+
+        public string CurrentGridName
+        {
+            get => currentname;
+            set
+            {
+                OnChange?.Invoke();
+                currentname = value;
+            }
+        }
+
+        public event Action OnChange;
 
         public GridService()
         {
-            CurrentGridName = "stock";
+            currentname = "stock";
         }
     }
 }
