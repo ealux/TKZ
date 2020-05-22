@@ -3,26 +3,43 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @using System.IO
 
-@if (String.IsNullOrEmpty(frag))
+@if (String.IsNullOrEmpty(docs))
 {
     <LoadingElement />
 }
 else
 {
     <div>
-        @((MarkupString)frag)
+        @((MarkupString)docs)
     </div>
 }
 
 @code {
 
-    string frag = "";
+    string _draft = "";
+    string about = "";
+    string calc = "";
+    string docs = "";
+    string elements = "";
+    string glossary = "";
+    string input = "";
+    string model = "";
+    string source = "";
 
     I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
 
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
-        frag = await Http.GetStringAsync("Advice");
+
+        _draft = await Http.GetStringAsync("Advice/_draft");
+        about = await Http.GetStringAsync("Advice/about");
+        calc = await Http.GetStringAsync("Advice/calc");
+        docs = await Http.GetStringAsync("Advice/docs");
+        elements = await Http.GetStringAsync("Advice/elements");
+        glossary = await Http.GetStringAsync("Advice/glossary");
+        input = await Http.GetStringAsync("Advice/input");
+        model = await Http.GetStringAsync("Advice/model");
+        source = await Http.GetStringAsync("Advice/source");
     }
 }

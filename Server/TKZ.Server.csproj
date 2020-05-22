@@ -6,6 +6,49 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="calc.html" />
+    <None Remove="docs\about.html" />
+    <None Remove="docs\calc.html" />
+    <None Remove="docs\docs.html" />
+    <None Remove="docs\elements.html" />
+    <None Remove="docs\glossary.html" />
+    <None Remove="docs\input.html" />
+    <None Remove="docs\model.html" />
+    <None Remove="docs\source.html" />
+    <None Remove="docs\_draft.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="docs\about.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\calc.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\docs.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\elements.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\glossary.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\input.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\model.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\source.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\_draft.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0-preview3.20168.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>

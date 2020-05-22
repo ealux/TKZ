@@ -13,11 +13,67 @@ namespace TKZ.Server.Controllers
     [Route("[controller]")]
     public class AdviceController : ControllerBase
     {
-        // GET
-        [HttpGet]
-        public async Task<string> Get()
+        // calc
+        [HttpGet("_draft")]
+        public async Task<string> Draft()
         {
-            return await System.IO.File.ReadAllTextAsync("calc.html");
+            return await System.IO.File.ReadAllTextAsync("docs/_draft.html");
+        }
+
+        // about
+        [HttpGet("about")]
+        public async Task<string> About()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/about.html");
+        }
+
+        // calc
+        [HttpGet("calc")]
+        public async Task<string> Calc()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/calc.html");
+        }
+
+        // docs
+        [HttpGet("docs")]
+        public async Task<string> Docs()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/docs.html");
+        }
+
+        // elements
+        [HttpGet("elements")]
+        public async Task<string> Elements()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/elements.html");
+        }
+
+        // glossary
+        [HttpGet("glossary")]
+        public async Task<string> Glossary()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/glossary.html");
+        }
+
+        // input
+        [HttpGet("input")]
+        public async Task<string> Input()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/input.html");
+        }
+
+        // model
+        [HttpGet("model")]
+        public async Task<string> Model()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/model.html");
+        }
+
+        // source
+        [HttpGet("source")]
+        public async Task<string> Source()
+        {
+            return await System.IO.File.ReadAllTextAsync("docs/source.html");
         }
     }
 }

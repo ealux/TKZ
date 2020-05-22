@@ -1,0 +1,90 @@
+<h1 id="описание-расчетной-модели">Описание расчетной модели</h1>
+<h2 id="определение-параметров-эквивалента-энергосистемы-для-расчётов-токов-короткого-замыкания">Определение параметров эквивалента энергосистемы для расчётов токов короткого замыкания</h2>
+<h3 id="исключительно-по-параметрам-установившегося-режима">Исключительно по параметрам установившегося режима</h3>
+<p>Дано:</p>
+<ul>
+<li><span class="math inline"><em>E</em><sub><em>s</em></sub></span> – модуль ЭДС системы (когда нет ничего вообще – берем <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>);<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность нормального режима, текущая в нормальном режиме из базисного узла;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – напряжение базисного узла в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>δ</em><sub><em>s</em></sub></span> – угол ЭДС системы;</li>
+<li><span class="math inline"><em>x</em><sub><em>s</em></sub></span> – реактивное сопротивление системы прямой последовательности.</li>
+</ul>
+<p>Пусть:</p>
+<p><span class="math inline">$\displaystyle \tilde{S} = \frac{ \widehat{E}_s - U_n }{-j \cdot x_s} \cdot U_n$</span></p>
+<p><span class="math inline">$\displaystyle \widehat{S}_n = \frac{ \dot{E}_s - U_n }{j \cdot x_s} \cdot U_n$</span></p>
+<p><span class="math inline">$\displaystyle P_n - j \cdot Q_n = \frac{ E_s \cdot \cos (\delta_s) + j \cdot E_s \cdot \sin (\delta_s) - U_n }{j \cdot x_s} \cdot U_n$</span></p>
+<p><span class="math inline"><em>j</em> ⋅ <em>x</em><sub><em>s</em></sub> ⋅ <em>P</em><sub><em>n</em></sub> + <em>x</em><sub><em>s</em></sub> ⋅ <em>Q</em><sub><em>n</em></sub> = <em>E</em><sub><em>s</em></sub> ⋅ cos (<em>δ</em><sub><em>s</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>E</em><sub><em>s</em></sub> ⋅ sin (<em>δ</em><sub><em>s</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> − <em>U</em><sub><em>n</em></sub> ⋅ <em>U</em><sub><em>n</em></sub></span></p>
+<p>Если приравнять действительные и мнимые части, то получится следующая система уравнений:</p>
+<p><span class="math inline">$\displaystyle \left\{\begin{matrix} x_s \cdot Q_n = E_s \cdot \cos (\delta_s) \cdot U_n - U_n \cdot U_n \\ x_s \cdot P_n = E_s \cdot \sin (\delta_s) \cdot U_n \end{matrix}\right.$</span></p>
+<p>Тогда получатся следующие выражения:</p>
+<p><span class="math inline">$\displaystyle \frac{U_n \cdot P_n}{E_s} = \sin (\delta_s) \cdot Q_n - \cos (\delta_s) \cdot P_n$</span></p>
+<p><span class="math inline">$\displaystyle \delta_s = - \arg (\dot{S}_n) \pm \arccos \left(\frac{U_n \cdot P_n}{E_s \cdot |\tilde{S}_n|} \right) + \pi \cdot k$</span></p>
+<p><span class="math inline">$\displaystyle x_s = \frac{E_s \cdot \sin (\delta_s) \cdot U_n}{P_n}$</span></p>
+<p>Основные проблемы:</p>
+<ul>
+<li>Модуль ЭДС системы <span class="math inline"><em>E</em><sub><em>s</em></sub></span>, строго говоря, неизвестен. Вместо него подставляется номинальное значение напряжения.</li>
+</ul>
+<h3 id="по-параметрам-установившегося-режима-и-известному-току-трёхфазного-кз-на-удаленных-шинах-линии">По параметрам установившегося режима и известному току трёхфазного КЗ на удаленных шинах линии</h3>
+<p>Дано:</p>
+<ul>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при трёхфазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность, текущая из ветви ЭДС в нормальном режиме;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – линейное напряжение шин ветви ЭДС в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>Ė</em><sub><em>s</em></sub> = <em>E</em><sub><em>s</em></sub> ⋅ cos (<em>δ</em><sub><em>s</em></sub>) + <em>E</em><sub><em>s</em></sub> ⋅ <em>j</em> ⋅ sin (<em>δ</em><sub><em>s</em></sub>)</span> – междуфазное ЭДС (с некоторым углом) ветви;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>s</em></sub></span> – реактивное сопротивление ЭДС прямой последовательности.</li>
+</ul>
+<p><span class="math inline">$\displaystyle \dot{I}_{KZ}^{(3)} = \frac{ \dot{E}_s }{\sqrt{3} \cdot j \cdot x_s}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_s = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_s$</span>.</p>
+<p>Пусть:</p>
+<p><span class="math inline">$\displaystyle \tilde{S}_n = \frac{ \widehat{E}_s - U_n }{-j \cdot x_s} \cdot U_n$</span>;<br />
+<span class="math inline">$\displaystyle \widehat{S}_n = \frac{ \dot{E}_s - U_n }{j \cdot x_s} \cdot U_n$</span>;</p>
+<p><span class="math inline">$\displaystyle P_n - j \cdot Q_n = \frac{ E_s \cdot \cos (\delta_s) + j \cdot E_s \cdot \sin (\delta_s) - U_n }{j \cdot x_s} \cdot U_n$</span>;</p>
+<p><span class="math inline"><em>j</em> ⋅ <em>x</em><sub><em>s</em></sub> ⋅ <em>P</em><sub><em>n</em></sub> + <em>x</em><sub><em>s</em></sub> ⋅ <em>Q</em><sub><em>n</em></sub> = <em>E</em><sub><em>s</em></sub> ⋅ cos (<em>δ</em><sub><em>s</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>E</em><sub><em>s</em></sub> ⋅ sin (<em>δ</em><sub><em>s</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> − <em>U</em><sub><em>n</em></sub> ⋅ <em>U</em><sub><em>n</em></sub></span>;</p>
+<p>Если приравнять действительные и мнимые части, то получится следующая система уравнений:</p>
+<p><span class="math inline">$\displaystyle \left\{\begin{matrix} x_s \cdot Q_n = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_s \cdot \cos (\delta_s) \cdot U_n - U_n \cdot U_n \\ P_n = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot \sin (\delta_s) \cdot U_n \end{matrix}\right.$</span></p>
+<p>Тогда получатся следующие выражения:</p>
+<p><span class="math inline">$\displaystyle \delta_s = \arcsin \left(\frac{P_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot U_n} \right) + \pi \cdot k$</span>;</p>
+<p><span class="math inline">$\displaystyle x_s = \frac{U_n \cdot U_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot \cos (\delta_s) \cdot U_n - Q_n}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_s = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_s$</span>.</p>
+<p>Основные проблемы:</p>
+<ul>
+<li>Не всегда существует возможность определить именно ток <span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span>. Чаще дается ток шунта КЗ, который складывается из тока ветви ЭДС и тока подпитки от остальной энергосистемы.</li>
+</ul>
+<h3 id="по-параметрам-установившегося-режима-и-известному-току-трёхфазного-и-однофазного-кз-на-удаленных-шинах-линии">По параметрам установившегося режима и известному току трёхфазного и однофазного КЗ на удаленных шинах линии</h3>
+<p>Дано:</p>
+<ul>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при трёхфазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(1)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при однофазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность, текущая из ветви ЭДС в нормальном режиме;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – линейное напряжение шин ветви ЭДС в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>Ė</em><sub><em>s</em></sub> = <em>E</em><sub><em>s</em></sub> ⋅ cos (<em>δ</em><sub><em>s</em></sub>) + <em>E</em><sub><em>s</em></sub> ⋅ <em>j</em> ⋅ sin (<em>δ</em><sub><em>s</em></sub>)</span> – междуфазное ЭДС (с некоторым углом) ветви;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>s</em></sub></span> – реактивное сопротивление ЭДС прямой последовательности;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>s</em></sub><sup>0</sup></span> – реактивное сопротивление ЭДС прямой последовательности.</li>
+</ul>
+<p>Из предыдущего вывода имеем выражения для определения всех искомых величин, кроме <span class="math inline"><em>x</em><sub><em>s</em></sub><sup>0</sup></span>:</p>
+<p><span class="math inline">$\displaystyle \delta_s = \arcsin \left(\frac{P_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot U_n} \right) + \pi \cdot k$</span>;</p>
+<p><span class="math inline">$\displaystyle x_s = \frac{U_n \cdot U_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot \cos (\delta_s) \cdot U_n - Q_n}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_s = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_s$</span>.</p>
+<p>Определим <span class="math inline"><em>x</em><sub><em>s</em></sub><sup>0</sup></span>. Предположим, что остальная сеть имеет малое влияние на ток однофазного КЗ. Тогда:</p>
+<p><span class="math inline">$\displaystyle \dot{I}_{KZ}^{(1)} = 3 \cdot \dot{I}_{KZ}^{0} = 3 \cdot \frac{ \dot{E}_s }{\sqrt{3} \cdot j \cdot (x_s + x_s^{0})} = \sqrt{3} \cdot \frac{ \dot{E}_s }{j \cdot (x_s + x_s^{0})}$</span>;</p>
+<p><span class="math inline">$\displaystyle I_{KZ}^{(1)} = \frac{ \sqrt{3} \cdot E_s }{x_s + x_s^{0}}$</span>;</p>
+<p><span class="math inline">$\displaystyle x_s^{0} = \frac{ \sqrt{3} \cdot E_s }{I_{KZ}^{(1)}} - x_s$</span>.</p>
