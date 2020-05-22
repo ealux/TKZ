@@ -4,10 +4,14 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject LogBase Log
+@inject NavigationManager navmanager
 @using TKZ.Client.Pages.Components
 
 
-@if (branches == null)
+@if (Grid.Networks.Count <= 1)
+{
+}
+else if (branches == null)
 {
     <LoadingElement />
 }
@@ -217,7 +221,7 @@ else
                             @(unom)
                         }
                     </DisplayTemplate>
-                </DataGridNumericColumn>                
+                </DataGridNumericColumn>
                 @*FI_trans*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.Fi_trans)"
@@ -268,26 +272,26 @@ else
                     </EditTemplate>
                 </DataGridSelectColumn>
                 @*Commands*@
-                <DataGridCommandColumn TItem="Branch" 
+                <DataGridCommandColumn TItem="Branch"
                                        CellClass="@((item)=>"edit-column")">
                     <NewCommandTemplate>
-                        <Button_Add OnClickCallback = "@context.Clicked" />
+                        <Button_Add OnClickCallback="@context.Clicked" />
                     </NewCommandTemplate>
                     <EditCommandTemplate>
-                        <Button_Edit OnClickCallback = "@context.Clicked"/>
-                        <Button_Duplicate OnClickCallback = "@(() => DuplicateItem(context.Item))" />
+                        <Button_Edit OnClickCallback="@context.Clicked" />
+                        <Button_Duplicate OnClickCallback="@(() => DuplicateItem(context.Item))" />
                     </EditCommandTemplate>
                     <DeleteCommandTemplate>
-                        <Button_Delete OnClickCallback = "@context.Clicked"/>
+                        <Button_Delete OnClickCallback="@context.Clicked" />
                     </DeleteCommandTemplate>
                     <SaveCommandTemplate>
-                        <Button_Save OnClickCallback = "@context.Clicked"/>
+                        <Button_Save OnClickCallback="@context.Clicked" />
                     </SaveCommandTemplate>
                     <CancelCommandTemplate>
-                        <Button_Cancel OnClickCallback = "@context.Clicked"/>
+                        <Button_Cancel OnClickCallback="@context.Clicked" />
                     </CancelCommandTemplate>
                     <ClearFilterCommandTemplate>
-                        <Button_Filter OnClickCallback = "@context.Clicked"/>
+                        <Button_Filter OnClickCallback="@context.Clicked" />
                     </ClearFilterCommandTemplate>
                 </DataGridCommandColumn>
             </DataGridColumns>

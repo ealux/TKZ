@@ -6,7 +6,10 @@
 @inject LogBase Log
 @using TKZ.Client.Pages.Components
 
-@if (mutuals == null)
+@if (Grid.Networks.Count <= 1)
+{
+}
+else if (mutuals == null)
 {
     <LoadingElement />
 }
@@ -71,7 +74,7 @@ else
                 </EditTemplate>
                 <FilterTemplate>
                     <Select Class="black name-column" TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                        <SelectItem  Value="@("*")"></SelectItem>
+                        <SelectItem Value="@("*")"></SelectItem>
                         @foreach (var item in mutuals.Select(b => b.IdFirstBranch).Distinct().OrderBy(n => n))
                         {
                             if (grid.Branches.ContainsKey(item))
@@ -125,34 +128,34 @@ else
                                    Sortable="true"
                                    CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
             @*X*@
-        <DataGridNumericColumn TItem="Mutual"
-                               Field="@nameof(Mutual.X)"
-                               Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
-                               Editable="true"
-                               Sortable="true"
-                               CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
+            <DataGridNumericColumn TItem="Mutual"
+                                   Field="@nameof(Mutual.X)"
+                                   Caption="@(new String("X, ["+@Localizer.ohm+"]"))"
+                                   Editable="true"
+                                   Sortable="true"
+                                   CellClass="@((item)=>"numeric-column")"></DataGridNumericColumn>
 
             @*Commands*@
-            <DataGridCommandColumn TItem="Mutual" 
+            <DataGridCommandColumn TItem="Mutual"
                                    CellClass="@((item)=>"edit-column")">
                 <NewCommandTemplate>
-                    <Button_Add OnClickCallback = "@context.Clicked" />
+                    <Button_Add OnClickCallback="@context.Clicked" />
                 </NewCommandTemplate>
                 <EditCommandTemplate>
-                    <Button_Edit OnClickCallback = "@context.Clicked"/>
-                    <Button_Duplicate OnClickCallback = "@(() => DuplicateItem(context.Item))" />
+                    <Button_Edit OnClickCallback="@context.Clicked" />
+                    <Button_Duplicate OnClickCallback="@(() => DuplicateItem(context.Item))" />
                 </EditCommandTemplate>
                 <DeleteCommandTemplate>
-                    <Button_Delete OnClickCallback = "@context.Clicked"/>
+                    <Button_Delete OnClickCallback="@context.Clicked" />
                 </DeleteCommandTemplate>
                 <SaveCommandTemplate>
-                    <Button_Save OnClickCallback = "@context.Clicked"/>
+                    <Button_Save OnClickCallback="@context.Clicked" />
                 </SaveCommandTemplate>
                 <CancelCommandTemplate>
-                    <Button_Cancel OnClickCallback = "@context.Clicked"/>
+                    <Button_Cancel OnClickCallback="@context.Clicked" />
                 </CancelCommandTemplate>
                 <ClearFilterCommandTemplate>
-                    <Button_Filter OnClickCallback = "@context.Clicked"/>
+                    <Button_Filter OnClickCallback="@context.Clicked" />
                 </ClearFilterCommandTemplate>
             </DataGridCommandColumn>
         </DataGrid>

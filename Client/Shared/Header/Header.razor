@@ -6,26 +6,29 @@
 @using Blazorise
 @using TKZ.Client.Pages.Components
 
-    <header class="header d-flex align-items-center sticky-top">
-        <NavLink class="navbar-brand active mx-5"
-                 href="/"
-                 Match="NavLinkMatch.All"
-                 ActiveClass="active"
-                 style="font-family: Amithen;
+<header class="header d-flex align-items-center sticky-top">
+    <NavLink class="navbar-brand active mx-5"
+             href="/"
+             Match="NavLinkMatch.All"
+             ActiveClass="active"
+             style="font-family: Amithen;
                     color: var(--S-middle);
                     font-size: 2.5rem;
                     width: 120px;">
-            Lime
-        </NavLink>
-        <Tooltip Text="@Localizer.AddNewGrid" Placement="Placement.Bottom">
-            <Button Active="true"
-                    Class="round icon"
-                    Clicked="@(() => { navmanager.NavigateTo("/gridmanager"); })">
-                <svg class="header-icon" @onclick="@(() => {})">
-                    <use href="/img/Icon.svg#Add"></use>
-                </svg>
-            </Button>
-        </Tooltip>
+        Lime
+    </NavLink>
+    <Tooltip Text="@Localizer.AddNewGrid" Placement="Placement.Bottom">
+        <Button Active="true"
+                Class="round icon"
+                Clicked="@(() => { navmanager.NavigateTo("/gridmanager"); })">
+            <svg class="header-icon" @onclick="@(() => {})">
+                <use href="/img/Icon.svg#Add"></use>
+            </svg>
+        </Button>
+    </Tooltip>
+
+    @if (Grid.Networks.Count > 1)
+    {
         <Select TValue="string"
                 SelectedValue="service.CurrentGridName"
                 SelectedValueChanged="@OnSelectedValueChanged"
@@ -44,63 +47,71 @@
             <SelectItem Style="color: var(--P-dark);" Value="@("Add_new_grid_internal")">@Localizer.AddNewGrid</SelectItem>
             <SelectItem Value="@("stock")" Visibility="Visibility.Never"></SelectItem>
         </Select>
+    }
+    else
+    {
+        <a style="color:white; cursor:pointer;"
+              @onclick="@(()=> { navmanager.NavigateTo("/gridmanager");})">
+            @Localizer.AddNewGrid
+        </a>
+    }
 
-        <div class="btn-group ml-5">
-            <Tooltip Text="@Localizer.Upload" Placement="Placement.Bottom">
-                <button type="button" class="icon" @onclick="@(() => {navmanager.NavigateTo("/gridinput");})">
-                    <svg @onclick="@(() => { })" class="header-icon">
-                        <use href="/img/Icon.svg#upload"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-            <Tooltip Text="@Localizer.Download" Placement="Placement.Bottom">
-                <button type="button" class="icon" @onclick="DownloadFile">
-                    <svg @onclick="@(() => {})" class="header-icon">
-                        <use href="/img/Icon.svg#download"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-            <Tooltip Text="@Localizer.Calculate_All" Placement="Placement.Bottom">
-                <button type="button"
-                        class="icon"
-                        @onclick="Add">
-                    <svg @onclick="@(() => {})" class="header-icon">
-                        <use href="/img/Icon.svg#CalcAll"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-            <Tooltip Text="@Localizer.Log" Placement="Placement.Bottom">
-                <button type="button"
-                        class="icon"
-                        id="bell"
-                        @onclick="LogOpenEvent">
-                    <svg class="header-icon">
-                        <use href="@Log.ImageChecker()"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-        </div>
-        <div class="btn-group ml-auto">
-            <Tooltip Text="@Localizer.Test_IEEE14" Placement="Placement.Left">
-                <button type="button"
-                        class="icon"
-                        @onclick="LoadIEEE14">
-                    <svg @onclick="@(() => {})" class="header-icon">
-                        <use href="/img/Icon.svg#IEEE_14"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-            <Tooltip Text="@Localizer.Language" Placement="Placement.Left">
-                <button type="button"
-                        class="icon"
-                        @onclick="ChangeLanguage">
-                    <svg @onclick="@(() => {})" class="header-icon">
-                        <use href="@(IsRus ? SourceRus : SourceUS )"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-        </div>
-    </header>
+    <div class="btn-group ml-5">
+        <Tooltip Text="@Localizer.Upload" Placement="Placement.Bottom">
+            <button type="button" class="icon" @onclick="@(() => {navmanager.NavigateTo("/gridinput");})">
+                <svg @onclick="@(() => { })" class="header-icon">
+                    <use href="/img/Icon.svg#upload"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="@Localizer.Download" Placement="Placement.Bottom">
+            <button type="button" class="icon" @onclick="DownloadFile">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#download"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="@Localizer.Calculate_All" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    @onclick="Add">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#CalcAll"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="@Localizer.Log" Placement="Placement.Bottom">
+            <button type="button"
+                    class="icon"
+                    id="bell"
+                    @onclick="LogOpenEvent">
+                <svg class="header-icon">
+                    <use href="@Log.ImageChecker()"></use>
+                </svg>
+            </button>
+        </Tooltip>
+    </div>
+    <div class="btn-group ml-auto">
+        <Tooltip Text="@Localizer.Test_IEEE14" Placement="Placement.Left">
+            <button type="button"
+                    class="icon"
+                    @onclick="LoadIEEE14">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="/img/Icon.svg#IEEE_14"></use>
+                </svg>
+            </button>
+        </Tooltip>
+        <Tooltip Text="@Localizer.Language" Placement="Placement.Left">
+            <button type="button"
+                    class="icon"
+                    @onclick="ChangeLanguage">
+                <svg @onclick="@(() => {})" class="header-icon">
+                    <use href="@(IsRus ? SourceRus : SourceUS )"></use>
+                </svg>
+            </button>
+        </Tooltip>
+    </div>
+</header>
 
 @code {
     [Inject] Grid grid { get; set; }
@@ -169,7 +180,7 @@
             return;
         }
 
-        await Task.Run(()=>
+        await Task.Run(() =>
         {
             service.CurrentGridName = Grid.Networks.Where(g => g.Name == value).First().Name;
             Grid.SetInstance(Grid.Networks.Where(g => g.Name == value).First());
