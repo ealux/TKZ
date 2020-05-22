@@ -17,18 +17,19 @@
                     width: 120px;">
         Lime
     </NavLink>
-    <Tooltip Text="@Localizer.AddNewGrid" Placement="Placement.Bottom">
-        <Button Active="true"
-                Class="round icon"
-                Clicked="@(() => { navmanager.NavigateTo("/gridmanager"); })">
-            <svg class="header-icon" @onclick="@(() => {})">
-                <use href="/img/Icon.svg#Add"></use>
-            </svg>
-        </Button>
-    </Tooltip>
 
     @if (Grid.Networks.Count > 1)
     {
+        <Tooltip Text="@Localizer.AddNewGrid" Placement="Placement.Bottom">
+            <Button Active="true"
+                    Class="round icon"
+                    Clicked="@(() => { navmanager.NavigateTo("/gridmanager"); })">
+                <svg class="header-icon" @onclick="@(() => {})">
+                    <use href="/img/Icon.svg#Add"></use>
+                </svg>
+            </Button>
+        </Tooltip>
+
         <Select TValue="string"
                 SelectedValue="service.CurrentGridName"
                 SelectedValueChanged="@OnSelectedValueChanged"
@@ -36,12 +37,12 @@
                 @ondblclick="@(()=>{ navmanager.NavigateTo("/gridmanager"); })"
                 id="ChooseGrid">
             @if (Grid.Networks != null & Grid.Networks.Count > 1)
-            {
-                @foreach (var item in Grid.Networks.Where(g => g.Name != "Test Grid"))
                 {
-                    <SelectItem Value="item.Name">@item.Name</SelectItem>
+            @foreach (var item in Grid.Networks.Where(g => g.Name != "Test Grid"))
+                    {
+            <SelectItem Value="item.Name">@item.Name</SelectItem>
+                    }
                 }
-            }
             <hr />
             <SelectItem Value="@("Test_internal")">Тестовая</SelectItem>
             <SelectItem Style="color: var(--P-dark);" Value="@("Add_new_grid_internal")">@Localizer.AddNewGrid</SelectItem>
@@ -51,7 +52,7 @@
     else
     {
         <a style="color:white; cursor:pointer;"
-              @onclick="@(()=> { navmanager.NavigateTo("/gridmanager");})">
+           @onclick="@(()=> { navmanager.NavigateTo("/gridmanager");})">
             @Localizer.AddNewGrid
         </a>
     }
