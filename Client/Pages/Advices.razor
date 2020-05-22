@@ -1,15 +1,28 @@
 ﻿@page "/advices"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@using System.IO
 
-
-<h1>@Localizer.Header</h1>
+@if (String.IsNullOrEmpty(frag))
+{
+    <LoadingElement />
+}
+else
+{
+    <div>
+        @((MarkupString)frag)
+    </div>
+}
 
 @code {
+
+    string frag = "";
+
     I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
 
     protected override async Task OnInitializedAsync()
     {
-        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);        
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
+        frag = await Http.GetStringAsync("Advice");
     }
 }
