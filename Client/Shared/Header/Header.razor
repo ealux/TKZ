@@ -197,9 +197,13 @@
 
     public const string SourceIEEE14 = "/Test Grid/IEEE 14/IEEE 14-bus modified test system.json";
 
+    //IEEE14
     public async void LoadIEEE14()
     {
         var testIEEE = await Grid.Deserialize(await Http.GetStringAsync("TestGrid"));
+
+        if (Grid.Networks.Where(g => g.Name.Contains("IEEE 14")).Any()) testIEEE.Name = testIEEE.Name + $" ({Grid.Networks.Where(n => n.Name == testIEEE.Name).Count()})";
+
         Grid.Networks.Add(testIEEE);
         service.CurrentGridName = Grid.Networks[Grid.Networks.Count - 1].Name;
         Grid.SetInstance(Grid.Networks[Grid.Networks.Count - 1]);

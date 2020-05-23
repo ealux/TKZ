@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<Tooltip Text="@(@Localizer.Equipment)" Placement="Placement.Top">
+<Tooltip Text="@(@Localizer.Equipment)" Placement="Placement.Left">
     <Button Class="transparent" id="show">                                
         <svg class="edit-icon" @onclick="@(() => {})">
             <use href="/img/Icon.svg#Equipment"></use>

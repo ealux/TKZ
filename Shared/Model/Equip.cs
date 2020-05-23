@@ -41,5 +41,21 @@ namespace TKZ.Shared.Model
             this.E = e;
             this.Fi_E = fi_e;
         }
+
+        public Equip(Equip other, int newBusId)
+        {
+            this.m_id = CurId;
+            this.BusId = newBusId;
+            this.Name = other.Name;
+            this.IsActive = other.IsActive;
+            this.R = other.R;
+            this.X = other.X;
+            this.R2 = other.R2;
+            this.X2 = other.X2;
+            this.R0 = other.R0;
+            this.X0 = other.X0;
+            this.E = other.E;
+            this.Fi_E = other.Fi_E;
+        }
     }
 }

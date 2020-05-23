@@ -62,7 +62,7 @@ namespace TKZ.Shared.Model
                       double R1, double X1, double R0, double X0,
                       double StUnom, double FinUnom, double Fi_trans,
                       bool GroundStBus, bool GroundFinBus, 
-                      double B = 0, double G =0, double B0 = 0, double G0 =0)
+                      double B = 0, double G = 0, double B0 = 0, double G0 = 0)
         {
             this.m_id = Branch.CurId;
             this.StartBusId = startBusId;
@@ -81,6 +81,28 @@ namespace TKZ.Shared.Model
             this.G = G;
             this.B0 = B0;
             this.G0 = G0;
+        }
+
+        public Branch(Branch other, int newStartBusId, int newFinBusId)
+        {
+            this.m_id = Branch.CurId;
+            this.StartBusId = newStartBusId;
+            this.FinalBusId = newFinBusId;
+            this.R1 = other.R1;
+            this.X1 = other.X1;
+            this.R0 = other.R0;
+            this.X0 = other.X0;
+            this.StUnom = other.StUnom;
+            this.FinUnom = other.FinUnom;
+            this.Fi_trans = other.Fi_trans;
+            this.GroundStBus = other.GroundStBus;
+            this.GroundFinBus = other.GroundFinBus;
+            this.Name = other.Name;
+            this.B = other.B;
+            this.G = other.G;
+            this.B0 = other.B0;
+            this.G0 = other.G0;
+            this.IsActive = other.IsActive;
         }
     }
 }

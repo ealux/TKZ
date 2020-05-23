@@ -1,5 +1,12 @@
 {
-    //New Grid
-    "NewGrid":"Добавить новую сеть: ",
-    "NewGridPlaceholder":"Наименование"
+  //New Grid
+  "NewGrid": "Добавить новую сеть: ",
+  "NewGridPlaceholder": "Наименование",
+  "ArcR": "R дуги, [Ом]",
+  "ArcX": "X дуги, [Ом]",
+  "Buses": "Узлы",
+  "Branches": "Ветви",
+  "Equips": "Оборудование",
+  "Mutuals": "Взаимоиндукции"
+
 }

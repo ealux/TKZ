@@ -7,6 +7,24 @@ namespace TKZ.Client.I18nText.Pages
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Arc R, [Om]"</summary>
+        public string ArcR;
+
+        /// <summary>"Arc X, [Om]"</summary>
+        public string ArcX;
+
+        /// <summary>"Branches"</summary>
+        public string Branches;
+
+        /// <summary>"Buses"</summary>
+        public string Buses;
+
+        /// <summary>"Equipment"</summary>
+        public string Equips;
+
+        /// <summary>"Mutual inductions"</summary>
+        public string Mutuals;
+
         /// <summary>"Add new network: "</summary>
         public string NewGrid;
 

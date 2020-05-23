@@ -23,5 +23,16 @@ namespace TKZ.Shared.Model
             this.R = R;
             this.X = X;
         }
+
+        public Mutual(Mutual other, int newIdFirstBranch, int newIdSecondBranch)
+        {
+            this.m_id = CurId;
+            this.Name = other.Name;
+            this.IsActive = other.IsActive;
+            this.IdFirstBranch = newIdFirstBranch;
+            this.IdSecondBranch = newIdSecondBranch;
+            this.R = other.R;
+            this.X = other.X;
+        }
     }
 }

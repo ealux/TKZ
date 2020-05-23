@@ -4,34 +4,238 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject NavigationManager navmanager
 @inject GridService service
+@using System.Linq
 @using Blazorise
+@using Blazorise.DataGrid
 @using TKZ.Shared
+@using TKZ.Client.Pages.Components
 @page "/gridmanager"
 
-<Row Class="frame m-auto">
-    <Column Padding="Padding.Is2">
-        <Inline>
-            <Field>
-                <FieldLabel>@Localizer.NewGrid</FieldLabel>
-            </Field>
-            <Field Padding="Padding.Is4.OnX">
-                <Validation Validator="@Validate">
-                    <TextEdit Placeholder="@Localizer.NewGridPlaceholder"
-                              @bind-Text="@name"
-                              Style="width:400px;">
-                    </TextEdit>
-                </Validation>
-            </Field>
-            <Field>
-                <TKZ.Client.Pages.Components.Button_Add_Node_For_Calc OnClickCallback="@AddGrid" />
-            </Field>
-        </Inline>
-    </Column>
-</Row>
+@if (grids == null)
+{
+    <LoadingElement />
+}
+else if (grids.Count < 1)
+{
+    <Row Class="frame m-auto">
+        <Column Padding="Padding.Is2">
+            <Inline>
+                <Field>
+                    <FieldLabel>@Localizer.NewGrid</FieldLabel>
+                </Field>
+                <Field Padding="Padding.Is4.OnX">
+                    <Validation Validator="@Validate">
+                        <TextEdit Placeholder="@Localizer.NewGridPlaceholder"
+                                  @bind-Text="@name"
+                                  Style="width:400px;">
+                        </TextEdit>
+                    </Validation>
+                </Field>
+                <Field>
+                    <TKZ.Client.Pages.Components.Button_Add_Node_For_Calc OnClickCallback="@AddGrid" />
+                </Field>
+            </Inline>
+        </Column>
+    </Row>
+}
+else
+{
+    <div class="table-container frame overflow-auto">
+        <DataGrid TItem="Grid"
+                  Data="@grids"
+                  PageSize="@grids.Count"
+                  EditMode="@DataGridEditMode.Inline"
+                  Editable="true"
+                  Sortable="true"
+                  Filterable="true"
+                  Striped="false"
+                  Hoverable="false"
+                  Narrow="true"
+                  RowInserted="@OnRowInserted"
+                  RowUpdated="@OnRowUpdated"
+                  RowRemoved="@OnRowRemoved"
+                  Class="my_table text-center">
+
+            <DataGridColumns>
+                @*Name*@
+                <DataGridColumn TItem="Grid"
+                                Field="@nameof(Grid.Name)"
+                                Caption="@(Localizer.NewGridPlaceholder)"
+                                Editable="true"
+                                Sortable="true" />
+                @*Arc R*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.ArcR)"
+                                       Caption="@(Localizer.ArcR)"
+                                       Editable="true"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <EditTemplate>
+                        <NumericEdit TValue="double"
+                                     Value="@((double)( ( (CellEditContext)context ).CellValue ))"
+                                     ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
+                                     Decimals="4" />
+                    </EditTemplate>
+                </DataGridNumericColumn>
+                @*Arc X*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.ArcX)"
+                                       Caption="@(Localizer.ArcX)"
+                                       Editable="true"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <EditTemplate>
+                        <NumericEdit TValue="double"
+                                     Value="@((double)( ( (CellEditContext)context ).CellValue ))"
+                                     ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
+                                     Decimals="4" />
+                    </EditTemplate>
+                </DataGridNumericColumn>
+                @*Count of Buses*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.Buses)"
+                                       Caption="@(Localizer.Buses)"
+                                       Editable="false"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <DisplayTemplate>
+                        @((context).Buses.Count)
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+                @*Count of Equipments*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.Equipment)"
+                                       Caption="@(Localizer.Equips)"
+                                       Editable="false"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <DisplayTemplate>
+                        @((context).Equipment.Count)
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+                @*Count of Branches*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.Branches)"
+                                       Caption="@(Localizer.Branches)"
+                                       Editable="false"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <DisplayTemplate>
+                        @((context).Branches.Count)
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+                @*Count of Mutuals*@
+                <DataGridNumericColumn TItem="Grid"
+                                       Field="@nameof(Grid.Mutuals)"
+                                       Caption="@(Localizer.Mutuals)"
+                                       Editable="false"
+                                       Sortable="true"
+                                       CellClass="@((item)=>"numeric-column")">
+                    <DisplayTemplate>
+                        @((context).Mutuals.Count)
+                    </DisplayTemplate>
+                </DataGridNumericColumn>
+
+                @*Commands*@
+                <DataGridCommandColumn TItem="Grid"
+                                       CellClass="@((item)=>"edit-column")">
+                    <NewCommandTemplate>
+                        <Button_Add OnClickCallback="@context.Clicked" />
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button_Edit OnClickCallback="@context.Clicked" />
+                        <Button_Duplicate OnClickCallback="@(() => DuplicateItem(context.Item))" />
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Button_Delete OnClickCallback="@context.Clicked" />
+                    </DeleteCommandTemplate>
+                    <SaveCommandTemplate>
+                        <Button_Save OnClickCallback="@context.Clicked" />
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Button_Cancel OnClickCallback="@context.Clicked" />
+                    </CancelCommandTemplate>
+                    <ClearFilterCommandTemplate>
+                        <Button_Filter OnClickCallback="@context.Clicked" />
+                    </ClearFilterCommandTemplate>
+                </DataGridCommandColumn>
+            </DataGridColumns>
+        </DataGrid>
+    </div>
+}
 
 @code {
-    string name { get; set; }
+    [Inject] Grid grid { get; set; }
 
+    private List<Grid> grids { get; set; }
+
+    string name { get; set; }
+    //string ActiveGrid { get; set; }
+
+    void OnRowInserted(SavedRowItem<Grid, Dictionary<string, object>> e)
+    {
+        Grid.Networks.Add(e.Item);
+        Log.InvokeOnChange();
+    }
+
+    void OnRowUpdated(SavedRowItem<Grid, Dictionary<string, object>> e)
+    {
+        Log.InvokeOnChange();
+    }
+
+    void OnRowRemoved(Grid e)
+    {
+        if (Grid.Networks.Contains(e)) Grid.Networks.Remove(e);
+        Log.InvokeOnChange();
+    }
+
+    void DuplicateItem(Grid e)
+    {
+        var new_grid = new Grid()
+        {
+            Name = e.Name + $"_({Grid.Networks.Where(n => n.Name == e.Name).Count()})",
+            ArcR = e.ArcR,
+            ArcX = e.ArcX
+        };
+
+        //new Buses
+        foreach (var item in e.Buses.Values)
+        {
+            var new_bus = new Bus(item);
+            new_grid.Buses.Add(new_bus.Id, new_bus);
+        }
+        //new Branches
+        foreach (var item in e.Branches.Values)
+        {
+            var new_branch = new Branch(item,
+                                       new_grid.Buses.Values.Where(b => b.Name == e.Buses.Values.Where(b2 => b2.Id == item.StartBusId).First().Name).First().Id,
+                                       new_grid.Buses.Values.Where(b => b.Name == e.Buses.Values.Where(b2 => b2.Id == item.FinalBusId).First().Name).First().Id);
+            new_grid.Branches.Add(new_branch.Id, new_branch);
+        }
+        //new Equipments
+        foreach (var item in e.Equipment.Values)
+        {
+            var new_equip = new Equip(item,
+                                      new_grid.Buses.Values.Where(b => b.Name == e.Buses.Values.Where(b2 => b2.Id == item.BusId).First().Name).First().Id);
+            new_grid.Equipment.Add(new_equip.Id, new_equip);
+        }
+        //new Branches
+        foreach (var item in e.Mutuals.Values)
+        {
+            var new_mut = new Mutual(item,
+                                     new_grid.Buses.Values.Where(b => b.Name == e.Buses.Values.Where(b2 => b2.Id == item.IdFirstBranch).First().Name).First().Id,
+                                     new_grid.Buses.Values.Where(b => b.Name == e.Buses.Values.Where(b2 => b2.Id == item.IdSecondBranch).First().Name).First().Id);
+            new_grid.Mutuals.Add(new_mut.Id, new_mut);
+        }
+
+        grids.Add(new_grid);
+        Grid.Networks.Add(new_grid);
+        Log.InvokeOnChange();
+
+        StateHasChanged();
+    }
+
+    //Validator
     void Validate(ValidatorEventArgs e)
     {
         var name = Convert.ToString(e.Value);
@@ -76,5 +280,6 @@
     protected override async Task OnInitializedAsync() //Initial
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.GridEditor>(this);
+        grids = await Task.Run(() => { return Grid.Networks.Skip(1).ToList<Grid>(); });
     }
 }

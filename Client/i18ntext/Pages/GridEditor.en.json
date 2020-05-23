@@ -1,5 +1,11 @@
 {
-    //New Grid
-    "NewGrid":"Add new network: ",
-    "NewGridPlaceholder":"Name"
+  //New Grid
+  "NewGrid": "Add new network: ",
+  "NewGridPlaceholder": "Name",
+  "ArcR": "Arc R, [Om]",
+  "ArcX": "Arc X, [Om]",
+  "Buses": "Buses",
+  "Branches": "Branches",
+  "Equips": "Equipment",
+  "Mutuals": "Mutual inductions"
 }
