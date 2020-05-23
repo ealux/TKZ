@@ -9,7 +9,6 @@
     <None Remove="calc.html" />
     <None Remove="docs\about.html" />
     <None Remove="docs\calc.html" />
-    <None Remove="docs\docs.html" />
     <None Remove="docs\elements.html" />
     <None Remove="docs\glossary.html" />
     <None Remove="docs\input.html" />
@@ -23,9 +22,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\calc.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="docs\docs.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="docs\elements.html">

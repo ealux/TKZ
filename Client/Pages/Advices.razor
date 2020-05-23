@@ -1,7 +1,6 @@
 ﻿@page "/advices"
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
-@using System.IO
 
 @if (String.IsNullOrEmpty(docs))
 {
@@ -9,8 +8,15 @@
 }
 else
 {
-    <div>
+    <div class="container-fluid align-content-center">
         @((MarkupString)docs)
+        @((MarkupString)about)
+        @((MarkupString)model)
+        @((MarkupString)elements)
+        @((MarkupString)input)
+        @((MarkupString)calc)
+        @((MarkupString)glossary)
+        @((MarkupString)source)
     </div>
 }
 
