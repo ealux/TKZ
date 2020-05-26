@@ -689,6 +689,7 @@ h5 {
     background-color: white;
 }
 .landing-image:after {
+    transform: scale(-1, 1);
     content: "";
     opacity: 0.3;
     top: 0;
@@ -700,7 +701,7 @@ h5 {
     background-image: url("../img/Lighting.png");
     background-size: 100%;
     background-repeat: no-repeat;
-    background-attachment:scroll;
+    background-attachment: scroll;
 }
 .landing-feature {
     border: 2px solid var(--P-dark);

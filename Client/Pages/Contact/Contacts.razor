@@ -1,16 +1,16 @@
 ﻿@page "/contacts"
-@layout MainLayout
+@*@layout MainLayout*@
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject HttpClient Http
 
-<div class="m-auto justify-content-center align-items-center">
+<div class="@(AdditionStyle == "" ? "m-auto justify-content-center align-items-center" : AdditionStyle)">
     <div class="flex-row">
-        <div class="col contact frame">
+        <div class="col contact @(IsFrame ? "frame":"")">
             <div class="col">
                 <h1>@Localizer.ContactHeader</h1>
-                <p>@contact.Localizer.Ctxt</p>
+                @if (CtxtVisibility) { <h6>@contact.Localizer.Ctxt</h6> }                
             </div>
             <EditForm Model="@contact" OnValidSubmit="SendFeedback">
                 <DataAnnotationsValidator />
@@ -47,6 +47,15 @@
 </div>
 
 @code {
+    [Parameter]
+    public bool IsFrame { get; set; } = true;
+
+    [Parameter]
+    public string AdditionStyle { get; set; } = "";
+
+    [Parameter]
+    public bool CtxtVisibility { get; set; } = true;
+
     Contact contact = new Contact();
 
     string notification { get; set; }
