@@ -5,13 +5,13 @@
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @inject HttpClient Http
 
-<div class="d-flex flex-row justify-content-center align-items-center" style="flex:1">
-    <div class="row">
-        <div class="col">
-            <h1>@Localizer.ContactHeader</h1>
-            <p>@contact.Localizer.Ctxt</p>
-        </div>
-        <div class="col contact frame"
+<div class="m-auto justify-content-center align-items-center">
+    <div class="flex-row">
+        <div class="col contact frame">
+            <div class="col">
+                <h1>@Localizer.ContactHeader</h1>
+                <p>@contact.Localizer.Ctxt</p>
+            </div>
             <EditForm Model="@contact" OnValidSubmit="SendFeedback">
                 <DataAnnotationsValidator />
                 <div class="text-danger">
@@ -20,30 +20,32 @@
                 </div>
                 <p><label for="CustomerName">@contact.Localizer.Name:</label></p>
                 <InputText class="form-control"
-                        id="CustomerName"
-                        @bind-placeholder="@contact.Localizer.Name"
-                        @bind-Value="contact.Name" />
+                           id="CustomerName"
+                           @bind-placeholder="@contact.Localizer.Name"
+                           @bind-Value="contact.Name" />
                 <p><label for="CustomerEmail">@contact.Localizer.Email:</label></p>
                 <InputText class="form-control"
-                        type="text"
-                        id="CustomerEmail"
-                        @bind-placeholder="@contact.Localizer.Email"
-                        @bind-Value="contact.Email" />
+                           type="text"
+                           id="CustomerEmail"
+                           @bind-placeholder="@contact.Localizer.Email"
+                           @bind-Value="contact.Email" />
                 <p><label for="CustomerMessage">@contact.Localizer.Message:</label></p>
                 <InputTextArea class="form-control textarea-height"
-                            type="text"
-                            style ="height:200px;"
-                            id="CustomerMessage"
-                            @bind-placeholder="@contact.Localizer.Message"
-                            @bind-Value="contact.Message" />
+                               type="text"
+                               style="height:200px;"
+                               id="CustomerMessage"
+                               @bind-placeholder="@contact.Localizer.Message"
+                               @bind-Value="contact.Message" />
                 <button type="submit"
-                        value="Submit" 
-                        class="my_button primary float-right">@contact.Localizer.Send
+                        value="Submit"
+                        class="my_button primary float-right">
+                    @contact.Localizer.Send
                 </button>
             </EditForm>
         </div>
     </div>
 </div>
+
 @code {
     Contact contact = new Contact();
 
