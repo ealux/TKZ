@@ -22,6 +22,9 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"deg."</summary>
         public string deg;
 
+        /// <summary>"Disabled"</summary>
+        public string DisableGrounded;
+
         /// <summary>"D"</summary>
         public string Duplicate;
 
@@ -45,6 +48,9 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>"Ground"</summary>
         public string Ground;
+
+        /// <summary>"Grounded"</summary>
+        public string Grounded;
 
         /// <summary>"Grounding in end bus"</summary>
         public string groundFinBus;
@@ -84,6 +90,9 @@ namespace TKZ.Client.I18nText.Pages
 
         /// <summary>"Disabled"</summary>
         public string NotActiveFilter;
+
+        /// <summary>"Not grnd."</summary>
+        public string NotGrounded;
 
         /// <summary>"Parall. number"</summary>
         public string NumPar;

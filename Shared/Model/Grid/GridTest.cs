@@ -47,18 +47,18 @@ namespace TKZ.Shared
             grid.Buses.Add(b9.Id, b9);
             grid.Buses.Add(b10.Id, b10);
 
-            Branch br1 = new Branch(b1.Id, b2.Id, "1-2", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br2 = new Branch(b3.Id, b1.Id, "3-1", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br3 = new Branch(b1.Id, b4.Id, "1-4", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br4 = new Branch(b2.Id, b5.Id, "2-5", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br5 = new Branch(b3.Id, b6.Id, "3-6", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br6 = new Branch(b3.Id, b7.Id, "3-7", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br7 = new Branch(b4.Id, b8.Id, "4-8", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br8 = new Branch(b5.Id, b9.Id, "5-9", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br9 = new Branch(b6.Id, b10.Id, "6-10", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br10 = new Branch(b7.Id, b8.Id, "7-8", 1, 2, 3, 4, 5, 6, 7, false, false);
-            Branch br11 = new Branch(b2.Id, b10.Id, "2-10", 1, 2, 3, 4, 5, 6, 7, false, true);
-            Branch br12 = new Branch(b10.Id, b8.Id, "10-8", 1, 2, 3, 4, 5, 6, 7, true, false);
+            Branch br1 = new Branch(b1.Id, b2.Id, "1-2", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.Disabled);
+            Branch br2 = new Branch(b3.Id, b1.Id, "3-1", 1, 2, 3, 4, 5, 6, 7, GroundMode.Ground, GroundMode.NonGrnd);
+            Branch br3 = new Branch(b1.Id, b4.Id, "1-4", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br4 = new Branch(b2.Id, b5.Id, "2-5", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br5 = new Branch(b3.Id, b6.Id, "3-6", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br6 = new Branch(b3.Id, b7.Id, "3-7", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br7 = new Branch(b4.Id, b8.Id, "4-8", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br8 = new Branch(b5.Id, b9.Id, "5-9", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br9 = new Branch(b6.Id, b10.Id, "6-10", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br10 = new Branch(b7.Id, b8.Id, "7-8", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br11 = new Branch(b2.Id, b10.Id, "2-10", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
+            Branch br12 = new Branch(b10.Id, b8.Id, "10-8", 1, 2, 3, 4, 5, 6, 7, GroundMode.NonGrnd, GroundMode.NonGrnd);
 
             grid.Branches.Add(br1.Id, br1);
             grid.Branches.Add(br2.Id, br2);

@@ -38,6 +38,9 @@
   "NotActiveFilter": "Отключено",
   //ground
   "Ground": "Земля",
+  "Grounded": "Заземлено",
+  "NotGrounded": "Не заземл.",
+  "DisableGrounded": "Откл.",
   //Equipment connection bus
   "Bus": "Узел"
 }

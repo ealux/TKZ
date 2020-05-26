@@ -15,8 +15,8 @@ namespace TKZ.Shared.Model
         public double X0 { get; set; }
         public double StUnom { get; set; }
         public double FinUnom { get; set; }
-        public bool GroundStBus { get; set; }
-        public bool GroundFinBus { get; set; }
+        public GroundMode GroundStBus { get; set; }
+        public GroundMode GroundFinBus { get; set; }
         public double Fi_trans { get; set; }
         /// <summary>
         /// Branch ground conductivity.
@@ -61,7 +61,7 @@ namespace TKZ.Shared.Model
         public Branch(int startBusId, int finalBusId, string NameBranch,
                       double R1, double X1, double R0, double X0,
                       double StUnom, double FinUnom, double Fi_trans,
-                      bool GroundStBus, bool GroundFinBus, 
+                      GroundMode GroundStBus, GroundMode GroundFinBus, 
                       double B = 0, double G = 0, double B0 = 0, double G0 = 0)
         {
             this.m_id = Branch.CurId;
@@ -104,5 +104,13 @@ namespace TKZ.Shared.Model
             this.G0 = other.G0;
             this.IsActive = other.IsActive;
         }
+    }
+
+    public enum GroundMode
+    {
+        Ground,
+        NonGrnd,
+        Disabled,
+        Default
     }
 }

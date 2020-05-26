@@ -1,10 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using TKZ.Shared.Model;
-using System.Collections.Generic;
 
 namespace TKZ.Shared
 {
@@ -31,7 +30,7 @@ namespace TKZ.Shared
             Grid grid = new Grid();
 
             await Task.Run(() =>
-            {                
+            {
                 JObject o = JObject.Parse(json);
                 grid.Name = (string)o["Name"];
                 grid.ArcR = (double)o["ArcR"];
@@ -87,8 +86,12 @@ namespace TKZ.Shared
                             X0 = (double)item2["X0"],
                             StUnom = (double)item2["StUnom"],
                             FinUnom = (double)item2["FinUnom"],
-                            GroundStBus = (bool)item2["GroundStBus"],
-                            GroundFinBus = (bool)item2["GroundFinBus"],
+                            GroundStBus = (int)item2["GroundStBus"] == 0 ? GroundMode.Ground
+                                                                         : (int)item2["GroundStBus"] == 1 ?
+                                                                                        GroundMode.NonGrnd : GroundMode.Disabled,
+                            GroundFinBus = (int)item2["GroundFinBus"] == 0 ? GroundMode.Ground
+                                                                           : (int)item2["GroundFinBus"] == 1 ?
+                                                                                        GroundMode.NonGrnd : GroundMode.Disabled,
                             Fi_trans = (double)item2["Fi_trans"],
                             B = (double)item2["B"],
                             G = (double)item2["G"],

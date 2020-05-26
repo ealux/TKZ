@@ -38,6 +38,9 @@
   "NotActiveFilter": "Disabled",
   //ground
   "Ground": "Ground",
+  "Grounded": "Grounded",
+  "NotGrounded": "Not grnd.",
+  "DisableGrounded": "Disabled",
   //Equipment connection bus
   "Bus": "Bus"
 }
