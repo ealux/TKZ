@@ -106,7 +106,7 @@ namespace TKZ.Client.I18nText.Pages
         /// <summary>"Branch 2"</summary>
         public string secondBranch;
 
-        /// <summary>"S"</summary>
+        /// <summary>"μS"</summary>
         public string Siemens;
 
         /// <summary>"Start bus"</summary>
