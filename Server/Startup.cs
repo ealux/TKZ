@@ -1,3 +1,4 @@
+using iAspNetcore.Middleware.Sitemap;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,7 @@ namespace TKZ.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+            //app.UseSitemapMiddleware();
 
             app.UseRouting();
 

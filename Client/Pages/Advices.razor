@@ -36,12 +36,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        var pre = await Http.GetStringAsync("Advice/docs");
+        docs = pre;
+
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
 
         _draft = await Http.GetStringAsync("Advice/_draft");
         about = await Http.GetStringAsync("Advice/about");
         calc = await Http.GetStringAsync("Advice/calc");
-        docs = await Http.GetStringAsync("Advice/docs");
         elements = await Http.GetStringAsync("Advice/elements");
         glossary = await Http.GetStringAsync("Advice/glossary");
         input = await Http.GetStringAsync("Advice/input");
