@@ -5,36 +5,36 @@
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
-
-<div class="landing-image">
-    <div class="w3-animate-opacity">
-        <header class="d-flex align-items-center sticky-top landing-navs">
-            <NavLink class="navbar-brand active mx-5"
-                     href="/"
-                     Match="NavLinkMatch.All"
-                     ActiveClass="active"
-                     style="font-family: Amithen;
+    <header class="d-flex align-items-center sticky-top landing-navs">
+        <NavLink class="navbar-brand active mx-5"
+                 href="/"
+                 Match="NavLinkMatch.All"
+                 ActiveClass="active"
+                 style="font-family: Amithen;
                     color: var(--S-middle);
                     font-size: 2.5rem;
                     width: 120px;">
-                Lime
-            </NavLink>
-            <NavLink class="ml-auto landing-header-link"
-                     href="/nodes"
-                     Match="NavLinkMatch.All"
-                     ActiveClass="active">
-                Рассчитать
-            </NavLink>
-            <Tooltip Text="@Localizer.Language" Placement="Placement.Bottom">
-                <button type="button"
-                        class="icon"
-                        @onclick="ChangeLanguage">
-                    <svg @onclick="@(() => {})" class="header-icon">
-                        <use href="@(IsRus ? SourceRus : SourceUS )"></use>
-                    </svg>
-                </button>
-            </Tooltip>
-        </header>
+            Lime
+        </NavLink>
+        <NavLink class="my_button primary landing-navs-item"
+                 href="/nodes"
+                 Match="NavLinkMatch.All"
+                 ActiveClass="active">
+            Рассчитать
+        </NavLink>
+        <!--<Tooltip Text="@Localizer.Language" Placement="Placement.Bottom">
+        <button type="button"
+                class="icon"
+                @onclick="ChangeLanguage">
+            <svg @onclick="@(() => {})" class="header-icon">
+                <use href="@(IsRus ? SourceRus : SourceUS )"></use>
+            </svg>
+        </button>
+    </Tooltip>-->
+    </header>
+<div class="container landing-image">
+    <div class="w3-animate-opacity">
+
 
         <div class="landing-navs-section">
             <Link class="landing-navs-section-item"
@@ -48,9 +48,9 @@
                   ActiveClass="active" />
         </div>
         <div class="d-flex flex-column landing-screen" id="main">
-            <div class="landing-main-text text-justify">
+            <div class="landing-main-text">
                 <p>
-                    <span>Lime</span> - сервис для расчета токов замыкания в электрической сети на основе метода симметричных составляющих
+                    <span>Lime</span> — сервис для расчета токов замыкания в электрической сети на основе метода симметричных составляющих
                 </p>
                 <div class="container-fluid text-center">
                     <Button Class="my_button primary landing"
@@ -93,7 +93,7 @@
                                                AdditionStyle="d-flex flex-column landing-screen"
                                                CtxtVisibility="false" />
         </div>
-    </div>    
+    </div>
 </div>
 @code {
 
