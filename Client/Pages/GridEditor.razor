@@ -62,35 +62,7 @@ else
                                 Field="@nameof(Grid.Name)"
                                 Caption="@(Localizer.NewGridPlaceholder)"
                                 Editable="true"
-                                Sortable="true" />
-                @*Arc R*@
-                <DataGridNumericColumn TItem="Grid"
-                                       Field="@nameof(Grid.ArcR)"
-                                       Caption="@(Localizer.ArcR)"
-                                       Editable="true"
-                                       Sortable="true"
-                                       CellClass="@((item)=>"numeric-column")">
-                    <EditTemplate>
-                        <NumericEdit TValue="double"
-                                     Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                     ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                     Decimals="4" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
-                @*Arc X*@
-                <DataGridNumericColumn TItem="Grid"
-                                       Field="@nameof(Grid.ArcX)"
-                                       Caption="@(Localizer.ArcX)"
-                                       Editable="true"
-                                       Sortable="true"
-                                       CellClass="@((item)=>"numeric-column")">
-                    <EditTemplate>
-                        <NumericEdit TValue="double"
-                                     Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                     ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                     Decimals="4" />
-                    </EditTemplate>
-                </DataGridNumericColumn>
+                                Sortable="true" />                
                 @*Count of Buses*@
                 <DataGridNumericColumn TItem="Grid"
                                        Field="@nameof(Grid.Buses)"

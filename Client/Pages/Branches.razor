@@ -145,61 +145,37 @@ else
                             </DisplayTemplate>
                         </DataGridColumn>
                         @*R0*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.R0)"
                                         Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="4" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*X0*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.X0)"
                                         Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="3" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*B0*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.B0)"
                                         Caption="@(new String("B0, ["+@Localizer.Siemens+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="2" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*G0*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.G0)"
                                         Caption="@(new String("G0, ["+@Localizer.Siemens+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="2" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*GroundStBus*@
                         <DataGridSelectColumn TItem="Branch"
                                               Field="@nameof(Branch.GroundStBus)"
@@ -431,61 +407,37 @@ else
                             </DisplayTemplate>
                         </DataGridColumn>
                         @*R1*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.R1)"
                                         Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="4" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*X1*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.X1)"
                                         Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="4" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*B*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.B)"
                                         Caption="@(new String("B1 (B2), ["+@Localizer.Siemens+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="2" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*G*@
-                        <DataGridColumn TItem="Branch"
+                        <DataGridNumericColumn TItem="Branch"
                                         Field="@nameof(Branch.G)"
                                         Caption="@(new String("G1 (G2), ["+@Localizer.Siemens+"]"))"
                                         Editable="true"
                                         Sortable="true"
                                         CellClass="@((item)=>"numeric-column")">
-                            <EditTemplate>
-                                <NumericEdit TValue="double"
-                                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                             Decimals="2" />
-                            </EditTemplate>
-                        </DataGridColumn>
+                        </DataGridNumericColumn>
                         @*StUnom*@
                         <DataGridNumericColumn TItem="Branch"
                                                Field="@nameof(Branch.StUnom)"

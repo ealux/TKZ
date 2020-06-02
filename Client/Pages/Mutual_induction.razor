@@ -127,12 +127,6 @@ else
                                Editable="true"
                                Sortable="true"
                                CellClass="@((item)=>"numeric-column")">
-            <EditTemplate>
-                <NumericEdit TValue="double"
-                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="3" />
-            </EditTemplate>
         </DataGridNumericColumn>
         @*X*@
         <DataGridNumericColumn TItem="Mutual"
@@ -141,12 +135,6 @@ else
                                Editable="true"
                                Sortable="true"
                                CellClass="@((item)=>"numeric-column")">
-            <EditTemplate>
-                <NumericEdit TValue="double"
-                             Value="@((double)( ( (CellEditContext)context ).CellValue ))"
-                             ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="3" />
-            </EditTemplate>
         </DataGridNumericColumn>
 
         @*Commands*@
