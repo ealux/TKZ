@@ -131,7 +131,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*X*@
@@ -145,7 +145,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
 
@@ -178,7 +178,7 @@ else
 }
 
 @code {
-    [Inject] Grid grid { get; set; }
+    Grid grid { get; set; }
 
     private List<Mutual> mutuals { get; set; }
 

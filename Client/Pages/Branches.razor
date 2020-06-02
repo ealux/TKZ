@@ -6,7 +6,6 @@
 @inject LogBase Log
 @inject NavigationManager navmanager
 @using TKZ.Client.Pages.Components
-@using System.Text.RegularExpressions
 
 @if (Grid.Networks.Count <= 1)
 {
@@ -38,7 +37,7 @@ else
                                 Caption="@(@Localizer.IsActive)"
                                 Editable="true"
                                 Sortable="true"
-                                CellClass="@((item)=>"check-column")">
+                                Width="150px">
                     <DisplayTemplate>
                         <Check TValue="bool" Checked="context.IsActive" CheckedChanged="@((v)=>context.IsActive = v)" />
                     </DisplayTemplate>
@@ -138,7 +137,7 @@ else
                     </DisplayTemplate>
                 </DataGridColumn>
                 @*R1*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.R1)"
                                        Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
@@ -150,9 +149,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="4" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*X1*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.X1)"
                                        Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
                                        Editable="true"
@@ -164,9 +163,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="4" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*R0*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.R0)"
                                        Caption="@(new String("R0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
@@ -178,9 +177,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="4" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*X0*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.X0)"
                                        Caption="@(new String("X0, ["+@Localizer.ohm+"]"))"
                                        Editable="true"
@@ -190,11 +189,11 @@ else
                         <NumericEdit TValue="double"
                                      Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                                     Decimals="4" />
+                                     Decimals="3" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*B*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.B)"
                                        Caption="@(new String("B1 (B2), ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
@@ -206,9 +205,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="2" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*G*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.G)"
                                        Caption="@(new String("G1 (G2), ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
@@ -220,9 +219,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="2" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*B0*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.B0)"
                                        Caption="@(new String("B0, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
@@ -234,9 +233,9 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="2" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*G0*@
-                <DataGridNumericColumn TItem="Branch"
+                <DataGridColumn TItem="Branch"
                                        Field="@nameof(Branch.G0)"
                                        Caption="@(new String("G0, ["+@Localizer.Siemens+"]"))"
                                        Editable="true"
@@ -248,7 +247,7 @@ else
                                      ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
                                      Decimals="2" />
                     </EditTemplate>
-                </DataGridNumericColumn>
+                </DataGridColumn>
                 @*StUnom*@
                 <DataGridNumericColumn TItem="Branch"
                                        Field="@nameof(Branch.StUnom)"
@@ -409,7 +408,7 @@ else
 }
 
 @code {
-    [Inject] Grid grid { get; set; }
+    Grid grid { get; set; }
 
     private List<Branch> branches { get; set; }
 

@@ -728,6 +728,15 @@ h5 {
 .landing-navs-section-item.active {
     background-color: var(--S-middle);
 }
+
+/*Switch style*/
+switch:checked{
+    background-color: #2196F3;
+}
+
+
+
+
 @font-face {
     font-family: "Amithen";
     src: url("../fonts/Amithen.ttf") format("truetype");

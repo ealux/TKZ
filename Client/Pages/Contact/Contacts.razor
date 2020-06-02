@@ -80,7 +80,7 @@
     private async Task SendFeedback()
     {
         this.contact.datetime = DateTime.Now;
-        await Http.PostJsonAsync("Feedback", this.contact);
+        await Http.PostJsonAsync("api/Feedback", this.contact);
         notification = Localizer.Success;
         this.contact = new Contact();
         this.contact.Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Contact.Contact>(this);

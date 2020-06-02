@@ -6,7 +6,8 @@
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
 
-    <div class="landing-image">
+<div class="landing-image">
+    <div class="w3-animate-opacity">
         <header class="d-flex align-items-center sticky-top landing-navs">
             <NavLink class="navbar-brand active mx-5"
                      href="/"
@@ -87,11 +88,15 @@
             </div>
         </div>
 
-        <TKZ.Client.Pages.Contact.Contacts IsFrame="false" 
-                                           AdditionStyle="d-flex flex-column landing-screen"
-                                           CtxtVisibility="false"/>
-    </div>
+        <div id="contacts">
+            <TKZ.Client.Pages.Contact.Contacts IsFrame="false"
+                                               AdditionStyle="d-flex flex-column landing-screen"
+                                               CtxtVisibility="false" />
+        </div>
+    </div>    
+</div>
 @code {
+
     public const string SourceRus = "/img/Icon.svg#russia";
     public const string SourceUS = "/img/Icon.svg#USA";
 

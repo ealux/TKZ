@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
 using TKZ.Shared.Model;
@@ -29,7 +30,7 @@ namespace TKZ.Client.Pages
                     }
                 });
             }
-            catch (Exception) { return; }
+            catch (Exception) { }
 
             //Similar Names
             try
@@ -53,7 +54,7 @@ namespace TKZ.Client.Pages
                     }
                 });
             }
-            catch (Exception) { return; }
+            catch (Exception) { }
         }
     }
 }

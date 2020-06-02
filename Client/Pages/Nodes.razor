@@ -29,13 +29,11 @@ else
                   RowUpdated="@OnRowUpdated"
                   RowRemoved="@OnRowRemoved"
                   @bind-SelectedRow="@selectedNode"
-                  DetailRowTrigger="@((item)=>grid.Equipment.Values.Where(e => e.BusId == item.Id).ToList().Count > 0 && item.Id == selectedNode?.Id)"
+                  DetailRowTrigger="@((item)=> grid.Equipment.Values.Where(e => e.BusId == item.Id).ToList().Count > 0 && item.Id == selectedNode?.Id)"
                   Narrow="true"
                   Class="my_table text-center">
-
-            @*IsActive*@
             <DataGridColumns>
-
+                @*IsActive*@
                 <DataGridColumn TItem="Bus"
                                 Field="@nameof(Bus.IsActive)"
                                 Caption="@(@Localizer.IsActive)"
@@ -83,7 +81,7 @@ else
                                 Editable="false"
                                 Sortable="false"
                                 Filterable="false"
-                                CellClass="@((item)=>"equipment-column")">
+                                Width="100px">
                     <DisplayTemplate>
                         @if (grid.Equipment.Values.Any(e => e.BusId == (context).Id))
                         {<Button_Equipment />}
@@ -137,7 +135,6 @@ else
                                             Editable="false"
                                             Sortable="true" />
                         </DataGrid>
-
                     }
                 }
             </DetailRowTemplate>
@@ -147,10 +144,12 @@ else
 }
 
 @code {
-    [Inject] Grid grid { get; set; }
+    Grid grid { get; set; }
 
     private List<Bus> buses { get; set; }
+
     private Bus selectedNode;
+    private Bus selectedNodeMemory;
 
     void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
 
@@ -184,6 +183,7 @@ else
     {
         grid = await Grid.GetInstance();
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
+        Task.Delay(500);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());
     }
 

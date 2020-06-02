@@ -102,7 +102,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*X*@
@@ -116,7 +116,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*R2*@
@@ -130,7 +130,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*X2*@
@@ -144,7 +144,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*R0*@
@@ -158,7 +158,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*X0*@
@@ -172,7 +172,7 @@ else
                 <NumericEdit TValue="double"
                              Value="@((double)( ( (CellEditContext)context ).CellValue ))"
                              ValueChanged="@(v => ( (CellEditContext)context ).CellValue = v)"
-                             Decimals="4" />
+                             Decimals="3" />
             </EditTemplate>
         </DataGridNumericColumn>
         @*E*@
@@ -234,7 +234,7 @@ else
 }
 
 @code {
-    [Inject] Grid grid { get; set; }
+    Grid grid { get; set; }
 
     private List<Equip> equipment { get; set; }
 

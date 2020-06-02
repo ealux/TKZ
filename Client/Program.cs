@@ -26,7 +26,7 @@ namespace TKZ.Client
             builder.Services.AddSingleton<LogBase>(); //Log singleton
             builder.Services.AddSingleton<GridService>(); //GridService singleton
             builder.Services.AddI18nText(); //Localizer singleton
-            builder.Services.AddSingleton<Grid>(); //Network singleton
+            //builder.Services.AddSingleton<Grid>(); //Network singleton
             builder.Services.AddBlazorise(option => option.ChangeTextOnKeyPress = true) //Tables singleton
                             .AddBootstrapProviders()
                             .AddFontAwesomeIcons();

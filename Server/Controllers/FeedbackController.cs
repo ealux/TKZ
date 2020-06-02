@@ -9,12 +9,12 @@ using TKZ.Shared;
 namespace TKZ.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class FeedbackController : ControllerBase
     {
         // POST <"Feedback">
         [HttpPost]
-        public async Task Post(object context)
+        public async Task Post([FromBody]object context)
         {
             var fed = JsonConvert.DeserializeObject<Feedback>(context.ToString());
             var list = JsonConvert.DeserializeObject<List<Feedback>>(System.IO.File.ReadAllText("feedbacks.json"));
