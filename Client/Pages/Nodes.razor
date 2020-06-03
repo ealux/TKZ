@@ -181,9 +181,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        grid = null;
-        var pre = await Grid.GetInstance();
-        grid = pre;
+        grid = await Grid.GetInstance();
 
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Nodes>(this);
         buses = await Task.Run(() => grid.Buses.Values.Where(b => b.Id != 0).ToList<Bus>());

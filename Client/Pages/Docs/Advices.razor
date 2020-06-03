@@ -1,0 +1,27 @@
+﻿@page "/advices"
+@inject HttpClient Http
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<div class="d-block">
+    <div class="container-fluid frame align-content-center">
+        @((MarkupString)docs)
+    </div>
+</div>
+
+@code {
+    string docs = "";
+
+    string _draft = "";
+
+    I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var pre = await Http.GetStringAsync("Advice/docs"); ;
+        docs = pre;
+
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
+
+        _draft = (await Http.GetStringAsync("Advice/_draft")).Replace(".html", "");
+    }
+}

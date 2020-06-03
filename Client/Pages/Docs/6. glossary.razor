@@ -1,0 +1,18 @@
+﻿@page "/glossary.html"
+@inject HttpClient Http
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<Frame Body="@glossary" />
+
+@code {
+
+    string glossary = "";
+
+    I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
+        glossary = (await Http.GetStringAsync("Advice/glossary")).Replace(".html", "");
+    }
+}

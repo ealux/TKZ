@@ -1,0 +1,143 @@
+<h1 id="предварительная-подготовка">Предварительная подготовка</h1>
+<ul>
+<li><a href="#net_data">Подготовка исходных данных</a></li>
+<li><a href="#net_equivalent">Методика определения параметров эквивалента энергосистемы</a>
+<ul>
+<li><a href="#net_equivalent1">По параметрам установившегося режима</a></li>
+<li><a href="#net_equivalent2">По параметрам установившегося режима и известному току трёхфазного КЗ на удаленных шинах линии</a></li>
+<li><a href="#net_equivalent3">По параметрам установившегося режима и известному току трёхфазного и однофазного КЗ на удаленных шинах линии</a></li>
+</ul></li>
+</ul>
+<h2 id="подготовка-исходных-данных-net_data">Подготовка исходных данных [net_data]</h2>
+<p>Перед тем как приступать к расчетам, необходимо подготовить исходные данные:</p>
+<ol type="1">
+<li><p>Составить <strong>расчетную схему</strong> сети, соответствующую выбранным расчетным условиям. В общем случае такая схема может включать такие элементы, как:</p>
+<ul>
+<li>шины;</li>
+<li>линии электропередачи (воздушные и кабельные);</li>
+<li>силовые выключатели;</li>
+<li>трансформаторы;</li>
+<li>генераторы;</li>
+<li>нагрузки;</li>
+<li>шунтирующие реакторы;</li>
+<li>батареи статических конденсаторов;</li>
+<li>токоограничивающие реакторы.</li>
+</ul>
+<p>Пример расчетной схемы приведен на рисунке ниже.</p>
+<p><img src="img/sch_test01.svg" title="Пример расчетной схемы" /></p>
+<p>При составлении схемы использованы следующие обозначения: Г – генератор; Т – трансформатор; АТ – автотрансформатор; ВЛ – воздушная линия электропередачи; Н – обобщенная нагрузка; С – система.</p></li>
+<li><p>Составить <strong>схему замещения</strong> прямой последовательности, включающую все элементы исходной расчетной схемы. При составлении схемы следует руководствоваться рекомендациями, приведенными в разделе <a href="elements.html">“Схемы замещения элементов сети”</a>.</p>
+<p>Результирующая схема замещения для приведенного выше примера будет иметь вид:</p>
+<p><img src="img/sch_test02.svg" title="Пример схемы замещения прямой последовательности" /></p></li>
+<li><p>Присвоить всем имеющимся на схеме замещения узлам (соответствующим электрическим шинам, либо промежуточным) <strong>уникальные наименования</strong> и указать номинальные напряжения в именованных единицах.</p></li>
+<li><p>Определить <strong>параметры</strong> элементов схемы замещения, используя каталожные данные оборудования и расчетные выражения, приведённые в разделе <a href="elements.html">“Схемы замещения элементов сети”</a>:</p>
+<ul>
+<li><p>Для <a href="elements.html#eq_line" title="Линия электропередачи">линий электропередачи</a> – значения комплексных продольных сопротивлений и проводимостей на землю.</p></li>
+<li><p>Для <a href="elements.html#eq_trans" title="Трансформатор">трансформаторов</a> – значения комплексных сопротивлений и комплексных проводимостей Г-образной схемы замещения, приведенные к ступени напряжения, соответствующей узлу начала трансформаторной ветви.</p>
+<p>Определить напряжения узлов начала и конца ветви в соответствии с одним из вариантов: напряжения холостого хода обмоток высшего и низшего напряжения (при необходимости, с учетом фактических регулировочных ответвлений) для точного учета коэффициента трансформации; средние номинальные напряжения для приближенного учета коэффициента трансформации.</p>
+<p>Для трехобмоточных трансформаторов, автотрансформаторов и двухобмоточных трансформаторов с расщепленной обмоткой низшего напряжения, представленных на схеме замещения многолучевой звездой с промежуточным узлом, определить напряжения узлов начала и конца для ветвей с коэффициентами трансформации.</p></li>
+<li><p>Для <a href="elements.html#eq_generator" title="Синхронная машина">синхронных машин</a> (генераторы, компенсаторы, электродвигатели) – комплексные сопротивления и ЭДС.</p></li>
+<li><p>Для <a href="elements.html#eq_load" title="Нагрузка">обобщенных нагрузок</a> – комплексные сопротивления и, при необходимости, ЭДС.</p></li>
+<li><p>Для <a href="elements.html#eq_capacitor" title="Батарея статических конденсаторов">батарей статических конденсаторов</a> и <a href="elements.html#eq_shunt_reactor" title="Шунтирующий реактор">шунтирующих реакторов</a> – комплексные сопротивления.</p></li>
+<li><p>Для <a href="elements.html#eq_limiting_reactor" title="Токоограничивающий реактор">токоограничивающих реакторов</a> – комплексные сопротивления.</p></li>
+</ul></li>
+<li><p>Определить ЭДС и сопротивление <strong>эквивалента энергосистемы</strong> в соответствии с приведенной ниже [методикой][net_equivalent].</p></li>
+<li><p>Используя схему замещения и её параметры, <strong>ввести исходные данные</strong> в предназначенных для этого разделах программы:</p>
+<ul>
+<li><p>Данные по узлам схемы – в разделе <a href="input.html#in_nodes" title="Таблица &quot;Узлы&quot;">"Узлы"</a>.</p></li>
+<li><p>Данные по синхронным машинам, нагрузкам, шунтам и эквиваленту системы – в разделе <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a>.</p></li>
+<li><p>Данные по линиям электропередачи, силовым выключателям, трансформаторам и токоограничивающим реакторам – в разделе <a href="input.html#in_branches" title="Таблица &quot;Ветви&quot;">"Ветви"</a>.</p></li>
+<li><p>Данные по индуктивно связанным ветвям – в разделе <a href="input.html#in_mutual_induction" title="Таблица &quot;Магнитосвязи&quot;">"Магнитосвязи"</a>.</p></li>
+</ul></li>
+</ol>
+<p>Выполнение расчетов токов короткого замыкания рассмотрено в разделе <a href="calc.html" title="Раздел &quot;Расчет&quot;">"Расчет"</a>.</p>
+<h2 id="методика-определения-параметров-эквивалента-энергосистемы-net_equivalent">Методика определения параметров эквивалента энергосистемы [net_equivalent]</h2>
+<p>В зависимости от имеющихся исходных данных выбирается один из рассмотренных далее вариантов расчета.</p>
+<h3 id="по-параметрам-установившегося-режима-net_equivalent1">По параметрам установившегося режима [net_equivalent1]</h3>
+<p>Известно:</p>
+<ul>
+<li><span class="math inline"><em>E</em><sub><em>С</em></sub></span> – модуль ЭДС системы (когда нет ничего вообще – берем <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>);<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность нормального режима, текущая в нормальном режиме из базисного узла;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – напряжение базисного узла в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>δ</em><sub><em>С</em></sub></span> – угол ЭДС системы;</li>
+<li><span class="math inline"><em>x</em><sub><em>С</em></sub></span> – реактивное сопротивление системы прямой последовательности.</li>
+</ul>
+<p>Пусть:</p>
+<p><span class="math inline">$\displaystyle \tilde{S} = \frac{ \widehat{E}_С - U_n }{-j \cdot x_С} \cdot U_n$</span></p>
+<p><span class="math inline">$\displaystyle \widehat{S}_n = \frac{ \dot{E}_С - U_n }{j \cdot x_С} \cdot U_n$</span></p>
+<p><span class="math inline">$\displaystyle P_n - j \cdot Q_n = \frac{ E_С \cdot \cos (\delta_С) + j \cdot E_С \cdot \sin (\delta_С) - U_n }{j \cdot x_С} \cdot U_n$</span></p>
+<p><span class="math inline"><em>j</em> ⋅ <em>x</em><sub><em>С</em></sub> ⋅ <em>P</em><sub><em>n</em></sub> + <em>x</em><sub><em>С</em></sub> ⋅ <em>Q</em><sub><em>n</em></sub> = <em>E</em><sub><em>С</em></sub> ⋅ cos (<em>δ</em><sub><em>С</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>E</em><sub><em>С</em></sub> ⋅ sin (<em>δ</em><sub><em>С</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> − <em>U</em><sub><em>n</em></sub> ⋅ <em>U</em><sub><em>n</em></sub></span></p>
+<p>Если приравнять действительные и мнимые части, то получится следующая система уравнений:</p>
+<p><span class="math inline">$\displaystyle \left\{\begin{matrix} x_С \cdot Q_n = E_С \cdot \cos (\delta_С) \cdot U_n - U_n \cdot U_n \\ x_С \cdot P_n = E_С \cdot \sin (\delta_С) \cdot U_n \end{matrix}\right.$</span></p>
+<p>Тогда получатся следующие выражения:</p>
+<p><span class="math inline">$\displaystyle \frac{U_n \cdot P_n}{E_С} = \sin (\delta_С) \cdot Q_n - \cos (\delta_С) \cdot P_n$</span></p>
+<p><span class="math inline">$\displaystyle \delta_С = - \arg (\dot{S}_n) \pm \arccos \left(\frac{U_n \cdot P_n}{E_С \cdot |\tilde{S}_n|} \right) + \pi \cdot k$</span></p>
+<p><span class="math inline">$\displaystyle x_С = \frac{E_С \cdot \sin (\delta_С) \cdot U_n}{P_n}$</span></p>
+<p>Основные проблемы:</p>
+<ul>
+<li>Модуль ЭДС системы <span class="math inline"><em>E</em><sub><em>С</em></sub></span>, строго говоря, неизвестен. Вместо него подставляется номинальное значение напряжения.</li>
+</ul>
+<h3 id="по-параметрам-установившегося-режима-и-известному-току-трёхфазного-кз-на-удаленных-шинах-линии-net_equivalent2">По параметрам установившегося режима и известному току трёхфазного КЗ на удаленных шинах линии [net_equivalent2]</h3>
+<p>Известно:</p>
+<ul>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при трёхфазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность, текущая из ветви ЭДС в нормальном режиме;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – линейное напряжение шин ветви ЭДС в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>Ė</em><sub><em>С</em></sub> = <em>E</em><sub><em>С</em></sub> ⋅ cos (<em>δ</em><sub><em>С</em></sub>) + <em>E</em><sub><em>С</em></sub> ⋅ <em>j</em> ⋅ sin (<em>δ</em><sub><em>С</em></sub>)</span> – междуфазное ЭДС (с некоторым углом) ветви;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>С</em></sub></span> – реактивное сопротивление ЭДС прямой последовательности.</li>
+</ul>
+<p><span class="math inline">$\displaystyle \dot{I}_{KZ}^{(3)} = \frac{ \dot{E}_С }{\sqrt{3} \cdot j \cdot x_С}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_С = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_С$</span>.</p>
+<p>Пусть:</p>
+<p><span class="math inline">$\displaystyle \tilde{S}_n = \frac{ \widehat{E}_С - U_n }{-j \cdot x_С} \cdot U_n$</span>;<br />
+<span class="math inline">$\displaystyle \widehat{S}_n = \frac{ \dot{E}_С - U_n }{j \cdot x_С} \cdot U_n$</span>;</p>
+<p><span class="math inline">$\displaystyle P_n - j \cdot Q_n = \frac{ E_С \cdot \cos (\delta_С) + j \cdot E_С \cdot \sin (\delta_С) - U_n }{j \cdot x_С} \cdot U_n$</span>;</p>
+<p><span class="math inline"><em>j</em> ⋅ <em>x</em><sub><em>С</em></sub> ⋅ <em>P</em><sub><em>n</em></sub> + <em>x</em><sub><em>С</em></sub> ⋅ <em>Q</em><sub><em>n</em></sub> = <em>E</em><sub><em>С</em></sub> ⋅ cos (<em>δ</em><sub><em>С</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>E</em><sub><em>С</em></sub> ⋅ sin (<em>δ</em><sub><em>С</em></sub>) ⋅ <em>U</em><sub><em>n</em></sub> − <em>U</em><sub><em>n</em></sub> ⋅ <em>U</em><sub><em>n</em></sub></span>;</p>
+<p>Если приравнять действительные и мнимые части, то получится следующая система уравнений:</p>
+<p><span class="math inline">$\displaystyle \left\{\begin{matrix} x_С \cdot Q_n = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_С \cdot \cos (\delta_С) \cdot U_n - U_n \cdot U_n \\ P_n = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot \sin (\delta_С) \cdot U_n \end{matrix}\right.$</span></p>
+<p>Тогда получатся следующие выражения:</p>
+<p><span class="math inline">$\displaystyle \delta_С = \arcsin \left(\frac{P_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot U_n} \right) + \pi \cdot k$</span>;</p>
+<p><span class="math inline">$\displaystyle x_С = \frac{U_n \cdot U_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot \cos (\delta_С) \cdot U_n - Q_n}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_С = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_С$</span>.</p>
+<p>Основные проблемы:</p>
+<ul>
+<li>Не всегда существует возможность определить именно ток <span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span>. Чаще дается ток шунта КЗ, который складывается из тока ветви ЭДС и тока подпитки от остальной энергосистемы.</li>
+</ul>
+<h3 id="по-параметрам-установившегося-режима-и-известному-току-трёхфазного-и-однофазного-кз-на-удаленных-шинах-линии-net_equivalent3">По параметрам установившегося режима и известному току трёхфазного и однофазного КЗ на удаленных шинах линии [net_equivalent3]</h3>
+<p>Известно:</p>
+<ul>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(3)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при трёхфазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>I</em><sub><em>К</em><em>З</em></sub><sup>(1)</sup></span> – модуль тока, текущего по поврежденным фазам ветви ЭДС при однофазном коротком замыкании на шинах ветви ЭДС;<br />
+</li>
+<li><span class="math inline"><em>S̃</em><sub><em>n</em></sub> = <em>P</em><sub><em>n</em></sub> + <em>j</em> ⋅ <em>Q</em><sub><em>n</em></sub></span> – мощность, текущая из ветви ЭДС в нормальном режиме;<br />
+</li>
+<li><span class="math inline"><em>U</em><sub><em>n</em></sub></span> – линейное напряжение шин ветви ЭДС в нормальном режиме (его угол считаем нулевым).</li>
+</ul>
+<p>Требуется определить:</p>
+<ul>
+<li><span class="math inline"><em>Ė</em><sub><em>С</em></sub> = <em>E</em><sub><em>С</em></sub> ⋅ cos (<em>δ</em><sub><em>С</em></sub>) + <em>E</em><sub><em>С</em></sub> ⋅ <em>j</em> ⋅ sin (<em>δ</em><sub><em>С</em></sub>)</span> – междуфазное ЭДС (с некоторым углом) ветви;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>С</em></sub></span> – реактивное сопротивление ЭДС прямой последовательности;<br />
+</li>
+<li><span class="math inline"><em>x</em><sub><em>С</em></sub><sup>0</sup></span> – реактивное сопротивление ЭДС прямой последовательности.</li>
+</ul>
+<p>Из предыдущего вывода имеем выражения для определения всех искомых величин, кроме <span class="math inline"><em>x</em><sub><em>С</em></sub><sup>0</sup></span>:</p>
+<p><span class="math inline">$\displaystyle \delta_С = \arcsin \left(\frac{P_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot U_n} \right) + \pi \cdot k$</span>;</p>
+<p><span class="math inline">$\displaystyle x_С = \frac{U_n \cdot U_n}{\sqrt{3} \cdot I_{KZ}^{(3)} \cdot \cos (\delta_С) \cdot U_n - Q_n}$</span>;</p>
+<p><span class="math inline">$\displaystyle E_С = \sqrt{3} \cdot I_{KZ}^{(3)} \cdot x_С$</span>.</p>
+<p>Определим <span class="math inline"><em>x</em><sub><em>С</em></sub><sup>0</sup></span>. Предположим, что остальная сеть имеет малое влияние на ток однофазного КЗ. Тогда:</p>
+<p><span class="math inline">$\displaystyle \dot{I}_{KZ}^{(1)} = 3 \cdot \dot{I}_{KZ}^{0} = 3 \cdot \frac{ \dot{E}_С }{\sqrt{3} \cdot j \cdot (x_С + x_С^{0})} = \sqrt{3} \cdot \frac{ \dot{E}_С }{j \cdot (x_С + x_С^{0})}$</span>;</p>
+<p><span class="math inline">$\displaystyle I_{KZ}^{(1)} = \frac{ \sqrt{3} \cdot E_С }{x_С + x_С^{0}}$</span>;</p>
+<p><span class="math inline">$\displaystyle x_С^{0} = \frac{ \sqrt{3} \cdot E_С }{I_{KZ}^{(1)}} - x_С$</span>.</p>

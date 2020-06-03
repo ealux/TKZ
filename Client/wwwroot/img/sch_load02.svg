@@ -105,8 +105,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.6333139"
-     inkscape:cx="205.52909"
-     inkscape:cy="49.875654"
+     inkscape:cx="181.04202"
+     inkscape:cy="-5.5322423"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -143,7 +143,10 @@
        id="grid1334"
        dotted="false"
        originx="0"
-       originy="0" />
+       originy="0"
+       units="mm"
+       spacingx="0.99999922"
+       spacingy="1.0000004" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -166,11 +169,11 @@
      transform="translate(-5.3234579,-276.98451)">
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 64.823427,286.82834 H 55.323421"
+       d="M 64.823435,286.82835 H 55.323429"
        id="path4681"
        inkscape:connector-curvature="0" />
     <g
-       transform="translate(17.823395,24.828253)"
+       transform="translate(17.823403,24.828256)"
        id="g4691"
        style="display:inline">
       <path
@@ -224,7 +227,7 @@
     </g>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 80.823412,286.82836 h 9.500006"
+       d="m 80.82342,286.82837 h 9.500006"
        id="path4695"
        inkscape:connector-curvature="0" />
     <text
@@ -245,7 +248,7 @@
            id="tspan4701"
            style="font-style:normal;font-variant:normal;font-weight:400;font-size:4.85758638px;font-family:Calibri;fill:#000000;stroke-width:0.26458344" /></tspan></text>
     <g
-       transform="translate(45.646871,25.156604)"
+       transform="translate(45.646879,25.156607)"
        id="g4719"
        style="display:inline">
       <path
@@ -263,26 +266,24 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:400;font-size:4.74074268px;line-height:125%;font-family:'Cambria Math';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2645835"
-       x="53.949852"
+       x="53.94986"
        y="280.7319"
        id="text4727"><tspan
          style="font-size:4.23333502px;stroke-width:0.2645835"
          sodipodi:role="line"
-         x="53.949852"
+         x="53.94986"
          y="280.7319"
          id="tspan4725"><tspan
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333502px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;stroke-width:0.2645835"
-           id="tspan4721">Р (1)</tspan><tspan
-           style="font-style:normal;font-variant:normal;font-weight:400;font-size:4.23333502px;font-family:Calibri;fill:#000000;stroke-width:0.2645835"
-           id="tspan4723" /></tspan></text>
+           id="tspan4721">Н1</tspan></tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:0.36500016;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 10.323401,286.82836 H 22.323406"
+       d="M 10.323409,286.82837 H 22.323414"
        id="path4729"
        inkscape:connector-curvature="0" />
     <path
        inkscape:transform-center-y="4.0502915e-06"
-       transform="matrix(0.9333337,0,0,0.51961544,-60.111852,452.67486)"
+       transform="matrix(0.9333337,0,0,0.51961544,-60.111844,452.67487)"
        inkscape:transform-center-x="-0.46666566"
        d="m 91.323456,-319.1716 -3,1.73205 v -3.4641 z"
        inkscape:randomized="0"
@@ -300,7 +301,7 @@
        sodipodi:type="star" />
     <g
        style="display:inline"
-       transform="translate(0.32339405,24.828264)"
+       transform="translate(0.32340208,24.828266)"
        id="g4739">
       <path
          style="fill:none;stroke:#000000;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -322,23 +323,23 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:400;font-size:4.74074268px;line-height:125%;font-family:'Cambria Math';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2645835"
-       x="8.9498329"
+       x="8.9498415"
        y="280.73187"
        id="text4743"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333502px;font-family:Cambria;-inkscape-font-specification:Cambria;stroke-width:0.2645835"
          sodipodi:role="line"
-         x="8.9498329"
+         x="8.9498415"
          y="280.73187"
-         id="tspan4741">Р (1)</tspan></text>
+         id="tspan4741">Н1</tspan></text>
     <text
        id="text4751"
        y="287.59958"
-       x="26.181744"
+       x="26.181753"
        style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.8860693px;line-height:125%;font-family:'Cambria Math';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458344"
        xml:space="preserve"><tspan
          id="tspan4749"
          y="287.59958"
-         x="26.181744"
+         x="26.181753"
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Cambria;-inkscape-font-specification:Cambria;stroke-width:0.26458344"><tspan
            dx="0"
@@ -350,7 +351,7 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.5277791px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;stroke-width:0.26458344">нагр</tspan></tspan></text>
     <g
        style="display:inline"
-       transform="rotate(-90,52.575895,254.25249)"
+       transform="rotate(-90,52.575899,254.25248)"
        id="g4759">
       <path
          inkscape:connector-curvature="0"

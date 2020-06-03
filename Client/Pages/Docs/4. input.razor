@@ -1,0 +1,18 @@
+﻿@page "/input.html"
+@inject HttpClient Http
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
+<Frame Body="@input" />
+
+@code {
+
+    string input = "";
+
+    I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
+        input = (await Http.GetStringAsync("Advice/input")).Replace(".html", "");
+    }
+}

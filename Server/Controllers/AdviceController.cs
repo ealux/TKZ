@@ -63,10 +63,10 @@ namespace TKZ.Server.Controllers
         }
 
         // model
-        [HttpGet("model")]
+        [HttpGet("prep")]
         public async Task<string> Model()
         {
-            return await System.IO.File.ReadAllTextAsync("docs/model.html");
+            return await System.IO.File.ReadAllTextAsync("docs/prep.html");
         }
 
         // source
