@@ -186,6 +186,9 @@ h5 {
     padding: 1rem;
 
 }
+.my_button.landing:hover, .my_button.landing:focus {
+    text-decoration: none;
+}
 
 .round {
     background-color: var(--P-dark);
@@ -662,6 +665,17 @@ h5 {
     font-size: 4rem;
     line-height: 5rem;
     margin-bottom: 2rem;
+    text-align: justify;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+
+}
+@media (max-width: 768px) {
+    .landing-main-text {
+        text-align: left;
+    }
 }
 .landing-main-text span {
     color: var(--S-middle);
@@ -674,20 +688,37 @@ h5 {
 }
 .landing-text {
     font-size: 2rem;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
 }
 .landing-icon {
     height: 5rem;
     width: 5rem;
+    min-width: 5rem;
     margin-right: 2rem;
 }
 .landing-screen {
     margin-bottom: 2rem;
-    padding-top: 4rem;    
+    padding-top: 4rem; 
+    min-height: calc(100vh - 6rem);
+    -ms-flex-pack: center;
+   justify-content: center;
 }
 .landing-navs {
-    height: 4rem;
     background-color: white;
+    padding: 1rem;
 }
+.landing-navs-item {
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.landing-navs-item:hover, .landing-navs-item:focus {
+    text-decoration: none;
+}
+
 .landing-image:after {
     transform: scale(-1, 1);
     content: "";
@@ -711,6 +742,9 @@ h5 {
 }
 .landing-feature p {
     display: block;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .landing-navs-section {
     position: fixed;
@@ -727,6 +761,17 @@ h5 {
 }
 .landing-navs-section-item.active {
     background-color: var(--S-middle);
+}
+@media (max-width: 768px) {
+    .landing-main-text {
+        text-align: left;
+    }
+    .landing-icon {
+    height: 3rem;
+    width: 3rem;
+    min-width: 3rem;
+    margin-right: 1rem;
+}
 }
 
 /*Switch style*/
