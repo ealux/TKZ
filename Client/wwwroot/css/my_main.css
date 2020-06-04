@@ -673,19 +673,10 @@ h5 {
     word-wrap: break-word;
 
 }
-@media (max-width: 768px) {
-    .landing-main-text {
-        text-align: left;
-    }
-}
 .landing-main-text span {
     color: var(--S-middle);
     font-family: Amithen;
     font-size: 6rem;
-}
-.landing-header-link {
-    color: var(--P-dark);
-    font-weight: bold;
 }
 .landing-text {
     font-size: 2rem;
@@ -708,33 +699,27 @@ h5 {
    justify-content: center;
 }
 .landing-navs {
-    background-color: white;
     padding: 1rem;
 }
-.landing-navs-item {
-    margin-left: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+.landing-round-button {
+    height: 4rem;
+    width: 4rem;
+    padding: 0.5rem 0rem;
+    border-radius: 50%;
+    text-align: center;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;    
 }
-.landing-navs-item:hover, .landing-navs-item:focus {
+.landing-round-button:hover, .landing-round-button:focus {
     text-decoration: none;
 }
+.landing-button-icon {
+    height: 3rem;
+    width: 3rem;
+}
 
-/*.landing-image:after {
-    transform: scale(-1, 1);
-    content: "";
-    opacity: 0.3;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-    background-image: url("../img/Lighting.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-}*/
 .landing-feature {
     border: 2px solid var(--P-dark);
     padding: 1rem;
@@ -767,17 +752,39 @@ h5 {
 width: 40vw;
 }
 @media (max-width: 768px) {
-    .landing-main-text {
-        text-align: left;
-    }
     .landing-icon {
     height: 3rem;
     width: 3rem;
     min-width: 3rem;
     margin-right: 1rem;
+    }
+
+    .landing-main-text {
+     font-size: 2rem;
+     line-height: 3rem;      
+    }
+   .landing-main-text span {
+    color: var(--S-middle);
+    font-family: Amithen;
+    font-size: 3rem;
+    }
+    .landing-text {
+    font-size: 1.5rem;
 }
+}
+@media (min-width: 992px) {
+    .display-none {
+        display: none;
+    }
 }
 
+.bar-menu {
+    background-color: var(--P-dark);
+    color: white;
+}
+.navbar-toggler {
+    color: white;
+}
 /*Switch style*/
 switch:checked{
     background-color: #2196F3;

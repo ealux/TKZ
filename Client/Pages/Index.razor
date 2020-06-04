@@ -5,7 +5,7 @@
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
-    <header class="d-flex align-items-center sticky-top landing-navs">
+    <header class="d-flex align-items-center landing-navs">
         <NavLink class="navbar-brand active mx-5"
                  href="/"
                  Match="NavLinkMatch.All"
@@ -16,11 +16,13 @@
                     width: 120px;">
             Lime
         </NavLink>
-        <NavLink class="my_button primary landing-navs-item"
+        <NavLink class="my_button primary landing-round-button"
                  href="/nodes"
                  Match="NavLinkMatch.All"
                  ActiveClass="active">
-            Рассчитать
+             <svg @onclick="@(() => { })" class="landing-button-icon">
+                <use href="/img/Icon.svg#thunder2"></use>
+             </svg>
         </NavLink>
         <!--<Tooltip Text="@Localizer.Language" Placement="Placement.Bottom">
         <button type="button"
@@ -65,9 +67,6 @@
             </div>
         </div>
         <div class="row landing-screen align-items-center" id="feature">
-            <div class="col-md-4">
-                <img src="/img/033.png" alt="about us" class="w-100" />
-            </div>
             <div class="col-md-8">
                 <h1>Наши преимущества</h1>
                 <div class="d-flex flex-row  landing-feature landing-text align-items-center">
@@ -94,6 +93,9 @@
                     </svg>
                     <div>Подробное руководство пользователя</div>
                 </div>
+            </div>
+            <div class="col-md-4 order-lg-first">
+                <img src="/img/033.png" alt="about us" class="w-100" />
             </div>
         </div>
 

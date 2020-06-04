@@ -40,6 +40,14 @@
           stroke-linejoin="round" stroke-linecap="round">
     </path>
   </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="thunder2">
+    <path d="M41 6L13 34h14.187L23 58l27.998-29.999H37L41 6z"
+          stroke-miterlimit="10" data-name="layer1"
+          stroke-linejoin="round" stroke-linecap="round" fill="CurrentColor">
+    </path>
+  </symbol>  
+      
+
   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" id="adv">
     <path data-name="layer1"
           d="M54 12h8v44H42c-6 0-10 2-10 3.8" stroke-miterlimit="10"
