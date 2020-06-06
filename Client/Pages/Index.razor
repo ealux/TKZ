@@ -5,7 +5,7 @@
 @using TKZ.Shared
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
-    <header class="d-flex align-items-center sticky-top landing-navs">
+    <header class="d-flex align-items-center landing-navs">
         <NavLink class="navbar-brand active mx-5"
                  href="/"
                  Match="NavLinkMatch.All"
@@ -16,11 +16,13 @@
                     width: 120px;">
             Lime
         </NavLink>
-        <NavLink class="my_button primary landing-navs-item"
+        <NavLink class="my_button primary landing-round-button"
                  href="/nodes"
                  Match="NavLinkMatch.All"
                  ActiveClass="active">
-            Рассчитать
+             <svg @onclick="@(() => { })" class="landing-button-icon">
+                <use href="/img/Icon.svg#thunder2"></use>
+             </svg>
         </NavLink>
         <!--<Tooltip Text="@Localizer.Language" Placement="Placement.Bottom">
         <button type="button"
@@ -32,68 +34,79 @@
         </button>
     </Tooltip>-->
     </header>
-<div class="container landing-image">
-    <div class="w3-animate-opacity">
-
-
-        <div class="landing-navs-section">
-            <Link class="landing-navs-section-item"
-                  href="#main"
-                  ActiveClass="active" />
-            <Link class="landing-navs-section-item"
-                  href="#feature"
-                  ActiveClass="active" />
-            <Link class="landing-navs-section-item"
-                  href="#contacts"
-                  ActiveClass="active" />
-        </div>
-        <div class="d-flex flex-column landing-screen" id="main">
-            <div class="landing-main-text">
+<div class="container-fluid">
+        <!--<div class="landing-navs-section">
+        <Link class="landing-navs-section-item"
+              href="#main"
+              ActiveClass="active" />
+        <Link class="landing-navs-section-item"
+              href="#feature"
+              ActiveClass="active" />
+        <Link class="landing-navs-section-item"
+              href="#contacts"
+              ActiveClass="active" />
+    </div>-->
+        <div class="row landing-screen align-items-center" id="main">
+            <div class="landing-main-text col-md-8">
                 <p>
-                    <span>Lime</span> — сервис для расчета токов замыкания в электрической сети на основе метода симметричных составляющих
+                    <span>Lime</span> — сервис для расчета токов замыкания в электрической сети на основе метода симметричных составляющих.
                 </p>
-                <div class="container-fluid text-center">
+                <div class="">
                     <Button Class="my_button primary landing"
                             @onclick="@(() => {navmanager.NavigateTo("/nodes"); })">
-                        Начать
+                        Начать расчет
+                    </Button>
+                    <Button Class="my_button secondary landing"
+                            @onclick="@(() => {navmanager.NavigateTo("/advices"); })">
+                        Узнать как
                     </Button>
                 </div>
             </div>
+            <div class="col-md-4">
+                <img src="/img/031.png" alt="about us" class="w-100"/>
+            </div>
         </div>
-        <div class="d-flex flex-column landing-screen" id="feature">
-            <h1>Наши преимущества</h1>
-            <div class="d-flex flex-row  landing-feature landing-text align-items-center">
-                <svg @onclick="@(() => { })" class="landing-icon">
-                    <use href="/img/Icon.svg#RoundCheck"></use>
-                </svg>
-                <div>Абсолютно бесплатный</div>
+        <div class="row landing-screen align-items-center" id="feature">
+            <div class="col-md-8">
+                <h1>Наши преимущества</h1>
+                <div class="d-flex flex-row  landing-feature landing-text align-items-center">
+                    <svg @onclick="@(() => { })" class="landing-icon">
+                        <use href="/img/Icon.svg#RoundCheck"></use>
+                    </svg>
+                    <div>Абсолютно бесплатный</div>
+                </div>
+                <div class="d-flex flex-row landing-feature landing-text align-items-center">
+                    <svg @onclick="@(() => { })" class="landing-icon">
+                        <use href="/img/Icon.svg#RoundCheck"></use>
+                    </svg>
+                    <div>Для любых целей: обучение, бизнес или исследования</div>
+                </div>
+                <div class="d-flex flex-row landing-feature landing-text align-items-center">
+                    <svg @onclick="@(() => { })" class="landing-icon">
+                        <use href="/img/Icon.svg#RoundCheck"></use>
+                    </svg>
+                    <div>Удобный интерфейс</div>
+                </div>
+                <div class="d-flex flex-row landing-feature landing-text align-items-center">
+                    <svg @onclick="@(() => { })" class="landing-icon">
+                        <use href="/img/Icon.svg#RoundCheck"></use>
+                    </svg>
+                    <div>Подробное руководство пользователя</div>
+                </div>
             </div>
-            <div class="d-flex flex-row landing-feature landing-text align-items-center">
-                <svg @onclick="@(() => { })" class="landing-icon">
-                    <use href="/img/Icon.svg#RoundCheck"></use>
-                </svg>
-                <div>Для любых целей: обучение, бизнес или исследования</div>
-            </div>
-            <div class="d-flex flex-row landing-feature landing-text align-items-center">
-                <svg @onclick="@(() => { })" class="landing-icon">
-                    <use href="/img/Icon.svg#RoundCheck"></use>
-                </svg>
-                <div>Удобный интерфейс</div>
-            </div>
-            <div class="d-flex flex-row landing-feature landing-text align-items-center">
-                <svg @onclick="@(() => { })" class="landing-icon">
-                    <use href="/img/Icon.svg#RoundCheck"></use>
-                </svg>
-                <div>Подробное руководство пользователя</div>
+            <div class="col-md-4 order-lg-first">
+                <img src="/img/033.png" alt="about us" class="w-100" />
             </div>
         </div>
 
-        <div id="contacts">
+        <div class="row landing-screen align-items-center" id="contacts">
             <TKZ.Client.Pages.Contact.Contacts IsFrame="false"
-                                               AdditionStyle="d-flex flex-column landing-screen"
+                                               AdditionStyle="d-flex flex-column flex-fill"
                                                CtxtVisibility="false" />
+            <div class="col-md-4">
+                <img src="/img/032.png" alt="about us" class="w-100" />
+            </div>
         </div>
-    </div>
 </div>
 @code {
 
