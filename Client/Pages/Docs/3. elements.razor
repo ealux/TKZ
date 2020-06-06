@@ -2,7 +2,14 @@
 @inject HttpClient Http
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 
-<Frame Body="@elements" />
+@if (String.IsNullOrEmpty(elements))
+{
+    <LoadingElement />
+}
+else
+{
+    <Frame Body="@elements" />
+}
 
 @code {
 
@@ -13,6 +20,6 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
-        elements = (await Http.GetStringAsync("Advice/elements")).Replace(".html", "");
+        elements = await Http.GetStringAsync("Advice/elements");
     }
 }

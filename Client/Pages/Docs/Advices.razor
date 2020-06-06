@@ -11,8 +11,6 @@
 @code {
     string docs = "";
 
-    string _draft = "";
-
     I18nText.Pages.Advices.Advices Localizer = new I18nText.Pages.Advices.Advices();
 
     protected override async Task OnInitializedAsync()
@@ -21,7 +19,5 @@
         docs = pre;
 
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
-
-        _draft = (await Http.GetStringAsync("Advice/_draft")).Replace(".html", "");
     }
 }

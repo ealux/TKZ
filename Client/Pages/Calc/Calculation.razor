@@ -1,48 +1,53 @@
 ﻿@page "/calc"
 @inject Toolbelt.Blazor.I18nText.I18nText I18nText
 @using TKZ.Client.Pages.Components
-<div class="d-flex flex-row" style="flex:1">
-    <div class="d-flex flex-column parameter frame flex-fill">
-        <!--parameter-->
-        <form class="d-flex flex-column flex-fill"
-              action=""
-              id="parameter">
-            <h5>Дуга</h5>
-            <div class="row">
 
-                <label for="Rarc" style="width: calc(50% - 8px); margin-right: var(--st_margin)">R:</label>
-                <label for="Xarc">X:</label>
-                <input class="form-control" type="text"
-                       id="Rarc"
-                       name="Rarc"
-                       placeholder="0"
-                       style="width: calc(50% - 8px); margin-right: var(--st_margin)">
-                <input class="form-control"
-                       type="text"
-                       id="Xarc"
-                       name="Xarc"
-                       placeholder="0"
-                       style="width: calc(50% - 8px)">
-            </div>
-            <h5>Вид короткого замыкания:</h5>
-            <div class="d-flex flex-row justify-content-between">
-                <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="TypeSC-1" name="TypeSC" value="1">
-                    <label class="custom-control-label" for="TypeSC-1">1</label>
+    <h1 class="container-fluid p-5">Раздел находится в разработке</h1>
+
+@if (false)
+{
+    <div class="d-flex flex-row" style="flex:1">
+        <div class="d-flex flex-column parameter frame flex-fill">
+            <!--parameter-->
+            <form class="d-flex flex-column flex-fill"
+                  action=""
+                  id="parameter">
+                <h5>Дуга</h5>
+                <div class="row">
+
+                    <label for="Rarc" style="width: calc(50% - 8px); margin-right: var(--st_margin)">R:</label>
+                    <label for="Xarc">X:</label>
+                    <input class="form-control" type="text"
+                           id="Rarc"
+                           name="Rarc"
+                           placeholder="0"
+                           style="width: calc(50% - 8px); margin-right: var(--st_margin)">
+                    <input class="form-control"
+                           type="text"
+                           id="Xarc"
+                           name="Xarc"
+                           placeholder="0"
+                           style="width: calc(50% - 8px)">
                 </div>
-                <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="TypeSC-2" name="TypeSC" value="2">
-                    <label class="custom-control-label" for="TypeSC-2">1,1</label>
+                <h5>Вид короткого замыкания:</h5>
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="TypeSC-1" name="TypeSC" value="1">
+                        <label class="custom-control-label" for="TypeSC-1">1</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="TypeSC-2" name="TypeSC" value="2">
+                        <label class="custom-control-label" for="TypeSC-2">1,1</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="TypeSC-3" name="TypeSC" value="3">
+                        <label class="custom-control-label" for="TypeSC-3">2</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="TypeSC-4" name="TypeSC" value="4" checked>
+                        <label class="custom-control-label" for="TypeSC-4">3</label>
+                    </div>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="TypeSC-3" name="TypeSC" value="3">
-                    <label class="custom-control-label" for="TypeSC-3">2</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="TypeSC-4" name="TypeSC" value="4" checked>
-                    <label class="custom-control-label" for="TypeSC-4">3</label>
-                </div>
-            </div>
                 <h5>Узлы для расчета:</h5>
                 <div class="d-flex flex-row">
                     <input class="form-control"
@@ -80,27 +85,30 @@
                         </button>
                     </div>
                 </div>
-                    <button class="my_button primary"
-                            type="submit"
-                            form="parameter"
-                            style="margin: 0px;">
-                        Расчёт
-                    </button>
-</form>
-    </div>
-    <div class="d-flex flex-column flex-fill" style="padding:0 ">
-        <div class="frame">
-            <label for="ContNode">Выберите контролируемый узел:</label>
-            <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
-            <Button_Add_Node_For_Calc/>
+                <button class="my_button primary"
+                        type="submit"
+                        form="parameter"
+                        style="margin: 0px;">
+                    Расчёт
+                </button>
+            </form>
         </div>
-        <div class="frame flex-fill">
-            <h1>Результаты расчёта</h1>
+        <div class="d-flex flex-column flex-fill" style="padding:0 ">
+            <div class="frame">
+                <label for="ContNode">Выберите контролируемый узел:</label>
+                <input class="form-control" type="text" name="ContNode" id="ContNode" placeholder="Наименование узла" style="width: 200px; display: inline-block;">
+                <Button_Add_Node_For_Calc />
+            </div>
+            <div class="frame flex-fill">
+                <h1>Результаты расчёта</h1>
 
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
+}
+
+
 
 @code {
 

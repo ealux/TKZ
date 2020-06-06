@@ -17,9 +17,9 @@ else if (branches == null)
 else
 {
     <div class="d-block">
-        <div class="custom-control custom-checkbox frame d-block p-3 m-0 pl-5" style="cursor:pointer;">
-            <input class="custom-control-input" type="checkbox" id="TypeSC-4" name="TypeSC" @onchange="ChangeNullParams" style="cursor:pointer;">
-            <label class="custom-control-label" for="TypeSC-4">Параметры нулевой последовательности</label>
+        <div class="custom-control custom-checkbox frame d-block p-3 m-0 pl-5">
+            <input class="custom-control-input" type="checkbox" id="TypeSC-4" name="TypeSC" @onchange="ChangeNullParams" style="cursor:pointer !important;">
+            <label class="custom-control-label" for="TypeSC-4" style="cursor:pointer !important;">Параметры нулевой последовательности</label>
         </div>
 
         @if (IsNullParams == true)

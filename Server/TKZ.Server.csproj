@@ -7,6 +7,41 @@
 
   <ItemGroup>
     <None Remove="calc.html" />
+    <None Remove="docs\about.html" />
+    <None Remove="docs\calc.html" />
+    <None Remove="docs\docs.html" />
+    <None Remove="docs\elements.html" />
+    <None Remove="docs\glossary.html" />
+    <None Remove="docs\input.html" />
+    <None Remove="docs\prep.html" />
+    <None Remove="docs\source.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="docs\about.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\calc.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\docs.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\elements.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\glossary.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\input.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\prep.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="docs\source.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

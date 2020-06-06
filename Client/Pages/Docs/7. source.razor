@@ -13,6 +13,6 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Pages.Advices.Advices>(this);
-        source = (await Http.GetStringAsync("Advice/source")).Replace(".html", "");
+        source = await Http.GetStringAsync("Advice/source");
     }
 }

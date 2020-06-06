@@ -3,16 +3,16 @@
 <li><a href="#eq_line">Линия электропередачи</a></li>
 <li><a href="#eq_breaker">Силовой выключатель</a></li>
 <li><a href="#eq_trans">Трансформатор</a></li>
+<li><a href="#eq_limiting_reactor">Токоограничивающий реактор</a></li>
 <li><a href="#eq_generator">Синхронная машина</a></li>
 <li><a href="#eq_load">Нагрузка</a></li>
+<li><a href="#eq_system">Эквивалент энергосистемы</a></li>
 <li><a href="#eq_capacitor">Батарея статических конденсаторов</a></li>
 <li><a href="#eq_shunt_reactor">Шунтирующий реактор</a></li>
-<li><a href="#eq_limiting_reactor">Токоограничивающий реактор</a></li>
-<li><a href="#eq_system">Эквивалент энергосистемы</a></li>
 <li><a href="#eq_arc">Электрическая дуга</a></li>
 </ul>
 <h2 id="общие-замечания">Общие замечания</h2>
-<p>Расчет токов короткого замыкания в ПО Lime основан на методе симметричных составляющих и требует задания параметров схемы замещения для прямой, обратной и нулевой последовательностей.</p>
+<p>Расчет токов короткого замыкания в ПО Lime основан на методе симметричных составляющих и требует задания параметров схемы замещения прямой, обратной и нулевой последовательностей.</p>
 <p>В схеме замещения прямой последовательности должны быть представлены все элементы исходной расчетной схемы. При этом элементы, являющиеся источниками энергии (генераторы, синхронные компенсаторы, электродвигатели), а также нагрузки узлов представляются на схеме комплексными ЭДС и сопротивлениями – см. раздел <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a>. Все остальные элементы исходной расчетной схемы представляются на схеме замещения сопротивлениями прямой последовательности – см. раздел <a href="input.html#in_branches" title="Таблица &quot;Ветви&quot;">"Ветви"</a>.</p>
 <p>При отсутствии магнитной связи между фазами элемента схемы его активное и реактивное сопротивления не зависят от порядка чередования фаз тока и, следовательно, для всех последовательностей одинаковы:</p>
 <p><span class="math inline"><em>R</em><sub>1</sub> = <em>R</em><sub>2</sub> = <em>R</em><sub>0</sub></span>;<br />
@@ -21,6 +21,7 @@
 <p><span class="math inline"><em>R</em><sub>1</sub> = <em>R</em><sub>2</sub></span>;<br />
 <span class="math inline"><em>X</em><sub>1</sub> = <em>X</em><sub>2</sub></span>.</p>
 <p>Схема замещения нулевой последовательности обычно существенно отличается от схем прямой и обратной последовательностей. Ее конфигурация в основном определяется схемами соединения обмоток трансформаторов и автотрансформаторов исходной расчетной схемы. Сопротивление нулевой последовательности трансформатора со стороны обмотки, соединенной в треугольник (<span class="math inline"><em>Δ</em></span>) или звезду с незаземленной нейтралью (<span class="math inline"><em>Y</em></span>), бесконечно велико, поэтому трансформаторы с указанными схемами соединения и все находящиеся за ними элементы исходной расчетной схемы в схему замещения нулевой последовательности не входят. Циркуляция токов нулевой последовательности возможна только в том случае, если обмотка трансформатора, обращенная в сторону расчетной точки КЗ, соединена в звезду с заземленной нейтралью <a href="source.html#01" title="РД 153-34.0-20.527-98 Руководящие указания по расчету токов короткого замыкания и выбору электрооборудования.">[1]</a>.</p>
+<p>Приведенные соотношения учтены в интерфейсе программы. В разделе <a href="input.html#in_branches" title="Таблица &quot;Ветви&quot;">"Ветви"</a>, где моделируются линии электропередачи, трансформаторы, автотрансформаторы и реакторы, предусмотрено задание параметров прямой и нулевой последовательностей. В разделе <a href="input.html#in_branches" title="Таблица &quot;Ветви&quot;">"Оборудование"</a>, предназначенного для моделирования синхронных машин, нагрузок и т.д., предусмотрено задание параметров для трех систем токов – прямой, обратной и нулевой последовательности.</p>
 <h2 id="линия-электропередачи-eq_line">Линия электропередачи [eq_line]</h2>
 <p>На расчетной схеме линию электропередачи принято обозначать отрезком, соединяющим два узла:</p>
 <p><img src="img/sch_line01.svg" title="Расчетная схема линии электропередачи" /></p>
@@ -33,20 +34,24 @@
 </li>
 <li><span class="math inline"><em>X</em><sub>1</sub></span> – реактивное (индуктивное) сопротивление прямой последовательности, [Ом];<br />
 </li>
+<li><span class="math inline"><em>G</em><sub>1</sub></span> – активная проводимость прямой последовательности, [мкСм];<br />
+</li>
+<li><span class="math inline"><em>B</em><sub>1</sub></span> – реактивная (емкостная) проводимость прямой последовательности, [мкСм];<br />
+</li>
 <li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];<br />
 </li>
 <li><span class="math inline"><em>X</em><sub>0</sub></span> – реактивное (индуктивное) сопротивление нулевой последовательности, [Ом];<br />
 </li>
-<li><span class="math inline"><em>G</em></span> – активная проводимость, [мкСм];<br />
+<li><span class="math inline"><em>G</em><sub>0</sub></span> – активная проводимость обратной последовательности, [мкСм];<br />
 </li>
-<li><span class="math inline"><em>B</em></span> – реактивная (емкостная) проводимость, [мкСм].</li>
+<li><span class="math inline"><em>B</em><sub>0</sub></span> – реактивная (емкостная) проводимость обратной последовательности, [мкСм].</li>
 </ul>
-<p>Для воздушных линий электропередачи обычно приводятся следующие каталожные данные (в зависимости от номинального сечения провода, на 100 км линии заданного класса напряжения): <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>r</em><sub>0</sub></span> – удельное активное сопротивление, [Ом/км]; <span class="math inline"><em>x</em><sub>0</sub></span> – удельное реактивное (индуктивное) сопротивление, [Ом/км]; <span class="math inline"><em>g</em><sub>0</sub></span> – удельная активная проводимость, [мкСм/км]; <span class="math inline"><em>q</em><sub>0</sub></span> – удельная зарядная мощность, [Мвар/км].</p>
+<p>Для воздушных линий электропередачи обычно приводятся следующие каталожные данные (в зависимости от номинального сечения провода, на 100 км линии заданного класса напряжения): <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – среднее номинальное напряжение, [кВ]; <span class="math inline"><em>r</em><sub>0</sub></span> – удельное активное сопротивление, [Ом/км]; <span class="math inline"><em>x</em><sub>0</sub></span> – удельное реактивное (индуктивное) сопротивление, [Ом/км]; <span class="math inline"><em>g</em><sub>0</sub></span> – удельная активная проводимость, [мкСм/км]; <span class="math inline"><em>q</em><sub>0</sub></span> – удельная зарядная мощность, [Мвар/км].</p>
 <p>Расчет параметров схемы замещения производится по формулам:</p>
 <p><span class="math inline"><em>R</em><sub>1</sub> = <em>r</em><sub>0</sub> ⋅ <em>l</em></span>;<br />
 <span class="math inline"><em>X</em><sub>1</sub> = <em>x</em><sub>0</sub> ⋅ <em>l</em></span>;<br />
-<span class="math inline"><em>G</em> = <em>g</em><sub>0</sub> ⋅ <em>l</em></span>;<br />
-<span class="math inline">$\displaystyle B=\frac{q_0 \cdot l}{U_{ном}^2}$</span>,</p>
+<span class="math inline"><em>G</em><sub>1</sub> = <em>g</em><sub>0</sub> ⋅ <em>l</em></span>;<br />
+<span class="math inline">$\displaystyle B_1 = \frac{q_0}{U_{ном}^2}\cdot l$</span>,</p>
 <p>где <span class="math inline"><em>l</em></span> – длина линии, [км].</p>
 <p>При расчетах токов несимметричных коротких замыканий для воздушных линий электропередачи необходимо определить активное и реактивное сопротивления нулевой последовательности. Расчет производится по <strong>формулам</strong>:</p>
 <p><span class="math inline"><em>R</em><sub>0</sub> = <em>R</em><sub>1</sub></span>;</p>
@@ -62,8 +67,8 @@
 <p><span class="math inline"><em>G</em> = <em>B</em> ⋅ tan <em>δ</em></span>,</p>
 <p>где <span class="math inline">tan <em>δ</em></span> – тангенс диэлектрических потерь, значение которого принимается по данным завода-изготовителя (обычно находится в пределах 0,003–0,006).</p>
 <p>При приближенных расчетах токов несимметричных коротких замыканий допустимо принимать <a href="source.html#01" title="РД 153-34.0-20.527-98 Руководящие указания по расчету токов короткого замыкания и выбору электрооборудования.">[1]</a>:</p>
-<p><span class="math inline"><em>X</em><sub>0</sub> = (3.5 ÷ 4.5)<em>X</em><sub>1</sub></span>;</p>
-<p><span class="math inline"><em>R</em><sub>0</sub> = 10<em>R</em><sub>1</sub></span>.</p>
+<p><span class="math inline"><em>X</em><sub>0</sub> = (3.5 ÷ 4.5) ⋅ <em>X</em><sub>1</sub></span>;</p>
+<p><span class="math inline"><em>R</em><sub>0</sub> = 10 ⋅ <em>R</em><sub>1</sub></span>.</p>
 <h3 id="частные-случаи">Частные случаи</h3>
 <p>В определенных случаях можно упростить схему замещения линии, исключив из нее те или иные элементы.</p>
 <ul>
@@ -145,13 +150,23 @@
 <p><img src="img/sch_trans02.svg" title="Расщепление обмотки низшего напряжения на две цепи" /></p>
 <p>Схема замещения в данном случае будет иметь вид многолучевой звезды. На рисунке ниже представлена схема замещения двухобмоточного трансформатора с обмоткой низшего напряжения, расщепленной на две цепи. Обратите внимание, что шунт расположен в ветви, соответствующей одной из цепей обмотки низшего напряжения.</p>
 <p><img src="img/sch_trans03.svg" title="Схема замещения двухобмоточного трансформатора с расщепленной обмоткой" /></p>
-<p>Для задания трансформатора в соответствии с такой схемой потребуется <span class="math inline"><em>m</em> + 1</span> ветвей (<span class="math inline"><em>m</em></span> – количество цепей в расщепленной обмотке). Список параметров будет следующим: * <span class="math inline"><em>R</em><sub>1(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>R</em><sub>1(<em>Н</em><em>Н</em>)</sub></span> – активные сопротивления прямой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
-* <span class="math inline"><em>X</em><sub>1(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>X</em><sub>1(<em>Н</em><em>Н</em>)</sub></span> – реактивные (индуктивные) сопротивления прямой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
-* <span class="math inline"><em>R</em><sub>0(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>R</em><sub>0(<em>Н</em><em>Н</em>)</sub></span> – активные сопротивления нулевой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
-* <span class="math inline"><em>X</em><sub>0(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>X</em><sub>0(<em>Н</em><em>Н</em>)</sub></span> – реактивные (индуктивные) сопротивления нулевой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
-* <span class="math inline"><em>G</em></span> – активная проводимость шунта, [мкСм];<br />
-* <span class="math inline"><em>B</em></span> – реактивная (индуктивная) проводимость шунта, [мкСм]. * <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>У</em><em>з</em><em>е</em><em>л</em> <em>н</em><em>а</em><em>ч</em><em>а</em><em>л</em><em>а</em>)</sub></span>, <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>У</em><em>з</em><em>е</em><em>л</em> <em>к</em><em>о</em><em>н</em><em>ц</em><em>а</em>)</sub></span> – средние номинальные напряжения узлов начала и конца ветви (используются для расчета модуля коэффициента трансформации), [кВ];<br />
-* <span class="math inline"><em>ξ</em><sub><em>n</em></sub></span> – угол комплексного коэффициента трансформации (при расчете симметричных коротких замыканий принимается равным нулю), [град.].</p>
+<p>Для задания трансформатора в соответствии с такой схемой потребуется <span class="math inline"><em>m</em> + 1</span> ветвей (<span class="math inline"><em>m</em></span> – количество цепей в расщепленной обмотке). Список параметров будет следующим:</p>
+<ul>
+<li><span class="math inline"><em>R</em><sub>1(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>R</em><sub>1(<em>Н</em><em>Н</em>)</sub></span> – активные сопротивления прямой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
+</li>
+<li><span class="math inline"><em>X</em><sub>1(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>X</em><sub>1(<em>Н</em><em>Н</em>)</sub></span> – реактивные (индуктивные) сопротивления прямой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
+</li>
+<li><span class="math inline"><em>R</em><sub>0(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>R</em><sub>0(<em>Н</em><em>Н</em>)</sub></span> – активные сопротивления нулевой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
+</li>
+<li><span class="math inline"><em>X</em><sub>0(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>X</em><sub>0(<em>Н</em><em>Н</em>)</sub></span> – реактивные (индуктивные) сопротивления нулевой последовательности обмоток высшего и низшего напряжения, [Ом];<br />
+</li>
+<li><span class="math inline"><em>G</em></span> – активная проводимость шунта, [мкСм];<br />
+</li>
+<li><span class="math inline"><em>B</em></span> – реактивная (индуктивная) проводимость шунта, [мкСм].</li>
+<li><span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>У</em><em>з</em><em>е</em><em>л</em> <em>н</em><em>а</em><em>ч</em><em>а</em><em>л</em><em>а</em>)</sub></span>, <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>У</em><em>з</em><em>е</em><em>л</em> <em>к</em><em>о</em><em>н</em><em>ц</em><em>а</em>)</sub></span> – средние номинальные напряжения узлов начала и конца ветви (используются для расчета модуля коэффициента трансформации), [кВ];<br />
+</li>
+<li><span class="math inline"><em>ξ</em><sub><em>n</em></sub></span> – угол комплексного коэффициента трансформации (при расчете симметричных коротких замыканий принимается равным нулю), [град.].</li>
+</ul>
 <p>Для двухобмоточных трансформаторов с расщепленными обмотками обычно приводятся следующие каталожные данные: <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА]; <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>В</em><em>Н</em>)</sub></span>, <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em>(<em>Н</em><em>Н</em>)</sub></span> – номинальные напряжения обмоток высшего и низшего напряжения, [кВ]; <span class="math inline"><em>Δ</em><em>P</em><sub><em>х</em></sub></span> – потери холостого хода, [МВт]; <span class="math inline"><em>Δ</em><em>P</em><sub><em>к</em></sub></span> – потери короткого замыкания, [МВт]; <span class="math inline"><em>I</em><sub><em>х</em></sub></span> – ток холостого хода, [%]; <span class="math inline"><em>u</em><sub><em>к</em></sub></span> – напряжение короткого замыкания, [%].</p>
 <p>Вычисление неизвестных параметров выполняется по формулам (узел начала ветви “ВН-0” соответствует стороне высшего напряжения) <a href="source.html#03" title="Руководящие указания по релейной защите. Вып. 11. Расчеты токов короткого замыкания для релейной защиты и системной автоматики в сетях 110–750 кВ.">[3]</a>:</p>
 <p><span class="math inline">$\displaystyle R_{1(ВН-НН)}=\frac{\Delta P_к \cdot U_{ном(ВН)}^2}{S_{ном}^2}$</span>;</p>
@@ -257,86 +272,6 @@
 <p>где <span class="math inline"><em>n</em><sub><em>т</em>(<em>В</em><em>Н</em> − <em>С</em><em>Н</em>)</sub></span> – коэффициент трансформации:</p>
 <p><span class="math inline">$\displaystyle n_{т(ВН-СН)} = \frac{U_{ВН}}{U_{СН}}$</span>.</p></li>
 </ol>
-<h2 id="синхронная-машина-eq_generator">Синхронная машина [eq_generator]</h2>
-<p>К устройствам данного типа относятся синхронные генераторы, компенсаторы и электродвигатели. Параметры синхронных машин задаются в разделе <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a>.</p>
-<h3 id="синхронный-генератор">Синхронный генератор</h3>
-<h3 id="синхронный-компенсатор">Синхронный компенсатор</h3>
-<h3 id="синхронный-электродвигатель">Синхронный электродвигатель</h3>
-<h2 id="нагрузка-eq_load">Нагрузка [eq_load]</h2>
-<p>Нагрузка в расчетах учитывается обобщенно – постоянным эквивалентным сопротивлением, и представляется следующей схемой замещения:</p>
-<p><img src="img/sch_load01.svg" title="Схема замещения нагрузки" /></p>
-<p>Для задания нагрузки в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a> со следующими параметрами:</p>
-<ul>
-<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>1</sub></span> – индуктивное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>2</sub></span> – индуктивное сопротивление обратной последовательности, [Ом].</li>
-</ul>
-<p>Для нагрузки обычно известны следующие данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – среднее номинальное напряжение в точке присоединения нагрузки, [кВ]; <span class="math inline"><em>S</em><sub><em>н</em><em>а</em><em>г</em><em>р</em></sub></span> – полная рабочая мощность, [МВА]; <span class="math inline">cos <em>φ</em><sub><em>н</em><em>а</em><em>г</em><em>р</em></sub></span> – коэффициент мощности.</p>
-<p>Параметры схемы замещения будут равны <a href="source.html#03" title="Руководящие указания по релейной защите. Вып. 11. Расчеты токов короткого замыкания для релейной защиты и системной автоматики в сетях 110–750 кВ.">[3]</a>:</p>
-<p><span class="math inline">$\displaystyle R_1 = \frac{U_{ном}^2}{S_{нагр}}\cdot \cos\varphi_{нагр}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_1 = \frac{U_{ном}^2}{S_{нагр}}\cdot \sin\varphi_{нагр}$</span>.</p>
-<p><span class="math inline">$\displaystyle R_2 = 0.19\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_2 = 0.36\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
-<p><span class="math inline"><em>R</em><sub>0</sub> = <em>X</em><sub>0</sub> = 0</span>.</p>
-<p>В практических расчетах будет достаточно приближенного учета нагрузки индуктивным сопротивлением:</p>
-<p><img src="img/sch_load02.svg" title="Схема замещения нагрузки" /></p>
-<p><span class="math inline">$\displaystyle X_1 = 1.2\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_2 = 0.35\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
-<p><span class="math inline"><em>X</em><sub>0</sub> = 0</span>.</p>
-<p>Если необходим учет подпитки со стороны асинхронных двигателей, распложенных вблизи точки короткого замыкания, их следует задавать приближенно в виде нагрузки, представленной ЭДС за сверхпереходным сопротивлением:</p>
-<p><img src="img/sch_load03.svg" title="Схема замещения нагрузки, состоящей из асинхронных двигателей" /></p>
-<p>Параметры схемы замещения в данном случае будут равны:</p>
-<p><span class="math inline">$\displaystyle E'' = 0.19\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
-<p><span class="math inline">$\displaystyle X'' = 0.35\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>.</p>
-<p><span class="math inline"><em>X</em><sub>2</sub> = …</span>;</p>
-<p><span class="math inline"><em>X</em><sub>0</sub> = …</span>.</p>
-<p>В отдельных случаях нагрузку, состоящую из синхронных двигателей суммарной мощностью 1–2 МВт и более, необходимо учитывать <a href="#eq_generator">отдельно</a>.</p>
-<p>Параметры комплексной нагрузки узла, состоящей из нескольких потребителей определяются по формуле:</p>
-<p><span class="math inline">$\displaystyle R_1 = \sum_{i=1}^n R_{1i}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_1 = \sum_{i=1}^n X_{1i}$</span>,</p>
-<p>где <span class="math inline"><em>R</em><sub>1<em>i</em></sub></span>, <span class="math inline"><em>X</em><sub>1<em>i</em></sub></span> – активное и индуктивное сопротивления прямой последовательности <span class="math inline"><em>i</em></span>-го потребителя; <span class="math inline"><em>n</em></span> – количество потребителей в узле нагрузки.</p>
-<p><span class="math inline">$\displaystyle R_{1i} = \frac{U_{ном}^2}{S_{i}}\cdot \cos\varphi_{i}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_{1i} = \frac{U_{ном}^2}{S_{i}}\cdot \sin\varphi_{i}$</span>.</p>
-<h2 id="батарея-статических-конденсаторов-eq_capacitor">Батарея статических конденсаторов [eq_capacitor]</h2>
-<p>Батареи статических конденсаторов представляются шунтом, включенным в узел схемы. Особенность представления шунта в ПО Lime заключается в задании его сопротивлений вместо проводимостей.</p>
-<p><img src="img/sch_capacitor01.svg" title="Схема замещения батареи статических конденсаторов" /></p>
-<p>Для задания батареи статических конденсаторов в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">“Оборудование”</a> со следующими параметрами:</p>
-<ul>
-<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>1</sub></span> – емкостное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>2</sub></span> – емкостное сопротивление обратной последовательности, [Ом];</li>
-<li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>0</sub></span> – емкостное сопротивление нулевой последовательности, [Ом].</li>
-</ul>
-<p>Для батареи статических конденсаторов обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>S</em></span> – установленная мощность батареи, [МВА]; <span class="math inline"><em>Q</em><sub>1</sub></span> – мощность, выдаваемая батареей при напряжении <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>, [Мвар]; <span class="math inline"><em>Q</em><sub>1, 1</sub></span> – мощность, выдаваемая батареей при напряжении <span class="math inline">1.1 ⋅ <em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>, [Мвар].</p>
-<p>Параметры схемы замещения будут равны:</p>
-<p><span class="math inline"><em>R</em><sub>1</sub> = …</span>;</p>
-<p><span class="math inline"><em>R</em><sub>0</sub> = …</span>;</p>
-<p><span class="math inline"><em>X</em><sub>1</sub> = …</span>;</p>
-<p><span class="math inline"><em>X</em><sub>0</sub> = …</span>;</p>
-<h2 id="шунтирующий-реактор-eq_shunt_reactor">Шунтирующий реактор [eq_shunt_reactor]</h2>
-<p>Шунтирующие реакторы представляется аналогично батареям статических конденсаторов:</p>
-<p><img src="img/sch_shunt_reactor01.svg" title="Схема замещения шунтирующего реактора" /></p>
-<p>Для задания шунтирующего реактора в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a> со следующими параметрами:</p>
-<ul>
-<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>1</sub></span> – индуктивное сопротивление прямой последовательности, [Ом];</li>
-<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>2</sub></span> – емкостное сопротивление обратной последовательности, [Ом];</li>
-<li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];</li>
-<li><span class="math inline"><em>X</em><sub>0</sub></span> – индуктивное сопротивление нулевой последовательности, [Ом].</li>
-</ul>
-<p>Для шунтирующего реактора обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА], <span class="math inline"><em>Δ</em><em>P</em></span> – потери активной мощности, [кВт].</p>
-<p>Параметры схемы замещения будут равны:</p>
-<p><span class="math inline">$\displaystyle R_1 = \frac{U^2_{\text{ном}}}{\Delta P \cdot 10^3}$</span>;</p>
-<p><span class="math inline">$\displaystyle Z_1 = \frac{U^2_{\text{ном}}}{S_{\text{ном}}}$</span>;</p>
-<p><span class="math inline">$\displaystyle X_1 = \sqrt{Z_1^2 - R_1^2}$</span>;</p>
-<p><span class="math inline"><em>R</em><sub>2</sub> = <em>R</em><sub>0</sub> = <em>R</em><sub>1</sub></span>;</p>
-<p><span class="math inline"><em>X</em><sub>2</sub> = <em>X</em><sub>0</sub> = <em>X</em><sub>1</sub></span>.</p>
-<p>В практических расчетах допускается не учитывать активное сопротивление шунта, считая приближенно:</p>
-<p><span class="math inline">$\displaystyle X_1 = \frac{U^2_{\text{ном}}}{S_{\text{ном}}}$</span>.</p>
 <h2 id="токоограничивающий-реактор-eq_limiting_reactor">Токоограничивающий реактор [eq_limiting_reactor]</h2>
 <h3 id="одинарный-токоограничивающий-реактор">Одинарный токоограничивающий реактор</h3>
 <p>Одинарный токоограничивающий реактор представляется следующей схемой замещения:</p>
@@ -350,7 +285,7 @@
 </ul>
 <p>Для одинарных реакторов обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА]; <span class="math inline"><em>X</em><sub><em>р</em></sub></span> – номинальное индуктивное сопротивление, [Ом]; <span class="math inline"><em>Δ</em><em>P</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальные потери мощности (на фазу), [кВт].</p>
 <p>Параметры схемы замещения будут равны:</p>
-<p><span class="math inline">$\displaystyle R_1 = \frac{\Delta P_{ном}}{I_{ном}^2}\cdot 10^3$</span>;</p>
+<p><span class="math inline">$\displaystyle R_1 = \frac{\Delta P_{ном} \cdot 10^{-3}}{I_{ном}^2}$</span>;</p>
 <p><span class="math inline"><em>X</em><sub>1</sub> = <em>X</em><sub><em>р</em></sub></span>;</p>
 <p><span class="math inline"><em>R</em><sub>0</sub> = <em>R</em><sub>1</sub></span>;</p>
 <p><span class="math inline"><em>X</em><sub>0</sub> = <em>X</em><sub>1</sub></span>;</p>
@@ -376,7 +311,7 @@
 </ul>
 <p>Для сдвоенных реакторов обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА]; <span class="math inline"><em>X</em><sub>0, 5</sub></span> – индуктивное сопротивление ветви реактора при отсутствии тока в другой ветви, [Ом]; <span class="math inline"><em>X</em><sub>0, 5<em>р</em></sub></span> – индуктивное сопротивление ветви реактора при одинаковых по величине и встречно направленных токах ветвей, [Ом]; <span class="math inline"><em>X</em><sub><em>с</em></sub></span> – индуктивное сопротивление реактора при одинаковых по величине и совпадающих по направлению токах ветвей, [Ом]; <span class="math inline"><em>Δ</em><em>P</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальные потери мощности (на фазу), [кВт]</p>
 <p>Параметры схемы замещения будут равны:</p>
-<p><span class="math inline">$\displaystyle R_{1(р2)} = R_{1(р3)} = \frac{\Delta P}{2\cdot I_{ном}^2}\cdot 10^3$</span>,</p>
+<p><span class="math inline">$\displaystyle R_{1(р2)} = R_{1(р3)} = \frac{\Delta P \cdot 10^{-3}}{2\cdot I_{ном}^2}$</span>,</p>
 <p><span class="math inline"><em>X</em><sub>1(<em>р</em>1)</sub> =  − <em>k</em><sub><em>р</em></sub> ⋅ <em>X</em><sub>0, 5</sub></span>;</p>
 <p><span class="math inline"><em>X</em><sub>1(<em>р</em>2)</sub> = <em>X</em><sub>1(<em>р</em>3)</sub> = (1 + <em>k</em><sub><em>р</em></sub>) ⋅ <em>X</em><sub>0, 5</sub></span>,</p>
 <p>где <span class="math inline"><em>k</em><sub><em>р</em></sub></span> – коэффициент связи, учитывающий взаимную индукцию между ветвями реактора:</p>
@@ -388,6 +323,51 @@
 <p><span class="math inline"><em>X</em><sub>0(<em>р</em>1)</sub> = <em>X</em><sub>1(<em>р</em>1)</sub></span>, <span class="math inline"><em>X</em><sub>0(<em>р</em>2)</sub> = <em>X</em><sub>1(<em>р</em>2)</sub></span>, <span class="math inline"><em>X</em><sub>0(<em>р</em>3)</sub> = <em>X</em><sub>1(<em>р</em>3)</sub></span>.</p>
 <p>В большинстве случаев допускается использовать упрощенную схему замещения, не учитывающую активные сопротивления ветвей реактора:</p>
 <p><img src="img/sch_limiting_reactor04.svg" title="Упрощенная схема замещения сдвоенного токоограничивающего реактора" /></p>
+<h2 id="синхронная-машина-eq_generator">Синхронная машина [eq_generator]</h2>
+<p>К устройствам данного типа относятся синхронные генераторы, компенсаторы и электродвигатели. Параметры синхронных машин задаются в разделе <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a>.</p>
+<h3 id="синхронный-генератор">Синхронный генератор</h3>
+<h3 id="синхронный-компенсатор">Синхронный компенсатор</h3>
+<h3 id="синхронный-электродвигатель">Синхронный электродвигатель</h3>
+<h2 id="нагрузка-eq_load">Нагрузка [eq_load]</h2>
+<p>Нагрузка в расчетах учитывается обобщенно – постоянным эквивалентным сопротивлением и эквивалентной ЭДС, и представляется следующей схемой замещения:</p>
+<p><img src="img/sch_load01.svg" title="Схема замещения нагрузки" /></p>
+<p>Для задания нагрузки в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a> со следующими параметрами:</p>
+<ul>
+<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>1</sub></span> – индуктивное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>2</sub></span> – индуктивное сопротивление обратной последовательности, [Ом].</li>
+<li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>0</sub></span> – индуктивное сопротивление нулевой последовательности, [Ом].</li>
+<li><span class="math inline"><em>E</em></span> – модуль эквивалентной ЭДС нагрузки;</li>
+<li><span class="math inline"><em>δ</em></span> – угол эквивалентной ЭДС нагрузки.</li>
+</ul>
+<p>Для нагрузки обычно известны следующие данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – среднее номинальное напряжение в точке присоединения нагрузки, [кВ]; <span class="math inline"><em>S</em><sub><em>н</em><em>а</em><em>г</em><em>р</em></sub></span> – полная рабочая мощность, [МВА]; <span class="math inline">cos <em>φ</em><sub><em>н</em><em>а</em><em>г</em><em>р</em></sub></span> – коэффициент мощности.</p>
+<p>Параметры схемы замещения будут равны <a href="source.html#03" title="Руководящие указания по релейной защите. Вып. 11. Расчеты токов короткого замыкания для релейной защиты и системной автоматики в сетях 110–750 кВ.">[3]</a>:</p>
+<p><span class="math inline">$\displaystyle R_1 = \frac{U_{ном}^2}{S_{нагр}}\cdot \cos\varphi_{нагр}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_1 = \frac{U_{ном}^2}{S_{нагр}}\cdot \sin\varphi_{нагр}$</span>.</p>
+<p><span class="math inline">$\displaystyle R_2 = 0.19\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_2 = 0.36\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
+<p><span class="math inline"><em>R</em><sub>0</sub> = <em>X</em><sub>0</sub> = 0</span>.</p>
+<p>В практических расчетах будет достаточно приближенного учета нагрузки индуктивным сопротивлением:</p>
+<p><img src="img/sch_load02.svg" title="Схема замещения нагрузки" /></p>
+<p><span class="math inline">$\displaystyle X_1 = 1.2\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_2 = 0.35\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
+<p><span class="math inline"><em>X</em><sub>0</sub> = 0</span>.</p>
+<p>Если необходим учет подпитки со стороны асинхронных двигателей, распложенных вблизи точки короткого замыкания, их следует задавать приближенно в виде нагрузки, представленной ЭДС за сверхпереходным сопротивлением:</p>
+<p><img src="img/sch_load03.svg" title="Схема замещения нагрузки, состоящей из асинхронных двигателей" /></p>
+<p>Параметры схемы замещения в данном случае будут равны:</p>
+<p><span class="math inline">$\displaystyle E'' = 0.19\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>;</p>
+<p><span class="math inline">$\displaystyle X'' = 0.35\cdot \frac{U_{ном}^2}{S_{нагр}}$</span>.</p>
+<p><span class="math inline"><em>X</em><sub>2</sub> = …</span>;</p>
+<p><span class="math inline"><em>X</em><sub>0</sub> = …</span>.</p>
+<p>В отдельных случаях нагрузку, состоящую из синхронных двигателей суммарной мощностью 1–2 МВт и более, необходимо учитывать отдельно в соответствии с рекомендациями, приведенными для <a href="#eq_generator">синхронных машин</a>.</p>
+<p>Параметры комплексной нагрузки узла, состоящей из нескольких потребителей определяются по формуле:</p>
+<p><span class="math inline">$\displaystyle R_1 = \sum_{i=1}^n R_{1i}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_1 = \sum_{i=1}^n X_{1i}$</span>,</p>
+<p>где <span class="math inline"><em>R</em><sub>1<em>i</em></sub></span>, <span class="math inline"><em>X</em><sub>1<em>i</em></sub></span> – активное и индуктивное сопротивления прямой последовательности <span class="math inline"><em>i</em></span>-го потребителя; <span class="math inline"><em>n</em></span> – количество потребителей в узле нагрузки.</p>
+<p><span class="math inline">$\displaystyle R_{1i} = \frac{U_{ном}^2}{S_{i}}\cdot \cos\varphi_{i}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_{1i} = \frac{U_{ном}^2}{S_{i}}\cdot \sin\varphi_{i}$</span>.</p>
 <h2 id="эквивалент-энергосистемы-eq_system">Эквивалент энергосистемы [eq_system]</h2>
 <p>Энергосистема (или просто система) представляется на схеме замещения своими эквивалентными сопротивлением и ЭДС:</p>
 <p><img src="img/sch_system01.svg" title="Схема замещения эквивалента энергосистемы" /></p>
@@ -491,15 +471,67 @@
 <p><span class="math inline">$\displaystyle \dot{I}_{KZ}^{(1)} = 3 \cdot \dot{I}_{KZ}^{0} = 3 \cdot \frac{ \dot{E}_С }{\sqrt{3} \cdot j \cdot (x_С + x_С^{0})} = \sqrt{3} \cdot \frac{ \dot{E}_С }{j \cdot (x_С + x_С^{0})}$</span>;</p>
 <p><span class="math inline">$\displaystyle I_{KZ}^{(1)} = \frac{ \sqrt{3} \cdot E_С }{x_С + x_С^{0}}$</span>;</p>
 <p><span class="math inline">$\displaystyle x_С^{0} = \frac{ \sqrt{3} \cdot E_С }{I_{KZ}^{(1)}} - x_С$</span>.</p>
+<h2 id="батарея-статических-конденсаторов-eq_capacitor">Батарея статических конденсаторов [eq_capacitor]</h2>
+<p>Батареи статических конденсаторов представляются шунтом, включенным в узел схемы. Особенность представления шунта в ПО Lime заключается в задании его сопротивлений вместо проводимостей.</p>
+<p><img src="img/sch_capacitor01.svg" title="Схема замещения батареи статических конденсаторов" /></p>
+<p>Для задания батареи статических конденсаторов в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">“Оборудование”</a> со следующими параметрами:</p>
+<ul>
+<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>1</sub></span> – емкостное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>2</sub></span> – емкостное сопротивление обратной последовательности, [Ом];</li>
+<li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>0</sub></span> – емкостное сопротивление нулевой последовательности, [Ом].</li>
+</ul>
+<p>Для батареи статических конденсаторов обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>S</em></span> – установленная мощность батареи, [МВА]; <span class="math inline"><em>Q</em><sub>(1)</sub></span> – мощность, выдаваемая батареей при напряжении <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>, [Мвар]; <span class="math inline"><em>Q</em><sub>(1, 1)</sub></span> – мощность, выдаваемая батареей при напряжении <span class="math inline">1.1 ⋅ <em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span>, [Мвар].</p>
+<p>Параметры схемы замещения будут <strong>равны</strong>:</p>
+<p><span class="math inline"><em>R</em><sub>1</sub> = …</span>;</p>
+<p><span class="math inline">$\displaystyle X_1 = \frac{U^2_{ном}}{Q_{(1)}}$</span>;</p>
+<p><span class="math inline"><em>R</em><sub>2</sub> = <em>R</em><sub>0</sub> = <em>R</em><sub>1</sub></span>;</p>
+<p><span class="math inline"><em>X</em><sub>2</sub> = <em>X</em><sub>0</sub> = <em>X</em><sub>1</sub></span>.</p>
+<h2 id="шунтирующий-реактор-eq_shunt_reactor">Шунтирующий реактор [eq_shunt_reactor]</h2>
+<p>Шунтирующие реакторы представляется аналогично батареям статических конденсаторов:</p>
+<p><img src="img/sch_shunt_reactor01.svg" title="Схема замещения шунтирующего реактора" /></p>
+<p>Для задания шунтирующего реактора в соответствии с данной схемой потребуется одна запись в таблице <a href="input.html#in_equip" title="Таблица &quot;Оборудование&quot;">"Оборудование"</a> со следующими параметрами:</p>
+<ul>
+<li><span class="math inline"><em>R</em><sub>1</sub></span> – активное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>1</sub></span> – индуктивное сопротивление прямой последовательности, [Ом];</li>
+<li><span class="math inline"><em>R</em><sub>2</sub></span> – активное сопротивление обратной последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>2</sub></span> – емкостное сопротивление обратной последовательности, [Ом];</li>
+<li><span class="math inline"><em>R</em><sub>0</sub></span> – активное сопротивление нулевой последовательности, [Ом];</li>
+<li><span class="math inline"><em>X</em><sub>0</sub></span> – индуктивное сопротивление нулевой последовательности, [Ом].</li>
+</ul>
+<p>Для шунтирующего реактора обычно приводятся следующие каталожные данные: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА], <span class="math inline"><em>Δ</em><em>P</em></span> – потери активной мощности, [кВт].</p>
+<p>Параметры схемы замещения будут равны:</p>
+<p><span class="math inline">$\displaystyle R_1 = \frac{U^2_{\text{ном}}}{\Delta P}\cdot 10^3$</span>;</p>
+<p><span class="math inline">$\displaystyle Z_1 = \frac{U^2_{\text{ном}}}{S_{\text{ном}}}$</span>;</p>
+<p><span class="math inline">$\displaystyle X_1 = \sqrt{Z_1^2 - R_1^2}$</span>;</p>
+<p><span class="math inline"><em>R</em><sub>2</sub> = <em>R</em><sub>0</sub> = <em>R</em><sub>1</sub></span>;</p>
+<p><span class="math inline"><em>X</em><sub>2</sub> = <em>X</em><sub>0</sub> = <em>X</em><sub>1</sub></span>.</p>
+<p>В практических расчетах допускается не учитывать активное сопротивление шунта, считая приближенно:</p>
+<p><span class="math inline">$\displaystyle X_1 = \frac{U^2_{ном}}{S_{ном}}$</span>.</p>
 <h2 id="электрическая-дуга-eq_arc">Электрическая дуга [eq_arc]</h2>
-<p>Электрическая дуга может быть представлена следующей схемой замещения:</p>
-<p><img src="img/sch_arc01.svg" title="Схема замещения электрической дуги" /></p>
+<p>Обычно в месте короткого замыкания присутствует переходное сопротивление, соответствующее электрической дуге и прочим элементам на пути протекания тока (например, при замыканиях на землю, это суммарное сопротивление опоры и заземления). Таким образом, электрическая дуга характеризуется дополнительным комплексным сопротивлением и может быть представлена следующими схемами замещения (в зависимости от вида короткого замыкания):</p>
+<ul>
+<li><p>Трехфазное короткое замыкание<br />
+<img src="img/sch_arc01.svg" title="Схема замещения электрической дуги" /></p></li>
+<li><p>Двухфазное короткое замыкание<br />
+<img src="img/sch_arc02.svg" title="Схема замещения электрической дуги" /></p></li>
+<li><p>Двухфазное короткое замыкание на землю<br />
+<img src="img/sch_arc03.svg" title="Схема замещения электрической дуги" /></p></li>
+<li><p>Однофазное короткое замыкание<br />
+<img src="img/sch_arc04.svg" title="Схема замещения электрической дуги" /></p></li>
+</ul>
 <p>Для электрической дуги необходимо задать следующие параметры в разделе <a href="calc.html" title="Раздел &quot;Расчет&quot;">"Расчет"</a>:</p>
 <ul>
 <li><span class="math inline"><em>R</em></span> – активное сопротивление дуги, [Ом];</li>
 <li><span class="math inline"><em>X</em></span> – индуктивное сопротивление дуги, [Ом];</li>
 </ul>
-<p>Расчет параметров электрической дуги выполняется на основе следующих данных: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА].</p>
+<p>Расчет параметров выполняется на основе следующих данных: <span class="math inline"><em>U</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальное напряжение, [кВ]; <span class="math inline"><em>I</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальный ток, [А]; <span class="math inline"><em>S</em><sub><em>н</em><em>о</em><em>м</em></sub></span> – номинальная мощность, [МВА].</p>
 <p>Параметры электрической дуги будут равны:</p>
-<p><span class="math inline"><em>R</em> = …</span>;</p>
-<p><span class="math inline"><em>X</em> = …</span>;</p>
+<p><span class="math inline"><em>R</em> = …</span>;<br />
+<span class="math inline"><em>X</em> = …</span>;</p>
+<p>В большинстве случаев реактивной составляющей сопротивления электрической дуги можно пренебречь: <span class="math inline"><em>X</em> = 0</span>. Активное сопротивление в таком случае можно определить приближенно, используя кривые, приведенные в <a href="source.html#01" title="РД 153-34.0-20.527-98 Руководящие указания по расчету токов короткого замыкания и выбору электрооборудования.">[1]</a> (рис. 5.19-5.21).</p>
+<p>При металлических замыканиях переходное сопротивление очень мало и его можно не учитывать:</p>
+<p><span class="math inline"><em>R</em> = 0</span>;<br />
+<span class="math inline"><em>X</em> = 0</span>.</p>

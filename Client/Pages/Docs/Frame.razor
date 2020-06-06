@@ -1,13 +1,12 @@
-﻿    <div class="d-block">
+﻿
 
-        <a href="/advices" 
-           class="sticky-top pl-5" 
-           style="color:blue;">[На главную]</a>
+    <a href="/advices"
+       class="sticky-top p-2"
+       style="color:blue;">&lt;&lt;</a>
 
-        <div class="container-fluid frame align-content-center mr-1">
-            @((MarkupString)Body)
-        </div>
-    </div>
+<div class="container-fluid frame align-content-center mr-1">
+    @((MarkupString)Body)
+</div>
 
 @code {
     [Parameter] public string Body { get; set; }

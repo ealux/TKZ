@@ -149,7 +149,6 @@ else
     private List<Bus> buses { get; set; }
 
     private Bus selectedNode;
-    private Bus selectedNodeMemory;
 
     void OnRowInserted(SavedRowItem<Bus, Dictionary<string, object>> e) => grid.Buses.Add(e.Item.Id, e.Item);
 

@@ -13,13 +13,6 @@ namespace TKZ.Server.Controllers
     [Route("[controller]")]
     public class AdviceController : ControllerBase
     {
-        // calc
-        [HttpGet("_draft")]
-        public async Task<string> Draft()
-        {
-            return await System.IO.File.ReadAllTextAsync("docs/_draft.html");
-        }
-
         // about
         [HttpGet("about")]
         public async Task<string> About()
