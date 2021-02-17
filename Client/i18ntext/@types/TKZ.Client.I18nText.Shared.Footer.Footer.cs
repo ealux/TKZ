@@ -7,6 +7,9 @@ namespace TKZ.Client.I18nText.Shared.Footer
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Cookie Policy"</summary>
+        public string Policy;
+
         /// <summary>"Terms of use"</summary>
         public string Terms;
     }
