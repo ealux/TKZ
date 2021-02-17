@@ -15,7 +15,7 @@
             <EditForm Model="@contact" OnValidSubmit="SendFeedback">
                 <DataAnnotationsValidator />
                 <div class="text-danger">
-                    <ValidationSummary />
+                    <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
                     <text class="text-success">@notification</text>
                 </div>
                 <p><label for="CustomerName">@contact.Localizer.Name:</label></p>

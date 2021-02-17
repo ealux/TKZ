@@ -3,6 +3,8 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TKZ.Client.Pages.Log;
 using TKZ.Client.Shared.Header;
@@ -16,13 +18,14 @@ namespace TKZ.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
             builder.RootComponents.Add<App>("app");
+
 
             #region Singletons
 
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             //builder.Services.AddSingleton(new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }); //Http
-            builder.Services.AddBaseAddressHttpClient();
+            //builder.Services.AddBaseAddressHttpClient();
             builder.Services.AddSingleton<LogBase>(); //Log singleton
             builder.Services.AddSingleton<GridService>(); //GridService singleton
             builder.Services.AddI18nText(); //Localizer singleton
@@ -31,7 +34,9 @@ namespace TKZ.Client
                             .AddBootstrapProviders()
                             .AddFontAwesomeIcons();
             builder.Services.AddHotKeys();
+
             #endregion Singletons
+            
 
             var host = builder.Build();
 

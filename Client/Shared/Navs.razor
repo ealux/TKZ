@@ -68,7 +68,8 @@
     private const string _pageAdvice = "/advices";
     private const string _pageContact = "/contacts";
     private const string _pageDisclamer = "/Disclaimer";
-    
+
+    //Grid grid { get; set; } = new Grid();
 
     //Localizator
     I18nText.Shared.Navs Localizer = new I18nText.Shared.Navs();
@@ -76,8 +77,14 @@
     protected override async Task OnInitializedAsync()
     {
         Localizer = await I18nText.GetTextTableAsync<I18nText.Shared.Navs>(this);
+        //grid = await Grid.GetInstance();
     }
-    
+
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    grid = await Grid.GetInstance();
+    //}
+
     HotKeysContext HotKeysContext;
     protected override void OnInitialized()
     {

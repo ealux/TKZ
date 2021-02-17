@@ -35,7 +35,6 @@ else
                           RowInserted="@OnRowInserted"
                           RowUpdated="@OnRowUpdated"
                           RowRemoved="@OnRowRemoved"
-                          HeaderRowClass="small"
                           Narrow="true"
                           Class="my_table text-center">
                     <DataGridColumns>
@@ -297,7 +296,6 @@ else
                           RowInserted="@OnRowInserted"
                           RowUpdated="@OnRowUpdated"
                           RowRemoved="@OnRowRemoved"
-                          HeaderRowClass="small"
                           Narrow="true"
                           Class="my_table text-center">
                     <DataGridColumns>
@@ -408,35 +406,35 @@ else
                         </DataGridColumn>
                         @*R1*@
                         <DataGridNumericColumn TItem="Branch"
-                                        Field="@nameof(Branch.R1)"
-                                        Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
-                                        Editable="true"
-                                        Sortable="true"
-                                        CellClass="@((item)=>"numeric-column")">
+                                               Field="@nameof(Branch.R1)"
+                                               Caption="@(new String("R1 (R2), ["+@Localizer.ohm+"]"))"
+                                               Editable="true"
+                                               Sortable="true"
+                                               CellClass="@((item)=>"numeric-column")">
                         </DataGridNumericColumn>
                         @*X1*@
                         <DataGridNumericColumn TItem="Branch"
-                                        Field="@nameof(Branch.X1)"
-                                        Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
-                                        Editable="true"
-                                        Sortable="true"
-                                        CellClass="@((item)=>"numeric-column")">
+                                               Field="@nameof(Branch.X1)"
+                                               Caption="@(new String("X1 (X2), ["+@Localizer.ohm+"]"))"
+                                               Editable="true"
+                                               Sortable="true"
+                                               CellClass="@((item)=>"numeric-column")">
                         </DataGridNumericColumn>
                         @*B*@
                         <DataGridNumericColumn TItem="Branch"
-                                        Field="@nameof(Branch.B)"
-                                        Caption="@(new String("B1 (B2), ["+@Localizer.Siemens+"]"))"
-                                        Editable="true"
-                                        Sortable="true"
-                                        CellClass="@((item)=>"numeric-column")">
+                                               Field="@nameof(Branch.B)"
+                                               Caption="@(new String("B1 (B2), ["+@Localizer.Siemens+"]"))"
+                                               Editable="true"
+                                               Sortable="true"
+                                               CellClass="@((item)=>"numeric-column")">
                         </DataGridNumericColumn>
                         @*G*@
                         <DataGridNumericColumn TItem="Branch"
-                                        Field="@nameof(Branch.G)"
-                                        Caption="@(new String("G1 (G2), ["+@Localizer.Siemens+"]"))"
-                                        Editable="true"
-                                        Sortable="true"
-                                        CellClass="@((item)=>"numeric-column")">
+                                               Field="@nameof(Branch.G)"
+                                               Caption="@(new String("G1 (G2), ["+@Localizer.Siemens+"]"))"
+                                               Editable="true"
+                                               Sortable="true"
+                                               CellClass="@((item)=>"numeric-column")">
                         </DataGridNumericColumn>
                         @*StUnom*@
                         <DataGridNumericColumn TItem="Branch"

@@ -21,6 +21,7 @@ namespace TKZ.Client.Pages
                 var query = grid.Buses.Values.GroupBy(x => new { _Name = x.Name, _Unom = x.Unom })
                                                .Where(g => g.Count() > 1)
                                                .Select(y => y.Key).ToList();
+
                 await Task.Run(() =>
                 {
                     if (query.Count > 0)
@@ -30,7 +31,7 @@ namespace TKZ.Client.Pages
                     }
                 });
             }
-            catch (Exception) { }
+            catch (Exception) {}
 
             //Similar Names
             try
@@ -54,7 +55,7 @@ namespace TKZ.Client.Pages
                     }
                 });
             }
-            catch (Exception) { }
+            catch (Exception) {}
         }
     }
 }

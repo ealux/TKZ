@@ -116,26 +116,18 @@ else
             @* Details *@
             <DetailRowTemplate>
                 @{
-                    var equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
+                    List<Equip> equips = grid.Equipment.Values.Where(e => e.BusId == (context).Id).ToList();
 
-                    if (equips != null)
-                    {
-                        <DataGrid TItem="Equip"
-                                  Data="equips"
-                                  Sortable="false"
-                                  ShowCaptions="false"
-                                  Narrow="true"
-                                  Striped="false"
-                                  HeaderRowClass="small"
-                                  Class="equipment float-right">
+                    <DataGrid TItem="Equip"
+                              Data="equips"
+                              Sortable="false"
+                              ShowCaptions="false"
+                              Class="equipment">
 
-                            <DataGridColumn TItem="Equip"
-                                            Field="@nameof(Equip.Name)"
-                                            Caption="@(@Localizer.NameBut)"
-                                            Editable="false"
-                                            Sortable="true" />
-                        </DataGrid>
-                    }
+                        <DataGridColumn TItem="Equip"
+                                        Field="@nameof(Equip.Name)"
+                                        Editable="false" />
+                    </DataGrid>
                 }
             </DetailRowTemplate>
         </DataGrid>
